@@ -49,52 +49,6 @@
 \setlength{\parindent}{1cm}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
-\usepackage{ifthen} %%% package for conditionals in TeX
-\newread\testin
-\def\softinput #1 {\let\next=\relax \openin\testin=#1
-  \ifeof\testin \message{Info: the file #1 does not exist}%
-\else \closein\testin \def\next{\input #1 }\fi
-\next}
-
-\softinput{makeconfig}
-
-\ifx\clinks\undefined
-  \def\clinks{true}
-\fi
-
-\ifx\pdfoutput\undefined %%% LATEX %%%
-  \def\nothtml{}  %%% \nothtml is defined if not processed with latex2html
-  %\usepackage[dvips]{graphicx}       %%% graphics for dvips
-  \usepackage[                %%% hyper-references for ps2pdf
-  bookmarks=true,%                   %%% generate bookmarks ...
-  breaklinks=true,%                  %%% breaks lines, but links are very small
-  hypertexnames=false,%              %%% needed for correct links to figures
-  colorlinks=\clinks,%
-  urlcolor=blue
-  ]{hyperref}           %%% blue instead of cyan URLS
-  \hypersetup{
-    pdfcreator  = {LaTeX with hyperref package},
-    pdfproducer = {dvips + ps2pdf},
-  }
-\else %%% PDFLATEX %%%
-  \def\nothtml{}  %%% \nothtml is defined if not processed with latex2html
-  %\usepackage[pdftex]{graphicx}        %%% graphics for pdfLaTeX
-  \usepackage[              %%% hyper-references for pdflatex
-  bookmarks=true,%                   %%% generate bookmarks ...
-  hypertexnames=false,%              %%% needed for correct links to figures
-  breaklinks=true,%                  %%% break links if exceeding a single line
-  colorlinks={\clinks},%
-  urlcolor=blue]{hyperref}           %%% blue instead of cyan URLS
-  \pdfadjustspacing=1                %%% force LaTeX-like character spacing
-\fi
-
-\hypersetup{
-  pdfauthor={\Author},
-  pdftitle={\Title - \Acronym},
-  pdfsubject={\Subject},
-  pdfkeywords={\Keywords}
-}
-
 \pagestyle{fancy}
 \setlength{\headheight}{18pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -156,6 +110,42 @@
 %%{ INTRODUCTION
 
 \section{Introduction}
+
+%%}
+
+%%{ IONIZING RADIATION IMAGING
+
+\section{Ionizing radiation imaging}
+
+%%{ GAMMA-RAY CAMERA
+
+\subsection{Compton $\gamma$-ray camera}
+
+%%}
+
+%%}
+
+%%{ RADIATION SOURCE ESTIMATION
+
+\section{Radiation source state estimation}
+
+%%}
+
+%%{ DISTRIBUTED SENSING USING MULTIPLE UAVS
+
+\section{Distributed sensing using multiple UAVs}
+
+%%}
+
+%%{ AUTONOMOUS TRACKING OF A MOVING RADIATION SOURCE 
+
+\section{Autonomous tracking of a moving radiation source}
+
+%%}
+
+%%{ CONCLUSIONS
+
+\section{Conclusions}
 
 %%}
 
