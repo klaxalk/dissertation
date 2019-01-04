@@ -1,0 +1,184 @@
+%%{ DOC HEAD
+
+\pdfoutput=1
+\documentclass[a4paper,12pt,titlepage, twoside]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\usepackage{algorithm,algpseudocode}
+\usepackage[title,titletoc]{appendix}
+\usepackage{latexsym}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{graphicx}       %%% graphics for dvips
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{pifont}
+\usepackage{makeidx}
+\usepackage{lastpage}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{epstopdf}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{relsize}
+\usepackage{pdfpages}
+\usepackage{url}
+
+\newcommand{\Author}{Ing. Tomáš Báča}
+\newcommand{\Title}{Distributed Sensing with Group of Unmanned Aerial Vehicles}
+\newcommand{\DocName}{Thesis}
+\newcommand{\Keywords}{mobile robotics}
+\newcommand{\Date}{1/1/2019}
+\newcommand{\DOCVersion}{0.1}
+
+\def\clinks{false}
+
+\lstset{breaklines=true,captionpos=b,frame=single,language=sh,float=h}
+\lstloadlanguages{sh,c}
+\def\lstlistingname{Listing}%{Výpis}
+\def\lstlistlistingname{Listings}%{Seznam výpisů}
+
+% European layout (no extra space after `.')
+\frenchspacing
+
+% no indent, free space between paragraphs
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\usepackage{ifthen} %%% package for conditionals in TeX
+\newread\testin
+\def\softinput #1 {\let\next=\relax \openin\testin=#1
+  \ifeof\testin \message{Info: the file #1 does not exist}%
+\else \closein\testin \def\next{\input #1 }\fi
+\next}
+
+\softinput{makeconfig}
+
+\ifx\clinks\undefined
+  \def\clinks{true}
+\fi
+
+\ifx\pdfoutput\undefined %%% LATEX %%%
+  \def\nothtml{}  %%% \nothtml is defined if not processed with latex2html
+  %\usepackage[dvips]{graphicx}       %%% graphics for dvips
+  \usepackage[                %%% hyper-references for ps2pdf
+  bookmarks=true,%                   %%% generate bookmarks ...
+  breaklinks=true,%                  %%% breaks lines, but links are very small
+  hypertexnames=false,%              %%% needed for correct links to figures
+  colorlinks=\clinks,%
+  urlcolor=blue
+  ]{hyperref}           %%% blue instead of cyan URLS
+  \hypersetup{
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf},
+  }
+\else %%% PDFLATEX %%%
+  \def\nothtml{}  %%% \nothtml is defined if not processed with latex2html
+  %\usepackage[pdftex]{graphicx}        %%% graphics for pdfLaTeX
+  \usepackage[              %%% hyper-references for pdflatex
+  bookmarks=true,%                   %%% generate bookmarks ...
+  hypertexnames=false,%              %%% needed for correct links to figures
+  breaklinks=true,%                  %%% break links if exceeding a single line
+  colorlinks={\clinks},%
+  urlcolor=blue]{hyperref}           %%% blue instead of cyan URLS
+  \pdfadjustspacing=1                %%% force LaTeX-like character spacing
+\fi
+
+\hypersetup{
+  pdfauthor={\Author},
+  pdftitle={\Title - \Acronym},
+  pdfsubject={\Subject},
+  pdfkeywords={\Keywords}
+}
+
+\pagestyle{fancy}
+\setlength{\headheight}{18pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%\lfoot{ČVUT FEL, Katedra Kybernetiky, Gerstner Laboratory}
+\cfoot{}
+%\rfoot{\thepage$/$\pageref{LastPage}}
+
+\fancypagestyle{plain}
+
+\fancyhead[R]{}
+
+\begin{document}
+
+%%}
+
+%%{ TITLE PAGES
+
+%% Asymetric margins
+%% LEAVE ONLY IN THE PRINTED VERSION
+%% the electronic version should have symetric margins
+% \setlength{\oddsidemargin}{+0.5cm}
+% \setlength{\evensidemargin}{-0.5cm}
+%%
+
+% Titulní stránka
+\input{chapters/title}
+\pagestyle{empty}
+\cleardoublepage
+
+% Abstract
+% \input{chapters/abstract_en}
+% \input{chapters/abstract_cz}
+% \cleardoublepage
+
+% Table of contents
+\pagestyle{fancy}
+\pagenumbering{roman}
+\cfoot{\thepage}
+\tableofcontents
+\cleardoublepage
+
+% List of figures
+% \listoffigures
+% \cleardoublepage
+
+% Switch to arabic style
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\cfoot{}
+\rfoot{\thepage$/$\pageref{LastPage}}
+\setlength{\parskip}{0.35cm}
+
+\lhead{\emph{\leftmark}}
+\rhead{}
+
+%%}
+
+%%{ INTRODUCTION
+
+\section{Introduction}
+
+%%}
+
+%%{ DOC BOTTOM
+
+%%{ REFERENCES
+
+\clearpage
+\bibliography{main}{}
+\cleardoublepage
+\bibliographystyle{IEEEtran}
+\clearpage
+
+%%}
+
+%%{ APENDICES
+
+% \appendices
+% \lhead{\emph{APPENDIX \leftmark}}
+% \cleardoublepage
+
+%%}
+
+\end{document}
+
+%%}
