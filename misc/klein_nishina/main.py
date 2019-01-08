@@ -7,15 +7,20 @@ import matplotlib.pyplot as plt
 
 global h, hr, c, me
 
+# #{ physical constants
+
 h = 6.6207015e-34 # Planc constant [J * s]
 hr = 6.6207015e-34 / (2*m.pi) # reduced Planc constant [J * s]
 c = 299792458 # speed of light in vacuum [m/s]
-# me = 510.9989461 # mass of an electron [keV/c^2]
 me = 9.10938356e-31 # mass of an electron [kg]
 alpha = 1 / 137.04 # fine structure constant [-]
 r_e = 2.8179e-15 # classical electron radius [m]
 si_atom = 0.222e-9 # diameter of an silicone atom [m]
 N_a = 6.02214086e23 # Avogadro's number [1/mol]
+
+# #} end of physical constants
+
+# #{ materials
 
 Si_ro = 2320 # Density of Si [kg/m^3]
 Si_atomic = 14 # Atom number of Si [-]
@@ -46,7 +51,6 @@ NaI_atomic = Na_atomic + I_atomic # Atom number of NaI [-]
 NaI_molar_mass = 0.149894239 # Molar mass of NaI [kg/mol]
 NaI_n_kg = N_a / NaI_molar_mass # number of NaI atoms in 1 kg [1/kg]
 NaI_e_density = NaI_n_kg * NaI_atomic * NaI_ro # electron density of NaI [1/m^3]
-print("NaI_e_density: {}".format(NaI_e_density/(100*100*100)))
 
 Te_ro = 6240 # Density of Te [kg/m^3]
 Te_atomic = 52 # Atom number of Te [-]
@@ -59,10 +63,8 @@ CdTe_atomic = Cd_atomic + Te_atomic # Atom number of CdTe [-]
 CdTe_molar_mass = 0.2400110 # Molar mass of CdTe [kg/mol]
 CdTe_n_kg = N_a / CdTe_molar_mass # number of CdTe atoms in 1 kg [1/kg]
 CdTe_e_density = CdTe_n_kg * CdTe_atomic * CdTe_ro # electron density of CdTe [1/m^3]
-print("CdTe_e_density: {}".format(CdTe_e_density/(100*100*100)))
 
-cw = h / (me * c) # Compton wavelength[m]
-rcw = hr / (me * c) # reduced Compton wavelength [m]
+# #} end of materials
 
 # #{ conversions
 
@@ -88,8 +90,11 @@ def energy_ev_to_J(energy):
 
 # #} end of conversions
 
+cw = h / (me * c) # Compton wavelength[m]
+rcw = hr / (me * c) # reduced Compton wavelength [m]
+
 # energy of the incoming photon
-E_0 = energy_ev_to_J(1000000) # [J]
+E_0 = energy_ev_to_J(100000) # [J]
 
 # scatterer thickness
 thickness = 0.001 # [m]
@@ -129,26 +134,26 @@ for i in np.arange(-180, 180, step):
   # target solid angle
   omega_1 = m.pi*m.sin(m.fabs(theta))*step_theta
   
-  d_sigma_CdTe = CdTe_e_density * KN * omega_1 * thickness
+  d_sigma = CdTe_e_density * KN * omega_1 * thickness
 
   try:
-      prob_theta = d_sigma_CdTe/step_theta
+      prob_theta = d_sigma/step_theta
   except:
       prob_theta = prob_theta
 
   try:
-      prob_area = (d_sigma_CdTe/omega_1)*(m.pi / 180)
+      prob_area = (d_sigma/omega_1)*(m.pi / 180)
   except:
       prob_area = prob_area
 
   angles.append(theta)
   prob_angle.append(prob_theta)
   prob_const_area.append(prob_area)
-  total_cross_section += d_sigma_CdTe
+  total_cross_section += d_sigma
   total_area += omega_1
 
 # # normalize the distribution
-# prob_const_area = [x/total_cross_section for x in prob_const_area]
+prob_const_area = [x/total_cross_section for x in prob_const_area]
 
 # create the radial data
 # xs = [diff_cross_section[i]*m.cos(angles[i]) for i in range(0, len(angles))]
@@ -163,11 +168,5 @@ ax.plot(angles, prob_angle)
 ax.grid(True)
 plt.show()
 
-print("E_0: {0:1.3f} keV".format(0.001*energy_J_to_eV(E_0)))
-print("P: {0:1.3f}".format(P))
-print("E_p_keV: {0:1.3f} keV".format(E_p_keV))
-print("E_e_keV: {0:1.3f} keV".format(E_e_keV))
-print("KN: {} cm^2 / sr".format(KN*10000)) # convert to cm^2 / sr
-print("d_sigma_CdTe: {}".format(d_sigma_CdTe))
-print("total_area: {}".format(total_area))
-print("total_cross_section: {}".format(total_cross_section))
+print("{0:2.1f}% of photons are scattered".format(total_cross_section*100))
+print("total area: {0:2.2f} sr".format(total_area))
