@@ -94,7 +94,7 @@ cw = h / (me * c) # Compton wavelength[m]
 rcw = hr / (me * c) # reduced Compton wavelength [m]
 
 # energy of the incoming photon
-E_0 = energy_ev_to_J(100000) # [J]
+E_0 = energy_ev_to_J(7000) # [J]
 
 # scatterer thickness
 thickness = 0.001 # [m]
