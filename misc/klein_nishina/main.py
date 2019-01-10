@@ -4,6 +4,13 @@ import math as m
 import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+## for Palatino and other serif fonts use:
+#rc('font',**{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
 
 global h, hr, c, me
 
@@ -94,79 +101,127 @@ cw = h / (me * c) # Compton wavelength[m]
 rcw = hr / (me * c) # reduced Compton wavelength [m]
 
 # energy of the incoming photon
-E_0 = energy_ev_to_J(7000) # [J]
+E_0_keV = [0.0027, 60, 511, 1460, 10000]
+E_0 = [energy_ev_to_J(E * 1000) for E in E_0_keV] # [J]
 
 # scatterer thickness
 thickness = 0.001 # [m]
 
+a_list = []
 angles = []
-prob_const_area = []
+klein_nishina = []
+prob_angle_normalized = []
 prob_angle = []
-total_cross_section = 0
+total_cross_section = []
 total_area = 0
 
-step = 0.01 # [deg]
+step = 0.1 # [deg]
 step_theta = step * (m.pi / 180.0) # [rad]
+print("step_theta: {}".format(step_theta))
 
-for i in np.arange(-180, 180, step):
+for energy_idx,energy in enumerate(E_0):
 
-  # scattering angle
-  theta = i * (m.pi / 180.0) # [rad]
-  
-  # ratio of incoming/scattered photon energy
-  P = 1 / (1 + (E_0/(me*m.pow(c, 2)))*(1 - m.cos(theta)))
-  
-  # Klein-Nishina formula
-  KN = 0.5 * m.pow(r_e, 2) * m.pow(P, 2) * (P + 1.0/P - m.pow(m.sin(theta), 2))
-  
-  # energy of the scattered photon
-  E_p = E_0 * P
-  
-  # energy of the scattered photon in in keV
-  E_p_keV = 0.001*energy_J_to_eV(E_p)
-  
-  # energy of the recoil electron
-  E_e = E_0 * (1 - P)
-  
-  # energy of the scattered photon in in keV
-  E_e_keV = 0.001*energy_J_to_eV(E_e)
-  
-  # target solid angle
-  omega_1 = m.pi*m.sin(m.fabs(theta))*step_theta
-  
-  d_sigma = CdTe_e_density * KN * omega_1 * thickness
+    sublist1 = []
+    klein_nishina.append(sublist1)
+    sublist2 = []
+    prob_angle_normalized.append(sublist2)
+    sublist3 = []
+    prob_angle.append(sublist3)
+    total_cross_section.append(0)
 
-  try:
-      prob_theta = d_sigma/step_theta
-  except:
-      prob_theta = prob_theta
+    for i in np.arange(-180, 180, step):
 
-  try:
-      prob_area = (d_sigma/omega_1)*(m.pi / 180)
-  except:
-      prob_area = prob_area
+      # scattering angle
+      theta = i * (m.pi / 180.0) # [rad]
+      
+      # ratio of scattered/incoming photon energy
+      P = 1 / (1 + (energy/(me*m.pow(c, 2)))*(1 - m.cos(theta)))
+      
+      # Klein-Nishina formula
+      KN = 0.5 * m.pow(r_e, 2) * m.pow(P, 2) * (P + 1.0/P - m.pow(m.sin(theta), 2))
+      klein_nishina[energy_idx].append(KN)
+      
+      # energy of the scattered photon
+      E_p = energy * P
+      
+      # energy of the scattered photon in in keV
+      E_p_keV = 0.001*energy_J_to_eV(E_p)
+      
+      # energy of the recoil electron
+      E_e = energy * (1 - P)
+      
+      # energy of the scattered photon in in keV
+      E_e_keV = 0.001*energy_J_to_eV(E_e)
+      
+      # target solid angle
+      omega_1 = m.pi*m.sin(m.fabs(theta))*step_theta
+      
+      d_sigma = CdTe_e_density * KN * omega_1 * thickness
 
-  angles.append(theta)
-  prob_angle.append(prob_theta)
-  prob_const_area.append(prob_area)
-  total_cross_section += d_sigma
-  total_area += omega_1
+      try:
+          # prob_theta = d_sigma/step_theta
+          prob_theta = d_sigma
+      except:
+          prob_theta = prob_theta
+
+      prob_angle[energy_idx].append(prob_theta)
+      # prob_const_area[energy_idx].append(prob_area)
+      total_cross_section[energy_idx] += d_sigma
+
+      if energy_idx == 0:
+          angles.append(theta)
+          total_area += omega_1
 
 # # normalize the distribution
-prob_const_area = [x/total_cross_section for x in prob_const_area]
+print("total_cross_section[0]: {}".format(total_cross_section[0]))
+prob_angle_normalized = [[x/total_cross_section[sublist_idx] for x in sublist] for sublist_idx,sublist in enumerate(prob_angle)]
+# prob_angle_normalized = [[x for x in sublist] for sublist_idx,sublist in enumerate(prob_angle)]
+
+summ = 0
+for idx,value in enumerate(prob_angle_normalized[0]):
+    summ += value
+
+print("summ: {}".format(summ))
 
 # create the radial data
 # xs = [diff_cross_section[i]*m.cos(angles[i]) for i in range(0, len(angles))]
 # ys = [diff_cross_section[i]*m.sin(angles[i]) for i in range(0, len(angles))]
 # fig, ax = plt.subplots()
 
-ax = plt.subplot(121, projection='polar')
-ax.plot(angles, prob_const_area)
-ax.grid(True)
-ax = plt.subplot(122, projection='polar')
-ax.plot(angles, prob_angle)
-ax.grid(True)
-plt.show()
+def plot_everything(*args):
 
-print("{0:2.1f}% of photons are scattered".format(total_cross_section*100))
+    plt.figure(1)
+    ax = plt.subplot(111, projection='polar')
+    for energy_idx,energy in enumerate(E_0):
+      ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    ax.legend()
+    ax.grid(True)
+    plt.title("Compton scattering diff. cross section for $\Theta \in [0, \pi]$".format())
+    plt.savefig("klein_nishina_1.png", bbox_inches="tight")
+
+    plt.figure(2)
+    ax = plt.subplot(111, projection='polar')
+    for energy_idx,energy in enumerate(E_0):
+      ax.plot(angles, prob_angle[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    ax.grid(True)
+    ax.legend()
+    plt.title('Abs. prob. of scattering for $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
+    plt.savefig("klein_nishina_2.png", bbox_inches="tight")
+
+    plt.figure(3)
+    ax = plt.subplot(111, projection='polar')
+    for energy_idx,energy in enumerate(E_0):
+      ax.plot(angles, prob_angle_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    ax.grid(True)
+    ax.legend()
+    plt.title('Marginalized prob. for radial angle $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
+    plt.savefig("klein_nishina_3.png", bbox_inches="tight")
+    plt.show()
+
+pid = os.fork()
+if pid == 0:
+    plot_everything()
+
+for energy_idx,energy in enumerate(E_0_keV):
+    print("{0:2.1f}% of photons are scattered for {1:6.0f} keV".format(total_cross_section[energy_idx]*100, energy))
 print("total area: {0:2.2f} sr".format(total_area))

@@ -28,7 +28,21 @@
 \usepackage{pdfpages}
 \usepackage{url}
 
+%%{ custom macros
+
+\newcommand{\unit}[2]{$#1~\ensuremath{\mathrm{#2}}$}
+\newcommand{\strong}[1]{\textbf{#1}}
+\newcommand{\coord}[1]{\textbf{#1}}
+\newcommand{\norm}[1]{\left\lvert#1\right\rvert}
+\newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\corrected}[1]{{\color{black} {#1}}}
+\newcommand{\updated}[1]{{\color{black} {#1}}}
+
+%%}
+
 \newcommand{\Author}{Ing. Tomáš Báča}
+\newcommand{\Supervisor}{Ing. Martin Saska, Dr. rer. nat.}
 \newcommand{\Title}{Distributed Sensing with Group of Unmanned Aerial Vehicles}
 \newcommand{\DocName}{Thesis}
 \newcommand{\Keywords}{mobile robotics}
@@ -65,48 +79,6 @@
 
 %%}
 
-%%{ TITLE PAGES
-
-%% Asymetric margins
-%% LEAVE ONLY IN THE PRINTED VERSION
-%% the electronic version should have symetric margins
-% \setlength{\oddsidemargin}{+0.5cm}
-% \setlength{\evensidemargin}{-0.5cm}
-%%
-
-% Titulní stránka
-\input{chapters/title}
-\pagestyle{empty}
-\cleardoublepage
-
-% Abstract
-% \input{chapters/abstract_en}
-% \input{chapters/abstract_cz}
-% \cleardoublepage
-
-% Table of contents
-\pagestyle{fancy}
-\pagenumbering{roman}
-\cfoot{\thepage}
-\tableofcontents
-\cleardoublepage
-
-% List of figures
-% \listoffigures
-% \cleardoublepage
-
-% Switch to arabic style
-\pagestyle{fancy}
-\pagenumbering{arabic}
-\cfoot{}
-\rfoot{\thepage$/$\pageref{LastPage}}
-\setlength{\parskip}{0.35cm}
-
-\lhead{\emph{\leftmark}}
-\rhead{}
-
-%%}
-
 %%{ INTRODUCTION
 
 \section{Introduction}
@@ -123,15 +95,62 @@
 
 %%}
 
-%%{ IONIZING RADIATION INTERACTION 
+%%{ INTERACTION OF IONIZING INTERACTION WITH MATTER
 
-\subsection{Ionizing radiation interaction}
+\subsection{Interaction of ionizing radiation with matter}
+
+\subsubsection{Ionizing radiation}
+
+\subsubsection{Photo-electric effect}
 
 %%}
 
 %%{ COMPTON SCATTERING
 
-\subsection{Compton scattering}
+\subsubsection{Compton scattering}
+
+The ratio of the energy of incoming ($E_{0}$) and scattered ($E_{s}$) particles was observed and described by Compton as
+\begin{equation}
+  P\left(\theta\right) = \frac{E_{s}\left(\theta\right)}{E_{0}} = \frac{1}{1 + \frac{E_0}{m_ec^2}\left(1 - cos\left(\theta\right)\right)},
+\end{equation}
+where $\theta \in \left[0, \pi\right]$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \times 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \times 10^{8}}{ms^{-1}} is the speed of light in vacuum.
+
+The Klein-Nishina formula \cite{leo2012techniques} describes the differential cross section of the incident and scattered beam as
+\begin{equation}
+  \frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{1}{2}r_{e}^2P\left(\theta\right)^2\left(P\left(\theta\right) + \frac{1}{P\left(\theta\right)} - sin\left(\theta\right)^2\right),
+\end{equation}
+where \unit{r_e \approx 2.81 \times 10^{-15}}{m} is the classical electron radius.
+The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for the finite area \unit{\Delta \theta}{\left[sr\right]} as
+\begin{equation}
+  N_s = N_o \frac{d\sigma}{d\Omega}\left(\theta\right) n_e T \Delta\Omega,
+\end{equation}
+where \unit{N_0}{\left[s^{-1}\right]} is the intensity of the incoming beam, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and \unit{T}{\left[m\right]} is the effective thickness of the scattering material.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_1.png}
+    \caption{Plots of the differential cross section for various photon energies, expressed in electron radius $r_e$.}
+    \label{fig:klein_1}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_2.png}
+    \caption{Plots of absolute probability of scattering under radial angle $\Theta$, integrated over azimuthal angle $\phi$.}
+    \label{fig:klein_2}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_3.png}
+  \caption{Plots of marginalized probability of scattering under radial angle $\Theta$, integrated over azimuthal angle $\phi$.}
+    \label{fig:klein_3}
+  \end{subfigure}
+  \caption{Plots of the Klein-Nishina differential cross section (\ref{fig:klein_1}), the cross section normalized by the total cross section (\ref{fig:klein_2}) and the resulting probability distribution (\ref{fig:klein_3}) invariant on the radial angle $\phi$.}
+  \label{fig:klein_nishina}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{./fig/compton_scattering_illustration.pdf}
+\end{figure}
 
 %%}
 
@@ -155,7 +174,7 @@
 
 %%}
 
-%%{ AUTONOMOUS TRACKING OF A MOVING RADIATION SOURCE 
+%%{ AUTONOMOUS TRACKING OF A MOVING RADIATION SOURCE
 
 \section{Autonomous tracking of a moving radiation source}
 
