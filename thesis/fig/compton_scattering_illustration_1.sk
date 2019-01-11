@@ -1,3 +1,13 @@
+def scatterer_distance 5
+def source_distance 2
+
+def sphere_radius 1.00
+def init_angle 60
+def impact_parameter 0.15
+def scatterer_position [0,0,-scatterer_distance]
+def impact_cross_section_position [0,0,-scatterer_distance+sphere_radius+0.5]
+def radiation_source (0,0,-source_distance)
+
 % %{ coordinates
 
 def coordinates {
@@ -46,25 +56,40 @@ def scatterer {
 
 def impact_cross_section {
 
-	def size 0.05
+  def inner_radius 0.1
+  def outer_radius 0.2
 
-	def p1 (size,size,0)
-  def p2 (size,-size,0)
-  def p3 (-size,-size,0)
-  def p4 (-size,size,0)
+  % %{ impact_parameter_arrows
 
-  polygon[fillcolor=green,linecolor=green](p1)(p2)(p3)(p4)
-  polygon[fillcolor=green,linecolor=green](p4)(p3)(p2)(p1)
+  def impact_parameter_arrows {
+
+    def a (0,0,0)
+    def b (0,inner_radius,0)
+
+    line [linecolor=black,arrows=->] (a)(b)
+
+    put { translate([0,-0.15,-0.08]) } { special |\tiny
+      \uput{2pt}[ul]#1{$\mathbf{b}$}|
+      (a) }
+
+    line [linecolor=lightgray] (0,inner_radius,0.5)(0,inner_radius,-0.2)
+  }
+
+  % %}
+
+  def n_segs 16
+  def ang_step 360/n_segs
+
+  sweep [fillcolor=green,linecolor=green] { n_segs, rotate(ang_step, (0,0,0), [0,0,1]) } line[linecolor=green] (0,inner_radius,0) (0,outer_radius,0)
 
   special |\tiny
     \uput{2pt}[ul]#1{$\mathbf{d\sigma}$}|
-    (p1)
+    (outer_radius+0.00, -0.1, 0)
+
+  put { translate([0,0,-0.2]) } {impact_parameter_arrows}
 }
 
 % %}
-
-def sphere_radius 1.00
-def init_angle 60
 
 % %{ sphere
 
@@ -72,31 +97,13 @@ def sphere {
 
   def n_segs 64
   def ang_step 360/n_segs
-  def cos_step cos(ang_step)*sphere_radius
-  def sin_step sin(ang_step)*sphere_radius
 
-  repeat { n_segs, rotate(360 / n_segs, (0,0,0), [0,1,0]) } line[linecolor=lightgray, linewidth=1pt] (sphere_radius,0,0)(cos_step,0,sin_step)
-  repeat { n_segs, rotate(360 / n_segs, (0,0,0), [0,0,1]) } line[linecolor=lightgray] (sphere_radius,0,0)(cos_step,sin_step,0)
-  repeat { n_segs, rotate(ang_step, (0,0,0), [1,0,0]) } line[linecolor=lightgray] (0,sphere_radius,0)(0,cos_step,sin_step)
+  sweep [linecolor=lightgray] { n_segs, rotate(360 / n_segs, (0,0,0), [0,1,0]) } (sphere_radius,0,0)
+  sweep [linecolor=lightgray] { n_segs, rotate(360 / n_segs, (0,0,0), [0,0,1]) } (sphere_radius,0,0)
+  sweep [linecolor=lightgray] { n_segs, rotate(ang_step, (0,0,0), [1,0,0]) } (0,sphere_radius,0)
 }
 
 % %}
-
-  % %{ belt_segment
-  
-  def belt_segment {
-  
-    def length 4
-    def n_segs 3
-    def ang_step length/n_segs
-  
-    def init_point (sphere_radius*cos(90-init_angle-length/2), 0, -sphere_radius*sin(90-init_angle-length/2))
-    def init_point2 (sphere_radius*cos(90-init_angle-length/2+ang_step), 0, -sphere_radius*sin(90-init_angle-length/2+ang_step))
-  
-    repeat { n_segs, rotate(ang_step, (0,0,0), [0,1,0]) } line[linecolor=blue,linewidth=1pt] (init_point)(init_point2)
-  }
-  
-  % %}
 
   % %{ theta_arrow
   
@@ -109,11 +116,11 @@ def sphere {
     def init_point (0, 0, -radius_factor*sphere_radius)
     def init_point2 (0, radius_factor*sin(ang_step)*sphere_radius, -radius_factor*sphere_radius*cos(ang_step))
   
-    repeat { n_segs, rotate(ang_step, (0,0,0), [1,0,0]) } line[linecolor=black,linewidth=1pt] (init_point)(init_point2)
+    sweep [linecolor=black] { n_segs, rotate(ang_step, (0,0,0), [1,0,0]) } (init_point)
   
     put { rotate(init_angle-5, (0,0,0), [1,0,0]) } line[linecolor=black,linewidth=1pt,arrows=->] (init_point)(init_point2)
   
-    line[linecolor=lightgray,linestyle=dashed,linewidth=0.5pt](0, 0, 0)(0, sin(init_angle)*1, -cos(init_angle)*1)
+    line[linecolor=lightgray,linestyle=dashed,linewidth=0.5pt](0, 0, 0)(0, sin(init_angle)*(sphere_radius/2 + 0*impact_parameter), -cos(init_angle)*(sphere_radius/2 + 0*impact_parameter))
 
     put { rotate((init_angle-10)/2, (0,0,0), [1,0,0]) then translate([0,0.05,-0.15]) } special |\tiny
       \uput{2pt}[ul]#1{$\mathbf{\theta}$}|
@@ -133,12 +140,9 @@ def sphere {
     def init_point (-radius, 0, -cos(init_angle)*sphere_radius*1.1)
     def init_point2 (-cos(ang_step)*radius, sin(-ang_step)*sphere_radius*1.1, -cos(init_angle)*sphere_radius*1.1)
   
-    repeat { n_segs, rotate(ang_step, (0,0,-cos(init_angle)*sphere_radius), [0,0,1]) } line[linecolor=black,linewidth=1pt] (init_point)(init_point2)
+    sweep [linecolor=black] { n_segs, rotate(ang_step, (0,0,-cos(init_angle)*sphere_radius), [0,0,1]) } (init_point)
   
     put { rotate(-70, (0,0,-cos(init_angle)*sphere_radius), [0,0,1]) } line[linecolor=black,linewidth=1pt,arrows=->] (init_point)(init_point2)
-  
-    line[linecolor=lightgray,linestyle=dashed,linewidth=0.5pt](0, 0, 0)(0, sin(init_angle)*1, -cos(init_angle)*1)
-    line[linecolor=lightgray,linestyle=dashed,linewidth=0.5pt](0, 0, 0)(0, 0, -sphere_radius)
 
     put { rotate(-70/2, (0,0,-cos(init_angle)*sphere_radius), [0,0,1]) then translate([0,0.05,-0.15]) } special |\tiny
       \uput{2pt}[ul]#1{$\mathbf{\phi}$}|
@@ -152,10 +156,10 @@ def sphere {
   def deflection_curve {
   
     def x_z 0.5*sphere_radius
-    def x_y 0
+    def x_y impact_parameter
   
-    def y_z -cos(init_angle)*sphere_radius/2
-    def y_y sin(init_angle)*sphere_radius/2
+    def y_z -cos(init_angle)*(sphere_radius/2 + impact_parameter)
+    def y_y sin(init_angle)*(sphere_radius/2 + impact_parameter)
   
     def mid_z (x_z + y_z)/2
     def mid_y (x_y + y_y)/2
@@ -192,11 +196,22 @@ def sphere {
     def start_z x_z
     def start_y x_y
   
-    def second_x center_x + ((x_x - center_x)*cos_step - (x_y - center_y)*sin_step)
-    def second_y center_y + ((x_x - center_x)*sin_step + (x_y - center_y)*cos_step)
-    def second_z -second_x
+    sweep [linecolor=red] { n_segs, rotate(ang_step, (0, center_y, center_z), [1,0,0]) } (0,start_y,start_z)
+  }
   
-    repeat { n_segs, rotate(ang_step, (0, center_y, center_z), [1,0,0]) } line[linecolor=red, linewidth=1pt] (0,start_y,start_z)(0,second_y,second_z)
+  % %}
+
+  % %{ belt_segment
+  
+  def belt_segment {
+  
+    def length 5
+    def n_segs 3
+    def ang_step length/n_segs
+  
+    def init_point (sphere_radius*cos(90-init_angle-length/2), 0, -sphere_radius*sin(90-init_angle-length/2))
+  
+    sweep [linecolor=blue, fillcolor=blue] { n_segs<>, rotate(ang_step, (0,0,0), [0,1,0]) } (init_point)
   }
   
   % %}
@@ -205,16 +220,10 @@ def sphere {
 
 def belt {
 
-  def offset 0.5
-
-  line[linecolor=red,arrows=>-](0,0,2)(0,0,0.5)
-  line[linecolor=red,arrows=->](0,sin(init_angle)*sphere_radius/2,-cos(init_angle)*sphere_radius/2)(0,sin(init_angle)*(sphere_radius+offset),-cos(init_angle)*(sphere_radius+offset))
-  line[linecolor=lightgray,linestyle=dashed,linewidth=0.5pt](0, 0, 0)(0, 0, sphere_radius/2)
-
   def n_segs 360
   def ang_step 360/n_segs
 
-  repeat { n_segs, rotate(ang_step, (0,0,0), [0,0,1]) } {belt_segment} 
+  sweep [fillcolor=blue,linecolor=blue] { n_segs<>, rotate(ang_step, (0,0,0), [0,0,1]) } {belt_segment} 
 
   {theta_arrow}
   {phi_arrow}
@@ -223,25 +232,44 @@ def belt {
 
   def omega_point (sphere_radius*cos(90-init_angle), 0, -sphere_radius*sin(90-init_angle))
 
-  put { translate([0.1,-0.2,-0.05]) } special |\scriptsize
+  put { translate([0.2,-0.2,-0.05]) } special |\scriptsize
     \uput{2pt}[ul]#1{$\mathbf{d\Omega}$}|
     (omega_point)
 }
 
 % %}
 
-def scene {
+% %{ incoming_ray
 
-  def scatterer_distance 5
-  def scatterer_position [0,0,-scatterer_distance]
-  def impact_cross_section_position [0,0,-scatterer_distance+sphere_radius]
-  def radiation_source (0,0,-2)
+def incoming_ray {
+
+  line[linecolor=red,arrows=>-](0,impact_parameter,source_distance)(0,impact_parameter,0.5)
+
+  line[linecolor=lightgray,linestyle=dashed,linewidth=0.5pt](0,0,source_distance)(0,0,-1)
+}
+
+% %}
+
+% %{ outcoming_ray
+
+def outcoming_ray {
+
+  def offset 0.5
+
+  line[linecolor=red,arrows=->](0,sin(init_angle)*(sphere_radius/2 + impact_parameter),-cos(init_angle)*(sphere_radius/2 + impact_parameter))(0,sin(init_angle)*(sphere_radius+offset),-cos(init_angle)*(sphere_radius+offset))
+}
+
+% %}
+
+def scene {
 
   % {coordinates}
 
+  put { translate([impact_cross_section_position]) } {impact_cross_section}
+  put { translate([scatterer_position]) } {incoming_ray}
+  put { translate([scatterer_position]) } {outcoming_ray}
   put { translate([scatterer_position]) } {sphere}
   put { translate([scatterer_position]) } {scatterer}
-  put { translate([impact_cross_section_position]) } {impact_cross_section}
   put { translate([scatterer_position]) } {belt}
 
   % curve [linecolor=black] (0,0,0)(1,1,-1)(2,3,-4)
@@ -249,4 +277,8 @@ def scene {
 
 def eye (10,3,-10)
 def look_at (0,0,0)
+
+% def eye (0.5,0,0)
+% def look_at (0,0,-10)
+
 put { view((eye), (look_at)) then perspective(20) } {scene}
