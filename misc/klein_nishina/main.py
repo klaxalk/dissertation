@@ -105,7 +105,7 @@ E_0_keV = [0.0027, 60, 511, 1460, 10000]
 E_0 = [energy_ev_to_J(E * 1000) for E in E_0_keV] # [J]
 
 # scatterer thickness
-thickness = 0.001 # [m]
+thickness = 0.003 # [m]
 
 a_list = []
 angles = []
@@ -138,7 +138,7 @@ for energy_idx,energy in enumerate(E_0):
       P = 1 / (1 + (energy/(me*m.pow(c, 2)))*(1 - m.cos(theta)))
       
       # Klein-Nishina formula
-      KN = 0.5 * m.pow(r_e, 2) * m.pow(P, 2) * (P + 1.0/P - m.pow(m.sin(theta), 2))
+      KN = 0.5 * m.pow(P, 2) * m.pow(r_e, 2) * (P + 1.0/P - m.pow(m.sin(theta), 2))
       klein_nishina[energy_idx].append(KN)
       
       # energy of the scattered photon
@@ -190,14 +190,14 @@ print("summ: {}".format(summ))
 
 def plot_everything(*args):
 
-    plt.figure(1)
-    ax = plt.subplot(111, projection='polar')
-    for energy_idx,energy in enumerate(E_0):
-      ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-    ax.legend()
-    ax.grid(True)
-    plt.title("Compton scattering diff. cross section for $\Theta \in [0, \pi]$".format())
-    plt.savefig("klein_nishina_1.png", bbox_inches="tight")
+    # plt.figure(1)
+    # ax = plt.subplot(111, projection='polar')
+    # for energy_idx,energy in enumerate(E_0):
+    #   ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    # ax.legend()
+    # ax.grid(True)
+    # plt.title("Compton scattering diff. cross section for $\Theta \in [0, \pi]$".format())
+    # plt.savefig("klein_nishina_1.png", bbox_inches="tight")
 
     plt.figure(2)
     ax = plt.subplot(111, projection='polar')
@@ -208,14 +208,14 @@ def plot_everything(*args):
     plt.title('Abs. prob. of scattering for $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
     plt.savefig("klein_nishina_2.png", bbox_inches="tight")
 
-    plt.figure(3)
-    ax = plt.subplot(111, projection='polar')
-    for energy_idx,energy in enumerate(E_0):
-      ax.plot(angles, prob_angle_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-    ax.grid(True)
-    ax.legend()
-    plt.title('Marginalized prob. for radial angle $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
-    plt.savefig("klein_nishina_3.png", bbox_inches="tight")
+    # plt.figure(3)
+    # ax = plt.subplot(111, projection='polar')
+    # for energy_idx,energy in enumerate(E_0):
+    #   ax.plot(angles, prob_angle_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    # ax.grid(True)
+    # ax.legend()
+    # plt.title('Marginalized prob. for radial angle $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
+    # plt.savefig("klein_nishina_3.png", bbox_inches="tight")
     plt.show()
 
 pid = os.fork()
