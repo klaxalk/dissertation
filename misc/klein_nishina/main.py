@@ -105,13 +105,14 @@ E_0_keV = [0.0027, 60, 511, 1460, 10000]
 E_0 = [energy_ev_to_J(E * 1000) for E in E_0_keV] # [J]
 
 # scatterer thickness
-thickness = 0.003 # [m]
+thickness = 0.001 # [m]
 
 a_list = []
 angles = []
 klein_nishina = []
-prob_angle_normalized = []
-prob_angle = []
+sigma_normalized_normalized = []
+sigma_normalized = []
+abs_prob = []
 total_cross_section = []
 total_area = 0
 
@@ -124,12 +125,14 @@ for energy_idx,energy in enumerate(E_0):
     sublist1 = []
     klein_nishina.append(sublist1)
     sublist2 = []
-    prob_angle_normalized.append(sublist2)
+    sigma_normalized_normalized.append(sublist2)
     sublist3 = []
-    prob_angle.append(sublist3)
+    sigma_normalized.append(sublist3)
+    sublist4 = []
+    abs_prob.append(sublist4)
     total_cross_section.append(0)
 
-    for i in np.arange(-180, 180, step):
+    for i in np.arange(-180, 180+step, step):
 
       # scattering angle
       theta = i * (m.pi / 180.0) # [rad]
@@ -141,32 +144,27 @@ for energy_idx,energy in enumerate(E_0):
       KN = 0.5 * m.pow(P, 2) * m.pow(r_e, 2) * (P + 1.0/P - m.pow(m.sin(theta), 2))
       klein_nishina[energy_idx].append(KN)
       
-      # energy of the scattered photon
-      E_p = energy * P
-      
-      # energy of the scattered photon in in keV
-      E_p_keV = 0.001*energy_J_to_eV(E_p)
-      
-      # energy of the recoil electron
-      E_e = energy * (1 - P)
-      
-      # energy of the scattered photon in in keV
-      E_e_keV = 0.001*energy_J_to_eV(E_e)
+      # # energy of the scattered photon
+      # E_p = energy * P
+      # # energy of the scattered photon in in keV
+      # E_p_keV = 0.001*energy_J_to_eV(E_p)
+      # # energy of the recoil electron
+      # E_e = energy * (1 - P)
+      # # energy of the scattered photon in in keV
+      # E_e_keV = 0.001*energy_J_to_eV(E_e)
       
       # target solid angle
-      omega_1 = m.pi*m.sin(m.fabs(theta))*step_theta
-      
-      d_sigma = CdTe_e_density * KN * omega_1 * thickness
+      omega_1 = m.pi * m.sin(m.fabs(theta)) * step_theta
 
-      try:
-          # prob_theta = d_sigma/step_theta
-          prob_theta = d_sigma
-      except:
-          prob_theta = prob_theta
+      # did not work well for thick materials
+      # prob = CdTe_e_density * KN * omega_1 * thickness
+      # prob = 1 - np.exp(-CdTe_e_density * KN * omega_1 * thickness)
 
-      prob_angle[energy_idx].append(prob_theta)
-      # prob_const_area[energy_idx].append(prob_area)
-      total_cross_section[energy_idx] += d_sigma
+      prob = KN * omega_1
+
+      sigma_normalized[energy_idx].append(prob)
+
+      total_cross_section[energy_idx] += KN * omega_1
 
       if energy_idx == 0:
           angles.append(theta)
@@ -174,14 +172,28 @@ for energy_idx,energy in enumerate(E_0):
 
 # # normalize the distribution
 print("total_cross_section[0]: {}".format(total_cross_section[0]))
-prob_angle_normalized = [[x/total_cross_section[sublist_idx] for x in sublist] for sublist_idx,sublist in enumerate(prob_angle)]
-# prob_angle_normalized = [[x for x in sublist] for sublist_idx,sublist in enumerate(prob_angle)]
 
-summ = 0
-for idx,value in enumerate(prob_angle_normalized[0]):
-    summ += value
+# normalize sigma_normalized
+for energy_idx,energy in enumerate(E_0):
 
-print("summ: {}".format(summ))
+    total = sum(sigma_normalized[energy_idx])
+    sigma_normalized[energy_idx] = [x/total for x in sigma_normalized[energy_idx]]
+
+# convert to abs. prob
+for energy_idx,energy in enumerate(E_0):
+
+    total_prob = 1 - np.exp(-CdTe_e_density * total_cross_section[energy_idx] * thickness)
+    abs_prob[energy_idx] = [x*total_prob for x in sigma_normalized[energy_idx]]
+
+sigma_marginalized = [[x/total_cross_section[sublist_idx] for x in sublist] for sublist_idx,sublist in enumerate(sigma_normalized)]
+# sigma_normalized_normalized = [[x/total_cross_section[sublist_idx] for x in sublist] for sublist_idx,sublist in enumerate(klein_nishina)]
+# sigma_normalized_normalized = [[x for x in sublist] for sublist_idx,sublist in enumerate(sigma_normalized)]
+
+for energy_idx,energy in enumerate(E_0):
+    summ = 0
+    for idx,value in enumerate(sigma_normalized[energy_idx]):
+        summ += value
+    print("prob_sum for {} keV: {}".format(energy, summ))
 
 # create the radial data
 # xs = [diff_cross_section[i]*m.cos(angles[i]) for i in range(0, len(angles))]
@@ -190,38 +202,45 @@ print("summ: {}".format(summ))
 
 def plot_everything(*args):
 
-    # plt.figure(1)
-    # ax = plt.subplot(111, projection='polar')
-    # for energy_idx,energy in enumerate(E_0):
-    #   ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-    # ax.legend()
-    # ax.grid(True)
-    # plt.title("Compton scattering diff. cross section for $\Theta \in [0, \pi]$".format())
-    # plt.savefig("klein_nishina_1.png", bbox_inches="tight")
-
-    plt.figure(2)
-    ax = plt.subplot(111, projection='polar')
+    fig = plt.figure(1)
+    fig.canvas.set_window_title("1")
+    ax = plt.subplot(131, projection='polar')
     for energy_idx,energy in enumerate(E_0):
-      ax.plot(angles, prob_angle[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+      ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    ax.legend()
+    ax.grid(True)
+    plt.title("Compton scattering diff. cross section for $\Theta \in [0, \pi]$".format())
+    plt.savefig("klein_nishina_1.png", bbox_inches="tight")
+
+    # fig = plt.figure(2)
+    ax = plt.subplot(132, projection='polar')
+    for energy_idx,energy in enumerate(E_0):
+      ax.plot(angles, abs_prob[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
     ax.grid(True)
     ax.legend()
     plt.title('Abs. prob. of scattering for $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
     plt.savefig("klein_nishina_2.png", bbox_inches="tight")
 
-    # plt.figure(3)
-    # ax = plt.subplot(111, projection='polar')
-    # for energy_idx,energy in enumerate(E_0):
-    #   ax.plot(angles, prob_angle_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-    # ax.grid(True)
-    # ax.legend()
-    # plt.title('Marginalized prob. for radial angle $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
-    # plt.savefig("klein_nishina_3.png", bbox_inches="tight")
+    # fig = plt.figure(3)
+    ax = plt.subplot(133, projection='polar')
+    for energy_idx,energy in enumerate(E_0):
+      ax.plot(angles, sigma_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    ax.grid(True)
+    ax.legend()
+    plt.title('Marginalized prob. for radial angle $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
+    plt.savefig("klein_nishina_3.png", bbox_inches="tight")
     plt.show()
+
+for energy_idx,energy in enumerate(E_0_keV):
+    print("")
+    print("total_cross_section[energy_idx]: {0:1.2f} re^2".format(total_cross_section[energy_idx]/m.pow(r_e, 2)))
+    prob = 1 - np.exp(-CdTe_e_density * total_cross_section[energy_idx] * thickness)
+    # prob = CdTe_e_density * total_cross_section[energy_idx] * thickness
+    print("{0:2.5f}% of photons are scattered for {1:6.1f} keV".format(prob, energy))
+
+print("")
+print("total area: {0:2.3f} sr".format(total_area))
 
 pid = os.fork()
 if pid == 0:
     plot_everything()
-
-for energy_idx,energy in enumerate(E_0_keV):
-    print("{0:2.1f}% of photons are scattered for {1:6.0f} keV".format(total_cross_section[energy_idx]*100, energy))
-print("total area: {0:2.2f} sr".format(total_area))
