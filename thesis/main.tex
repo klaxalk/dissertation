@@ -141,15 +141,15 @@ The differential of the impact cross section is
 \end{equation}
 
 \begin{equation}
-  \Omega\left(r, \Theta\right) = \int_0^\Theta 2\pi r\,cos\left(\theta\right)\,r\,d\theta = \left[-2\pi r^2\,sin\left(\theta\right)\right]_0^\Theta = 2\pi r^2 - 2\pi r^2cos\left(\Theta\right)
+  \Omega\left(r, \Theta\right) = \int_0^\Theta 2\pi r\,\cos\theta\,r\,d\theta = \left[-2\pi r^2\,\sin\theta\right]_0^\Theta = 2\pi r^2 - 2\pi r^2\cos\Theta
 \end{equation}
 The differential of the area is
 \begin{equation}
-  d\Omega\left(\theta\right) = \frac{\partial \Omega}{\partial r}\,dr + \frac{\partial \Omega}{\partial \theta}\,d\theta = -4\pi r\,cos\left(\theta\right)dr + 4\pi r\,dr + 2\pi r^2sin\left(\theta\right)d\theta
+  d\Omega\left(\theta\right) = \frac{\partial \Omega}{\partial r}\,dr + \frac{\partial \Omega}{\partial \theta}\,d\theta = -4\pi r\,\cos\theta\,dr + 4\pi r\,dr + 2\pi r^2\sin\theta\,d\theta
 \end{equation}
 In the case of a unit sphere, the differential of the area becomes
 \begin{equation}
-  d\Omega(\theta) = 2\pi r^2sin\left(\theta\right)d\theta.
+  d\Omega(\theta) = 2\pi r^2\sin\theta\,d\theta.
 \end{equation}
 
 \begin{figure}[ht]
@@ -172,38 +172,65 @@ In the case of a unit sphere, the differential of the area becomes
 
 %%}
 
-The ratio of the energy of incoming ($E_{0}$) and scattered ($E_{s}$) particles was observed and described by Compton as
+The ratio $E_r$ of the energy of incoming ($E_{0}$) and scattered ($E_{s}$) particles was observed and described by Compton as
 \begin{equation}
-  P\left(\theta\right) = \frac{E_{s}\left(\theta\right)}{E_{0}} = \frac{1}{1 + \frac{E_0}{m_ec^2}\left(1 - cos\left(\theta\right)\right)},
+  E_r\left(\theta, E_0\right) = \frac{E_s\left(\theta, E_0\right)}{E_{0}} = \frac{1}{1 + \frac{E_0}{m_ec^2}\left(1 - \cos\theta\right)},
 \end{equation}
-where $\theta \in \left[0, \pi\right]$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \times 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \times 10^{8}}{ms^{-1}} is the speed of light in vacuum.
+where $\theta \in \left[-\pi, \pi\right)$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \times 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \times 10^{8}}{ms^{-1}} is the speed of light in vacuum.
 
 The Klein-Nishina formula \cite{leo2012techniques} describes the differential cross section of the incident and scattered beam as
 \begin{equation}
-  \frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{1}{2}\,r_{e}^2\,P\left(\theta\right)^2\left(P\left(\theta\right) + \frac{1}{P\left(\theta\right)} - sin\left(\theta\right)^2\right),
+  \frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{1}{2}\,r_{e}^2\,E_r\left(\theta\right)^2\left(E_r\left(\theta\right) + \frac{1}{E_r\left(\theta\right)} - \sin^2\theta\right),
 \end{equation}
 where \unit{r_e \approx 2.81 \times 10^{-15}}{m} is the classical electron radius.
-The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for the finite area \unit{\Delta \theta}{\left[sr\right]} as
+
+% The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for a small finite solid angle \unit{\Delta \theta}{\left[sr\right]} as
+% \begin{equation}
+%   N_s = N_o\,\frac{d\sigma}{d\Omega}\left(\theta\right)\,n_e\,t\,\Delta\theta,
+% \end{equation}
+% where \unit{N_0}{\left[s^{-1}\right]} is the intensity of the incoming beam, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and \unit{t}{\left[m\right]} is the effective thickness of the scattering material.
+
 \begin{equation}
-  N_s = N_o\,\frac{d\sigma}{d\Omega}\left(\theta\right)\,n_e\,T\,\Delta\Omega,
+  \sigma = \oint_{4\pi} \frac{d\sigma}{d\Omega}\,d\Omega = \int_0^{2\pi} \int_0^{\pi} \frac{d\sigma}{d\Omega}\sin\theta\,d\theta\,d\phi,
 \end{equation}
-where \unit{N_0}{\left[s^{-1}\right]} is the intensity of the incoming beam, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and \unit{T}{\left[m\right]} is the effective thickness of the scattering material.
+
+Photon attenuation, i.e., the decrease of the intensity $d\Phi$ of an incident beam with original flux $\Phi \left[\mathrm{s}^{-1}\right]$ is described as
+\begin{equation}
+  \frac{d\Phi}{dz} = -n\sigma\Phi
+\end{equation}
+where $dz$ is the thickness of the blocking material, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and $\sigma \left[\mathrm{m}^{2}\right]$ is the total cross section of the interaction.
+By solving the differential equation, we obtain a relationship between the initial flux $\Phi$ and the remaining flux $\Phi_{out}$ behind the object with the thickness $z$:
+\begin{equation}
+  \Phi_{out} = \Phi e^{-n\sigma z}.
+\end{equation}
+This the probability of a Compton scattering $\mathrm{P}\left(c\right)$ is modeled as
+\begin{equation}
+  \mathrm{P}\left(c\right) = 1 - e^{-n\sigma z}.
+\end{equation}
+
+\begin{equation}
+  \mathrm{P}\left(\theta \mid c\right) = \frac{\int_0^\pi \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
+\end{equation}
+
+\begin{equation}
+  \mathrm{P}\left(c \mid \theta\right) = \mathrm{P}\left(\theta \mid c\right) \mathrm{P}\left(c\right) = \left(1 - e^{-n\sigma z}\right) \frac{\int_0^\pi \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
+\end{equation}
 
 \begin{figure}[ht]
   \centering
   \begin{subfigure}{0.32\textwidth}
     \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_1.png}
-    \caption{Plots of the differential cross section for various photon energy as a factor of the classical electron radius $r_e$.}
+    \caption{Plots of the differential $d\sigma/d\Omega$ cross section for various photon energies.}
     \label{fig:klein_1}
   \end{subfigure}
   \begin{subfigure}{0.32\textwidth}
     \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_2.png}
-    \caption{Plots of absolute probability of scattering under radial angle $\theta$, integrated over azimuthal angle $\phi$.}
+    \caption{Plots of posterior probability $\mathrm{P}\left(E_0 \mid \theta\right)$, integrated over azimuthal angle $\phi$.}
     \label{fig:klein_2}
   \end{subfigure}
   \begin{subfigure}{0.32\textwidth}
     \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_3.png}
-    \caption{Plots of marginalized probability of scattering under radial angle $\theta$, integrated over azimuthal angle $\phi$.}
+    \caption{Plots of likelihood probability $\mathrm{P}\left(\theta \mid E_0\right)$, integrated over azimuthal angle $\phi$.}
     \label{fig:klein_3}
   \end{subfigure}
   \caption{Plots of the Klein-Nishina differential cross section (\ref{fig:klein_1}), the cross section normalized by the total cross section (\ref{fig:klein_2}) and the resulting probability distribution (\ref{fig:klein_3}) invariant on the radial angle $\phi$.}

@@ -182,7 +182,7 @@ for energy_idx,energy in enumerate(E_0):
 # convert to abs. prob
 for energy_idx,energy in enumerate(E_0):
 
-    total_prob = 1 - np.exp(-CdTe_e_density * total_cross_section[energy_idx] * thickness)
+    total_prob = 1 - np.exp(-Si_e_density * total_cross_section[energy_idx] * thickness)
     abs_prob[energy_idx] = [x*total_prob for x in sigma_normalized[energy_idx]]
 
 sigma_marginalized = [[x/total_cross_section[sublist_idx] for x in sublist] for sublist_idx,sublist in enumerate(sigma_normalized)]
@@ -202,39 +202,54 @@ for energy_idx,energy in enumerate(E_0):
 
 def plot_everything(*args):
 
+    multiplot = False
+
     fig = plt.figure(1)
     fig.canvas.set_window_title("1")
-    ax = plt.subplot(131, projection='polar')
+    if multiplot:
+        ax = plt.subplot(131, projection='polar')
+    else:
+        ax = plt.subplot(111, projection='polar')
     for energy_idx,energy in enumerate(E_0):
       ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
     ax.legend()
     ax.grid(True)
     plt.title("Compton scattering diff. cross section for $\Theta \in [0, \pi]$".format())
     plt.savefig("klein_nishina_1.png", bbox_inches="tight")
+    # if not multiplot:
+    #     plt.show()
 
-    # fig = plt.figure(2)
-    ax = plt.subplot(132, projection='polar')
+    if multiplot:
+        ax = plt.subplot(132, projection='polar')
+    else:
+        fig = plt.figure(2)
+        ax = plt.subplot(111, projection='polar')
     for energy_idx,energy in enumerate(E_0):
       ax.plot(angles, abs_prob[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
     ax.grid(True)
     ax.legend()
-    plt.title('Abs. prob. of scattering for $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
+    plt.title('Posterior prob. of scattering by a radial angle $\Theta \in [0, \pi]$'.format())
     plt.savefig("klein_nishina_2.png", bbox_inches="tight")
+    # if not multiplot:
+    #     plt.show()
 
-    # fig = plt.figure(3)
-    ax = plt.subplot(133, projection='polar')
+    if multiplot:
+        ax = plt.subplot(133, projection='polar')
+    else:
+        fig = plt.figure(3)
+        ax = plt.subplot(111, projection='polar')
     for energy_idx,energy in enumerate(E_0):
       ax.plot(angles, sigma_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
     ax.grid(True)
     ax.legend()
-    plt.title('Marginalized prob. for radial angle $\Theta \in [0, \pi]$, {} mm CdTe'.format(thickness*1000))
+    plt.title('The likelihood of scattering by a radial angle $\Theta$, {} mm Si'.format(thickness*1000))
     plt.savefig("klein_nishina_3.png", bbox_inches="tight")
     plt.show()
 
 for energy_idx,energy in enumerate(E_0_keV):
     print("")
     print("total_cross_section[energy_idx]: {0:1.2f} re^2".format(total_cross_section[energy_idx]/m.pow(r_e, 2)))
-    prob = 1 - np.exp(-CdTe_e_density * total_cross_section[energy_idx] * thickness)
+    prob = 1 - np.exp(-Si_e_density * total_cross_section[energy_idx] * thickness)
     # prob = CdTe_e_density * total_cross_section[energy_idx] * thickness
     print("{0:2.5f}% of photons are scattered for {1:6.1f} keV".format(prob, energy))
 
