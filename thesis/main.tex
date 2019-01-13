@@ -95,32 +95,19 @@
 
 %%}
 
+%%}
+
 \clearpage
 
-%%{ INTERACTION OF IONIZING INTERACTION WITH MATTER
+%%{ INTERACTION OF IONIZING RADIATION WITH MATTER
 
 \section{Interaction of ionizing radiation with matter}
-
-\subsection{Ionizing radiation}
-
-\subsection{Photo-electric effect}
-
-Photo-electric effect (Einstein, Nobel prize, 1905) describes a total absorption of a photon by an electron.
-When the electron is absorbed, the energy of the photon is completely consumed.
-A portion of the energy is responsible for releasing the electron from the atomic orbital, the rest is converted to the electron's kinetic energy.
-
-%%{ COMPTON SCATTERING
-
-\subsection{Compton scattering}
-
-Compton scattering occurs when a photon transfers a portion of its energy to an electron.
-During this interaction, the photon is deflected from its original path by the radial angle $\theta$ and azimuthal angle $\phi$.
 
 %%{ DIFFERENTIAL CROSS SECTION
 
 In a classical mechanics, the properties of non-elastic scattering of a particle from an object (scattering center) is described by a differential cross section.
 
-\subsubsection{Differential cross section}
+\subsection{Differential cross section}
 
 Considering a single particle on an incident trajectory with the scattering object.
 The displacement $b$ of the particle from the path to the scattering center is called the impact parameter, the radial angle of scattering is denoted as $\theta$.
@@ -143,13 +130,17 @@ The differential of the impact cross section is
 \begin{equation}
   \Omega\left(r, \Theta\right) = \int_0^\Theta 2\pi r\,\cos\theta\,r\,d\theta = \left[-2\pi r^2\,\sin\theta\right]_0^\Theta = 2\pi r^2 - 2\pi r^2\cos\Theta
 \end{equation}
-The differential of the area is
+The differential of the solid angle is
 \begin{equation}
-  d\Omega\left(\theta\right) = \frac{\partial \Omega}{\partial r}\,dr + \frac{\partial \Omega}{\partial \theta}\,d\theta = -4\pi r\,\cos\theta\,dr + 4\pi r\,dr + 2\pi r^2\sin\theta\,d\theta
+  d\Omega\left(\theta\right) = \frac{\partial \Omega}{\partial r}\,dr + \frac{\partial \Omega}{\partial \theta}\,d\theta = -4\pi r\,\cos\theta\,dr + 4\pi r\,dr + 2\pi r^2\sin\theta\,d\theta.
 \end{equation}
-In the case of a unit sphere, the differential of the area becomes
+In the case of a unit sphere, the differential of the area simplifies to
 \begin{equation}
   d\Omega(\theta) = 2\pi r^2\sin\theta\,d\theta.
+\end{equation}
+
+\begin{equation}
+  \sigma = \oint_{4\pi} \frac{d\sigma}{d\Omega}\,d\Omega = \int_0^{2\pi} \int_0^{\pi} \frac{d\sigma}{d\Omega}\sin\theta\,d\theta\,d\phi,
 \end{equation}
 
 \begin{figure}[ht]
@@ -172,6 +163,23 @@ In the case of a unit sphere, the differential of the area becomes
 
 %%}
 
+%%{ PHOTOELECTRIC EFFECT
+
+\subsection{Photoelectric effect}
+
+Photoelectric effect (Einstein, Nobel prize, 1905) describes a total absorption of a photon by an electron.
+When the electron is absorbed, the energy of the photon is completely consumed.
+A portion of the energy is responsible for releasing the electron from the atomic orbital, the rest is converted to the electron's kinetic energy.
+
+%%}
+
+%%{ COMPTON SCATTERING
+
+\subsection{Compton scattering}
+
+Compton scattering occurs when a photon transfers a portion of its energy to an electron.
+During this interaction, the photon is deflected from its original path by the radial angle $\theta$ and azimuthal angle $\phi$.
+
 The ratio $E_r$ of the energy of incoming ($E_{0}$) and scattered ($E_{s}$) particles was observed and described by Compton as
 \begin{equation}
   E_r\left(\theta, E_0\right) = \frac{E_s\left(\theta, E_0\right)}{E_{0}} = \frac{1}{1 + \frac{E_0}{m_ec^2}\left(1 - \cos\theta\right)},
@@ -190,10 +198,6 @@ where \unit{r_e \approx 2.81 \times 10^{-15}}{m} is the classical electron radiu
 % \end{equation}
 % where \unit{N_0}{\left[s^{-1}\right]} is the intensity of the incoming beam, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and \unit{t}{\left[m\right]} is the effective thickness of the scattering material.
 
-\begin{equation}
-  \sigma = \oint_{4\pi} \frac{d\sigma}{d\Omega}\,d\Omega = \int_0^{2\pi} \int_0^{\pi} \frac{d\sigma}{d\Omega}\sin\theta\,d\theta\,d\phi,
-\end{equation}
-
 Photon attenuation, i.e., the decrease of the intensity $d\Phi$ of an incident beam with original flux $\Phi \left[\mathrm{s}^{-1}\right]$ is described as
 \begin{equation}
   \frac{d\Phi}{dz} = -n\sigma\Phi
@@ -209,11 +213,11 @@ This the probability of a Compton scattering $\mathrm{P}\left(c\right)$ is model
 \end{equation}
 
 \begin{equation}
-  \mathrm{P}\left(\theta \mid c\right) = \frac{\int_0^\pi \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
+  \mathrm{P}\left(\theta \mid c\right) = \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
 \end{equation}
 
 \begin{equation}
-  \mathrm{P}\left(c \mid \theta\right) = \mathrm{P}\left(\theta \mid c\right) \mathrm{P}\left(c\right) = \left(1 - e^{-n\sigma z}\right) \frac{\int_0^\pi \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
+  \mathrm{P}\left(c \mid \theta\right) = \mathrm{P}\left(\theta \mid c\right) \mathrm{P}\left(c\right) = \left(1 - e^{-n\sigma z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
 \end{equation}
 
 \begin{figure}[ht]
@@ -239,13 +243,23 @@ This the probability of a Compton scattering $\mathrm{P}\left(c\right)$ is model
 
 %%}
 
+%%{ ELECTRON PAIR PRODUCTION
+
+\subsection{Electron pair production}
+
+%%}
+
+%%{ ELECTRON TRIPLET PRODUCTION
+
+\subsection{Electron triplet production}
+
+%%}
+
+%%}
+
 %%{ GAMMA-RAY CAMERA
 
 \subsection{Compton $\gamma$-ray camera}
-
-%%}
-
-%%}
 
 %%}
 
