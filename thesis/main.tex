@@ -167,9 +167,47 @@ In the case of a unit sphere, the differential of the area simplifies to
 
 \subsection{Photoelectric effect}
 
-Photoelectric effect (Einstein, Nobel prize, 1905) describes a total absorption of a photon by an electron.
+Photoelectric effect (Einstein, 1905) describes a total absorption of a photon by an electron.
 When the electron is absorbed, the energy of the photon is completely consumed.
 A portion of the energy is responsible for releasing the electron from the atomic orbital, the rest is converted to the electron's kinetic energy.
+
+Photon energy can be expressed using its wavelength \unit{\lambda}{\left[m\right]} or frequency \unit{\nu}{\left[Hz\right]} as
+\begin{equation}
+  E_{\gamma} = \frac{hc}{\lambda} = h\nu,
+\end{equation}
+where $h \approx $ \unit{6.62 \cdot 10^{-34}}{m^2\,kg\,s^{-1}} is the Planck constant and \unit{c \approx 2.99 \cdot 10^{8}}{m\,s^{-1}} is the speed of light in a vacuum.
+
+\begin{equation}
+  k = \frac{E_{\gamma}}{E_e},
+\end{equation}
+where $E_{\gamma} = h\nu \left[\mathrm{eV}\right]$ is the photon energy and \unit{E_e = m_ec^2 \approx 5.11 \cdot 10^5}{eV} is the electron rest mass energy.
+
+Cross section $\sigma_{ph}$ for $k < 0.9$
+\begin{equation}
+  \sigma_{ph} = \frac{16}{3}\sqrt{2}\pi r_e^2\alpha^4\frac{Z^5}{k^{3.5}} \approx 3\cdot10^{12}\frac{Z^4}{E_{\gamma}^{3.5}},
+\end{equation}
+where {\color{red} TODO } \cite{davisson1965interaction}.
+
+Cross section $\sigma_{ph}$ for $k > 0.9$
+\begin{equation}
+  \sigma_{ph} = Z^5\left[\sum_{n=1}^4 \frac{a_n + b_nZ}{1 + c_nZ}K^{-p_n}\right],
+\end{equation}
+where {\color{red} TODO } \cite{hubbell1980pair}.
+
+\begin{table}
+  \centering
+  \begin{tabular}{c c c c c}
+    \hline
+    n & $a_n$ & $b_n$ & $c_n$ & $p_a$ \\
+    \hline
+    1 \rule{0pt}{2.3ex} & $1.6268 \cdot 10^{-9}$ & $-2.683 \cdot 10^{-12}$ & $4.173 \cdot 10^{-2}$ & 1 \\
+    2 & $1.5274 \cdot 10^{-9}$ & $-5.110 \cdot 10^{-13}$ & $1.027 \cdot 10^{-2}$ & 2 \\
+    3 & $1.1330 \cdot 10^{-9}$ & $-2.177 \cdot 10^{-12}$ & $2.013 \cdot 10^{-2}$ & 3.5 \\
+    4 & $-9.12 \cdot 10^{-11}$ & 0 & 0 & 4\\
+    \hline
+  \end{tabular}
+  \caption{\cite{hubbell1980pair}}
+\end{table}
 
 %%}
 
@@ -184,13 +222,13 @@ The ratio $E_r$ of the energy of incoming ($E_{0}$) and scattered ($E_{s}$) part
 \begin{equation}
   E_r\left(\theta, E_0\right) = \frac{E_s\left(\theta, E_0\right)}{E_{0}} = \frac{1}{1 + \frac{E_0}{m_ec^2}\left(1 - \cos\theta\right)},
 \end{equation}
-where $\theta \in \left[-\pi, \pi\right)$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \times 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \times 10^{8}}{ms^{-1}} is the speed of light in vacuum.
+where $\theta \in \left[-\pi, \pi\right)$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \cdot 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \cdot 10^{8}}{ms^{-1}} is the speed of light in vacuum.
 
 The Klein-Nishina formula \cite{leo2012techniques} describes the differential cross section of the incident and scattered beam as
 \begin{equation}
   \frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{1}{2}\,r_{e}^2\,E_r\left(\theta\right)^2\left(E_r\left(\theta\right) + \frac{1}{E_r\left(\theta\right)} - \sin^2\theta\right),
 \end{equation}
-where \unit{r_e \approx 2.81 \times 10^{-15}}{m} is the classical electron radius.
+where \unit{r_e \approx 2.81 \cdot 10^{-15}}{m} is the classical electron radius.
 
 % The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for a small finite solid angle \unit{\Delta \theta}{\left[sr\right]} as
 % \begin{equation}
@@ -224,7 +262,7 @@ This the probability of a Compton scattering $\mathrm{P}\left(c\right)$ is model
   \centering
   \begin{subfigure}{0.32\textwidth}
     \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_1.png}
-    \caption{Plots of the differential $d\sigma/d\Omega$ cross section for various photon energies.}
+    \caption{Plots of the differential cross $d\sigma/d\Omega$ section for various photon energies.}
     \label{fig:klein_1}
   \end{subfigure}
   \begin{subfigure}{0.32\textwidth}
@@ -245,13 +283,7 @@ This the probability of a Compton scattering $\mathrm{P}\left(c\right)$ is model
 
 %%{ ELECTRON PAIR PRODUCTION
 
-\subsection{Electron pair production}
-
-%%}
-
-%%{ ELECTRON TRIPLET PRODUCTION
-
-\subsection{Electron triplet production}
+\subsection{Electron-positron pair and triplet production}
 
 %%}
 
