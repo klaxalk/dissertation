@@ -6,7 +6,7 @@ import conversions
 
 def comptonRatio(energy, theta):
 
-    return 1 / (1 + (energy/(constants.me*m.pow(constants.c, 2)))*(1 - m.cos(theta)))
+    return 1.0 / (1.0 + (energy/(constants.me*m.pow(constants.c, 2)))*(1.0 - m.cos(theta)))
 
 def comptonDiffCrossSection(energy, theta):
 
@@ -43,23 +43,47 @@ def comptonCrossSection(energy):
 
 # photoelectric effect coefficients
 pe_a = [1.6268e-9, 1.5274e-9, 1.1330e-9, -9.12e-11]
-pe_b = [-2.683e-12, -5.110e-13, -2.177e-12, 0]
-pe_c = [4.173e-2, 1.027e-2, 2.013e-2, 0]
-pe_p = [1, 2, 3.5, 4]
+pe_b = [-2.683e-12, -5.110e-13, -2.177e-12, 0.0]
+pe_c = [4.173e-2, 1.027e-2, 2.013e-2, 0.0]
+pe_p = [1.0, 2.0, 3.5, 4.0]
 
-def photoelectricEffectCrossSection(material, energy):
+def peeScofield(material, energy):
 
-    e_rest_mass_energy = 5.11e5
+    e_rest_mass_energy = 511000.0
 
     k = energy/e_rest_mass_energy
 
-    old = (16/3)*m.sqrt(2)*m.pi*m.pow(constants.r_e, 2)*m.pow(constants.alpha, 4)*(m.pow(material.atomic_number, 5)/m.pow(k, 3.5))
-    
-    if False or k < 0.9:
-        return old
-    else:
-        summ = 0
-        for i in range(0, 4):
-            summ += ((pe_a[i] + pe_b[i]*material.atomic_number)/(1 + pe_c[i]*material.atomic_number))*m.pow(k, -pe_p[i])
+    return (16.0/3.0)*m.sqrt(2.0)*m.pi*m.pow(constants.r_e, 2)*m.pow(constants.alpha, 4)*(m.pow(material.atomic_number, 5)/m.pow(k, 3.5))
 
-        return (16/3)*m.sqrt(2)*m.pi*m.pow(constants.r_e, 2)*m.pow(material.atomic_number, 5)*summ
+def peeSauter(material, energy):
+
+    E_e = 511000.0 # ev
+    Thomson = 0.66526 # barn
+    Eb = 4.26 # ev
+    Z = material.atomic_number
+    gamma = (energy - 4.26 + 511000.0)/511000.0
+
+    square_bracket = 4/3
+
+    return (3.0/2.0)*Thomson*m.pow(constants.alpha, 4)*m.pow((Z*E_e)/energy, 5)*m.pow(m.pow(gamma, 2) - 1, 3/2.0)*square_bracket;
+
+def peeHubell(material, energy):
+
+    summ = 0
+    for i in range(0, 4):
+        summ += ((pe_a[i] + pe_b[i]*material.atomic_number)/(1 + pe_c[i]*material.atomic_number))*m.pow(energy/1000000.0, -pe_p[i])
+
+    return conversions.barn2m2(m.pow(material.atomic_number, 5)*summ)
+
+def peeCrossSection(material, energy):
+    
+    boundary = 1000000.0
+    
+    if energy < boundary:
+        return peeScofield(material, energy)
+    else:
+        # pee_scofield = peeScofield(material, boundary)
+        pee_scofield = conversions.barn2m2(0.5)
+        pee_hubell = peeHubell(material, boundary)
+
+        return (pee_scofield/pee_hubell)*peeHubell(material, energy)

@@ -1,9 +1,10 @@
 import math as m
+import constants
 
 # return energy in Jouls
 def wavelength_to_J(wavelength):
 
-    return (h * c) / wavelength
+    return (constants.h * constants.c) / wavelength
 
 # return energy in Jouls
 def wavelength_um_to_ev(wavelength):
@@ -27,3 +28,11 @@ def deg2rad(deg):
 def rad2deg(rad):
 
     return rad*(180.0 / m.pi)
+
+def barn2m2(barn):
+
+    return barn*constants.barn
+
+def m22barn(m2):
+
+    return m2/constants.barn

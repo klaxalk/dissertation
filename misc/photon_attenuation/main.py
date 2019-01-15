@@ -23,7 +23,7 @@ E_0_keV = [0.0027, 60, 511, 1460, 10000]
 E_0_J = [conversions.energy_ev_to_J(E * 1000) for E in E_0_keV] # [J]
 
 # scatterer thickness
-thickness = 0.003
+thickness = 1.0
 
 a_list = []
 angles = []
@@ -144,8 +144,9 @@ for energy_idx,energy in enumerate(E_0_J):
 
         fig = plt.figure(10)
         ax = plt.subplot(111)
-        ax.plot(pe_energies, pe_prob_Si, label="PE-effect prob. Si".format())
-        ax.plot(pe_energies, pe_prob_CdTe, label="PE-effect prob. CdTe".format())
+        ax.plot(pe_energies, prob_1, label="Scofield".format())
+        ax.plot(pe_energies, prob_2, label="Hubell".format())
+        ax.plot(pe_energies, prob_3, label="Scofield+Hubel".format())
         ax.grid(True)
         ax.legend()
         plt.show()
@@ -164,21 +165,29 @@ for energy_idx,energy in enumerate(E_0_keV):
 print("")
 print("total area: {0:2.3f} sr".format(total_area))
 
-pe_prob_Si = []
-pe_prob_CdTe = []
+prob_1 = []
+prob_2 = []
+prob_3 = []
 pe_energies = []
 
-for e in range(1, 1000, 1):
+for e in range(1, 2000, 1):
     pe_energies.append(e)
 
-    pecc_Si = physics.photoelectricEffectCrossSection(materials.Si, e*1000)
-    pecc_Cd = physics.photoelectricEffectCrossSection(materials.Cd, e*1000)
+    pecc_Cd = physics.peeScofield(materials.Cd, e*1000.0)
+    pecc_Cd2 = physics.peeHubell(materials.Cd, e*1000.0)
+    pecc_Cd3 = physics.peeCrossSection(materials.Cd, e*1000.0)
 
-    prob = 1 - np.exp(-materials.Si.electron_density * pecc_Si * thickness)
-    pe_prob_Si.append(prob)
+    test = physics.peeCrossSection(materials.Cd, 1.0e7)
+    print("test: {}".format(conversions.m22barn(test)))
 
-    prob = 1 - np.exp(-materials.CdTe.electron_density * pecc_Cd * thickness)
-    pe_prob_CdTe.append(prob)
+    prob = 1 - np.exp(-materials.Cd.atomic_density * pecc_Cd * thickness)
+    prob_1.append(prob)
+
+    prob = 1 - np.exp(-materials.Cd.atomic_density * pecc_Cd2 * thickness)
+    prob_2.append(prob)
+
+    prob = 1 - np.exp(-materials.Cd.atomic_density * pecc_Cd3 * thickness)
+    prob_3.append(prob)
 
 pid = os.fork()
 if pid == 0:
