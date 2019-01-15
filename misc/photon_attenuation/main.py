@@ -23,7 +23,7 @@ E_0_keV = [0.0027, 60, 511, 1460, 10000]
 E_0_J = [conversions.energy_ev_to_J(E * 1000) for E in E_0_keV] # [J]
 
 # scatterer thickness
-thickness = 0.001
+thickness = 0.003
 
 a_list = []
 angles = []
@@ -168,17 +168,16 @@ pe_prob_Si = []
 pe_prob_CdTe = []
 pe_energies = []
 
-for e in range(1, 10000, 10):
+for e in range(1, 1000, 1):
     pe_energies.append(e)
 
     pecc_Si = physics.photoelectricEffectCrossSection(materials.Si, e*1000)
-    print("pecc_Si: {}".format(pecc_Si))
-    pecc_CdTe = physics.photoelectricEffectCrossSection(materials.CdTe, e*1000)
+    pecc_Cd = physics.photoelectricEffectCrossSection(materials.Cd, e*1000)
 
     prob = 1 - np.exp(-materials.Si.electron_density * pecc_Si * thickness)
     pe_prob_Si.append(prob)
 
-    prob = 1 - np.exp(-materials.CdTe.electron_density * pecc_CdTe * thickness)
+    prob = 1 - np.exp(-materials.CdTe.electron_density * pecc_Cd * thickness)
     pe_prob_CdTe.append(prob)
 
 pid = os.fork()

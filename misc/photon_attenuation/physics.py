@@ -52,13 +52,14 @@ def photoelectricEffectCrossSection(material, energy):
     e_rest_mass_energy = 5.11e5
 
     k = energy/e_rest_mass_energy
+
+    old = (16/3)*m.sqrt(2)*m.pi*m.pow(constants.r_e, 2)*m.pow(constants.alpha, 4)*(m.pow(material.atomic_number, 5)/m.pow(k, 3.5))
     
-    if True or k < 0.9:
-        return (16/3)*m.sqrt(2)*m.pi*m.pow(constants.r_e, 2)*m.pow(constants.alpha, 4)*(m.pow(material.atomic_number, 5)/m.pow(k, 3.5))
+    if False or k < 0.9:
+        return old
     else:
         summ = 0
         for i in range(0, 4):
             summ += ((pe_a[i] + pe_b[i]*material.atomic_number)/(1 + pe_c[i]*material.atomic_number))*m.pow(k, -pe_p[i])
-            print("summ: {}".format(summ))
 
-        return m.pow(material.atomic_number, 5) * summ
+        return (16/3)*m.sqrt(2)*m.pi*m.pow(constants.r_e, 2)*m.pow(material.atomic_number, 5)*summ
