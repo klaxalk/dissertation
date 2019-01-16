@@ -316,6 +316,7 @@ The Klein-Nishina formula \cite{leo2012techniques} describes the differential cr
 where \unit{r_e \approx 2.81 \cdot 10^{-15}}{m} is the classical electron radius.
 As with the photoelectric effect, the prior probability of the scattering in a material with thickness $z$ is computed as:
 \begin{equation}
+  \label{eq:compton_prior}
   \mathrm{P}\left(E_{cs}\right) = 1 - e^{-n\sigma_{cs} z}.
 \end{equation}
 The value of likelihood probability density corresponding to the event $E_{cs}$ of a single photon with initial energy \unit{E_o}{[eV]} being scattered by the angle \unit{\theta}{[rad]} is calculated as
@@ -324,10 +325,12 @@ The value of likelihood probability density corresponding to the event $E_{cs}$ 
   \mathrm{P}\left(\theta \mid E_{cs}\right) = \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}},
 \end{equation}
 where $\sigma_{cs}$ is the total differential cross section for Compton scattering obtained from (\ref{eq:compton_differential_cross_section}).
-To obtain the posterior probability density of the scattering under by the angle $\theta$, we multiply the likelihood (\ref{eq:compton_likelihood}) by the prior probability of the Compton scattering:
+To obtain the posterior probability density of the scattering under by the angle $\theta$, the likelihood (\ref{eq:compton_likelihood}) is multiplied by the prior probability of the Compton scattering (\ref{eq:compton_prior}):
 \begin{equation}
-  \mathrm{P}\left(E_{cs} \mid \theta\right) = \mathrm{P}\left(\theta \mid E_{cs}\right) \mathrm{P}\left(E_{cs}\right) = \left(1 - e^{-n\sigma_{cs} z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}}
+  \mathrm{P}\left(E_{cs} \mid \theta\right) = \mathrm{P}\left(\theta \mid E_{cs}\right) \mathrm{P}\left(E_{cs}\right) = \left(1 - e^{-n\sigma_{cs} z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}}.
 \end{equation}
+
+Figure~\ref{fig:compton_probs} shows the differential cross section of the Compton scattering, the likelihood of scattering by the angle $\theta$ and the posterior probability of scattering by the angle $\theta$, calculated for \unit{1}{mm} of silicon.
 
 \begin{figure}[ht]
   \centering
@@ -347,7 +350,7 @@ To obtain the posterior probability density of the scattering under by the angle
     \label{fig:klein_3}
   \end{subfigure}
   \caption{Plots of the Klein-Nishina differential cross section (\ref{fig:klein_1}), the cross section normalized by the total cross section (\ref{fig:klein_2}) and the resulting probability distribution (\ref{fig:klein_3}) invariant on the radial angle $\phi$.}
-  \label{fig:klein_nishina}
+  \label{fig:compton_probs}
 \end{figure}
 
 % The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for a small finite solid angle \unit{\Delta \theta}{\left[sr\right]} as
