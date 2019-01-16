@@ -77,6 +77,13 @@
 
 \begin{document}
 
+\pagestyle{fancy}
+\pagenumbering{roman}
+\cfoot{\thepage}
+\tableofcontents
+\pagenumbering{arabic}
+\cleardoublepage
+
 %%}
 
 %%{ INTRODUCTION
@@ -87,11 +94,59 @@
 
 %%{ IONIZING RADIATION IMAGING
 
-\section{Ionizing radiation imaging}
+\section{Radiation imaging and dosimetry}
+
+%%{ RADIATION DETECTORS
+
+\subsection{Radiation detectors}
+
+%%{ SCINTILLATING DOSIMETERS
+
+\subsubsection{Scintillating dosimeters}
+
+%%}
+
+%%{ CCD DETECTORS
+
+\subsubsection{CCD detectors}
+
+%%}
 
 %%{ TIMEPIX DETECTOR
 
-\subsection{Timepix detector}
+\subsubsection{Timepix detector}
+
+%%}
+
+%%}
+
+%%{ RADIATION IMAGING TECHNIQUES
+
+\subsection{Radiation imaging techniques}
+
+%%{ CODED APERTURES
+
+\subsubsection{Coded apertures}
+
+%%}
+
+%%{ PINHOLE CAMERAS
+
+\subsubsection{Pinhole cameras}
+
+%%}
+
+%%{ PINHOLE CAMERAS
+
+\subsubsection{X-Ray Optics}
+
+%%}
+
+%%{ COMPTON CAMERAS
+
+\subsubsection{Compton cameras}
+
+%%}
 
 %%}
 
@@ -99,20 +154,25 @@
 
 \clearpage
 
+%%{ GAMMA-RAY CAMERA
+
+\section{Compton $\gamma$-ray camera}
+
 %%{ INTERACTION OF IONIZING RADIATION WITH MATTER
 
-\section{Interaction of ionizing radiation with matter}
+\subsection{Interaction of ionizing radiation with matter}
 
 %%{ DIFFERENTIAL CROSS SECTION
 
-In a classical mechanics, the properties of non-elastic scattering of a particle from an object (scattering center) is described by a differential cross section.
+\subsubsection{Differential cross section}
 
-\subsection{Differential cross section}
+In a classical mechanics, the properties of non-elastic scattering of a particle from an object (scattering center) are described by a differential cross section.
+A total cross section characterizes an effective area of an event (collision, scattering).
+For simulating the interaction of X-Ray and $\gamma$-Ray photons with matter, differential and total cross sections of the interaction need to be derived.
 
-Considering a single particle on an incident trajectory with the scattering object.
+I am considering a single particle on an incident trajectory with the scattering object.
 The displacement $b$ of the particle from the path to the scattering center is called the impact parameter, the radial angle of scattering is denoted as $\theta$.
-Various types of reactions have distinct relation between $b$ and $\theta$.
-
+Various types of reactions have a distinct relation between $b$ and $\theta$.
 The total area of the impact parameter is the impact cross section $\sigma$, which can be obtained by integrating the impact parameter $b$ over all possible azimuthal angles $\phi$:
 \begin{equation}
   \sigma\left(b\right) = \int_\Phi b\left(\phi\right)\,d\phi.
@@ -139,9 +199,12 @@ In the case of a unit sphere, the differential of the area simplifies to
   d\Omega(\theta) = 2\pi r^2\sin\theta\,d\theta.
 \end{equation}
 
+The total cross section $\sigma$ (sometimes just \emph{cross section}) is obtained by integrating the differential cross section over the area of a unit sphere:
 \begin{equation}
-  \sigma = \oint_{4\pi} \frac{d\sigma}{d\Omega}\,d\Omega = \int_0^{2\pi} \int_0^{\pi} \frac{d\sigma}{d\Omega}\sin\theta\,d\theta\,d\phi,
+  \sigma = \oint_{4\pi} \frac{d\sigma}{d\Omega}\,d\Omega = \int_0^{2\pi} \int_0^{\pi} \frac{d\sigma}{d\Omega}\sin\theta\,d\theta\,d\phi.
 \end{equation}
+The total cross section is used in physics to calculate a probability of a reaction (collision, scattering, etc.) and can be interpreted as an effective area in a which a colliding particle has to impact to cause the event.
+In physics literature, the unit of the cross section is typically $\mathrm{m}^2$, $\mathrm{cm}^2$ or the barn = \unit{10^{-28}}{m^2}.
 
 \begin{figure}[ht]
   \centering
@@ -161,59 +224,80 @@ In the case of a unit sphere, the differential of the area simplifies to
   \label{fig:differential_cross_section}
 \end{figure}
 
+Photon attenuation, i.e., the decrease of the intensity $d\Phi$ of an incident beam with original flux $\Phi \left[\mathrm{s}^{-1}\right]$ is described as
+\begin{equation}
+  \frac{d\Phi}{dz} = -n\sigma\Phi
+\end{equation}
+where $dz$ is the thickness of the blocking material, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the material and $\sigma \left[\mathrm{m}^{2}\right]$ is the total cross section of the interaction.
+By solving the differential equation, we obtain a relationship between the initial flux $\Phi$ and the remaining flux $\Phi_{out}$ behind the object with the thickness $z$:
+\begin{equation}
+  \Phi_{out} = \Phi e^{-n\sigma z}.
+\end{equation}
+This the probability of an \emph{event} (photoelectric effect, Compton scattering, etc.) $\mathrm{P}\left(E\right)$ is modeled as
+\begin{equation}
+  \mathrm{P}\left(E\right) = 1 - e^{-n\sigma z}.
+\end{equation}
+
 %%}
 
 %%{ PHOTOELECTRIC EFFECT
 
-\subsection{Photoelectric effect}
+\subsubsection{Photoelectric effect}
 
 Photoelectric effect (Einstein, 1905) describes a total absorption of a photon by an electron.
 When the electron is absorbed, the energy of the photon is completely consumed.
-A portion of the energy is responsible for releasing the electron from the atomic orbital, the rest is converted to the electron's kinetic energy.
+A portion of the energy is responsible for releasing the electron from the atomic orbital; the rest is converted to the electron's kinetic energy.
 
 Photon energy can be expressed using its wavelength \unit{\lambda}{\left[m\right]} or frequency \unit{\nu}{\left[Hz\right]} as
 \begin{equation}
   E_{\gamma} = \frac{hc}{\lambda} = h\nu,
 \end{equation}
 where $h \approx $ \unit{6.62 \cdot 10^{-34}}{m^2\,kg\,s^{-1}} is the Planck constant and \unit{c \approx 2.99 \cdot 10^{8}}{m\,s^{-1}} is the speed of light in a vacuum.
-
+Let us define the ratio
 \begin{equation}
-  k = \frac{E_{\gamma}}{E_e},
+  k = \frac{E_{\gamma}}{E_e}
 \end{equation}
-where $E_{\gamma} = h\nu \left[\mathrm{eV}\right]$ is the photon energy and \unit{E_e = m_ec^2 \approx 5.11 \cdot 10^5}{eV} is the electron rest mass energy.
-
-Cross section $\sigma_{ph}$ for $k < 0.9$
+between the photon energy $E_{\gamma} = h\nu \left[\mathrm{eV}\right]$ and the electron rest mass energy \unit{E_e = m_ec^2 \approx 5.11 \cdot 10^5}{eV}.
+According to \cite{fornalski2018simple}, the simplified version of the Gavrila-Pratt \cite{davisson1965interaction} cross section for the photoelectric effect is
 \begin{equation}
-  \sigma_{ph} = \frac{16}{3}\sqrt{2}\pi r_e^2\alpha^4\frac{Z^5}{k^{3.5}} \approx 3\cdot10^{12}\frac{Z^4}{E_{\gamma}^{3.5}},
+  \label{eq:pe_cross_section}
+  \sigma_{ph} = \frac{16}{3}\sqrt{2}\pi r_e^2\alpha^4\frac{Z^5}{k^{3.5}},
 \end{equation}
-where {\color{red} TODO } \cite{davisson1965interaction}.
+where \unit{r_e \approx 2.81 \cdot 10^{-15}}{m} is the classical electron radius, $\alpha \approx 1/137.04$ is the fine structure constant and $Z$ is the atomic number of the element.
+The accuracy of (\ref{eq:pe_cross_section}) is low even in the energy range, where it should be used ($\approx 1$ -- \unit{1000}{keV}).
+To achieve better accuracy, one could build upon the work of, e.g., Gavrila-Pratt \cite{davisson1965interaction}, Scofield et al. \cite{scofield1973theoretical}, or Hubbell et al. \cite{hubbell1980pair}.
+However, the cross section (\ref{eq:pe_cross_section}) will suffice for this work.
 
-Cross section $\sigma_{ph}$ for $k > 0.9$
+The probability of a single photoelectric effect event within a material of thickness $z$ is calculated as
 \begin{equation}
-  \sigma_{ph} = Z^5\left[\sum_{n=1}^4 \frac{a_n + b_nZ}{1 + c_nZ}K^{-p_n}\right],
+  \mathrm{P}\left(E_{pe}\right) = 1 - e^{-n\sigma_{pe} z}.
 \end{equation}
-where {\color{red} TODO } \cite{hubbell1980pair}.
 
-\begin{table}
-  \centering
-  \begin{tabular}{c c c c c}
-    \hline
-    n & $a_n$ & $b_n$ & $c_n$ & $p_a$ \\
-    \hline
-    1 \rule{0pt}{2.3ex} & $1.6268 \cdot 10^{-9}$ & $-2.683 \cdot 10^{-12}$ & $4.173 \cdot 10^{-2}$ & 1 \\
-    2 & $1.5274 \cdot 10^{-9}$ & $-5.110 \cdot 10^{-13}$ & $1.027 \cdot 10^{-2}$ & 2 \\
-    3 & $1.1330 \cdot 10^{-9}$ & $-2.177 \cdot 10^{-12}$ & $2.013 \cdot 10^{-2}$ & 3.5 \\
-    4 & $-9.12 \cdot 10^{-11}$ & 0 & 0 & 4\\
-    \hline
-  \end{tabular}
-  \caption{\cite{hubbell1980pair}}
-\end{table}
+% Cross section $\sigma_{ph}$ for $k > 0.9$
+% \begin{equation}
+%   \sigma_{ph} = Z^5\left[\sum_{n=1}^4 \frac{a_n + b_nZ}{1 + c_nZ}K^{-p_n}\right],
+% \end{equation}
+% where {\color{red} TODO } \cite{hubbell1980pair}.
+% \begin{table}
+%   \centering
+%   \begin{tabular}{c c c c c}
+%     \hline
+%     n & $a_n$ & $b_n$ & $c_n$ & $p_a$ \\
+%     \hline
+%     1 \rule{0pt}{2.3ex} & $1.6268 \cdot 10^{-9}$ & $-2.683 \cdot 10^{-12}$ & $4.173 \cdot 10^{-2}$ & 1 \\
+%     2 & $1.5274 \cdot 10^{-9}$ & $-5.110 \cdot 10^{-13}$ & $1.027 \cdot 10^{-2}$ & 2 \\
+%     3 & $1.1330 \cdot 10^{-9}$ & $-2.177 \cdot 10^{-12}$ & $2.013 \cdot 10^{-2}$ & 3.5 \\
+%     4 & $-9.12 \cdot 10^{-11}$ & 0 & 0 & 4\\
+%     \hline
+%   \end{tabular}
+%   \caption{\cite{hubbell1980pair}}
+% \end{table}
 
 %%}
 
 %%{ COMPTON SCATTERING
 
-\subsection{Compton scattering}
+\subsubsection{Compton scattering}
 
 Compton scattering occurs when a photon transfers a portion of its energy to an electron.
 During this interaction, the photon is deflected from its original path by the radial angle $\theta$ and azimuthal angle $\phi$.
@@ -222,40 +306,27 @@ The ratio $E_r$ of the energy of incoming ($E_{0}$) and scattered ($E_{s}$) part
 \begin{equation}
   E_r\left(\theta, E_0\right) = \frac{E_s\left(\theta, E_0\right)}{E_{0}} = \frac{1}{1 + \frac{E_0}{m_ec^2}\left(1 - \cos\theta\right)},
 \end{equation}
-where $\theta \in \left[-\pi, \pi\right)$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \cdot 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \cdot 10^{8}}{ms^{-1}} is the speed of light in vacuum.
+where $\theta \in \left[-\pi, \pi\right)$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \cdot 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \cdot 10^{8}}{m\,s^{-1}} is the speed of light in vacuum.
 
-The Klein-Nishina formula \cite{leo2012techniques} describes the differential cross section of the incident and scattered beam as
+The Klein-Nishina formula \cite{leo2012techniques} describes the differential cross section \unit{d\sigma/d\Omega}{[m^2/sr]} of the incident and scattered beam as
 \begin{equation}
+  \label{eq:compton_differential_cross_section}
   \frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{1}{2}\,r_{e}^2\,E_r\left(\theta\right)^2\left(E_r\left(\theta\right) + \frac{1}{E_r\left(\theta\right)} - \sin^2\theta\right),
 \end{equation}
 where \unit{r_e \approx 2.81 \cdot 10^{-15}}{m} is the classical electron radius.
-
-% The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for a small finite solid angle \unit{\Delta \theta}{\left[sr\right]} as
-% \begin{equation}
-%   N_s = N_o\,\frac{d\sigma}{d\Omega}\left(\theta\right)\,n_e\,t\,\Delta\theta,
-% \end{equation}
-% where \unit{N_0}{\left[s^{-1}\right]} is the intensity of the incoming beam, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and \unit{t}{\left[m\right]} is the effective thickness of the scattering material.
-
-Photon attenuation, i.e., the decrease of the intensity $d\Phi$ of an incident beam with original flux $\Phi \left[\mathrm{s}^{-1}\right]$ is described as
+As with the photoelectric effect, the prior probability of the scattering in a material with thickness $z$ is computed as:
 \begin{equation}
-  \frac{d\Phi}{dz} = -n\sigma\Phi
+  \mathrm{P}\left(E_{cs}\right) = 1 - e^{-n\sigma_{cs} z}.
 \end{equation}
-where $dz$ is the thickness of the blocking material, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and $\sigma \left[\mathrm{m}^{2}\right]$ is the total cross section of the interaction.
-By solving the differential equation, we obtain a relationship between the initial flux $\Phi$ and the remaining flux $\Phi_{out}$ behind the object with the thickness $z$:
+The value of likelihood probability density corresponding to the event $E_{cs}$ of a single photon with initial energy \unit{E_o}{[eV]} being scattered by the angle \unit{\theta}{[rad]} is calculated as
 \begin{equation}
-  \Phi_{out} = \Phi e^{-n\sigma z}.
+  \label{eq:compton_likelihood}
+  \mathrm{P}\left(\theta \mid E_{cs}\right) = \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}},
 \end{equation}
-This the probability of a Compton scattering $\mathrm{P}\left(c\right)$ is modeled as
+where $\sigma_{cs}$ is the total differential cross section for Compton scattering obtained from (\ref{eq:compton_differential_cross_section}).
+To obtain the posterior probability density of the scattering under by the angle $\theta$, we multiply the likelihood (\ref{eq:compton_likelihood}) by the prior probability of the Compton scattering:
 \begin{equation}
-  \mathrm{P}\left(c\right) = 1 - e^{-n\sigma z}.
-\end{equation}
-
-\begin{equation}
-  \mathrm{P}\left(\theta \mid c\right) = \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
-\end{equation}
-
-\begin{equation}
-  \mathrm{P}\left(c \mid \theta\right) = \mathrm{P}\left(\theta \mid c\right) \mathrm{P}\left(c\right) = \left(1 - e^{-n\sigma z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma}
+  \mathrm{P}\left(E_{cs} \mid \theta\right) = \mathrm{P}\left(\theta \mid E_{cs}\right) \mathrm{P}\left(E_{cs}\right) = \left(1 - e^{-n\sigma_{cs} z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}}
 \end{equation}
 
 \begin{figure}[ht]
@@ -279,19 +350,31 @@ This the probability of a Compton scattering $\mathrm{P}\left(c\right)$ is model
   \label{fig:klein_nishina}
 \end{figure}
 
+% The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for a small finite solid angle \unit{\Delta \theta}{\left[sr\right]} as
+% \begin{equation}
+%   N_s = N_o\,\frac{d\sigma}{d\Omega}\left(\theta\right)\,n_e\,t\,\Delta\theta,
+% \end{equation}
+% where \unit{N_0}{\left[s^{-1}\right]} is the intensity of the incoming beam, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and \unit{t}{\left[m\right]} is the effective thickness of the scattering material.
+
 %%}
 
 %%{ ELECTRON PAIR PRODUCTION
 
-\subsection{Electron-positron pair and triplet production}
+\subsubsection{Electron-positron pair and triplet production}
+
+At higher energies, \unit{>1}{MeV}, the photoelectric effect and Compton scattering are dominated by the electron-positron pair and triplet productions effects \cite{hubbell1980pair}.
+Since the aim of this work is to simulate the Compton camera, where only the first two effects are responsible in producing measurement, we omit the later two.
+In the real sensor, the pair and triplet production would create an unwanted signal which would be filtered out by the processing software, responsible for particle track classification.
+
+%%}
+
+%%{ PHOTON ATTENUATION
+
+\subsubsection{Photon attenuation}
 
 %%}
 
 %%}
-
-%%{ GAMMA-RAY CAMERA
-
-\subsection{Compton $\gamma$-ray camera}
 
 %%}
 

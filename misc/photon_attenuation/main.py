@@ -144,9 +144,8 @@ for energy_idx,energy in enumerate(E_0_J):
 
         fig = plt.figure(10)
         ax = plt.subplot(111)
-        ax.plot(pe_energies, prob_1, label="Scofield".format())
-        ax.plot(pe_energies, prob_2, label="Hubell".format())
-        ax.plot(pe_energies, prob_3, label="Scofield+Hubel".format())
+        ax.plot(pe_energies, prob_1, label="Gavrila-Pratt simplified Si, 0.0003 mm".format())
+        ax.plot(pe_energies, prob_2, label="Gavrila-Pratt Si, 0.0003 mm".format())
         ax.grid(True)
         ax.legend()
         plt.show()
@@ -170,24 +169,19 @@ prob_2 = []
 prob_3 = []
 pe_energies = []
 
-for e in range(1, 2000, 1):
+for e in range(1, 50, 1):
     pe_energies.append(e)
 
-    pecc_Cd = physics.peeScofield(materials.Cd, e*1000.0)
-    pecc_Cd2 = physics.peeHubell(materials.Cd, e*1000.0)
-    pecc_Cd3 = physics.peeCrossSection(materials.Cd, e*1000.0)
+    pe_cs_1 = physics.pe_cs_gavrila_pratt_simplified(materials.Si, e*1000.0)
+    print("pe_cs_1: {}".format(pe_cs_1))
+    pe_cs_2 = physics.pe_cs_gavrila_pratt(materials.Si, e*1000.0)
+    print("pe_cs_2: {}".format(pe_cs_2))
 
-    test = physics.peeCrossSection(materials.Cd, 1.0e7)
-    print("test: {}".format(conversions.m22barn(test)))
-
-    prob = 1 - np.exp(-materials.Cd.atomic_density * pecc_Cd * thickness)
+    prob = 1 - np.exp(-materials.Si.atomic_density * pe_cs_1 * 0.0003)
     prob_1.append(prob)
 
-    prob = 1 - np.exp(-materials.Cd.atomic_density * pecc_Cd2 * thickness)
+    prob = 1 - np.exp(-materials.Si.atomic_density * pe_cs_2 * 0.0003)
     prob_2.append(prob)
-
-    prob = 1 - np.exp(-materials.Cd.atomic_density * pecc_Cd3 * thickness)
-    prob_3.append(prob)
 
 pid = os.fork()
 if pid == 0:

@@ -41,33 +41,30 @@ def comptonCrossSection(energy):
 
     return total_cross_section
 
+def pe_cs_gavrila_pratt_simplified(material, energy):
+
+    e_rest_mass_energy = 511000.0
+    k = energy/e_rest_mass_energy
+
+    return (16.0/3.0)*m.sqrt(2.0)*m.pi*m.pow(constants.r_e, 2)*m.pow(constants.alpha, 4)*(m.pow(material.atomic_number, 5)/m.pow(k, 3.5))
+    # return conversions.barn2m2(3.0e12*(m.pow(material.atomic_number, 4)/m.pow(energy, 3.5)))
+
+def pe_cs_gavrila_pratt(material, energy):
+
+    electron_rest_mass = conversions.energy_J_to_eV(constants.me*m.pow(constants.c*100, 2))
+
+    constant = ((4.0*m.pi*m.pow(m.e, 4))/(m.pow(electron_rest_mass, 2)))*(1.0/constants.alpha)
+    constant = 1.367e-22
+
+    return constant*m.pow(constants.alpha*material.atomic_number, 5)*(electron_rest_mass/energy)*0.0001
+
 # photoelectric effect coefficients
 pe_a = [1.6268e-9, 1.5274e-9, 1.1330e-9, -9.12e-11]
 pe_b = [-2.683e-12, -5.110e-13, -2.177e-12, 0.0]
 pe_c = [4.173e-2, 1.027e-2, 2.013e-2, 0.0]
 pe_p = [1.0, 2.0, 3.5, 4.0]
 
-def peeScofield(material, energy):
-
-    e_rest_mass_energy = 511000.0
-
-    k = energy/e_rest_mass_energy
-
-    return (16.0/3.0)*m.sqrt(2.0)*m.pi*m.pow(constants.r_e, 2)*m.pow(constants.alpha, 4)*(m.pow(material.atomic_number, 5)/m.pow(k, 3.5))
-
-def peeSauter(material, energy):
-
-    E_e = 511000.0 # ev
-    Thomson = 0.66526 # barn
-    Eb = 4.26 # ev
-    Z = material.atomic_number
-    gamma = (energy - 4.26 + 511000.0)/511000.0
-
-    square_bracket = 4/3
-
-    return (3.0/2.0)*Thomson*m.pow(constants.alpha, 4)*m.pow((Z*E_e)/energy, 5)*m.pow(m.pow(gamma, 2) - 1, 3/2.0)*square_bracket;
-
-def peeHubell(material, energy):
+def pe_cs_hubell_k_shell(material, energy):
 
     summ = 0
     for i in range(0, 4):
@@ -75,15 +72,14 @@ def peeHubell(material, energy):
 
     return conversions.barn2m2(m.pow(material.atomic_number, 5)*summ)
 
-def peeCrossSection(material, energy):
-    
-    boundary = 1000000.0
+def pe_cs_hubell(material, energy):
+
+    boundary = 1500000.0
     
     if energy < boundary:
-        return peeScofield(material, energy)
+        return peeDavisson(material, energy)
     else:
-        # pee_scofield = peeScofield(material, boundary)
-        pee_scofield = conversions.barn2m2(0.5)
-        pee_hubell = peeHubell(material, boundary)
+        davisson_boundary = peeDavisson(material, boundary)
+        hubell_boundary = pe_cs_hubell_k_shell(material, boundary)
 
-        return (pee_scofield/pee_hubell)*peeHubell(material, energy)
+        return (davisson_boundary/hubell_boundary)*pe_cs_hubell_k_shell(material, energy)
