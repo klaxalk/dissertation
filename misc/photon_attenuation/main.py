@@ -149,25 +149,37 @@ def plot_everything(*args):
       plt.savefig("klein_nishina_3.png", bbox_inches="tight")
       plt.show()
 
-    fig = plt.figure(10)
-
-    ax = plt.subplot(211)
+    if multiplot:
+        fig = plt.figure(10)
+        ax = plt.subplot(211)
+    else:
+        fig = plt.figure(10)
+        ax = plt.subplot(111)
     plt.yscale('log')
     for axis in [ax.xaxis, ax.yaxis]:
         axis.set_major_formatter(ScalarFormatter())
     ax.plot(pe_energies, prob_pe_scatterer, label="Photoelectric effect prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
     ax.plot(pe_energies, prob_cs_scatterer, label="Compton scattering prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
     ax.plot(pe_energies, prob_scatterer_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0), linestyle="dashed")
+    ax.set_xlabel("Photon energy [keV]")
+    ax.set_ylabel("Probability [-]")
     ax.grid(True)
     ax.legend()
+    plt.savefig("scatterer_attenuation.png", bbox_inches="tight")
 
-    ax = plt.subplot(212)
+    if multiplot:
+        ax = plt.subplot(212)
+    else:
+        fig = plt.figure(11)
+        ax = plt.subplot(111)
     ax.plot(pe_energies, prob_pe_absorber, label="Photoelectric effect prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
     ax.plot(pe_energies, prob_cs_absorber, label="Compton scattering prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
     ax.plot(pe_energies, prob_absorber_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(absorber_material.name, absorber_z/1000.0), linestyle="dashed")
-    ax.grid(True)
+    ax.set_xlabel("Photon energy [keV]")
+    ax.set_ylabel("Probability [-]")
     ax.legend()
-
+    ax.grid(True)
+    plt.savefig("absorber_attenuation.png", bbox_inches="tight")
     plt.show()
     
 # #} end of plot_everything()
@@ -202,7 +214,7 @@ for e in range(1, 1000, 5): # over keV
     pe_cross_section_scatterer = physics.pe_cs_gavrila_pratt_simplified(scatterer_material, e*1000.0)
     cs_cross_section_scatterer = physics.comptonCrossSection(conversions.energy_ev_to_J(e*1000.0))
 
-    pe_cross_section_absorber = physics.pe_cs_gavrila_pratt_simplified(absorber_material, e*1000.0)
+    pe_cross_section_absorber = [physics.pe_cs_gavrila_pratt_simplified(mat, e*1000.0) for mat in absorber_material.elements]
     cs_cross_section_absorber = physics.comptonCrossSection(conversions.energy_ev_to_J(e*1000.0))
 
     prob = 1 - np.exp(-scatterer_material.atomic_density * pe_cross_section_scatterer * scatterer_z)
@@ -211,7 +223,10 @@ for e in range(1, 1000, 5): # over keV
     prob = 1 - np.exp(-scatterer_material.electron_density * cs_cross_section_scatterer * scatterer_z)
     prob_cs_scatterer.append(prob)
 
-    prob = 1 - np.exp(-absorber_material.atomic_density * pe_cross_section_absorber * absorber_z)
+    prod = 1
+    for index,element in enumerate(pe_cross_section_absorber):
+        prod *= np.exp(-absorber_material.atomic_density * pe_cross_section_absorber[index] * absorber_z)
+    prob = 1 - prod
     prob_pe_absorber.append(prob)
 
     prob = 1 - np.exp(-absorber_material.electron_density * cs_cross_section_absorber * absorber_z)

@@ -35,7 +35,7 @@ class Compound:
         self.name = name
         self.density = density
         self.molar_mass = molar_mass
-        self.elements = []
+        self.elements = elements
 
         self.atomic_number = sum([x.atomic_number for x in elements])
 
