@@ -211,21 +211,24 @@ for e in range(1, 1000, 5): # over keV
 
     pe_energies.append(e)
 
-    pe_cross_section_scatterer = physics.pe_cs_gavrila_pratt_simplified(scatterer_material, e*1000.0)
+    pe_cross_section_scatterer = [physics.pe_cs_gavrila_pratt_simplified(mat, e*1000.0) for mat in scatterer_material.elements]
     cs_cross_section_scatterer = physics.comptonCrossSection(conversions.energy_ev_to_J(e*1000.0))
 
     pe_cross_section_absorber = [physics.pe_cs_gavrila_pratt_simplified(mat, e*1000.0) for mat in absorber_material.elements]
     cs_cross_section_absorber = physics.comptonCrossSection(conversions.energy_ev_to_J(e*1000.0))
 
-    prob = 1 - np.exp(-scatterer_material.atomic_density * pe_cross_section_scatterer * scatterer_z)
+    prod = 1
+    for index,cross_section in enumerate(pe_cross_section_scatterer):
+        prod *= np.exp(-scatterer_material.element_quantities[index]*scatterer_material.molecular_density * cross_section * scatterer_z)
+    prob = 1 - prod
     prob_pe_scatterer.append(prob)
 
     prob = 1 - np.exp(-scatterer_material.electron_density * cs_cross_section_scatterer * scatterer_z)
     prob_cs_scatterer.append(prob)
 
     prod = 1
-    for index,element in enumerate(pe_cross_section_absorber):
-        prod *= np.exp(-absorber_material.atomic_density * pe_cross_section_absorber[index] * absorber_z)
+    for index,cross_section in enumerate(pe_cross_section_absorber):
+        prod *= np.exp(-absorber_material.element_quantities[index]*absorber_material.molecular_density * cross_section * absorber_z)
     prob = 1 - prod
     prob_pe_absorber.append(prob)
 
