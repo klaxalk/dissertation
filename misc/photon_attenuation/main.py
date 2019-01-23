@@ -107,12 +107,12 @@ for energy_idx,energy in enumerate(E_0_J):
 def plot_everything(*args):
 
     multiplot = False
-    plot_compton = False
+    plot_compton = True
 
     if plot_compton:
 
       fig = plt.figure(1)
-      fig.canvas.set_window_title("1")
+      fig.canvas.set_window_title("Klein-Nishina")
       if multiplot:
           ax = plt.subplot(141, projection='polar')
       else:
@@ -131,6 +131,7 @@ def plot_everything(*args):
           ax = plt.subplot(111, projection='polar')
       for energy_idx,energy in enumerate(E_0_J):
         ax.plot(angles, abs_prob[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+      fig.canvas.set_window_title("Compton posterior")
       ax.grid(True)
       ax.legend()
       plt.title('Posterior prob. of scattering by a radial angle $\Theta \in [0, \pi]$'.format())
@@ -143,11 +144,11 @@ def plot_everything(*args):
           ax = plt.subplot(111, projection='polar')
       for energy_idx,energy in enumerate(E_0_J):
         ax.plot(angles, sigma_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+      fig.canvas.set_window_title("Compton likelihood")
       ax.grid(True)
       ax.legend()
       plt.title('The likelihood of scattering by a radial angle $\Theta$, {} mm {}'.format(scatterer_z*1000, scatterer_material.name))
       plt.savefig("klein_nishina_3.png", bbox_inches="tight")
-      plt.show()
 
     if multiplot:
         fig = plt.figure(10)
@@ -156,8 +157,10 @@ def plot_everything(*args):
         fig = plt.figure(10)
         ax = plt.subplot(111)
     plt.yscale('log')
+    plt.xscale('log')
     for axis in [ax.xaxis, ax.yaxis]:
         axis.set_major_formatter(ScalarFormatter())
+    fig.canvas.set_window_title("Photon-attenuation scatterer")
     ax.plot(pe_energies, prob_pe_scatterer, label="Photoelectric effect prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
     ax.plot(pe_energies, prob_cs_scatterer, label="Compton scattering prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
     ax.plot(pe_energies, prob_scatterer_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0), linestyle="dashed")
@@ -172,6 +175,11 @@ def plot_everything(*args):
     else:
         fig = plt.figure(11)
         ax = plt.subplot(111)
+    plt.yscale('log')
+    plt.xscale('log')
+    for axis in [ax.xaxis, ax.yaxis]:
+        axis.set_major_formatter(ScalarFormatter())
+    fig.canvas.set_window_title("Photon-attenuation absorber")
     ax.plot(pe_energies, prob_pe_absorber, label="Photoelectric effect prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
     ax.plot(pe_energies, prob_cs_absorber, label="Compton scattering prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
     ax.plot(pe_energies, prob_absorber_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(absorber_material.name, absorber_z/1000.0), linestyle="dashed")
@@ -180,6 +188,7 @@ def plot_everything(*args):
     ax.legend()
     ax.grid(True)
     plt.savefig("absorber_attenuation.png", bbox_inches="tight")
+
     plt.show()
     
 # #} end of plot_everything()
@@ -207,7 +216,7 @@ prob_scatterer_attenuation = []
 
 pe_energies = []
 
-for e in range(1, 1000, 5): # over keV
+for e in range(1, 1000, 1): # over keV
 
     pe_energies.append(e)
 

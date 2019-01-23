@@ -187,8 +187,9 @@ The differential of the impact cross section is
   d\sigma\left(b\right) = \frac{\partial \sigma}{\partial b}\,db = 2\pi\,b\,db.
 \end{equation}
 
+The solid angle on a unit sphere under the angle $\theta < \Theta$ is obtained by the integration:
 \begin{equation}
-  \Omega\left(r, \Theta\right) = \int_0^\Theta 2\pi r\,\cos\theta\,r\,d\theta = \left[-2\pi r^2\,\sin\theta\right]_0^\Theta = 2\pi r^2 - 2\pi r^2\cos\Theta
+  \Omega\left(r, \Theta\right) = \int_0^\Theta 2\pi r\,\cos\theta\,r\,d\theta = \left[-2\pi r^2\,\sin\theta\right]_0^\Theta = 2\pi r^2 - 2\pi r^2\cos\Theta.
 \end{equation}
 The differential of the solid angle is
 \begin{equation}
@@ -246,7 +247,7 @@ This the probability of an \emph{event} (photoelectric effect, Compton scatterin
 
 Photoelectric effect (Einstein, 1905) describes a total absorption of a photon by an electron.
 When the electron is absorbed, the energy of the photon is completely consumed.
-A portion of the energy is responsible for releasing the electron from the atomic orbital; the rest is converted to the electron's kinetic energy.
+A portion of the energy is responsible for releasing the electron from the atomic orbital; the rest is converted to kinetic energy of the electron.
 
 Photon energy can be expressed using its wavelength \unit{\lambda}{\left[m\right]} or frequency \unit{\nu}{\left[Hz\right]} as
 \begin{equation}
@@ -340,16 +341,16 @@ Figure~\ref{fig:compton_probs} shows the differential cross section of the Compt
     \label{fig:klein_1}
   \end{subfigure}
   \begin{subfigure}{0.32\textwidth}
-    \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_2.png}
-    \caption{Plots of posterior probability $\mathrm{P}\left(E_0 \mid \theta\right)$, integrated over azimuthal angle $\phi$.}
+    \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_3.png}
+    \caption{Plots of likelihood probability $\mathrm{P}\left(\theta \mid E_0\right)$, integrated over azimuthal angle $\phi$.}
     \label{fig:klein_2}
   \end{subfigure}
   \begin{subfigure}{0.32\textwidth}
-    \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_3.png}
-    \caption{Plots of likelihood probability $\mathrm{P}\left(\theta \mid E_0\right)$, integrated over azimuthal angle $\phi$.}
+    \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_2.png}
+    \caption{Plots of posterior probability $\mathrm{P}\left(E_0 \mid \theta\right)$, integrated over azimuthal angle $\phi$.}
     \label{fig:klein_3}
   \end{subfigure}
-  \caption{Plots of the Klein-Nishina differential cross section (\ref{fig:klein_1}), the cross section normalized by the total cross section (\ref{fig:klein_2}) and the resulting probability distribution (\ref{fig:klein_3}) invariant on the radial angle $\phi$.}
+  \caption{Plots of the Klein-Nishina differential cross section (\ref{fig:klein_1}), the cross section normalized by the total cross section, integrate over the radial angle $\phi$ (\ref{fig:klein_2}) and the resulting probability distribution (\ref{fig:klein_3}), integrate over $\phi$.}
   \label{fig:compton_probs}
 \end{figure}
 
@@ -399,31 +400,31 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 
 \clearpage
 
-%%{ RADIATION SOURCE ESTIMATION
+%%%{ RADIATION SOURCE ESTIMATION
 
-\section{Radiation source state estimation}
+%\section{Radiation source state estimation}
 
-%%}
+%%%}
 
-%%{ DISTRIBUTED SENSING USING MULTIPLE UAVS
+%%%{ DISTRIBUTED SENSING USING MULTIPLE UAVS
 
-\section{Distributed sensing using multiple UAVs}
+%\section{Distributed sensing using multiple UAVs}
 
-%%}
+%%%}
 
-%%{ AUTONOMOUS TRACKING OF A MOVING RADIATION SOURCE
+%%%{ AUTONOMOUS TRACKING OF A MOVING RADIATION SOURCE
 
-\section{Autonomous tracking of a moving radiation source}
+%\section{Autonomous tracking of a moving radiation source}
 
-\subsection{Predicting target motion}
+%\subsection{Predicting target motion}
 
-%%}
+%%%}
 
-%%{ CONCLUSIONS
+%%%{ CONCLUSIONS
 
-\section{Conclusions}
+%\section{Conclusions}
 
-%%}
+%%%}
 
 %%{ DOC BOTTOM
 
