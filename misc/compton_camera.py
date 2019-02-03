@@ -7,27 +7,57 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import random
 
-from sympy import Point3D, Point2D, Polygon, Ray3D, Plane, linsolve, Matrix
-from sympy.physics.vector import ReferenceFrame, Vector
-from sympy.abc import x, y, z
+from sympy import Point3D, Point2D, Polygon, Ray3D, Plane, linsolve, Matrix, Line3D
+import time
 
-class MyPlane:
+# #{ class Timer
 
-    # the sympy object
+class Timer(object):
+    def __init__(self, name=None):
+        self.name = name
+
+    def __enter__(self):
+        self.tstart = time.time()
+
+    def __exit__(self, type, value, traceback):
+        if self.name:
+            print '[%s]' % self.name,
+        print 'Elapsed: %s' % (time.time() - self.tstart)
+
+# #} end of class Timer
+
+# #{ Polygon3D
+
+class Polygon3D:
+
     plane = []
 
-    # basis of the linear subspace (the plane moved to the origin)
-    basis = []
+    # #{ __init__()
 
-    # projector to the linear subspace (the plane moved to the origin)
-    projector = []
+    def __init__(self, points):
 
-    # projection of the origin
-    zero_point = []
+        if len(points) < 3:
 
-    def __init__(self, point1, point2, point3):
+            print("Polygon3D: cannot create a polygon from < 3 vertices!")
 
-        self.plane = Plane(point1, point2, point3)
+            return False
+
+        # basis of the linear subspace (the plane moved to the origin)
+        self.basis = []
+
+        # projector to the linear subspace (the plane moved to the origin)
+        self.projector = []
+
+        # projection of the origin
+        self.zero_point = []
+
+        # all the 2d points on the polygon
+        self.points_2d = []
+
+        # sympy polygon
+        self.polygon_2d = []
+
+        self.plane = Plane(points[0], points[1], points[2])
 
         normal = self.plane.normal_vector
 
@@ -36,7 +66,8 @@ class MyPlane:
         normal_vector = normal_vector / np.linalg.norm(normal_vector)
 
         # find the point closest to the origin
-        zero_line = self.plane.perpendicular_line(Point3D(0, 0, 0))
+        zero_line = self.plane.perpendicular_line(Point3D(0, 0, 0, evaluate=False))
+
         self.zero_point = self.plane.intersection(zero_line)[0]
 
         # # find the orthogonal basis of the plane
@@ -47,20 +78,27 @@ class MyPlane:
         else:
             basis1 = np.array([normal_vector[0], -normal_vector[2], normal_vector[1]])
 
-        print("basis1: {}".format(basis1))
-        print("normal_vector: {}".format(normal_vector))
         # second vector of the orthonormal basis
         basis2 = np.cross(normal_vector, basis1)
-        print("basis2: {}".format(basis2))
         basis2 = basis2 / np.linalg.norm(basis2)
 
         self.basis = np.matrix([basis1, basis2, normal_vector]).transpose()
 
-        print("self.basis: {}".format(self.basis))
-
         # projector to orthogonal adjucent of the planes normal
         self.projector = self.basis*self.basis.transpose()
         # projector_normal = np.eye(3, dtype=float) - self.basis*self.basis.transpose()
+
+        for i,point in enumerate(points):
+            self.points_2d.append(self.projectOn2D(point))
+
+        print("len(self.points_2d): {}".format(len(self.points_2d)))
+
+        self.polygon_2d = Polygon(*self.points_2d)
+
+
+    # #} end of 
+
+    # #{ projectOn2D()
 
     def projectOn2D(self, point_in):
 
@@ -72,15 +110,48 @@ class MyPlane:
         # express in the orthonormal basis of the subspace 
         projection = np.dot(np.linalg.inv(self.basis), projection)
 
-        return Point2D(projection[0, 0], projection[1, 0])
+        return Point2D(projection[0, 0], projection[1, 0], evaluate=False)
+
+    # #} end of 
+
+    # #{ intersection()
+    
+    def intersection(self, intersector): 
+
+        with Timer("intersection"):
+
+            with Timer("subintersection"):
+
+                print("intersector: {}".format(intersector))
+
+                print("self.plane: {}".format(self.plane))
+
+                # create the sympy intersection with the plane
+                intersectee_3d = self.plane.intersection(intersector)
+
+                print("intersectee_3d: {}".format(intersectee_3d))
+
+            if not isinstance(intersectee_3d, Point3D):
+
+                print("Polygon3D: the result of an intersection is not of Point3D type")
+
+                return False
+
+            with Timer("project2d"):
+                intersectee_2d = self.projectOn2D(intersectee_3d)
+
+            if self.polygon_2d.encloses_point(intersectee_2d):
+                return intersectee_2d
+            else:
+                return False
+    
+    # #} end of rayCollision()
+
+# #} end of Polygon3D
 
 # #{ class Source
 
 class Source:
-
-    position = [] # [m, m, m]
-    activity = 0 # [Bc]
-    energy = 0 # [eV]
 
     def __init__(self, energy, activity, position):
 
@@ -94,60 +165,39 @@ class Source:
 
 class Detector:
 
-    material = materials.CdTe
-    thickness = 0 # [m]
-    position = [] # [m, m, m]
-    size = 0.01408 # [mm]
-    vertices = [] # in the frame of the sensor
-    sp_vertices = []
-
-    # sympy
-    sp_front_plane = []
-    sp_front_polygon = []
-
-    sp_back_plane = []
-    sp_back_polygon = []
-
-    sp_sides_planes = []
-    sp_sides_polygones = []
-
-    sp_all_planes = []
-    sp_all_polygones = []
-
     def __init__(self, material, thickness, position):
+
+        self.size = 0.01408 # [mm]
+        self.vertices = [] # in the frame of the sensor
+        self.sp_vertices = []
+
+        self.front = []
+        self.back = []
+        self.sides = []
 
         self.material = material
         self.thickness = thickness
         self.position = position
 
+        # FRONT
+
         # give me the 4 front_vertices of the detector
+
         a = np.array([self.thickness/2, -self.size/2.0, self.size/2.0])
         b = np.array([self.thickness/2, self.size/2.0, self.size/2.0])
         c = np.array([self.thickness/2, self.size/2.0, -self.size/2.0])
         d = np.array([self.thickness/2, -self.size/2.0, -self.size/2.0])
 
         # create the sympy representation of the front vertices
-        sp_a = Point3D(a)
-        sp_b = Point3D(b)
-        sp_c = Point3D(c)
-        sp_d = Point3D(d)
+        sp_a = Point3D(a, evaluate=False)
+        sp_b = Point3D(b, evaluate=False)
+        sp_c = Point3D(c, evaluate=False)
+        sp_d = Point3D(d, evaluate=False)
 
         # create the sympy front plane
-        self.sp_front_plane = MyPlane(sp_a, sp_b, sp_c)
+        self.front = Polygon3D([sp_a, sp_b, sp_c, sp_d])
 
-        # project the front vertices onto the front plane
-        sp_a_2d = self.sp_front_plane.projectOn2D(sp_a)
-        sp_b_2d = self.sp_front_plane.projectOn2D(sp_b)
-        sp_c_2d = self.sp_front_plane.projectOn2D(sp_c)
-        sp_d_2d = self.sp_front_plane.projectOn2D(sp_d)
-
-        print("sp_a_2d: {}".format(sp_a_2d))
-        print("sp_b_2d: {}".format(sp_b_2d))
-        print("sp_c_2d: {}".format(sp_c_2d))
-        print("sp_d_2d: {}".format(sp_d_2d))
-
-        # create the front polygon in the front plane
-        self.sp_front_polygon = Polygon(sp_a_2d, sp_b_2d, sp_c_2d, sp_d_2d)
+        # BACK
 
         # give me the 4 back_vertices of the detector
         e = np.array([-self.thickness/2, -self.size/2.0, self.size/2.0])
@@ -156,19 +206,21 @@ class Detector:
         h = np.array([-self.thickness/2, -self.size/2.0, -self.size/2.0])
 
         # create the sympy representation of the front vertices
-        sp_e = Point3D(e)
-        sp_f = Point3D(f)
-        sp_g = Point3D(g)
-        sp_h = Point3D(h)
+        sp_e = Point3D(e, evaluate=False)
+        sp_f = Point3D(f, evaluate=False)
+        sp_g = Point3D(g, evaluate=False)
+        sp_h = Point3D(h, evaluate=False)
 
         # create the sympy back plane
-        self.sp_back_plane = MyPlane(sp_e, sp_f, sp_g)
+        self.back = Polygon3D([sp_e, sp_f, sp_g, sp_h])
+
+        # SIDES
 
         # create the sympy side planes
-        self.sp_sides_planes.append(MyPlane(sp_a, sp_e, sp_h))
-        self.sp_sides_planes.append(MyPlane(sp_b, sp_f, sp_e))
-        self.sp_sides_planes.append(MyPlane(sp_c, sp_g, sp_f))
-        self.sp_sides_planes.append(MyPlane(sp_d, sp_h, sp_c))
+        self.sides.append(Polygon3D([sp_a, sp_e, sp_h, sp_d]))
+        self.sides.append(Polygon3D([sp_b, sp_f, sp_e, sp_a]))
+        self.sides.append(Polygon3D([sp_c, sp_g, sp_f, sp_b]))
+        self.sides.append(Polygon3D([sp_d, sp_h, sp_c, sp_g]))
 
         # #{ push to sp_vertices
         
@@ -214,7 +266,7 @@ class Detector:
 
 # define the source and the detector
 source = Source(662000.0, 1e9, np.array([10.0, 0.0, 0.0]))
-source_point = Point3D(source.position)
+source_point = Point3D(source.position, evaluate=False)
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
 detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.002, 0, 0]))
 
@@ -259,12 +311,13 @@ def sample_detector(detector):
 # sample the 1st detector
 hit_points = []
 rays = []
-for i in range(0, 100):
+for i in range(0, 10):
 
    hit_point = sample_detector(detector_1)
    hit_points.append(hit_point) 
 
-   ray = Ray3D(source_point, Point3D(hit_point))
+   ray = Line3D(source_point, Point3D(hit_point, evaluate=False))
+   rays.append(ray)
 
 # plotting
 def plot_everything(*args):
@@ -285,7 +338,14 @@ def plot_everything(*args):
 
     # plot the sampled points
     for index,point in enumerate(hit_points):
-        ax.scatter(point[0], point[1], point[2], color='g', marker='o')
+
+        # ax.scatter(point[0], point[1], point[2], color='g', marker='o')
+
+        intersect = detector_1.front.intersection(rays[index])
+
+        if isinstance(intersect, Point3D):
+
+            ax.scatter(intersect[0], intersect[1], intersect[2], color='g', marker='o')
 
     # plot the source
     # plt.scatter(source.position[0], source.position[1], source.position[2], color='r', marker='o')
