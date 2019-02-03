@@ -7,15 +7,23 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import random
 
-from sympy import Point3D, Polygon, Ray3D, Plane, linsolve, Matrix
+from sympy import Point3D, Point2D, Polygon, Ray3D, Plane, linsolve, Matrix
 from sympy.physics.vector import ReferenceFrame, Vector
 from sympy.abc import x, y, z
 
 class MyPlane:
 
+    # the sympy object
     plane = []
+
+    # basis of the linear subspace (the plane moved to the origin)
     basis = []
+
+    # projector to the linear subspace (the plane moved to the origin)
     projector = []
+
+    # projection of the origin
+    zero_point = []
 
     def __init__(self, point1, point2, point3):
 
@@ -27,16 +35,26 @@ class MyPlane:
         normal_vector = np.array([float(normal[0]), float(normal[1]), float(normal[2])])
         normal_vector = normal_vector / np.linalg.norm(normal_vector)
 
-        # # find the orthogonal basis of the 
+        # find the point closest to the origin
+        zero_line = self.plane.perpendicular_line(Point3D(0, 0, 0))
+        self.zero_point = self.plane.intersection(zero_line)[0]
+
+        # # find the orthogonal basis of the plane
 
         # first vector of the orthonormal basis
-        basis1 = np.array([-normal_vector[1], normal_vector[0], normal_vector[2]])
+        if np.abs(normal_vector[0]) > 1e-3 or np.abs(normal_vector[1]) > 1e-3:
+            basis1 = np.array([-normal_vector[1], normal_vector[0], normal_vector[2]])
+        else:
+            basis1 = np.array([normal_vector[0], -normal_vector[2], normal_vector[1]])
 
+        print("basis1: {}".format(basis1))
+        print("normal_vector: {}".format(normal_vector))
         # second vector of the orthonormal basis
         basis2 = np.cross(normal_vector, basis1)
+        print("basis2: {}".format(basis2))
         basis2 = basis2 / np.linalg.norm(basis2)
 
-        self.basis = np.matrix([basis1, basis2]).transpose()
+        self.basis = np.matrix([basis1, basis2, normal_vector]).transpose()
 
         print("self.basis: {}".format(self.basis))
 
@@ -44,17 +62,17 @@ class MyPlane:
         self.projector = self.basis*self.basis.transpose()
         # projector_normal = np.eye(3, dtype=float) - self.basis*self.basis.transpose()
 
-        print("self.projector: {}".format(self.projector))
-        
     def projectOn2D(self, point_in):
 
-        point = np.matrix([point_in]).transpose()
+        point = np.matrix([point_in - self.zero_point]).transpose()
 
-        projection = self.projector*point 
+        # project the point on the affine subspace of the plane
+        projection = self.projector*point
 
-        print("projection: {}".format(projection))
+        # express in the orthonormal basis of the subspace 
+        projection = np.dot(np.linalg.inv(self.basis), projection)
 
-        return projection
+        return Point2D(projection[0, 0], projection[1, 0])
 
 # #{ class Source
 
@@ -147,10 +165,10 @@ class Detector:
         self.sp_back_plane = MyPlane(sp_e, sp_f, sp_g)
 
         # create the sympy side planes
-        self.sp_sides.append(MyPlane(sp_a, sp_e, sp_h))
-        self.sp_sides.append(MyPlane(sp_b, sp_f, sp_e))
-        self.sp_sides.append(MyPlane(sp_c, sp_g, sp_f))
-        self.sp_sides.append(MyPlane(sp_d, sp_h, sp_c))
+        self.sp_sides_planes.append(MyPlane(sp_a, sp_e, sp_h))
+        self.sp_sides_planes.append(MyPlane(sp_b, sp_f, sp_e))
+        self.sp_sides_planes.append(MyPlane(sp_c, sp_g, sp_f))
+        self.sp_sides_planes.append(MyPlane(sp_d, sp_h, sp_c))
 
         # #{ push to sp_vertices
         
