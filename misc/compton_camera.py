@@ -7,9 +7,10 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import math as m
 import numpy as np
-import sympy as sp
+# import sympy as sp
 import shapely as sh
 from shapely.geometry import Polygon
+# from geometry.convex_polygon import ConvexPolygon
 
 # my stuff
 import geometry.solid_angle
@@ -61,20 +62,14 @@ class Polygon3D:
         # sympy polygon
         self.polygon_2d = []
         
-        sy_plane = sp.geometry.plane.Plane(points[0], points[1], points[2], evaluate=False)
-
-        # find the point closest to the origin
-        zero_line = sy_plane.perpendicular_line(sp.geometry.Point3D(0, 0, 0, evaluate=False))
-        # sy_zero_point = sy_plane.intersection(zero_line)[0]
-        sy_zero_point = sy_plane.p1
-        self.zero_point = np.array([float(sy_zero_point[0]), float(sy_zero_point[1]), float(sy_zero_point[2])])
-
-        # get me the normal vector
-        sy_normal = sy_plane.normal_vector
-
-        # convert the sy_normal vector to numpy array and normalize it
-        self.normal_vector = np.array([float(sy_normal[0]), float(sy_normal[1]), float(sy_normal[2])])
+        # find the normal vector of the plane
+        v1 = points[1] - points[0]
+        v2 = points[2] - points[0]
+        self.normal_vector = np.cross(v1, v2)
         self.normal_vector = self.normal_vector / np.linalg.norm(self.normal_vector)
+
+        # the defining point of the plane
+        self.zero_point = points[0]
 
         self.plane = Plane(self.zero_point, self.normal_vector)
 
@@ -94,12 +89,12 @@ class Polygon3D:
 
         # projector to orthogonal adjucent of the planes normal
         self.projector = self.basis*self.basis.transpose()
-        # projector_normal = np.eye(3, dtype=float) - self.basis*self.basis.transpose()
 
         for i,point in enumerate(points):
             self.points_2d.append(self.projectOn2D(point))
 
         self.polygon_2d = Polygon(self.points_2d)
+        # self.polygon_2d = ConvexPolygon(self.points_2d)
 
     # #} end of 
 
@@ -115,8 +110,6 @@ class Polygon3D:
         # express in the orthonormal basis of the subspace 
         projection = np.dot(np.linalg.inv(self.basis), projection)
 
-        # return sp.geometry.Point2D(projection[0, 0], projection[1, 0], evaluate=False)
-        # return sh.geometry.Point(projection[0, 0], projection[1, 0])
         return np.array([projection[0, 0], projection[1, 0]])
 
     # #} end of 
@@ -130,9 +123,12 @@ class Polygon3D:
         except:
             return False
 
+        # intersectee_2d = self.projectOn2D(intersectee_3d)
         intersectee_2d = sh.geometry.Point(self.projectOn2D(intersectee_3d))
 
+
         if self.polygon_2d.contains(intersectee_2d):
+        # if self.polygon_2d.isPointIn(intersectee_2d):
             return intersectee_3d
         else:
             return False
@@ -180,14 +176,8 @@ class Detector:
         c = np.array([self.thickness/2, self.size/2.0, -self.size/2.0])
         d = np.array([self.thickness/2, -self.size/2.0, -self.size/2.0])
 
-        # create the sympy representation of the front vertices
-        sp_a = sp.geometry.Point3D(a, evaluate=False)
-        sp_b = sp.geometry.Point3D(b, evaluate=False)
-        sp_c = sp.geometry.Point3D(c, evaluate=False)
-        sp_d = sp.geometry.Point3D(d, evaluate=False)
-
         # create the sympy front plane
-        self.front = Polygon3D([sp_a, sp_b, sp_c, sp_d])
+        self.front = Polygon3D([a, b, c, d])
 
         # BACK
 
@@ -197,22 +187,16 @@ class Detector:
         g = np.array([-self.thickness/2, self.size/2.0, -self.size/2.0])
         h = np.array([-self.thickness/2, -self.size/2.0, -self.size/2.0])
 
-        # create the sympy representation of the front vertices
-        sp_e = sp.geometry.Point3D(e, evaluate=False)
-        sp_f = sp.geometry.Point3D(f, evaluate=False)
-        sp_g = sp.geometry.Point3D(g, evaluate=False)
-        sp_h = sp.geometry.Point3D(h, evaluate=False)
-
         # create the sympy back plane
-        self.back = Polygon3D([sp_e, sp_f, sp_g, sp_h])
+        self.back = Polygon3D([e, f, g, h])
 
         # SIDES
 
         # create the sympy side planes
-        self.sides.append(Polygon3D([sp_a, sp_e, sp_h, sp_d]))
-        self.sides.append(Polygon3D([sp_b, sp_f, sp_e, sp_a]))
-        self.sides.append(Polygon3D([sp_c, sp_g, sp_f, sp_b]))
-        self.sides.append(Polygon3D([sp_d, sp_h, sp_c, sp_g]))
+        self.sides.append(Polygon3D([a, e, h, d]))
+        self.sides.append(Polygon3D([b, f, e, a]))
+        self.sides.append(Polygon3D([c, g, f, b]))
+        self.sides.append(Polygon3D([d, h, c, g]))
 
         # #{ push to sp_vertices
         
@@ -240,7 +224,7 @@ class Detector:
         
         # #} end of push to vertices
 
-    def getWorldVertices(self):
+    def getVertices(self):
 
         # detector front_vertices in the world frame
         a = self.position + self.vertices[0]
@@ -257,13 +241,13 @@ class Detector:
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(662000.0, 1e9, np.array([0.005, 0.0, 0.0]))
+source = Source(662000.0, 1e9, np.array([0.2, 100.0, 0.0]))
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
-detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.002, 0, 0]))
+detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.005, 0, 0]))
 
-[a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getWorldVertices()
-[a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getWorldVertices()
+[a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getVertices()
+[a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getVertices()
 
 # calculate the relative activity to the detector
 detector_solid_angle = geometry.solid_angle.quadrilateral_solid_angle(a1, b1, c1, d1, source.position)
@@ -275,20 +259,7 @@ aparent_activity = source.activity*(detector_solid_angle/(4*m.pi))
 
 def sample_detector(detector):
 
-    # get the detector vertices
-    # [a, b, c, d] = detector.getWorldVertices()
-
-    # # generate the convex combination of the vertices
-    # k = []
-    # k.append(random.uniform(0.0, 1.0))
-    # k.append(random.uniform(0.0, 1.0))
-    # k.append(random.uniform(0.0, 1.0))
-
-    # k = np.sort(k)
-
-    # sampled_point = a*k[0] + b*(k[1] - k[0]) + c*(k[2] - k[1]) + d*(1.0 - k[2])
-
-    [a, b, c, d, e, f, g, h] = detector.getWorldVertices()
+    [a, b, c, d, e, f, g, h] = detector.getVertices()
 
     ab = b-a
     ad = d-a
@@ -328,29 +299,33 @@ def plot_everything(*args):
     zs = [a2[2], b2[2], c2[2], d2[2], a2[2], e2[2], f2[2], b2[2], f2[2], g2[2], c2[2], g2[2], h2[2], d2[2], h2[2], e2[2]]
     plt.plot(xs, ys, zs)
 
-    for index,point in enumerate(hit_points):
+    with Timer("test"):
 
-        ## intersection with the back side
+        for index,point in enumerate(hit_points):
 
-        # plot the sampled points
-        intersect = detector_1.back.intersection(rays[index])
+            ## intersection with the back side
 
-        if isinstance(intersect, np.ndarray):
-            ax.plot([point[0], intersect[0]], [point[1], intersect[1]], [point[2], intersect[2]], color='g')
-            continue
+            # plot the sampled points
+            intersect = detector_1.back.intersection(rays[index])
+            my_color = 'g'
 
-        ## intersection with the sides
+            if not isinstance(intersect, np.ndarray):
 
-        for i,side in enumerate(detector_1.sides):
+                ## intersection with the sides
+                for i,side in enumerate(detector_1.sides):
 
-            intersect = side.intersection(rays[index])
+                    intersect = side.intersection(rays[index])
+
+                    if isinstance(intersect, np.ndarray):
+
+                        my_color = 'b'
+                        break
 
             if isinstance(intersect, np.ndarray):
-                ax.plot([point[0], intersect[0]], [point[1], intersect[1]], [point[2], intersect[2]], color='b')
-                break
 
-    # plot the source
-    # plt.scatter(source.position[0], source.position[1], source.position[2], color='r', marker='o')
+                ax.plot([point[0], intersect[0]], [point[1], intersect[1]], [point[2], intersect[2]], color=my_color)
+                intersection_len = np.linalg.norm(point - intersect)
+
 
     ax.set_xlim(-0.01 + detector_1.position[0], 0.01 + detector_1.position[0])
     ax.set_ylim(-0.01 + detector_1.position[1], 0.01 + detector_1.position[1])
