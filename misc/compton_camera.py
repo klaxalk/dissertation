@@ -157,7 +157,6 @@ class Detector:
 
         self.size = 0.01408 # [mm]
         self.vertices = [] # in the frame of the sensor
-        self.sp_vertices = []
 
         self.front = []
         self.back = []
@@ -197,21 +196,6 @@ class Detector:
         self.sides.append(Polygon3D([b, f, e, a]))
         self.sides.append(Polygon3D([c, g, f, b]))
         self.sides.append(Polygon3D([d, h, c, g]))
-
-        # #{ push to sp_vertices
-        
-        self.sp_vertices.append(a)
-        self.sp_vertices.append(b)
-        self.sp_vertices.append(c)
-        self.sp_vertices.append(d)
-        self.sp_vertices.append(e)
-        self.sp_vertices.append(f)
-        self.sp_vertices.append(g)
-        self.sp_vertices.append(h)
-
-        # #} end of push to sp_vertices
-
-        # #{ push to vertices
         
         self.vertices.append(a)
         self.vertices.append(b)
@@ -222,8 +206,6 @@ class Detector:
         self.vertices.append(g)
         self.vertices.append(h)
         
-        # #} end of push to vertices
-
     def getVertices(self):
 
         # detector front_vertices in the world frame
@@ -240,8 +222,43 @@ class Detector:
 
 # #} end of class Detector
 
+# #{ comptonScattering()
+
+def comptonScattering(from_point, to_point, energy, material):
+
+    distance = np.linalg.norm(to_point - from_point)
+
+    # calculate the probability of the scattering
+    prob = 1.0 # TODO
+
+    # draw and deside wether it should happend
+    # it happends # TODO
+
+    # calculate the point of scattering in the detector
+    scattering_point = (from_point + to_point)/2.0
+
+    # calculate the azimuthal and radial angle
+    # phi = 1.57 # TODO, uniform distribution
+    # theta = m.pi/6.0 # TODO, draw from Klein-Nishina
+    phi = 0.0 # TODO, uniform distribution
+    theta = 0.0 # TODO, draw from Klein-Nishina
+
+    # calculate the point on a unit sphere
+    r = 0.01
+    x1 = r*m.cos(theta)
+    y1 = r*m.cos(theta)*m.sin(phi)
+    z1 = r*m.sin(theta)*m.sin(phi)
+
+    through_point = scattering_point + np.array([x1, y1, z1])
+
+    new_ray = Ray(scattering_point, through_point, source.energy)
+
+    return new_ray
+
+# #} end of comptonScattering()
+
 # define the source and the detector
-source = Source(662000.0, 1e9, np.array([0.2, 100.0, 0.0]))
+source = Source(662000.0, 1e9, np.array([1.0, -1.0, 0.0]))
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
 detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.005, 0, 0]))
@@ -279,7 +296,7 @@ for i in range(0, 500):
    hit_point = sample_detector(detector_1)
    hit_points.append(hit_point) 
 
-   ray = Ray(source_point, hit_point)
+   ray = Ray(source_point, hit_point, source.energy)
    rays.append(ray)
 
 # plotting
@@ -307,6 +324,8 @@ def plot_everything(*args):
 
             # plot the sampled points
             intersect = detector_1.back.intersection(rays[index])
+            if np.linalg.norm(intersect - source.position) < np.linalg.norm(point - source.position):
+                intersect = []
             my_color = 'g'
 
             if not isinstance(intersect, np.ndarray):
@@ -315,6 +334,9 @@ def plot_everything(*args):
                 for i,side in enumerate(detector_1.sides):
 
                     intersect = side.intersection(rays[index])
+
+                    if np.linalg.norm(intersect - source.position) < np.linalg.norm(point - source.position):
+                        intersect = []
 
                     if isinstance(intersect, np.ndarray):
 
@@ -325,6 +347,12 @@ def plot_everything(*args):
 
                 ax.plot([point[0], intersect[0]], [point[1], intersect[1]], [point[2], intersect[2]], color=my_color)
                 intersection_len = np.linalg.norm(point - intersect)
+
+                scattered_ray = comptonScattering(point, intersect, source.energy, detector_1.material)
+
+                test_point = scattered_ray.rayPoint + scattered_ray.rayDirection
+
+                ax.scatter(test_point[0], test_point[1], test_point[2], color='b', marker='o')
 
 
     ax.set_xlim(-0.01 + detector_1.position[0], 0.01 + detector_1.position[0])

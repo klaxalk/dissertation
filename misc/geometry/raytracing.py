@@ -23,7 +23,8 @@ class Plane:
 
 class Ray:
 
-    def __init__(self, rayPoint, ray2point):
+    def __init__(self, rayPoint, ray2point, energy):
 
         self.rayPoint = rayPoint
         self.rayDirection = ray2point - rayPoint
+        self.energy = energy
