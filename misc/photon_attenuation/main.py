@@ -38,6 +38,7 @@ angles = []
 klein_nishina = []
 sigma_normalized_normalized = []
 sigma_normalized = []
+sigma_normalized_cumulative = []
 abs_prob = []
 total_cross_section = []
 total_area = 0
@@ -57,7 +58,11 @@ for energy_idx,energy in enumerate(E_0_J):
     sigma_normalized.append(sublist3)
     sublist4 = []
     abs_prob.append(sublist4)
+    sublist5 = []
+    sigma_normalized_cumulative.append(sublist5)
     total_cross_section.append(physics.comptonCrossSection(energy))
+
+    prev = 0
 
     for theta in np.arange(-m.pi, m.pi+step, step):
 
@@ -76,6 +81,10 @@ for energy_idx,energy in enumerate(E_0_J):
 
       sigma_normalized[energy_idx].append(prob)
 
+      sigma_normalized_cumulative[energy_idx].append(prev + prob)
+
+      prev = prev + prob
+
       if energy_idx == 0:
           angles.append(theta)
           total_area += omega_1
@@ -85,6 +94,7 @@ for energy_idx,energy in enumerate(E_0_J):
 
     total = sum(sigma_normalized[energy_idx])
     sigma_normalized[energy_idx] = [x/total for x in sigma_normalized[energy_idx]]
+    sigma_normalized_cumulative[energy_idx] = [x/total for x in sigma_normalized_cumulative[energy_idx]]
 
 # convert to abs. prob
 for energy_idx,energy in enumerate(E_0_J):
@@ -188,6 +198,23 @@ def plot_everything(*args):
     ax.legend()
     ax.grid(True)
     plt.savefig("absorber_attenuation.png", bbox_inches="tight")
+
+    if multiplot:
+        fig = plt.figure(12)
+        ax = plt.subplot(213)
+    else:
+        fig = plt.figure(12)
+        ax = plt.subplot(111)
+    for axis in [ax.xaxis, ax.yaxis]:
+        axis.set_major_formatter(ScalarFormatter())
+    fig.canvas.set_window_title("Cumulative Compton likelihood")
+    for energy_idx,energy in enumerate(E_0_J):
+        ax.plot(angles, sigma_normalized_cumulative[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+    ax.set_xlabel("Angle [rad]")
+    ax.set_ylabel("cumulative prob [-]")
+    ax.grid(True)
+    ax.legend()
+    plt.savefig("scatterer_attenuation.png", bbox_inches="tight")
 
     plt.show()
     

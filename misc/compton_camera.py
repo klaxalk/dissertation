@@ -11,11 +11,13 @@ import numpy as np
 import shapely as sh
 from shapely.geometry import Polygon
 # from geometry.convex_polygon import ConvexPolygon
+from pyquaternion import Quaternion
 
 # my stuff
 import geometry.solid_angle
 import photon_attenuation.materials as materials
-from  geometry.raytracing import Plane, Ray
+import photon_attenuation.physics as physics
+from geometry.raytracing import Plane, Ray
 
 # #{ class Timer
 
@@ -222,7 +224,24 @@ class Detector:
 
 # #} end of class Detector
 
+# define the source and the detector
+source = Source(662000.0, 1e9, np.array([1.0, -1.0, 0.0]))
+source_point = source.position
+detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
+detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.005, 0, 0]))
+
+[a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getVertices()
+[a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getVertices()
+
+# calculate the relative activity to the detector
+detector_solid_angle = geometry.solid_angle.quadrilateral_solid_angle(a1, b1, c1, d1, source.position)
+
+# apparent activity
+aparent_activity = source.activity*(detector_solid_angle/(4*m.pi))
+
 # #{ comptonScattering()
+
+cs_density = physics.cs_distribution_function(detector_1.material, source.energy)
 
 def comptonScattering(from_point, to_point, energy, material):
 
@@ -238,39 +257,34 @@ def comptonScattering(from_point, to_point, energy, material):
     scattering_point = (from_point + to_point)/2.0
 
     # calculate the azimuthal and radial angle
-    # phi = 1.57 # TODO, uniform distribution
-    # theta = m.pi/6.0 # TODO, draw from Klein-Nishina
-    phi = 0.0 # TODO, uniform distribution
-    theta = 0.0 # TODO, draw from Klein-Nishina
+    phi = random.uniform(0.0, 2.0*m.pi)
+    theta = 1.0 # TODO, draw from Klein-Nishina
 
     # calculate the point on a unit sphere
-    r = 0.01
-    x1 = r*m.cos(theta)
-    y1 = r*m.cos(theta)*m.sin(phi)
-    z1 = r*m.sin(theta)*m.sin(phi)
+    x1 = m.cos(theta)
+    y1 = m.sin(theta)*m.sin(phi)
+    z1 = m.sin(theta)*m.cos(phi)
 
-    through_point = scattering_point + np.array([x1, y1, z1])
+    # pitch rotational matrix
+    v1 = np.array([1.0, 0.0, 0.0])
+    v2 = np.array([x1, y1, z1])
+    my_axis = np.cross(v1, v2)
 
-    new_ray = Ray(scattering_point, through_point, source.energy)
+    original_direction = to_point - from_point
+    original_direction = original_direction/np.linalg.norm(original_direction)
+
+    try:
+        my_quaternion = Quaternion(axis=my_axis, angle=geometry.solid_angle.vector_angle(v1, v2))
+        new_ray_point = scattering_point + my_quaternion.rotate(original_direction)*0.003
+    except:
+        # no rotation should be applied
+        new_ray_point = scattering_point + original_direction*0.003
+
+    new_ray = Ray(scattering_point, new_ray_point, source.energy)
 
     return new_ray
 
 # #} end of comptonScattering()
-
-# define the source and the detector
-source = Source(662000.0, 1e9, np.array([1.0, -1.0, 0.0]))
-source_point = source.position
-detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
-detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.005, 0, 0]))
-
-[a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getVertices()
-[a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getVertices()
-
-# calculate the relative activity to the detector
-detector_solid_angle = geometry.solid_angle.quadrilateral_solid_angle(a1, b1, c1, d1, source.position)
-
-# apparent activity
-aparent_activity = source.activity*(detector_solid_angle/(4*m.pi))
 
 # #{ sample_detector()
 
@@ -350,14 +364,22 @@ def plot_everything(*args):
 
                 scattered_ray = comptonScattering(point, intersect, source.energy, detector_1.material)
 
-                test_point = scattered_ray.rayPoint + scattered_ray.rayDirection
+                from_point = scattered_ray.rayPoint
+                to_point = scattered_ray.rayPoint + scattered_ray.rayDirection
 
-                ax.scatter(test_point[0], test_point[1], test_point[2], color='b', marker='o')
+                # ax.scatter(to_point[0], to_point[1], to_point[2], color='b', marker='o')
+                ax.plot([from_point[0], to_point[0]], [from_point[1], to_point[1]], [from_point[2], to_point[2]], color='r')
 
 
     ax.set_xlim(-0.01 + detector_1.position[0], 0.01 + detector_1.position[0])
     ax.set_ylim(-0.01 + detector_1.position[1], 0.01 + detector_1.position[1])
     ax.set_zlim(-0.01 + detector_1.position[2], 0.01 + detector_1.position[2])
+
+    plt.gca().set_aspect('equal', adjustable='box')
+
+    ax.set_xlabel('X axis')
+    ax.set_ylabel('Y axis')
+    ax.set_zlabel('Z axis')
 
     ax.grid(True)
     plt.show()

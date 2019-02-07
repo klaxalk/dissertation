@@ -83,3 +83,50 @@ def pe_cs_hubell(material, energy):
         hubell_boundary = pe_cs_hubell_k_shell(material, boundary)
 
         return (davisson_boundary/hubell_boundary)*pe_cs_hubell_k_shell(material, energy)
+
+def cs_distribution_function(material, energy, granularity=0.01):
+
+    energy_J = conversions.energy_ev_to_J(energy)
+
+    angle_step = conversions.deg2rad(0.01) # [rad]
+
+    prev = 0
+
+    sigma_normalized = []
+    sigma_normalized_cumulative = []
+    abs_prob = []
+    angles = []
+    klein_nishina = []
+
+    for theta in np.arange(-m.pi, m.pi+angle_step, angle_step):
+
+      # Klein-Nishina formula
+      compton_diff_cross_section = comptonDiffCrossSection(energy_J, theta)
+      klein_nishina.append(compton_diff_cross_section)
+
+      # target solid angle
+      omega_1 = m.pi * m.sin(m.fabs(theta)) * angle_step
+
+      prob = compton_diff_cross_section * omega_1
+
+      sigma_normalized.append(prob)
+
+      sigma_normalized_cumulative.append(prev + prob)
+
+      prev = prev + prob
+
+      angles.append(theta)
+
+    total = sum(sigma_normalized)
+
+    sigma_normalized_cumulative = [x/total for x in sigma_normalized_cumulative]
+
+    distribution = np.zeros((int(m.floor(1.0/granularity))))
+
+    for i in range(0, len(distribution)):
+        
+        for index,prob in enumerate(sigma_normalized_cumulative):
+
+            pass
+
+    return distribution
