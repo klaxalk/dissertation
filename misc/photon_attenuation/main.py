@@ -106,153 +106,13 @@ sigma_marginalized = [[x/total_cross_section[sublist_idx] for x in sublist] for 
 # sigma_normalized_normalized = [[x/total_cross_section[sublist_idx] for x in sublist] for sublist_idx,sublist in enumerate(klein_nishina)]
 # sigma_normalized_normalized = [[x for x in sublist] for sublist_idx,sublist in enumerate(sigma_normalized)]
 
+# #{ test prints
+
 for energy_idx,energy in enumerate(E_0_J):
     summ = 0
     for idx,value in enumerate(sigma_normalized[energy_idx]):
         summ += value
     print("prob_sum for {} keV: {}".format(conversions.energy_J_to_eV(energy)/1000, summ))
-
-# #{ plot_everything()
-    
-def plot_everything(*args):
-
-    multiplot = False
-    plot_compton = False
-
-    if plot_compton:
-
-      fig = plt.figure(1)
-      fig.canvas.set_window_title("Klein-Nishina")
-      if multiplot:
-          ax = plt.subplot(141, projection='polar')
-      else:
-          ax = plt.subplot(111, projection='polar')
-      for energy_idx,energy in enumerate(E_0_J):
-        ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-      ax.legend()
-      ax.grid(True)
-      plt.title("Compton scattering diff. cross section for $\heta \in [0, \pi]$".format())
-      plt.savefig("klein_nishina_1.png", bbox_inches="tight")
-      
-      if multiplot:
-          ax = plt.subplot(142, projection='polar')
-      else:
-          fig = plt.figure(2)
-          ax = plt.subplot(111, projection='polar')
-      for energy_idx,energy in enumerate(E_0_J):
-        ax.plot(angles, abs_prob[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-      fig.canvas.set_window_title("Compton posterior")
-      ax.grid(True)
-      ax.legend()
-      plt.title('Posterior prob. of scattering by a radial angle $\Theta \in [0, \pi]$'.format())
-      plt.savefig("klein_nishina_2.png", bbox_inches="tight")
-      
-      if multiplot:
-          ax = plt.subplot(143, projection='polar')
-      else:
-          fig = plt.figure(3)
-          ax = plt.subplot(111, projection='polar')
-      for energy_idx,energy in enumerate(E_0_J):
-        ax.plot(angles, sigma_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-      fig.canvas.set_window_title("Compton likelihood")
-      ax.grid(True)
-      ax.legend()
-      plt.title('The likelihood of scattering by a radial angle $\Theta$, {} mm {}'.format(scatterer_z*1000, scatterer_material.name))
-      plt.savefig("klein_nishina_3.png", bbox_inches="tight")
-
-    if multiplot:
-        fig = plt.figure(10)
-        ax = plt.subplot(211)
-    else:
-        fig = plt.figure(10)
-        ax = plt.subplot(111)
-    plt.yscale('log')
-    plt.xscale('log')
-    for axis in [ax.xaxis, ax.yaxis]:
-        axis.set_major_formatter(ScalarFormatter())
-    fig.canvas.set_window_title("Photon-attenuation scatterer")
-    ax.plot(pe_energies, prob_pe_scatterer, label="Photoelectric effect prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
-    ax.plot(pe_energies, prob_cs_scatterer, label="Compton scattering prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
-    ax.plot(pe_energies, prob_scatterer_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0), linestyle="dashed")
-    ax.set_xlabel("Photon energy [keV]")
-    ax.set_ylabel("Probability [-]")
-    ax.grid(True)
-    ax.legend()
-    plt.savefig("scatterer_attenuation.png", bbox_inches="tight")
-
-    if multiplot:
-        ax = plt.subplot(212)
-    else:
-        fig = plt.figure(11)
-        ax = plt.subplot(111)
-    plt.yscale('log')
-    plt.xscale('log')
-    for axis in [ax.xaxis, ax.yaxis]:
-        axis.set_major_formatter(ScalarFormatter())
-    fig.canvas.set_window_title("Photon-attenuation absorber")
-    ax.plot(pe_energies, prob_pe_absorber, label="Photoelectric effect prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
-    ax.plot(pe_energies, prob_cs_absorber, label="Compton scattering prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
-    ax.plot(pe_energies, prob_absorber_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(absorber_material.name, absorber_z/1000.0), linestyle="dashed")
-    ax.set_xlabel("Photon energy [keV]")
-    ax.set_ylabel("Probability [-]")
-    ax.legend()
-    ax.grid(True)
-    plt.savefig("absorber_attenuation.png", bbox_inches="tight")
-
-    if multiplot:
-        fig = plt.figure(12)
-        ax = plt.subplot(213)
-    else:
-        fig = plt.figure(12)
-        ax = plt.subplot(111)
-    for axis in [ax.xaxis, ax.yaxis]:
-        axis.set_major_formatter(ScalarFormatter())
-    fig.canvas.set_window_title("Cumulative Compton likelihood")
-    for energy_idx,energy in enumerate(E_0_J):
-        ax.plot(angles, sigma_normalized_cumulative[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
-    ax.set_xlabel("Angle [rad]")
-    ax.set_ylabel("cumulative prob [-]")
-    ax.grid(True)
-    ax.legend()
-    plt.savefig("compton_cumulative_distributiion.png", bbox_inches="tight")
-
-    if multiplot:
-        fig = plt.figure(13)
-        ax = plt.subplot(111)
-    else:
-        fig = plt.figure(13)
-        ax = plt.subplot(111)
-    for axis in [ax.xaxis, ax.yaxis]:
-        axis.set_major_formatter(ScalarFormatter())
-    fig.canvas.set_window_title("Compton distribution")
-    # for energy_idx,energy in enumerate(E_0_J):
-    for energy_idx,energy in enumerate(E_0_J):
-        indeces, distribution = physics.cs_distribution_function(scatterer_material, E_0_keV[energy_idx]*1000.0)
-        ax.plot(indeces, distribution, label="{} keV".format(E_0_keV[energy_idx]))
-    ax.set_xlabel("Prob [-]")
-    ax.set_ylabel("Angle [rad]")
-    ax.grid(True)
-    ax.legend()
-    plt.savefig("compton_distribution.png", bbox_inches="tight")
-
-    fig = plt.figure(14)
-    ax = plt.subplot(111)
-    for axis in [ax.xaxis, ax.yaxis]:
-        axis.set_major_formatter(ScalarFormatter())
-    fig.canvas.set_window_title("Compton stopping depth distribution")
-    # for energy_idx,energy in enumerate(E_0_J):
-    for energy_idx,energy in enumerate(E_0_J):
-        indeces, distribution, density = physics.cs_interaction_depth(scatterer_material, E_0_keV[energy_idx]*1000.0)
-        ax.plot(indeces, distribution, label="{} keV".format(E_0_keV[energy_idx]))
-    ax.set_xlabel("Depth [m]")
-    ax.set_ylabel("Prob [-]")
-    ax.grid(True)
-    ax.legend()
-    plt.savefig("compton_depth.png", bbox_inches="tight")
-
-    plt.show()
-    
-# #} end of plot_everything()
 
 for energy_idx,energy in enumerate(E_0_keV):
     print("")
@@ -262,6 +122,8 @@ for energy_idx,energy in enumerate(E_0_keV):
     # prob = scatterer_material.electron_density * total_cross_section[energy_idx] * scatterer_z
 
     print("{0:2.1f}% of photons are scattered for {1:6.1f} keV".format(prob*100, energy))
+
+# #} end of test prints
 
 print("")
 print("total area: {0:2.3f} sr".format(total_area))
@@ -276,6 +138,8 @@ prob_absorber_attenuation = []
 prob_scatterer_attenuation = []
 
 pe_energies = []
+
+# #{ calculating attenuations
 
 for e in range(1, 1000, 1): # over keV
 
@@ -307,6 +171,160 @@ for e in range(1, 1000, 1): # over keV
 
     prob_absorber_attenuation = [(1 - (1-x[0])*(1-x[1])) for x in zip(prob_cs_absorber, prob_pe_absorber)]
     prob_scatterer_attenuation = [(1 - (1-x[0])*(1-x[1])) for x in zip(prob_cs_scatterer, prob_pe_scatterer)]
+
+# #} end of calculating photon attenuations
+
+# #{ plot_everything()
+    
+def plot_everything(*args):
+
+    multiplot = False
+    plot_klein_nishina = False
+    plot_attenuations = True
+    plot_compton_distribution = False
+
+    # #{ if plot_klein_nishina:
+    
+    if plot_klein_nishina:
+    
+      fig = plt.figure(1)
+      fig.canvas.set_window_title("Klein-Nishina")
+      if multiplot:
+          ax = plt.subplot(141, projection='polar')
+      else:
+          ax = plt.subplot(111, projection='polar')
+      for energy_idx,energy in enumerate(E_0_J):
+        ax.plot(angles, klein_nishina[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+      ax.legend()
+      ax.grid(True)
+      plt.title("Compton scattering diff. cross section for $\heta \in [0, \pi]$".format())
+      plt.savefig("klein_nishina_1.png", bbox_inches="tight")
+    
+      if multiplot:
+          ax = plt.subplot(142, projection='polar')
+      else:
+          fig = plt.figure(2)
+          ax = plt.subplot(111, projection='polar')
+      for energy_idx,energy in enumerate(E_0_J):
+        ax.plot(angles, abs_prob[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+      fig.canvas.set_window_title("Compton posterior")
+      ax.grid(True)
+      ax.legend()
+      plt.title('Posterior prob. of scattering by a radial angle $\Theta \in [0, \pi]$'.format())
+      plt.savefig("klein_nishina_2.png", bbox_inches="tight")
+    
+      if multiplot:
+          ax = plt.subplot(143, projection='polar')
+      else:
+          fig = plt.figure(3)
+          ax = plt.subplot(111, projection='polar')
+      for energy_idx,energy in enumerate(E_0_J):
+        ax.plot(angles, sigma_normalized[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+      fig.canvas.set_window_title("Compton likelihood")
+      ax.grid(True)
+      ax.legend()
+      plt.title('The likelihood of scattering by a radial angle $\Theta$, {} mm {}'.format(scatterer_z*1000, scatterer_material.name))
+      plt.savefig("klein_nishina_3.png", bbox_inches="tight")
+    
+    # #} end of plot
+
+    # #{ if plot_attenuations:
+    
+    if plot_attenuations:
+    
+      if multiplot:
+          fig = plt.figure(10)
+          ax = plt.subplot(211)
+      else:
+          fig = plt.figure(10)
+          ax = plt.subplot(111)
+      plt.yscale('log')
+      plt.xscale('log')
+      for axis in [ax.xaxis, ax.yaxis]:
+          axis.set_major_formatter(ScalarFormatter())
+      fig.canvas.set_window_title("Photon-attenuation scatterer")
+      ax.plot(pe_energies, prob_pe_scatterer, label="Photoelectric effect prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
+      ax.plot(pe_energies, prob_cs_scatterer, label="Compton scattering prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
+      ax.plot(pe_energies, prob_scatterer_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0), linestyle="dashed")
+      ax.set_xlabel("Photon energy [keV]")
+      ax.set_ylabel("Probability [-]")
+      ax.grid(True)
+      ax.legend()
+      plt.savefig("scatterer_attenuation.png", bbox_inches="tight")
+    
+      if multiplot:
+          ax = plt.subplot(212)
+      else:
+          fig = plt.figure(11)
+          ax = plt.subplot(111)
+      plt.yscale('log')
+      plt.xscale('log')
+      for axis in [ax.xaxis, ax.yaxis]:
+          axis.set_major_formatter(ScalarFormatter())
+      fig.canvas.set_window_title("Photon-attenuation absorber")
+      ax.plot(pe_energies, prob_pe_absorber, label="Photoelectric effect prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
+      ax.plot(pe_energies, prob_cs_absorber, label="Compton scattering prob., {}, {} mm".format(absorber_material.name, absorber_z/1000.0))
+      ax.plot(pe_energies, prob_absorber_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(absorber_material.name, absorber_z/1000.0), linestyle="dashed")
+      ax.set_xlabel("Photon energy [keV]")
+      ax.set_ylabel("Probability [-]")
+      ax.legend()
+      ax.grid(True)
+      plt.savefig("absorber_attenuation.png", bbox_inches="tight")
+    
+    # #} end of if plot_attenuations:
+
+    # #{ if plot_compton_distribution:
+    
+    if plot_compton_distribution:
+    
+        fig = plt.figure(12)
+        ax = plt.subplot(111)
+        for axis in [ax.xaxis, ax.yaxis]:
+            axis.set_major_formatter(ScalarFormatter())
+        fig.canvas.set_window_title("Cumulative Compton likelihood")
+        for energy_idx,energy in enumerate(E_0_J):
+            ax.plot(angles, sigma_normalized_cumulative[energy_idx], label="{} keV".format(E_0_keV[energy_idx]))
+        ax.set_xlabel("Angle [rad]")
+        ax.set_ylabel("cumulative prob [-]")
+        ax.grid(True)
+        ax.legend()
+        plt.savefig("compton_cumulative_distributiion.png", bbox_inches="tight")
+    
+        fig = plt.figure(13)
+        ax = plt.subplot(111)
+        for axis in [ax.xaxis, ax.yaxis]:
+            axis.set_major_formatter(ScalarFormatter())
+        fig.canvas.set_window_title("Compton distribution")
+        # for energy_idx,energy in enumerate(E_0_J):
+        for energy_idx,energy in enumerate(E_0_J):
+            indeces, distribution = physics.cs_distribution_function(scatterer_material, E_0_keV[energy_idx]*1000.0)
+            ax.plot(indeces, distribution, label="{} keV".format(E_0_keV[energy_idx]))
+        ax.set_xlabel("Prob [-]")
+        ax.set_ylabel("Angle [rad]")
+        ax.grid(True)
+        ax.legend()
+        plt.savefig("compton_distribution.png", bbox_inches="tight")
+    
+        fig = plt.figure(14)
+        ax = plt.subplot(111)
+        for axis in [ax.xaxis, ax.yaxis]:
+            axis.set_major_formatter(ScalarFormatter())
+        fig.canvas.set_window_title("Compton stopping depth distribution")
+        # for energy_idx,energy in enumerate(E_0_J):
+        for energy_idx,energy in enumerate(E_0_J):
+            indeces, distribution, density = physics.cs_interaction_depth(scatterer_material, E_0_keV[energy_idx]*1000.0)
+            ax.plot(indeces, distribution, label="{} keV".format(E_0_keV[energy_idx]))
+        ax.set_xlabel("Depth [m]")
+        ax.set_ylabel("Prob [-]")
+        ax.grid(True)
+        ax.legend()
+        plt.savefig("compton_depth.png", bbox_inches="tight")
+    
+    # #} end of if plot_compton_distribution:
+
+    plt.show()
+    
+# #} end of plot_everything()
 
 pid = os.fork()
 if pid == 0:

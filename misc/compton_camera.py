@@ -63,7 +63,7 @@ class Polygon3D:
 
         # sympy polygon
         self.polygon_2d = []
-        
+
         # find the normal vector of the plane
         v1 = points[1] - points[0]
         v2 = points[2] - points[0]
@@ -98,7 +98,7 @@ class Polygon3D:
         self.polygon_2d = Polygon(self.points_2d)
         # self.polygon_2d = ConvexPolygon(self.points_2d)
 
-    # #} end of 
+    # #}
 
     # #{ projectOn2D()
 
@@ -109,16 +109,16 @@ class Polygon3D:
         # project the point on the affine subspace of the plane
         projection = self.projector*point
 
-        # express in the orthonormal basis of the subspace 
+        # express in the orthonormal basis of the subspace
         projection = np.dot(np.linalg.inv(self.basis), projection)
 
         return np.array([projection[0, 0], projection[1, 0]])
 
-    # #} end of 
+    # #} end of
 
     # #{ intersection()
-    
-    def intersection(self, intersector): 
+
+    def intersection(self, intersector):
 
         try:
             intersectee_3d = self.plane.intersectionRay(intersector)
@@ -134,7 +134,7 @@ class Polygon3D:
             return intersectee_3d
         else:
             return False
-    
+
     # #} end of rayCollision()
 
 # #} end of Polygon3D
@@ -172,10 +172,10 @@ class Detector:
 
         # give me the 4 front_vertices of the detector
 
-        a = np.array([self.thickness/2, -self.size/2.0, self.size/2.0])
-        b = np.array([self.thickness/2, self.size/2.0, self.size/2.0])
-        c = np.array([self.thickness/2, self.size/2.0, -self.size/2.0])
-        d = np.array([self.thickness/2, -self.size/2.0, -self.size/2.0])
+        a = np.array([self.thickness/2, -self.size/2.0, self.size/2.0]) + position
+        b = np.array([self.thickness/2, self.size/2.0, self.size/2.0]) + position
+        c = np.array([self.thickness/2, self.size/2.0, -self.size/2.0]) + position
+        d = np.array([self.thickness/2, -self.size/2.0, -self.size/2.0]) + position
 
         # create the sympy front plane
         self.front = Polygon3D([a, b, c, d])
@@ -183,10 +183,10 @@ class Detector:
         # BACK
 
         # give me the 4 back_vertices of the detector
-        e = np.array([-self.thickness/2, -self.size/2.0, self.size/2.0])
-        f = np.array([-self.thickness/2, self.size/2.0, self.size/2.0])
-        g = np.array([-self.thickness/2, self.size/2.0, -self.size/2.0])
-        h = np.array([-self.thickness/2, -self.size/2.0, -self.size/2.0])
+        e = np.array([-self.thickness/2, -self.size/2.0, self.size/2.0]) + position
+        f = np.array([-self.thickness/2, self.size/2.0, self.size/2.0]) + position
+        g = np.array([-self.thickness/2, self.size/2.0, -self.size/2.0]) + position
+        h = np.array([-self.thickness/2, -self.size/2.0, -self.size/2.0]) + position
 
         # create the sympy back plane
         self.back = Polygon3D([e, f, g, h])
@@ -198,7 +198,7 @@ class Detector:
         self.sides.append(Polygon3D([b, f, e, a]))
         self.sides.append(Polygon3D([c, g, f, b]))
         self.sides.append(Polygon3D([d, h, c, g]))
-        
+
         self.vertices.append(a)
         self.vertices.append(b)
         self.vertices.append(c)
@@ -207,28 +207,28 @@ class Detector:
         self.vertices.append(f)
         self.vertices.append(g)
         self.vertices.append(h)
-        
+
     def getVertices(self):
 
         # detector front_vertices in the world frame
-        a = self.position + self.vertices[0]
-        b = self.position + self.vertices[1]
-        c = self.position + self.vertices[2]
-        d = self.position + self.vertices[3]
-        e = self.position + self.vertices[4]
-        f = self.position + self.vertices[5]
-        g = self.position + self.vertices[6]
-        h = self.position + self.vertices[7]
+        a = self.vertices[0]
+        b = self.vertices[1]
+        c = self.vertices[2]
+        d = self.vertices[3]
+        e = self.vertices[4]
+        f = self.vertices[5]
+        g = self.vertices[6]
+        h = self.vertices[7]
 
         return [a, b, c, d, e, f, g, h]
 
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(661000.0, 1e9, np.array([0.1, 0.0, 0.0]))
+source = Source(661000.0, 1e9, np.array([0.1, -0.0, 0.0]))
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
-detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.005, 0, 0]))
+detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.003, 0, 0]))
 
 [a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getVertices()
 [a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getVertices()
@@ -254,10 +254,12 @@ def comptonScattering(from_point, to_point, energy, material):
     prob_cs = 1.0 - np.exp(-detector_1.material.electron_density * cs_cross_section * distance)
 
     if random.uniform(0.0, 1.0) > prob_cs:
-        return False
+        return False, 0
 
     # calculate the point of scattering in the detector
-    scattering_point = (from_point + to_point)/2.0
+    # scattering_point = (from_point + to_point)/2.0
+    position_weight = random.uniform(0.0, 1.0)
+    scattering_point = position_weight*from_point + (1 - position_weight)*to_point
 
     # calculate the azimuthal and radial angle
     phi = random.uniform(0.0, 2.0*m.pi)
@@ -283,9 +285,13 @@ def comptonScattering(from_point, to_point, energy, material):
         # no rotation should be applied
         new_ray_point = scattering_point + original_direction*0.01
 
-    new_ray = Ray(scattering_point, new_ray_point, source.energy)
+    # calculate the energy of the new photon
+    new_photon_energy = source.energy * physics.comptonRatio(physics.conversions.energy_ev_to_J(source.energy), theta)
+    electron_energy = source.energy - new_photon_energy
 
-    return new_ray
+    new_ray = Ray(scattering_point, new_ray_point, new_photon_energy)
+
+    return new_ray, electron_energy
 
 # #} end of comptonScattering()
 
@@ -308,10 +314,10 @@ def sample_detector(detector):
 # sample the 1st detector
 hit_points = []
 rays = []
-for i in range(0, 1000):
+for i in range(0, 10000):
 
    hit_point = sample_detector(detector_1)
-   hit_points.append(hit_point) 
+   hit_points.append(hit_point)
 
    ray = Ray(source_point, hit_point, source.energy)
    rays.append(ray)
@@ -322,74 +328,120 @@ def plot_everything(*args):
     fig = plt.figure(1)
     ax  = fig.add_subplot(111, projection = '3d')
 
-    # plot the detector
+    # #{ plot detector 1
+
     xs = [a1[0], b1[0], c1[0], d1[0], a1[0], e1[0], f1[0], b1[0], f1[0], g1[0], c1[0], g1[0], h1[0], d1[0], h1[0], e1[0]]
     ys = [a1[1], b1[1], c1[1], d1[1], a1[1], e1[1], f1[1], b1[1], f1[1], g1[1], c1[1], g1[1], h1[1], d1[1], h1[1], e1[1]]
     zs = [a1[2], b1[2], c1[2], d1[2], a1[2], e1[2], f1[2], b1[2], f1[2], g1[2], c1[2], g1[2], h1[2], d1[2], h1[2], e1[2]]
     plt.plot(xs, ys, zs)
+
+    # #} end of plot detector 1
+
+    # #{ plot detector 2
 
     xs = [a2[0], b2[0], c2[0], d2[0], a2[0], e2[0], f2[0], b2[0], f2[0], g2[0], c2[0], g2[0], h2[0], d2[0], h2[0], e2[0]]
     ys = [a2[1], b2[1], c2[1], d2[1], a2[1], e2[1], f2[1], b2[1], f2[1], g2[1], c2[1], g2[1], h2[1], d2[1], h2[1], e2[1]]
     zs = [a2[2], b2[2], c2[2], d2[2], a2[2], e2[2], f2[2], b2[2], f2[2], g2[2], c2[2], g2[2], h2[2], d2[2], h2[2], e2[2]]
     plt.plot(xs, ys, zs)
 
+    # #} end of plot detector 2
+
     with Timer("test"):
 
         for index,point in enumerate(hit_points):
 
-            # ax.plot([source.position[0], point[0]], [source.position[1], point[1]], [source.position[2], point[2]], color='lightgrey')
+            # intersection with the back side of the 1st detector
+            intersect1_second = detector_1.back.intersection(rays[index])
 
-            ## intersection with the back side
+            # no collision with the back face
+            if not isinstance(intersect1_second, np.ndarray):
 
-            # plot the sampled points
-            intersect = detector_1.back.intersection(rays[index])
-            if np.linalg.norm(intersect - source.position) < np.linalg.norm(point - source.position):
-                intersect = []
-            my_color = 'g'
-
-            if not isinstance(intersect, np.ndarray):
-
-                ## intersection with the sides
+                # check intersection with the sides
                 for i,side in enumerate(detector_1.sides):
 
-                    intersect = side.intersection(rays[index])
+                    intersect1_second = side.intersection(rays[index])
 
-                    if np.linalg.norm(intersect - source.position) < np.linalg.norm(point - source.position):
-                        intersect = []
-
-                    if isinstance(intersect, np.ndarray):
-
-                        my_color = 'b'
+                    if isinstance(intersect1_second, np.ndarray):
                         break
 
-            if isinstance(intersect, np.ndarray):
+            # if the ray came from the oposite direction, discard it
+            if np.linalg.norm(intersect1_second - source.position) < np.linalg.norm(point - source.position):
+                continue
 
-                ax.plot([point[0], intersect[0]], [point[1], intersect[1]], [point[2], intersect[2]], color=my_color)
-                intersection_len = np.linalg.norm(point - intersect)
+            # if there is a collision
+            if not isinstance(intersect1_second, np.ndarray):
+                print("! no intersection with the back/side face of the first detector")
+                continue
 
-                scattered_ray = comptonScattering(point, intersect, source.energy, detector_1.material)
+            intersection_len = np.linalg.norm(point - intersect1_second)
 
-                if not isinstance(scattered_ray, Ray):
-                    continue
+            scattered_ray, electron_energy = comptonScattering(point, intersect1_second, source.energy, detector_1.material)
 
-                from_point = scattered_ray.rayPoint
-                to_point = scattered_ray.rayPoint + scattered_ray.rayDirection
+            # if not scattering happened, just leave
+            if not isinstance(scattered_ray, Ray):
+                continue
 
-                # ax.scatter(to_point[0], to_point[1], to_point[2], color='b', marker='o')
-                ax.plot([from_point[0], to_point[0]], [from_point[1], to_point[1]], [from_point[2], to_point[2]], color='r')
+            # check the collision with the other detector's front side
+            intersect2_first = detector_2.front.intersection(scattered_ray)
 
+            # if there is no intersection with the front face
+            if not isinstance(intersect2_first, np.ndarray):
+                continue
 
-    ax.set_xlim(-0.01 + detector_1.position[0], 0.01 + detector_1.position[0])
-    ax.set_ylim(-0.01 + detector_1.position[1], 0.01 + detector_1.position[1])
-    ax.set_zlim(-0.01 + detector_1.position[2], 0.01 + detector_1.position[2])
+            # check the collision with the other detector's back side
+            intersect2_second = detector_2.back.intersection(scattered_ray)
+
+            # no collision with the back face
+            if not isinstance(intersect2_second, np.ndarray):
+
+                ## intersection with the sides
+                for i,side in enumerate(detector_2.sides):
+
+                    intersect2_second = side.intersection(scattered_ray)
+
+                    if isinstance(intersect2_second, np.ndarray):
+
+                        break
+
+            if not isinstance(intersect2_second, np.ndarray):
+                print("!! no intersection with the front face of the second detector")
+                continue
+
+            pe_cross_section = [physics.pe_cs_gavrila_pratt_simplified(mat, scattered_ray.energy) for mat in detector_2.material.elements]
+            pe_thickness = np.linalg.norm(intersect2_first - intersect2_second)
+
+            prob_pe = 1.0
+            for index,cross_section in enumerate(pe_cross_section):
+                prob_pe *= np.exp(-detector_2.material.element_quantities[index] * detector_2.material.molecular_density * cross_section * pe_thickness)
+            prob_pe = 1.0 - prob_pe
+
+            if random.uniform(0.0, 1.0) > prob_pe:
+                continue
+
+            print("energy: {}, thickness: {}, prob_pe: {}".format(scattered_ray.energy, pe_thickness, prob_pe))
+
+            ax.plot([source.position[0], point[0]], [source.position[1], point[1]], [source.position[2], point[2]], color='grey')
+            ax.plot([point[0], intersect1_second[0]], [point[1], intersect1_second[1]], [point[2], intersect1_second[2]], color='r')
+            ax.plot([scattered_ray.rayPoint[0], intersect2_second[0]], [scattered_ray.rayPoint[1], intersect2_second[1]], [scattered_ray.rayPoint[2], intersect2_second[2]], color='b')
+
+    # #{ set axis
+
+    axis_range = 0.01
+
+    ax.set_xlim(-axis_range + detector_1.position[0], axis_range + detector_1.position[0])
+    ax.set_ylim(-axis_range + detector_1.position[1], axis_range + detector_1.position[1])
+    ax.set_zlim(-axis_range + detector_1.position[2], axis_range + detector_1.position[2])
 
     plt.gca().set_aspect('equal', adjustable='box')
 
-    ax.set_xlabel('X axis')
-    ax.set_ylabel('Y axis')
-    ax.set_zlabel('Z axis')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+
+    # #} end of set axis
 
     ax.grid(True)
+
     plt.show()
 
 pid = os.fork()

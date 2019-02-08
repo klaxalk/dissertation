@@ -75,7 +75,7 @@ def pe_cs_hubell_k_shell(material, energy):
 def pe_cs_hubell(material, energy):
 
     boundary = 1500000.0
-    
+
     if energy < boundary:
         return peeDavisson(material, energy)
     else:
@@ -120,7 +120,7 @@ def cs_interaction_depth(material, energy, thickness=0.01, depth_granularity=0.0
     return indeces, distribution, density
 
 def cs_distribution_function(material, energy, granularity=0.001):
-    
+
     energy_J = conversions.energy_ev_to_J(energy)
 
     angle_step = conversions.deg2rad(0.01) # [rad]
