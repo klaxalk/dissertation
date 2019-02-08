@@ -214,7 +214,26 @@ def plot_everything(*args):
     ax.set_ylabel("cumulative prob [-]")
     ax.grid(True)
     ax.legend()
-    plt.savefig("scatterer_attenuation.png", bbox_inches="tight")
+    plt.savefig("compton_cumulative_distributiion.png", bbox_inches="tight")
+
+    if multiplot:
+        fig = plt.figure(13)
+        ax = plt.subplot(111)
+    else:
+        fig = plt.figure(13)
+        ax = plt.subplot(111)
+    for axis in [ax.xaxis, ax.yaxis]:
+        axis.set_major_formatter(ScalarFormatter())
+    fig.canvas.set_window_title("Compton distribution")
+    # for energy_idx,energy in enumerate(E_0_J):
+    for energy_idx,energy in enumerate(E_0_J):
+        indeces, distribution = physics.cs_distribution_function(scatterer_material, E_0_keV[energy_idx]*1000.0)
+        ax.plot(indeces, distribution, label="{} keV".format(E_0_keV[energy_idx]))
+    ax.set_xlabel("Prob [-]")
+    ax.set_ylabel("Angle [rad]")
+    ax.grid(True)
+    ax.legend()
+    plt.savefig("compton_distribution.png", bbox_inches="tight")
 
     plt.show()
     

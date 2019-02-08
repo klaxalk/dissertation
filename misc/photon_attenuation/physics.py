@@ -84,8 +84,10 @@ def pe_cs_hubell(material, energy):
 
         return (davisson_boundary/hubell_boundary)*pe_cs_hubell_k_shell(material, energy)
 
-def cs_distribution_function(material, energy, granularity=0.01):
-
+    # #{ cs_distribution_function()
+    
+def cs_distribution_function(material, energy, granularity=0.001):
+    
     energy_J = conversions.energy_ev_to_J(energy)
 
     angle_step = conversions.deg2rad(0.01) # [rad]
@@ -122,11 +124,24 @@ def cs_distribution_function(material, energy, granularity=0.01):
     sigma_normalized_cumulative = [x/total for x in sigma_normalized_cumulative]
 
     distribution = np.zeros((int(m.floor(1.0/granularity))))
+    indeces = np.zeros((int(m.floor(1.0/granularity))))
 
-    for i in range(0, len(distribution)):
-        
+    n_steps = len(distribution)
+
+    for i in range(0, n_steps):
+
+        indeces[i] = (1.0/n_steps)*i
+
+        prob_lim = granularity*i
+
         for index,prob in enumerate(sigma_normalized_cumulative):
 
-            pass
+            if prob > prob_lim:
 
-    return distribution
+                distribution[i] = -m.pi + ((m.pi*2.0)/len(sigma_normalized_cumulative))*index
+
+                break
+
+    return  indeces, distribution
+    
+    # #} end of cs_d

@@ -225,7 +225,7 @@ class Detector:
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(662000.0, 1e9, np.array([1.0, -1.0, 0.0]))
+source = Source(661000.0, 1e9, np.array([0.1, 0.0, 0.0]))
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
 detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.005, 0, 0]))
@@ -241,24 +241,27 @@ aparent_activity = source.activity*(detector_solid_angle/(4*m.pi))
 
 # #{ comptonScattering()
 
-cs_density = physics.cs_distribution_function(detector_1.material, source.energy)
+cs_cross_section = physics.comptonCrossSection(physics.conversions.energy_ev_to_J(source.energy))
+cs_density_indeces, cs_density = physics.cs_distribution_function(detector_1.material, source.energy)
 
 def comptonScattering(from_point, to_point, energy, material):
 
     distance = np.linalg.norm(to_point - from_point)
 
     # calculate the probability of the scattering
-    prob = 1.0 # TODO
 
     # draw and deside wether it should happend
-    # it happends # TODO
+    prob_cs = 1.0 - np.exp(-detector_1.material.electron_density * cs_cross_section * distance)
+
+    if random.uniform(0.0, 1.0) > prob_cs:
+        return False
 
     # calculate the point of scattering in the detector
     scattering_point = (from_point + to_point)/2.0
 
     # calculate the azimuthal and radial angle
     phi = random.uniform(0.0, 2.0*m.pi)
-    theta = 1.0 # TODO, draw from Klein-Nishina
+    theta = cs_density[int(m.floor(random.uniform(0.0, len(cs_density))))]
 
     # calculate the point on a unit sphere
     x1 = m.cos(theta)
@@ -275,10 +278,10 @@ def comptonScattering(from_point, to_point, energy, material):
 
     try:
         my_quaternion = Quaternion(axis=my_axis, angle=geometry.solid_angle.vector_angle(v1, v2))
-        new_ray_point = scattering_point + my_quaternion.rotate(original_direction)*0.003
+        new_ray_point = scattering_point + my_quaternion.rotate(original_direction)*0.01
     except:
         # no rotation should be applied
-        new_ray_point = scattering_point + original_direction*0.003
+        new_ray_point = scattering_point + original_direction*0.01
 
     new_ray = Ray(scattering_point, new_ray_point, source.energy)
 
@@ -305,7 +308,7 @@ def sample_detector(detector):
 # sample the 1st detector
 hit_points = []
 rays = []
-for i in range(0, 500):
+for i in range(0, 1000):
 
    hit_point = sample_detector(detector_1)
    hit_points.append(hit_point) 
@@ -333,6 +336,8 @@ def plot_everything(*args):
     with Timer("test"):
 
         for index,point in enumerate(hit_points):
+
+            # ax.plot([source.position[0], point[0]], [source.position[1], point[1]], [source.position[2], point[2]], color='lightgrey')
 
             ## intersection with the back side
 
@@ -363,6 +368,9 @@ def plot_everything(*args):
                 intersection_len = np.linalg.norm(point - intersect)
 
                 scattered_ray = comptonScattering(point, intersect, source.energy, detector_1.material)
+
+                if not isinstance(scattered_ray, Ray):
+                    continue
 
                 from_point = scattered_ray.rayPoint
                 to_point = scattered_ray.rayPoint + scattered_ray.rayDirection
