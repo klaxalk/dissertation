@@ -84,8 +84,41 @@ def pe_cs_hubell(material, energy):
 
         return (davisson_boundary/hubell_boundary)*pe_cs_hubell_k_shell(material, energy)
 
-    # #{ cs_distribution_function()
-    
+def cs_interaction_depth(material, energy, thickness=0.01, depth_granularity=0.000001):
+
+    distribution = np.zeros((int(m.floor(thickness/depth_granularity))))
+    density = np.zeros((int(m.floor(thickness/depth_granularity))))
+    indeces = np.zeros((int(m.floor(thickness/depth_granularity))))
+
+    total_cross_section = comptonCrossSection(conversions.energy_ev_to_J(energy))
+
+    n_steps = len(distribution)
+
+    previous_prob = 0.0
+
+    sub_thickness = depth_granularity
+
+    prob_slice = 1.0 - np.exp(-material.electron_density * total_cross_section * depth_granularity)
+
+    for i in range(0, n_steps):
+
+        prob = 1.0 - np.exp(-material.electron_density * total_cross_section * sub_thickness)
+
+        sub_thickness += depth_granularity
+
+        distribution[i] = 1.0 - (1.0-prob_slice)*(1.0-previous_prob)
+        indeces[i] = sub_thickness
+
+        previous_prob = prob
+
+    for i in range(1, n_steps):
+
+        density[i-1] = distribution[i] - distribution[i-1]
+
+    density[-1] = density[-2]
+
+    return indeces, distribution, density
+
 def cs_distribution_function(material, energy, granularity=0.001):
     
     energy_J = conversions.energy_ev_to_J(energy)
@@ -143,5 +176,3 @@ def cs_distribution_function(material, energy, granularity=0.001):
                 break
 
     return  indeces, distribution
-    
-    # #} end of cs_d

@@ -117,7 +117,7 @@ for energy_idx,energy in enumerate(E_0_J):
 def plot_everything(*args):
 
     multiplot = False
-    plot_compton = True
+    plot_compton = False
 
     if plot_compton:
 
@@ -234,6 +234,21 @@ def plot_everything(*args):
     ax.grid(True)
     ax.legend()
     plt.savefig("compton_distribution.png", bbox_inches="tight")
+
+    fig = plt.figure(14)
+    ax = plt.subplot(111)
+    for axis in [ax.xaxis, ax.yaxis]:
+        axis.set_major_formatter(ScalarFormatter())
+    fig.canvas.set_window_title("Compton stopping depth distribution")
+    # for energy_idx,energy in enumerate(E_0_J):
+    for energy_idx,energy in enumerate(E_0_J):
+        indeces, distribution, density = physics.cs_interaction_depth(scatterer_material, E_0_keV[energy_idx]*1000.0)
+        ax.plot(indeces, distribution, label="{} keV".format(E_0_keV[energy_idx]))
+    ax.set_xlabel("Depth [m]")
+    ax.set_ylabel("Prob [-]")
+    ax.grid(True)
+    ax.legend()
+    plt.savefig("compton_depth.png", bbox_inches="tight")
 
     plt.show()
     
