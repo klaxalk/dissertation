@@ -1,6 +1,10 @@
 import os
-import random
+
 import time
+import copy
+
+import random
+random.seed(2)
 
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -10,6 +14,8 @@ import numpy as np
 # import sympy as sp
 import shapely as sh
 from shapely.geometry import Polygon
+from shapely import speedups
+speedups.enable()
 # from geometry.convex_polygon import ConvexPolygon
 from pyquaternion import Quaternion
 
@@ -120,17 +126,16 @@ class Polygon3D:
 
     def intersection(self, intersector):
 
-        try:
-            intersectee_3d = self.plane.intersectionRay(intersector)
-        except:
+        intersectee_3d = self.plane.intersectionRay(intersector)
+
+        if not isinstance(intersectee_3d, np.ndarray):
             return False
 
-        # intersectee_2d = self.projectOn2D(intersectee_3d)
-        intersectee_2d = sh.geometry.Point(self.projectOn2D(intersectee_3d))
+        intersectee_copy = copy.deepcopy(intersectee_3d)
 
+        intersectee_2d = sh.geometry.Point(self.projectOn2D(intersectee_copy))
 
         if self.polygon_2d.contains(intersectee_2d):
-        # if self.polygon_2d.isPointIn(intersectee_2d):
             return intersectee_3d
         else:
             return False
@@ -171,7 +176,6 @@ class Detector:
         # FRONT
 
         # give me the 4 front_vertices of the detector
-
         a = np.array([self.thickness/2, -self.size/2.0, self.size/2.0]) + position
         b = np.array([self.thickness/2, self.size/2.0, self.size/2.0]) + position
         c = np.array([self.thickness/2, self.size/2.0, -self.size/2.0]) + position
@@ -198,6 +202,11 @@ class Detector:
         self.sides.append(Polygon3D([b, f, e, a]))
         self.sides.append(Polygon3D([c, g, f, b]))
         self.sides.append(Polygon3D([d, h, c, g]))
+
+        self.sides[0].polygon_2d = self.sides[0].polygon_2d.buffer(0.001)
+        self.sides[1].polygon_2d = self.sides[1].polygon_2d.buffer(0.001)
+        self.sides[2].polygon_2d = self.sides[2].polygon_2d.buffer(0.001)
+        self.sides[3].polygon_2d = self.sides[3].polygon_2d.buffer(0.001)
 
         self.vertices.append(a)
         self.vertices.append(b)
@@ -280,10 +289,11 @@ def comptonScattering(from_point, to_point, energy, material):
 
     try:
         my_quaternion = Quaternion(axis=my_axis, angle=geometry.solid_angle.vector_angle(v1, v2))
-        new_ray_point = scattering_point + my_quaternion.rotate(original_direction)*0.01
+        new_ray_point = scattering_point + my_quaternion.rotate(original_direction)
     except:
         # no rotation should be applied
-        new_ray_point = scattering_point + original_direction*0.01
+        new_ray_point = scattering_point + original_direction
+        theta = 0.0
 
     # calculate the energy of the new photon
     new_photon_energy = source.energy * physics.comptonRatio(physics.conversions.energy_ev_to_J(source.energy), theta)
@@ -304,8 +314,8 @@ def sample_detector(detector):
     ab = b-a
     ad = d-a
 
-    k1 = random.uniform(0.0, 1.0)
-    k2 = random.uniform(0.0, 1.0)
+    k1 = random.uniform(1e-2, 1.0-1e-2)
+    k2 = random.uniform(1e-2, 1.0-1e-2)
 
     return a + ab*k1 + ad*k2
 
@@ -314,7 +324,8 @@ def sample_detector(detector):
 # sample the 1st detector
 hit_points = []
 rays = []
-for i in range(0, 10000):
+n_particles = 50000
+for i in range(0, n_particles):
 
    hit_point = sample_detector(detector_1)
    hit_points.append(hit_point)
@@ -376,10 +387,17 @@ def plot_everything(*args):
             intersection_len = np.linalg.norm(point - intersect1_second)
 
             scattered_ray, electron_energy = comptonScattering(point, intersect1_second, source.energy, detector_1.material)
-
             # if not scattering happened, just leave
             if not isinstance(scattered_ray, Ray):
                 continue
+
+            # # plot every scattered ray
+            # ax.plot(
+            #     [scattered_ray.rayPoint[0], scattered_ray.rayPoint[0]+0.01*scattered_ray.rayDirection[0]],
+            #     [scattered_ray.rayPoint[1], scattered_ray.rayPoint[1]+0.01*scattered_ray.rayDirection[1]],
+            #     [scattered_ray.rayPoint[2], scattered_ray.rayPoint[2]+0.01*scattered_ray.rayDirection[2]],
+            #     color='b'
+            # )
 
             # check the collision with the other detector's front side
             intersect2_first = detector_2.front.intersection(scattered_ray)
@@ -400,15 +418,19 @@ def plot_everything(*args):
                     intersect2_second = side.intersection(scattered_ray)
 
                     if isinstance(intersect2_second, np.ndarray):
-
                         break
 
             if not isinstance(intersect2_second, np.ndarray):
-                print("!! no intersection with the front face of the second detector")
+                print("!! no intersection with the back/side face of the second detector")
+
+                ax.scatter(intersect2_first[0], intersect2_first[1], intersect2_first[2], color='blue')
+                ray_len = 0.005
+                ax.plot([scattered_ray.rayPoint[0], scattered_ray.rayPoint[0]+ray_len*scattered_ray.rayDirection[0]], [scattered_ray.rayPoint[1], scattered_ray.rayPoint[1]+ray_len*scattered_ray.rayDirection[1]], [scattered_ray.rayPoint[2], scattered_ray.rayPoint[2]+ray_len*scattered_ray.rayDirection[2]], color='red')
+
                 continue
 
             pe_cross_section = [physics.pe_cs_gavrila_pratt_simplified(mat, scattered_ray.energy) for mat in detector_2.material.elements]
-            pe_thickness = np.linalg.norm(intersect2_first - intersect2_second)
+            pe_thickness = np.linalg.norm(intersect2_second - intersect2_first)
 
             prob_pe = 1.0
             for index,cross_section in enumerate(pe_cross_section):
@@ -418,11 +440,16 @@ def plot_everything(*args):
             if random.uniform(0.0, 1.0) > prob_pe:
                 continue
 
+            # sample the interraction point in the 2nd detector
+            position_weight = random.uniform(0.0, 1.0)
+            absorption_point = position_weight*intersect2_first + (1 - position_weight)*intersect2_second
+
             print("energy: {}, thickness: {}, prob_pe: {}".format(scattered_ray.energy, pe_thickness, prob_pe))
 
+            ax.scatter(intersect2_first[0], intersect2_first[1], intersect2_first[2], color='red')
             ax.plot([source.position[0], point[0]], [source.position[1], point[1]], [source.position[2], point[2]], color='grey')
             ax.plot([point[0], intersect1_second[0]], [point[1], intersect1_second[1]], [point[2], intersect1_second[2]], color='r')
-            ax.plot([scattered_ray.rayPoint[0], intersect2_second[0]], [scattered_ray.rayPoint[1], intersect2_second[1]], [scattered_ray.rayPoint[2], intersect2_second[2]], color='b')
+            ax.plot([scattered_ray.rayPoint[0], absorption_point[0]], [scattered_ray.rayPoint[1], absorption_point[1]], [scattered_ray.rayPoint[2], absorption_point[2]], color='b')
 
     # #{ set axis
 
