@@ -4,7 +4,7 @@ import time
 import copy
 
 import random
-random.seed(2)
+# random.seed(2)
 
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -41,7 +41,7 @@ class Timer(object):
 
 # #} end of class Timer
 
-# #{ class Polygon3D
+# #{ class Polygon3
 
 class Polygon3D:
 
@@ -203,10 +203,10 @@ class Detector:
         self.sides.append(Polygon3D([c, g, f, b]))
         self.sides.append(Polygon3D([d, h, c, g]))
 
-        self.sides[0].polygon_2d = self.sides[0].polygon_2d.buffer(0.001)
-        self.sides[1].polygon_2d = self.sides[1].polygon_2d.buffer(0.001)
-        self.sides[2].polygon_2d = self.sides[2].polygon_2d.buffer(0.001)
-        self.sides[3].polygon_2d = self.sides[3].polygon_2d.buffer(0.001)
+        self.sides[0].polygon_2d = self.sides[0].polygon_2d.buffer(0.002)
+        self.sides[1].polygon_2d = self.sides[1].polygon_2d.buffer(0.002)
+        self.sides[2].polygon_2d = self.sides[2].polygon_2d.buffer(0.002)
+        self.sides[3].polygon_2d = self.sides[3].polygon_2d.buffer(0.002)
 
         self.vertices.append(a)
         self.vertices.append(b)
@@ -237,7 +237,7 @@ class Detector:
 source = Source(661000.0, 1e9, np.array([0.1, -0.0, 0.0]))
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
-detector_2 = Detector(materials.CdTe, 0.001, np.array([-0.003, 0, 0]))
+detector_2 = Detector(materials.CdTe, 0.002, np.array([-0.003, 0, 0]))
 
 [a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getVertices()
 [a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getVertices()
@@ -446,7 +446,7 @@ def plot_everything(*args):
 
             print("energy: {}, thickness: {}, prob_pe: {}".format(scattered_ray.energy, pe_thickness, prob_pe))
 
-            ax.scatter(intersect2_first[0], intersect2_first[1], intersect2_first[2], color='red')
+            # ax.scatter(intersect2_first[0], intersect2_first[1], intersect2_first[2], color='red')
             ax.plot([source.position[0], point[0]], [source.position[1], point[1]], [source.position[2], point[2]], color='grey')
             ax.plot([point[0], intersect1_second[0]], [point[1], intersect1_second[1]], [point[2], intersect1_second[2]], color='r')
             ax.plot([scattered_ray.rayPoint[0], absorption_point[0]], [scattered_ray.rayPoint[1], absorption_point[1]], [scattered_ray.rayPoint[2], absorption_point[2]], color='b')
