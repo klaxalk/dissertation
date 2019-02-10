@@ -195,6 +195,10 @@ class Detector:
         # create the sympy back plane
         self.back = Polygon3D([e, f, g, h])
 
+        # orthogonal basis of the detector
+        self.b1 = np.array([0, self.size/2.0 - (-self.size/2.0), self.size/2.0 - self.size/2.0])
+        self.b2 = np.array([0, -self.size/2.0 - (-self.size/2.0), -self.size/2.0 - self.size/2.0])
+
         # SIDES
 
         # create the sympy side planes
@@ -230,6 +234,41 @@ class Detector:
         h = self.vertices[7]
 
         return [a, b, c, d, e, f, g, h]
+
+    def plotPixelVertices(self, x, y):
+
+        x = x/255.0
+        y = y/255.0
+
+        dpx = 1.0/255.0
+
+        thickness_offset = np.array([self.thickness/2, 0, 0])
+
+        a = self.vertices[0] + self.b1*x + self.b2*y
+        b = self.vertices[0] + self.b1*(x+dpx) + self.b2*y
+        c = self.vertices[0] + self.b1*x + self.b2*(y+dpx)
+        d = self.vertices[0] + self.b1*(x+dpx) + self.b2*(y+dpx)
+
+        e = a - 2*thickness_offset
+        f = b - 2*thickness_offset
+        g = c - 2*thickness_offset
+        h = d - 2*thickness_offset
+
+        xx = [a[0], b[0], c[0], d[0], a[0], e[0], f[0], b[0], f[0], g[0], c[0], g[0], h[0], d[0], h[0], e[0]]
+        yy = [a[1], b[1], c[1], d[1], a[1], e[1], f[1], b[1], f[1], g[1], c[1], g[1], h[1], d[1], h[1], e[1]]
+        zz = [a[2], b[2], c[2], d[2], a[2], e[2], f[2], b[2], f[2], g[2], c[2], g[2], h[2], d[2], h[2], e[2]]
+
+        return xx, yy, zz
+
+    def point2pixel(self, point):
+
+        x = (point[1] - self.vertices[0][1])
+        y = (point[2] - self.vertices[0][2])
+
+        x = int(m.floor((x/self.b1[1])*255))
+        y = int(m.floor((y/self.b2[2])*255))
+
+        return x, y
 
 # #} end of class Detector
 
@@ -446,10 +485,18 @@ def plot_everything(*args):
 
             print("energy: {}, thickness: {}, prob_pe: {}".format(scattered_ray.energy, pe_thickness, prob_pe))
 
-            # ax.scatter(intersect2_first[0], intersect2_first[1], intersect2_first[2], color='red')
             ax.plot([source.position[0], point[0]], [source.position[1], point[1]], [source.position[2], point[2]], color='grey')
-            ax.plot([point[0], intersect1_second[0]], [point[1], intersect1_second[1]], [point[2], intersect1_second[2]], color='r')
             ax.plot([scattered_ray.rayPoint[0], absorption_point[0]], [scattered_ray.rayPoint[1], absorption_point[1]], [scattered_ray.rayPoint[2], absorption_point[2]], color='b')
+
+            # plot the absorption pixels
+            x, y = detector_2.point2pixel(absorption_point)
+            xx, yy, zz = detector_2.plotPixelVertices(x, y)
+            ax.plot(xx, yy, zz, color='r')
+
+            # plot the scattering pixel
+            x, y = detector_1.point2pixel(scattered_ray.rayPoint)
+            xx, yy, zz = detector_1.plotPixelVertices(x, y)
+            ax.plot(xx, yy, zz, color='r')
 
     # #{ set axis
 
@@ -466,8 +513,6 @@ def plot_everything(*args):
     ax.set_zlabel('Z')
 
     # #} end of set axis
-
-    ax.grid(True)
 
     plt.show()
 
