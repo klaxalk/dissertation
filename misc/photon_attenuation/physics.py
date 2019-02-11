@@ -8,6 +8,29 @@ def comptonRatio(energy, theta):
 
     return 1.0 / (1.0 + (energy/(constants.me*m.pow(constants.c, 2)))*(1.0 - m.cos(theta)))
 
+def getComptonAngle(Ee, Ef):
+
+    if Ee < 0:
+        Ee = 0
+
+    if Ef < 0:
+        Ef = 0
+
+    Ee_J = conversions.energy_ev_to_J(Ee)
+    Ef_J = conversions.energy_ev_to_J(Ef)
+
+    E0_J = Ee_J + Ef_J
+
+    # return m.acos(1.0 - constants.me*m.pow(constants.c, 2)*(Ef/(E0*E0))) # mine
+    try:
+        angle = m.acos(1.0 - constants.me*m.pow(constants.c, 2)*(Ee_J/(E0_J*(E0_J-Ee_J)))) # Dan's
+    except:
+        print("Ee: {}".format(Ee))
+        print("Ef: {}".format(Ef))
+        pass
+
+    return angle
+
 def comptonDiffCrossSection(energy, theta):
 
     P = comptonRatio(energy, theta)

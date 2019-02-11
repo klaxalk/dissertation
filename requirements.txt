@@ -1,3 +1,5 @@
 shapely
 pyquaternion
 sympy
+plotly
+jupyter

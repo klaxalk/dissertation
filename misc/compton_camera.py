@@ -4,7 +4,7 @@ import time
 import copy
 
 import random
-# random.seed(2)
+random.seed(335)
 
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -19,11 +19,19 @@ speedups.enable()
 # from geometry.convex_polygon import ConvexPolygon
 from pyquaternion import Quaternion
 
+# plotly
+import plotly.offline as py
+import plotly.graph_objs as go
+from scipy.spatial import Delaunay
+
 # my stuff
 import geometry.solid_angle
 import photon_attenuation.materials as materials
 import photon_attenuation.physics as physics
 from geometry.raytracing import Plane, Ray
+
+simulate_energy_noise = False
+simulate_pixel_uncertainty = True
 
 # #{ class Timer
 
@@ -235,12 +243,22 @@ class Detector:
 
         return [a, b, c, d, e, f, g, h]
 
+    def plotVertices(self):
+
+        [a, b, c, d, e, f, g, h] = self.getVertices()
+
+        xx = [a[0], b[0], c[0], d[0], a[0], e[0], f[0], b[0], f[0], g[0], c[0], g[0], h[0], d[0], h[0], e[0]]
+        yy = [a[1], b[1], c[1], d[1], a[1], e[1], f[1], b[1], f[1], g[1], c[1], g[1], h[1], d[1], h[1], e[1]]
+        zz = [a[2], b[2], c[2], d[2], a[2], e[2], f[2], b[2], f[2], g[2], c[2], g[2], h[2], d[2], h[2], e[2]]
+
+        return xx, yy, zz
+
     def plotPixelVertices(self, x, y):
 
-        x = x/255.0
-        y = y/255.0
+        x = x/256.0
+        y = y/256.0
 
-        dpx = 1.0/255.0
+        dpx = 1.0/256.0
 
         thickness_offset = np.array([self.thickness/2, 0, 0])
 
@@ -260,23 +278,36 @@ class Detector:
 
         return xx, yy, zz
 
+    def getPixelMidPoint(self, x, y):
+
+        x = x/256.0
+        y = y/256.0
+
+        dpx = 0.5/256.0
+
+        thickness_offset = np.array([self.thickness/2, 0, 0])
+
+        a = self.vertices[0] + self.b1*(x+dpx) + self.b2*(y+dpx) - thickness_offset
+
+        return a
+
     def point2pixel(self, point):
 
         x = (point[1] - self.vertices[0][1])
         y = (point[2] - self.vertices[0][2])
 
-        x = int(m.floor((x/self.b1[1])*255))
-        y = int(m.floor((y/self.b2[2])*255))
+        x = int(m.floor((x/self.b1[1])*256))
+        y = int(m.floor((y/self.b2[2])*256))
 
         return x, y
 
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(661000.0, 1e9, np.array([0.1, -0.0, 0.0]))
+source = Source(100000.0, 1e9, np.array([0.1, 0.1, -0.1]))
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
-detector_2 = Detector(materials.CdTe, 0.002, np.array([-0.003, 0, 0]))
+detector_2 = Detector(materials.CdTe, 0.002, np.array([-0.02, 0, 0]))
 
 [a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getVertices()
 [a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getVertices()
@@ -302,7 +333,7 @@ def comptonScattering(from_point, to_point, energy, material):
     prob_cs = 1.0 - np.exp(-detector_1.material.electron_density * cs_cross_section * distance)
 
     if random.uniform(0.0, 1.0) > prob_cs:
-        return False, 0
+        return False, 0, 0
 
     # calculate the point of scattering in the detector
     # scattering_point = (from_point + to_point)/2.0
@@ -340,7 +371,7 @@ def comptonScattering(from_point, to_point, energy, material):
 
     new_ray = Ray(scattering_point, new_ray_point, new_photon_energy)
 
-    return new_ray, electron_energy
+    return new_ray, electron_energy, theta
 
 # #} end of comptonScattering()
 
@@ -363,7 +394,7 @@ def sample_detector(detector):
 # sample the 1st detector
 hit_points = []
 rays = []
-n_particles = 50000
+n_particles = 5000
 for i in range(0, n_particles):
 
    hit_point = sample_detector(detector_1)
@@ -375,24 +406,48 @@ for i in range(0, n_particles):
 # plotting
 def plot_everything(*args):
 
+    py_traces = []
+
     fig = plt.figure(1)
     ax  = fig.add_subplot(111, projection = '3d')
 
     # #{ plot detector 1
 
-    xs = [a1[0], b1[0], c1[0], d1[0], a1[0], e1[0], f1[0], b1[0], f1[0], g1[0], c1[0], g1[0], h1[0], d1[0], h1[0], e1[0]]
-    ys = [a1[1], b1[1], c1[1], d1[1], a1[1], e1[1], f1[1], b1[1], f1[1], g1[1], c1[1], g1[1], h1[1], d1[1], h1[1], e1[1]]
-    zs = [a1[2], b1[2], c1[2], d1[2], a1[2], e1[2], f1[2], b1[2], f1[2], g1[2], c1[2], g1[2], h1[2], d1[2], h1[2], e1[2]]
+    xs, ys, zs = detector_1.plotVertices()
     plt.plot(xs, ys, zs)
+
+    py_traces.append(go.Scatter3d(
+        x=xs, y=ys, z=zs,
+        marker=dict(
+            size=1,
+            color='rgb(0, 0, 0)',
+        ),
+        line=dict(
+            color='rgb(0, 0, 255)',
+            width=3
+        ),
+        name='Scatterer'
+    ))
 
     # #} end of plot detector 1
 
     # #{ plot detector 2
 
-    xs = [a2[0], b2[0], c2[0], d2[0], a2[0], e2[0], f2[0], b2[0], f2[0], g2[0], c2[0], g2[0], h2[0], d2[0], h2[0], e2[0]]
-    ys = [a2[1], b2[1], c2[1], d2[1], a2[1], e2[1], f2[1], b2[1], f2[1], g2[1], c2[1], g2[1], h2[1], d2[1], h2[1], e2[1]]
-    zs = [a2[2], b2[2], c2[2], d2[2], a2[2], e2[2], f2[2], b2[2], f2[2], g2[2], c2[2], g2[2], h2[2], d2[2], h2[2], e2[2]]
+    xs, ys, zs = detector_2.plotVertices()
     plt.plot(xs, ys, zs)
+
+    py_traces.append(go.Scatter3d(
+        x=xs, y=ys, z=zs,
+        marker=dict(
+            size=1,
+            color='rgb(0, 0, 0)',
+        ),
+        line=dict(
+            color='rgb(255, 0, 0)',
+            width=2
+        ),
+        name='Absorber'
+    ))
 
     # #} end of plot detector 2
 
@@ -425,7 +480,7 @@ def plot_everything(*args):
 
             intersection_len = np.linalg.norm(point - intersect1_second)
 
-            scattered_ray, electron_energy = comptonScattering(point, intersect1_second, source.energy, detector_1.material)
+            scattered_ray, electron_energy, theta = comptonScattering(point, intersect1_second, source.energy, detector_1.material)
             # if not scattering happened, just leave
             if not isinstance(scattered_ray, Ray):
                 continue
@@ -485,19 +540,198 @@ def plot_everything(*args):
 
             print("energy: {}, thickness: {}, prob_pe: {}".format(scattered_ray.energy, pe_thickness, prob_pe))
 
-            ax.plot([source.position[0], point[0]], [source.position[1], point[1]], [source.position[2], point[2]], color='grey')
-            ax.plot([scattered_ray.rayPoint[0], absorption_point[0]], [scattered_ray.rayPoint[1], absorption_point[1]], [scattered_ray.rayPoint[2], absorption_point[2]], color='b')
+            # #{ plot the rays from the source to the scatterer
+            
+            xs = [source.position[0], point[0]]
+            ys = [source.position[1], point[1]]
+            zs = [source.position[2], point[2]]
+            
+            ax.plot(xs, ys, zs, color='grey')
+            
+            py_traces.append(go.Scatter3d(
+                x=xs, y=ys, z=zs,
+                mode='lines',
+                marker=dict(
+                    size = 0,
+                    color = 'rgba(0, 0, 0, 1.0)',
+                ),
+                line=dict(
+                    color='rgb(128, 128, 128)',
+                    width=3
+                ),
+                showlegend=False
+            ))
+            
+            # #} end of plot the rays from the source to the scatterer
 
-            # plot the absorption pixels
-            x, y = detector_2.point2pixel(absorption_point)
-            xx, yy, zz = detector_2.plotPixelVertices(x, y)
-            ax.plot(xx, yy, zz, color='r')
+            # #{ plot the rays from the scatterer to the absorber
+            
+            xs = [scattered_ray.rayPoint[0], absorption_point[0]]
+            ys = [scattered_ray.rayPoint[1], absorption_point[1]]
+            zs = [scattered_ray.rayPoint[2], absorption_point[2]]
+            
+            ax.plot(xs, ys, zs, color='b')
+            
+            py_traces.append(go.Scatter3d(
+                x=xs, y=ys, z=zs,
+                mode='lines',
+                marker=dict(
+                    size = 0,
+                    color = 'rgba(0, 0, 0, 1.0)',
+                ),
+                line=dict(
+                    color='rgb(0, 0, 255)',
+                    width=3
+                ),
+                showlegend=False
+            ))
+            
+            # #} end of plot the rays from the scatterer to the absorber
 
-            # plot the scattering pixel
+            # #{ plot the scattering pixel
+            
             x, y = detector_1.point2pixel(scattered_ray.rayPoint)
-            xx, yy, zz = detector_1.plotPixelVertices(x, y)
-            ax.plot(xx, yy, zz, color='r')
+            xs, ys, zs = detector_1.plotPixelVertices(x, y)
+            scatterer_mid_point = detector_1.getPixelMidPoint(x, y)
+            ax.plot(xs, ys, zs, color='r')
+            
+            py_traces.append(go.Scatter3d(
+                x=xs, y=ys, z=zs,
+                mode='lines',
+                marker=dict(
+                    size = 0,
+                    color = 'rgba(0, 0, 0, 1.0)',
+                ),
+                line=dict(
+                    color='rgb(255, 0, 0)',
+                    width=3
+                ),
+                showlegend=False
+            ))
+            
+            # #} end of plot the absorption pixels
 
+            # #{ plot the absorption pixel
+            
+            x, y = detector_2.point2pixel(absorption_point)
+            xs, ys, zs = detector_2.plotPixelVertices(x, y)
+            absorber_mid_point = detector_2.getPixelMidPoint(x, y)
+            ax.plot(xs, ys, zs, color='r')
+            
+            py_traces.append(go.Scatter3d(
+                x=xs, y=ys, z=zs,
+                mode='lines',
+                marker=dict(
+                    size = 0,
+                    color = 'rgba(0, 0, 0, 1.0)',
+                ),
+                line=dict(
+                    color='rgb(255, 0, 0)',
+                    width=3
+                ),
+                showlegend=False
+            ))
+            
+            # #} end of plot the absorption pixels
+
+            # #{ plot the cone axis
+            
+            xs = [scatterer_mid_point[0], absorber_mid_point[0]] 
+            ys = [scatterer_mid_point[1], absorber_mid_point[1]] 
+            zs = [scatterer_mid_point[2], absorber_mid_point[2]] 
+            
+            py_traces.append(go.Scatter3d(
+                x=xs, y=ys, z=zs,
+                mode='lines',
+                marker=dict(
+                    size = 0,
+                    color = 'rgba(0, 0, 0, 1.0)',
+                ),
+                line=dict(
+                    color='rgb(0, 255, 0)',
+                    width=3
+                ),
+                showlegend=False
+            ))
+            
+            # #} end of plot the cone axis
+
+            # #{ plot the cone
+            
+            # add noise to the energies
+            if simulate_energy_noise:
+                e_noise = random.gauss(0, 7000)
+                f_noise = random.gauss(0, 7000)
+            else:
+                e_noise = 0
+                f_noise = 0
+
+            theta_estimate = physics.getComptonAngle(electron_energy+e_noise, scattered_ray.energy+f_noise)
+
+            print("theta_estimate: {}".format(theta_estimate))
+
+            angle = theta_estimate
+
+            u = np.linspace(0, 0.1*m.cos(angle), 2)
+
+            # sweeping
+            v = np.linspace(-np.pi, np.pi, 180)
+
+            # pitch rotational matrix
+            v1 = np.array([1.0, 0.0, 0.0])
+
+            # # uncomment for realistic pixel point
+            if simulate_pixel_uncertainty:
+                direction = scatterer_mid_point - absorber_mid_point
+            else: 
+                direction = scattered_ray.rayPoint - absorption_point
+
+            # normalized the direction vector
+            direction = direction/np.linalg.norm(direction)
+
+            my_axis = np.cross(v1, direction)
+
+            # my_quaternion = Quaternion(axis=my_axis, angle=0)
+            my_quaternion = Quaternion(axis=my_axis, angle=geometry.solid_angle.vector_angle(v1, direction))
+
+            u, v = np.meshgrid(u,v)
+
+            u = u.flatten()
+            v = v.flatten()
+
+            x = u
+            y = u*np.cos(v)*m.tan(angle)
+            z = u*np.sin(v)*m.tan(angle)
+
+            points2D = np.vstack([u,v]).T
+            tri = Delaunay(points2D)
+            simplices = tri.simplices
+
+            I,J,K=([triplet[c] for triplet in simplices] for c in range(3))
+
+            for index,pes in enumerate(x):
+                    
+                new_point = my_quaternion.rotate(np.array([x[index], y[index], z[index]]))
+                x[index] = new_point[0] + scatterer_mid_point[0]
+                y[index] = new_point[1] + scatterer_mid_point[1]
+                z[index] = new_point[2] + scatterer_mid_point[2]
+
+            triangles=go.Mesh3d(x=x,
+                                y=y,
+                                z=z,
+                                i=I,
+                                j=J,
+                                k=K,
+                                name='',
+                                opacity=0.1
+                                )
+
+            py_traces.append(triangles)
+
+            # py_traces.append(cone_data)
+            
+            # #} end of plot the cone
+            
     # #{ set axis
 
     axis_range = 0.01
@@ -514,7 +748,68 @@ def plot_everything(*args):
 
     # #} end of set axis
 
-    plt.show()
+    # plt.show()
+
+    # #{ plotly layout
+    
+    layout = dict(
+        width=1920,
+        height=1080,
+        margin=dict(
+            r=20, l=10,
+            b=10, t=10),
+        # autosize=False,
+        title='Compton camera',
+        scene=dict(
+           xaxis=dict(
+                # gridcolor='rgb(255, 255, 255)',
+                # zerolinecolor='rgb(255, 255, 255)',
+                showbackground=True,
+                backgroundcolor='rgb(230, 230,230)'
+            ),
+            yaxis=dict(
+                # gridcolor='rgb(255, 255, 255)',
+                # zerolinecolor='rgb(255, 255, 255)',
+                showbackground=True,
+                backgroundcolor='rgb(230, 230,230)'
+            ),
+            zaxis=dict(
+                # gridcolor='rgb(255, 255, 255)',
+                # zerolinecolor='rgb(255, 255, 255)',
+                showbackground=True,
+                backgroundcolor='rgb(230, 230,230)'
+            ),
+            camera=dict(
+                up=dict(
+                    x=0,
+                    y=0,
+                    z=1
+                ),
+                center=dict(
+                    x=-0.01,
+                    y=0.0,
+                    z=0.0,
+                ),
+                eye=dict(
+                    x=-2.5,
+                    y=0.1,
+                    z=0.1
+                )
+            ),
+            aspectratio = dict( x=1, y=1, z=1 ),
+            aspectmode = 'data'
+        ),
+    )
+    
+    # #} end of plotly layout
+
+    fig2 = dict(data=py_traces, layout=layout)
+
+    filename = "compton{}{}.html".format("_energy_noise" if simulate_energy_noise else "", "_pixel_unc" if simulate_pixel_uncertainty else "")
+
+    py.plot(fig2, filename=filename, auto_open=False)
+
+    print("finished with {}".format(filename))
 
 pid = os.fork()
 if pid == 0:
