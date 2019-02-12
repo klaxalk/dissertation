@@ -19,9 +19,7 @@ def spherical_angle(a, b, c):
 
 def vector_angle(a, b):
 
-    dot_prod = np.dot(a, b)
-
-    return m.acos(dot_prod/(np.linalg.norm(a)*np.linalg.norm(b)))
+    return m.acos(np.dot(a, b)/(np.linalg.norm(a)*np.linalg.norm(b)))
 
 def spherical_triangle_area(a, b, c):
 

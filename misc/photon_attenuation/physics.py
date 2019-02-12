@@ -4,9 +4,15 @@ import numpy as np
 import constants
 import conversions
 
+# #{ comptonRatio()
+
 def comptonRatio(energy, theta):
 
     return 1.0 / (1.0 + (energy/(constants.me*m.pow(constants.c, 2)))*(1.0 - m.cos(theta)))
+
+# #} end of comptonRatio()
+
+# #{ getComptonAngle()
 
 def getComptonAngle(Ee, Ef):
 
@@ -31,6 +37,10 @@ def getComptonAngle(Ee, Ef):
 
     return angle
 
+# #} end of getComptonAngle()
+
+# #{ comptonDiffCrossSection()
+
 def comptonDiffCrossSection(energy, theta):
 
     P = comptonRatio(energy, theta)
@@ -45,6 +55,10 @@ def comptonDiffCrossSection(energy, theta):
     # E_e_keV = 0.001*energy_J_to_eV(E_e)
 
     return 0.5 * m.pow(P, 2) * m.pow(constants.r_e, 2) * (P + 1.0/P - m.pow(m.sin(theta), 2))
+
+# #} end of comptonDiffCrossSection()
+
+# #{ comptonCrossSection()
 
 def comptonCrossSection(energy):
 
@@ -64,6 +78,10 @@ def comptonCrossSection(energy):
 
     return total_cross_section
 
+# #} end of comptonCrossSection()
+
+# #{ pe_cs_gavrila_pratt_simplified()
+
 def pe_cs_gavrila_pratt_simplified(material, energy):
 
     e_rest_mass_energy = 511000.0
@@ -71,6 +89,10 @@ def pe_cs_gavrila_pratt_simplified(material, energy):
 
     return (16.0/3.0)*m.sqrt(2.0)*m.pi*m.pow(constants.r_e, 2)*m.pow(constants.alpha, 4)*(m.pow(material.atomic_number, 5)/m.pow(k, 3.5))
     # return conversions.barn2m2(3.0e12*(m.pow(material.atomic_number, 4)/m.pow(energy, 3.5)))
+
+# #} end of pe_cs_gavrila_pratt_simplified()
+
+# #{ pe_cs_gavrila_pratt()
 
 def pe_cs_gavrila_pratt(material, energy):
 
@@ -80,6 +102,10 @@ def pe_cs_gavrila_pratt(material, energy):
     constant = 1.367e-22
 
     return constant*m.pow(constants.alpha*material.atomic_number, 5)*(electron_rest_mass/energy)*0.0001
+
+# #} end of pe_cs_gavrila_pratt()
+
+# #{ pe_cs_hubell_k_shell()
 
 # photoelectric effect coefficients
 pe_a = [1.6268e-9, 1.5274e-9, 1.1330e-9, -9.12e-11]
@@ -95,6 +121,10 @@ def pe_cs_hubell_k_shell(material, energy):
 
     return conversions.barn2m2(m.pow(material.atomic_number, 5)*summ)
 
+# #} end of pe_cs_hubell_k_shell()
+
+# #{ pe_cs_hubell()
+
 def pe_cs_hubell(material, energy):
 
     boundary = 1500000.0
@@ -106,6 +136,10 @@ def pe_cs_hubell(material, energy):
         hubell_boundary = pe_cs_hubell_k_shell(material, boundary)
 
         return (davisson_boundary/hubell_boundary)*pe_cs_hubell_k_shell(material, energy)
+
+# #} end of pe_cs_hubell()
+
+# #{ cs_interaction_depth()
 
 def cs_interaction_depth(material, energy, thickness=0.01, depth_granularity=0.000001):
 
@@ -141,6 +175,10 @@ def cs_interaction_depth(material, energy, thickness=0.01, depth_granularity=0.0
     density[-1] = density[-2]
 
     return indeces, distribution, density
+
+# #} end of cs_interaction_depth()
+
+# #{ cs_distribution_function()
 
 def cs_distribution_function(material, energy, granularity=0.001):
 
@@ -199,3 +237,5 @@ def cs_distribution_function(material, energy, granularity=0.001):
                 break
 
     return  indeces, distribution
+
+ #} end of cs_distribution_function()
