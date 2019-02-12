@@ -25,8 +25,8 @@ import photon_attenuation.materials as materials
 import photon_attenuation.physics as physics
 from geometry.raytracing import Plane, Ray
 
-simulate_energy_noise = True
-simulate_pixel_uncertainty = True
+simulate_energy_noise = False
+simulate_pixel_uncertainty = False
 rich_plot = True
 
 # #{ class Timer
@@ -300,7 +300,7 @@ class Detector:
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(621000.0, 1e9, np.array([0.1, 0.1, -0.05]))
+source = Source(621000.0, 50*1e9, np.array([50.0, 0.0, -1.0]))
 source_distance = np.linalg.norm(source.position)
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
@@ -314,6 +314,8 @@ detector_solid_angle = geometry.solid_angle.quadrilateral_solid_angle(a1, b1, c1
 
 # apparent activity
 aparent_activity = source.activity*(detector_solid_angle/(4*m.pi))
+
+print("aparent_activity: {}".format(aparent_activity))
 
 # prepare the Compton scattering cross section and probability density for the source's energy
 cs_cross_section = physics.comptonCrossSection(physics.conversions.energy_ev_to_J(source.energy))
@@ -398,7 +400,7 @@ def sampleDetector(detector):
 # #} end of sampleDetector()
 
 # sample the 1st detector
-n_particles = 10000
+n_particles = 50000
 
 py_traces = []
 
