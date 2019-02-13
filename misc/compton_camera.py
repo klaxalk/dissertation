@@ -21,13 +21,16 @@ from scipy.spatial import Delaunay # for triangulation of the cones
 
 # my stuff
 import geometry.solid_angle
+from geometry.cone import Cone
 import photon_attenuation.materials as materials
 import photon_attenuation.physics as physics
 from geometry.raytracing import Plane, Ray
 
-simulate_energy_noise = False
-simulate_pixel_uncertainty = False
+simulate_energy_noise = True
+simulate_pixel_uncertainty = True
 rich_plot = True
+plot_res_x = 960
+plot_res_y = 1000
 
 # #{ class Timer
 
@@ -300,7 +303,7 @@ class Detector:
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(621000.0, 50*1e9, np.array([50.0, 0.0, -1.0]))
+source = Source(300000.0, 50*1e9, np.array([50.0, 50.0, -10.0]))
 source_distance = np.linalg.norm(source.position)
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
@@ -403,6 +406,8 @@ def sampleDetector(detector):
 n_particles = 50000
 
 py_traces = []
+
+hypo = [np.array([60.0, 10, 10.0])]
 
 time_start = time.time()
 
@@ -621,11 +626,13 @@ for i in range(0, n_particles):
 
      # calculate the direction of the cone
      if simulate_pixel_uncertainty:
-         cone_direction = scatterer_mid_point - absorber_mid_point
+         cone_origin = absorber_mid_point
+         cone_direction = scatterer_mid_point - cone_origin
      else: 
-         cone_direction = scattered_ray.rayPoint - absorption_point
+         cone_origin = absorption_point
+         cone_direction = scattered_ray.rayPoint - cone_origin
 
-     # normalize the direction vector
+     # normalize cone direction
      cone_direction = cone_direction/np.linalg.norm(cone_direction)
 
      # estimate the scattering angle theta
@@ -635,7 +642,10 @@ for i in range(0, n_particles):
      if theta_estimate > m.pi/2:
          theta_estimate = m.pi - theta_estimate
          cone_direction *= -1.0
-     
+
+     cone = Cone(cone_origin, cone_direction, theta_estimate)
+
+     # plotting the cone
      # sample the end points of the cone (the cone is pointing along the x axis)
      u = np.linspace(source_distance, 0, 2)
      
@@ -645,9 +655,9 @@ for i in range(0, n_particles):
      v1 = np.array([1.0, 0.0, 0.0])
      
      # rotate the cone to its final orientation
-     my_axis = np.cross(v1, cone_direction) # axis of rotation
+     my_axis = np.cross(v1, cone.direction) # axis of rotation
      
-     my_quaternion = Quaternion(axis=my_axis, angle=geometry.solid_angle.vector_angle(v1, cone_direction))
+     my_quaternion = Quaternion(axis=my_axis, angle=geometry.solid_angle.vector_angle(v1, cone.direction))
      
      # prepare the meshgrid to plot the cone
      u, v = np.meshgrid(u,v)
@@ -656,14 +666,10 @@ for i in range(0, n_particles):
      v = v.flatten()
      
      # # define the 3D coorinates
-     x = u*m.cos(theta_estimate)
-     y = u*m.sin(theta_estimate)*np.sin(v)
-     z = u*m.sin(theta_estimate)*np.cos(v)
+     x = u*m.cos(cone.angle)
+     y = u*m.sin(cone.angle)*np.sin(v)
+     z = u*m.sin(cone.angle)*np.cos(v)
 
-     # x = u
-     # y = u*np.cos(v)*m.tan(theta_estimate)
-     # z = u*np.sin(v)*m.tan(theta_estimate)
-     
      # triangulate the surface
      points2D = np.vstack([u,v]).T
      tri = Delaunay(points2D)
@@ -674,9 +680,9 @@ for i in range(0, n_particles):
      for index,point in enumerate(x):
      
          new_point = my_quaternion.rotate(np.array([x[index], y[index], z[index]]))
-         x[index] = new_point[0] + scatterer_mid_point[0]
-         y[index] = new_point[1] + scatterer_mid_point[1]
-         z[index] = new_point[2] + scatterer_mid_point[2]
+         x[index] = new_point[0] + cone.origin[0]
+         y[index] = new_point[1] + cone.origin[1]
+         z[index] = new_point[2] + cone.origin[2]
 
          if z[index] < source.position[2]:
             z[index] = source.position[2]
@@ -693,6 +699,14 @@ for i in range(0, n_particles):
                          ))
 
    # #} end of plot the cone
+
+   # #{ estimation
+
+   hypo_proj, color = cone.projectPoint(hypo[-1])
+   coef = 0.1
+   hypo.append(hypo_proj*(1.0-coef) + coef*hypo[-1])
+
+   # #} end of estimation
 
 duration = (time.time() - time_start)
 print("duration: {}".format(duration))
@@ -764,11 +778,45 @@ def plot_everything(*args):
 
     # #} end of plot ground
 
+    # #{ plot the filtration
+
+    xs = [a[0] for a in hypo]
+    ys = [a[1] for a in hypo]
+    zs = [a[2] for a in hypo]
+    
+    py_traces.append(go.Scatter3d(
+         x=xs, y=ys, z=zs,
+         marker=dict(
+             size=3,
+             color='rgb(0, 0, 0)',
+         ),
+         line=dict(
+             color='rgb(0, 0, 0)',
+             width=1
+         ),
+         name=''
+    ))
+    
+    # py_traces.append(go.Scatter3d(
+    #      x=[hypo_proj[0]], y=[hypo_proj[1]], z=[hypo_proj[2]],
+    #      marker=dict(
+    #          size=3,
+    #          color=color,
+    #      ),
+    #      line=dict(
+    #          color='rgb(0, 0, 255)',
+    #          width=0
+    #      ),
+    #      name=''
+    # ))
+    
+    # #} end of plot the filtration
+
     # #{ plotly layout
     
     layout = dict(
-        width=1920,
-        height=1080,
+        width=plot_res_x,
+        height=plot_res_y,
         margin=dict(
             r=20, l=10,
             b=10, t=10),
