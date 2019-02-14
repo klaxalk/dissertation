@@ -304,7 +304,7 @@ def sampleDetector(detector):
 # #} end of sampleDetector()
 
 # sample the 1st detector
-n_particles = 10000
+n_particles = 6500
 
 py_traces = []
 
@@ -539,10 +539,14 @@ for i in range(0, n_particles):
      # estimate the scattering angle theta
      theta_estimate = physics.getComptonAngle(electron_energy+e_noise, scattered_ray.energy+f_noise)
 
+     print("theta_estimate: {}".format(theta_estimate))
+
      # swap the cone, if its angle is > 90 deg
      if theta_estimate > m.pi/2:
          theta_estimate = m.pi - theta_estimate
          cone_direction *= -1.0
+
+     print("theta_estimate: {}".format(theta_estimate))
 
      cone = Cone(cone_origin, cone_direction, theta_estimate)
 

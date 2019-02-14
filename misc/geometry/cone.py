@@ -8,7 +8,7 @@ import geometry.solid_angle
 
 class Cone:
 
-    def __init__(self, origin=np.array([0, 0, 0]), direction=np.array([1.0, 0, 0]), angle=m.pi/6.0):
+    def __init__(self, origin, direction, angle):
 
         self.origin = origin
         self.direction = direction/np.linalg.norm(direction)
@@ -16,7 +16,7 @@ class Cone:
 
         self.cone_axis_projector = np.dot(np.matrix([direction]).transpose(), np.matrix([direction]))
 
-        self.cone_ray = Ray(self.origin, self.direction, 0)
+        self.cone_ray = Ray(self.origin, self.origin + self.direction, 0)
 
     # #{ projectPoint()
     
@@ -71,8 +71,14 @@ class Cone:
         if not isinstance(intersect, np.ndarray):
             return False
 
+        vec_to_intersect = intersect - self.origin
+        vec_to_intersect = vec_to_intersect/np.linalg.norm(vec_to_intersect)
+
+        vec_to_point = point - self.origin
+        vec_to_point = vec_to_point/np.linalg.norm(vec_to_point)
+
         # point to polygon axis angle
-        point_axis_angle = geometry.solid_angle.vector_angle(self.direction, point - self.origin) 
+        point_axis_angle = geometry.solid_angle.vector_angle(vec_to_intersect, vec_to_point) 
 
         if point_axis_angle >= self.angle:
     
@@ -80,6 +86,10 @@ class Cone:
             beta = geometry.solid_angle.vector_angle(intersect - point, self.origin - point) 
             gamma = m.pi - alpha - beta
 
+            print("")
+            print("point: {}".format(point))
+            print("self.origin: {}".format(self.origin))
+            print("self.direction: {}".format(self.direction))
             print("point_axis_angle: {}".format(point_axis_angle))
             print("self.angle: {}".format(self.angle))
 
@@ -91,7 +101,7 @@ class Cone:
             vec = intersect - point
             # vec = vec/np.linalg.norm(vec) 
     
-            return point + 1.0*vec
+            return intersect
     
         else:
 
