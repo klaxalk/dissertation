@@ -23,8 +23,8 @@ from geometry.raytracing import Plane, Ray
 from geometry.cone import Cone
 from geometry.polygon3d import Polygon3D
 
-simulate_energy_noise = False
-simulate_pixel_uncertainty = False
+simulate_energy_noise = True
+simulate_pixel_uncertainty = True
 rich_plot = True
 plot_res_x = 1920
 plot_res_y = 1000
@@ -304,11 +304,11 @@ def sampleDetector(detector):
 # #} end of sampleDetector()
 
 # sample the 1st detector
-n_particles = 6500
+n_particles = 200000
 
 py_traces = []
 
-hypo = [np.array([0.1, 0.0, source.position[2]])]
+hypo = [np.array([-0.1, -0.1, source.position[2]])]
 
 time_start = time.time()
 
@@ -589,8 +589,8 @@ for i in range(0, n_particles):
          y[index] = new_point[1] + cone.origin[1]
          z[index] = new_point[2] + cone.origin[2]
 
-         if z[index] < source.position[2]:
-            z[index] = source.position[2]
+         # if z[index] < source.position[2]:
+         #    z[index] = source.position[2]
      
      # create the cone's meshgrid
      py_traces.append(go.Mesh3d(x=x,
@@ -600,7 +600,7 @@ for i in range(0, n_particles):
                          j=J,
                          k=K,
                          name='',
-                         opacity=0.1
+                         opacity=0.1,
                          ))
 
    # #} end of plot the cone
@@ -613,19 +613,19 @@ for i in range(0, n_particles):
 
        print("axis_ground_proj: {}".format(axis_ground_proj))
 
-       # coef = 0.9
-       # hypo.append(axis_ground_proj*(1.0-coef) + coef*hypo[-1])
-       # print("hypo[-1]: {}".format(hypo[-1]))
-       # # hypo.append(axis_ground_proj)
+       coef = 0.7
+       hypo.append(axis_ground_proj*(1.0-coef) + coef*hypo[-1])
+       print("hypo[-1]: {}".format(hypo[-1]))
+       # hypo.append(axis_ground_proj)
 
-       py_traces.append(go.Scatter3d(
-            x=[axis_ground_proj[0]], y=[axis_ground_proj[1]], z=[axis_ground_proj[2]],
-            marker=dict(
-                size=3,
-                color='rgb(255, 0, 0)',
-            ),
-            name=''
-       ))
+       # py_traces.append(go.Scatter3d(
+       #      x=[axis_ground_proj[0]], y=[axis_ground_proj[1]], z=[axis_ground_proj[2]],
+       #      marker=dict(
+       #          size=3,
+       #          color='rgb(255, 0, 0)',
+       #      ),
+       #      name=''
+       # ))
 
    # hypo_proj, color = cone.projectPoint(hypo[-1])
    # coef = 0.9
