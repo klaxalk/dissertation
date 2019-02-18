@@ -4,7 +4,7 @@ import time
 import copy
 
 import random
-random.seed(1005)
+# random.seed(1005)
 
 import math as m
 import numpy as np
@@ -197,7 +197,7 @@ class Detector:
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(621000.0, 50*1e9, np.array([0.1, 0.1, -0.1]))
+source = Source(611000.0, 50*1e9, np.array([50.0, 20.0, -20.0]))
 source_distance = np.linalg.norm(source.position)
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
@@ -304,11 +304,11 @@ def sampleDetector(detector):
 # #} end of sampleDetector()
 
 # sample the 1st detector
-n_particles = 200000
+n_particles = 30000
 
 py_traces = []
 
-hypo = [np.array([-0.1, -0.1, source.position[2]])]
+hypo = [np.array([150.0, 150.0, source.position[2]])]
 
 time_start = time.time()
 
@@ -613,7 +613,7 @@ for i in range(0, n_particles):
 
        print("axis_ground_proj: {}".format(axis_ground_proj))
 
-       coef = 0.7
+       coef = 0.9
        hypo.append(axis_ground_proj*(1.0-coef) + coef*hypo[-1])
        print("hypo[-1]: {}".format(hypo[-1]))
        # hypo.append(axis_ground_proj)
