@@ -4,7 +4,7 @@ import time
 import copy
 
 import random
-# random.seed(1005)
+random.seed(1005)
 
 import math as m
 import numpy as np
@@ -21,7 +21,8 @@ import photon_attenuation.materials as materials
 import photon_attenuation.physics as physics
 from geometry.raytracing import Plane, Ray
 from geometry.cone import Cone
-from geometry.polygon3d import Polygon3D
+# from geometry.polygon3d import Polygon3D
+from geometry.rectangle3d import Rectangle3D
 
 simulate_energy_noise = True
 simulate_pixel_uncertainty = True
@@ -83,7 +84,8 @@ class Detector:
         d = np.array([self.thickness/2, -self.size/2.0, -self.size/2.0]) + position
 
         # create the sympy front plane
-        self.front = Polygon3D([a, b, c, d])
+        # self.front = Polygon3D([a, b, c, d])
+        self.front = Rectangle3D([a, b, c, d])
 
         # BACK
 
@@ -94,7 +96,8 @@ class Detector:
         h = np.array([-self.thickness/2, -self.size/2.0, -self.size/2.0]) + position
 
         # create the sympy back plane
-        self.back = Polygon3D([e, f, g, h])
+        # self.back = Polygon3D([e, f, g, h])
+        self.back = Rectangle3D([e, f, g, h])
 
         # orthogonal basis of the detector
         self.b1 = np.array([0, self.size/2.0 - (-self.size/2.0), self.size/2.0 - self.size/2.0])
@@ -103,15 +106,14 @@ class Detector:
         # SIDES
 
         # create the sympy side planes
-        self.sides.append(Polygon3D([a, e, h, d]))
-        self.sides.append(Polygon3D([b, f, e, a]))
-        self.sides.append(Polygon3D([c, g, f, b]))
-        self.sides.append(Polygon3D([d, h, c, g]))
-
-        self.sides[0].polygon_2d = self.sides[0].polygon_2d.buffer(0.002)
-        self.sides[1].polygon_2d = self.sides[1].polygon_2d.buffer(0.002)
-        self.sides[2].polygon_2d = self.sides[2].polygon_2d.buffer(0.002)
-        self.sides[3].polygon_2d = self.sides[3].polygon_2d.buffer(0.002)
+        # self.sides.append(Polygon3D([a, e, h, d]))
+        # self.sides.append(Polygon3D([b, f, e, a]))
+        # self.sides.append(Polygon3D([c, g, f, b]))
+        # self.sides.append(Polygon3D([d, h, c, g]))
+        self.sides.append(Rectangle3D([a, e, h, d]))
+        self.sides.append(Rectangle3D([b, f, e, a]))
+        self.sides.append(Rectangle3D([c, g, f, b]))
+        self.sides.append(Rectangle3D([d, h, c, g]))
 
         self.vertices.append(a)
         self.vertices.append(b)
@@ -197,7 +199,7 @@ class Detector:
 # #} end of class Detector
 
 # define the source and the detector
-source = Source(611000.0, 50*1e9, np.array([50.0, 20.0, -20.0]))
+source = Source(611000.0, 50*1e9, np.array([0.1, 0.0, 0.0]))
 source_distance = np.linalg.norm(source.position)
 source_point = source.position
 detector_1 = Detector(materials.Si, 0.001, np.array([0, 0, 0]))
@@ -208,7 +210,8 @@ b = np.array([-0.1, -2.0*source.position[0], 1.0*source.position[2]])
 c = np.array([2.0*source.position[0], -2.0*source.position[0], 1.0*source.position[2]])
 d = np.array([2.0*source.position[0], 2.0*source.position[0], 1.0*source.position[2]])
 
-ground_polygon = Polygon3D([a, b, c, d])
+# ground_polygon = Polygon3D([a, b, c, d])
+ground_polygon = Rectangle3D([a, b, c, d])
 
 [a1, b1, c1, d1, e1, f1, g1, h1] = detector_1.getVertices()
 [a2, b2, c2, d2, e2, f2, g2, h2] = detector_2.getVertices()
@@ -677,58 +680,58 @@ def plot_everything(*args):
 
     # #} end of plot detector 2
 
-    # #{ plot the ground
+    # # #{ plot the ground
 
-    [xs, ys, zs] = ground_polygon.plotVertices()
+    # [xs, ys, zs] = ground_polygon.plotVertices()
 
-    py_traces.append(go.Mesh3d(
-         x = xs,
-         y = ys,
-         z = zs,
-         i = [0, 0],
-         j = [1, 2],
-         k = [2, 3],
-         color='rgb(0, 256, 0)',
-         opacity=0.3,
-         name = 'Ground plane',
-         showscale = True
-    ))
+    # py_traces.append(go.Mesh3d(
+    #      x = xs,
+    #      y = ys,
+    #      z = zs,
+    #      i = [0, 0],
+    #      j = [1, 2],
+    #      k = [2, 3],
+    #      color='rgb(0, 256, 0)',
+    #      opacity=0.3,
+    #      name = 'Ground plane',
+    #      showscale = True
+    # ))
 
-    # #} end of plot ground
+    # # #} end of plot ground
 
-    # #{ plot the filtration
+    # # #{ plot the filtration
 
-    xs = [a[0] for a in hypo]
-    ys = [a[1] for a in hypo]
-    zs = [a[2] for a in hypo]
-    
-    py_traces.append(go.Scatter3d(
-         x=xs, y=ys, z=zs,
-         marker=dict(
-             size=3,
-             color='rgb(0, 0, 0)',
-         ),
-         line=dict(
-             color='rgb(0, 0, 0)',
-             width=1
-         ),
-         name=''
-    ))
+    # xs = [a[0] for a in hypo]
+    # ys = [a[1] for a in hypo]
+    # zs = [a[2] for a in hypo]
     
     # py_traces.append(go.Scatter3d(
-    #      x=[hypo_proj[0]], y=[hypo_proj[1]], z=[hypo_proj[2]],
+    #      x=xs, y=ys, z=zs,
     #      marker=dict(
     #          size=3,
-    #          color=color,
+    #          color='rgb(0, 0, 0)',
     #      ),
     #      line=dict(
-    #          color='rgb(0, 0, 255)',
-    #          width=0
+    #          color='rgb(0, 0, 0)',
+    #          width=1
     #      ),
     #      name=''
     # ))
     
-    # #} end of plot the filtration
+    # # py_traces.append(go.Scatter3d(
+    # #      x=[hypo_proj[0]], y=[hypo_proj[1]], z=[hypo_proj[2]],
+    # #      marker=dict(
+    # #          size=3,
+    # #          color=color,
+    # #      ),
+    # #      line=dict(
+    # #          color='rgb(0, 0, 255)',
+    # #          width=0
+    # #      ),
+    # #      name=''
+    # # ))
+    
+    # # #} end of plot the filtration
 
     # #{ plotly layout
     
