@@ -307,7 +307,7 @@ def sampleDetector(detector):
 # #} end of sampleDetector()
 
 # sample the 1st detector
-n_particles = 30000
+n_particles = 13000
 
 py_traces = []
 
