@@ -1,14 +1,5 @@
 location: .gitman
 sources:
-- name: gazebo_rad_msgs
-  type: git
-  repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
-  sparse_paths:
-  -
-  rev: master
-  link: ros_packages/gazebo_rad_msgs
-  scripts:
-  - git submodule update --init --recursive
 - name: compton_camera_filter
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
@@ -18,13 +9,22 @@ sources:
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
-- name: compton_camera_filter
+- name: compton_camera_python
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_python
   sparse_paths:
   -
   rev: master
   link: ros_packages/compton_camera_python
+  scripts:
+  - git submodule update --init --recursive
+- name: gazebo_rad_msgs
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
 - name: gazebo_rad_source
@@ -45,6 +45,15 @@ sources:
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
+- name: geometry_visual_utils
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/geometry_visual_utils.git
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/geometry_visual_utils
+  scripts:
+  - git submodule update --init --recursive
 - name: rviz_visual_tools
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/rviz_visual_tools
@@ -54,12 +63,67 @@ sources:
   link: ros_packages/rviz_visual_tools
   scripts:
   - git submodule update --init --recursive
+sources_locked:
+- name: compton_camera_filter
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
+  sparse_paths:
+  -
+  rev: e84856c79c5404b68a67daaba78c9d3ddc19774b
+  link: ros_packages/compton_camera_filter
+  scripts:
+  - git submodule update --init --recursive
+- name: compton_camera_python
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/compton_camera_python
+  sparse_paths:
+  -
+  rev: f1b0629cfc39aef9fcb81d4010b27785d19f977f
+  link: ros_packages/compton_camera_python
+  scripts:
+  - git submodule update --init --recursive
+- name: gazebo_rad_msgs
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
+  sparse_paths:
+  -
+  rev: 44f39449d022844ea74c3a4ae9545bef056ac078
+  link: ros_packages/gazebo_rad_msgs
+  scripts:
+  - git submodule update --init --recursive
+- name: gazebo_rad_source
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_source
+  sparse_paths:
+  -
+  rev: 7c3077a97a653738ee8bcec563e8eeddc8f34177
+  link: ros_packages/gazebo_rad_source
+  scripts:
+  - git submodule update --init --recursive
+- name: gazebo_timepix
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
+  sparse_paths:
+  -
+  rev: 647346bb604f44b9f87ca5ed4a0be9a0405020e1
+  link: ros_packages/gazebo_timepix
+  scripts:
+  - git submodule update --init --recursive
 - name: geometry_visual_utils
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/geometry_visual_utils.git
   sparse_paths:
   -
-  rev: master
+  rev: f368fc032795006a9bb4c633c5b4279791ee3703
   link: ros_packages/geometry_visual_utils
+  scripts:
+  - git submodule update --init --recursive
+- name: rviz_visual_tools
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/rviz_visual_tools
+  sparse_paths:
+  -
+  rev: 277e38f0118e096c9a366ac920129d21fcdbe34b
+  link: ros_packages/rviz_visual_tools
   scripts:
   - git submodule update --init --recursive

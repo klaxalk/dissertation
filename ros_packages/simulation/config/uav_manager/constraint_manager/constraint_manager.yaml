@@ -1,0 +1,44 @@
+rate: 25
+
+estimator_types: [
+  "T265",
+  "OBJECT",
+  "VIO",
+  "ICP",
+  "RTK",
+  "OPTFLOWGPS",
+  "GPS",
+  "OPTFLOW",
+  "OTHER",
+]
+
+constraints: [
+  "medium",
+]
+
+constraint_management:
+
+  # list of allowed gains per odometry mode
+  allowed_constraints:
+    T265: ["medium"]
+    OBJECT: ["medium"]
+    VIO: ["medium"]
+    ICP: ["medium"]
+    RTK: ["medium"]
+    OPTFLOWGPS: ["medium"]
+    GPS: ["medium"]
+    OPTFLOW: ["medium"]
+    OTHER: ["medium"]
+
+  # those gains will be used automatically when a localization mode switches
+  # and the current gains are not in the allowed list (next paragraphs)
+  fallback_constraints:
+    T265: "medium"
+    OBJECT: "medium"
+    VIO: "medium"
+    ICP: "medium"
+    RTK: "medium"
+    OPTFLOWGPS: "medium"
+    GPS: "medium"
+    OPTFLOW: "medium"
+    OTHER: "medium"

@@ -1,0 +1,27 @@
+medium:
+
+  horizontal:
+    speed: 6.0
+    acceleration: 2.0
+    jerk: 1.0
+    snap: 1.0
+
+  vertical:
+
+    ascending:
+      speed: 1.0
+      acceleration: 1.0
+      jerk: 1.0
+      snap: 1.0
+
+    descending:
+      speed: 1.0
+      acceleration: 1.0
+      jerk: 1.0
+      snap: 1.0
+
+  yaw:
+    speed: 1.0
+    acceleration: 1.0
+    jerk: 3.0
+    snap: 5.0
