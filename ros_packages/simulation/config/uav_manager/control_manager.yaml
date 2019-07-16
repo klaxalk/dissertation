@@ -1,21 +1,24 @@
 # - list of names of dynamically loaded trackers
-# - trackers follow the mrs_uav_manager/Tracker.h interface
 trackers : [
-  "mrs_trackers/LandoffTracker",
-  "mrs_trackers/MpcTracker",
+  "MpcTracker",
+  "LineTracker",
+  "LandoffTracker",
+  "JoyTracker",
+  "MatlabTracker",
+  "NullTracker",
 ]
 
 # - list of names of dynamically loaded controllers
-# - controllers follow the mrs_uav_manager/Controller.h interface
 controllers : [
-  "mrs_controllers/So3Controller",
-  "mrs_controllers/FailsafeController",
-  "mrs_controllers/MpcController",
+  "So3Controller",
+  "MpcController",
+  "NsfController",
+  "AttitudeController",
+  "FailsafeController",
 ]
 
 # - this is the "do nothing tracker", which is active when no other is
-# - NullTracker is defined in the mrs_uav_manager package
-null_tracker: "mrs_uav_manager/NullTracker"
+null_tracker: "NullTracker"
 
 status_timer_rate:  10 # [Hz]
 
@@ -28,15 +31,17 @@ safety:
   tilt_limit_eland: 60 # [deg]
   tilt_limit_disarm: 90 # [deg]
 
-  control_error_eland: 10.5 # [m]
-  control_error_failsafe: 20.5 # [m]
+  # tracker used for emergancy hover routine
+  ehover_tracker: "LandoffTracker"
 
-  # - this tracker will be used for calling the emergancy hover routine
-  ehover_tracker: "mrs_trackers/LandoffTracker"
+  # controller used for safety landing (feed forward)
+  failsafe_controller: "FailsafeController"
 
-  # - this controller will be used for emergancy landing
-  failsafe_controller: "mrs_controllers/FailsafeController"
-  odometry_max_missing_time: 0.5 # [s]
+  # controller used for emergancy (controller) landing
+  eland_controller: "So3Controller"
+
+  # after not receiving odometry for more than this, the failsafe landing will trigger
+  odometry_max_missing_time: 1.0 # [s]
 
   elanding_timer_rate: 10
   elanding_cutoff_height:  1.0
@@ -45,12 +50,12 @@ safety:
   tilt_error_failsafe:
 
     enabled: false
-    tilt_error_threshold: 40 # [deg]
+    tilt_error_threshold: 30 # [deg]
     min_height: 0.5 # [m]
 
   rc_eland:
 
-    enabled: false
+    enabled: true
     channel_number: 7 # [-]
     threshold: 1500 # [us]
 
@@ -81,5 +86,17 @@ joystick:
   joystick_timer_rate: 30 # [Hz]
 
 rc_joystick:
+
   enabled: false
-  channel_number: 8
+  channel_number: 6 # indexed from 0
+
+  # switch the chanel repeatedly to enable the joystic control
+  # n_switches need to occur within a time timeout
+  timeout: 2.0 # [s]
+  n_switches: 5 # [-]
+
+  channels:
+    pitch: 2
+    roll: 0
+    yaw: 3
+    thrust: 1

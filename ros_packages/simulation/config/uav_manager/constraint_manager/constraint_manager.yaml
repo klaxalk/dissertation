@@ -1,8 +1,10 @@
 rate: 25
 
 estimator_types: [
+  "BRICKFLOW",
+  "HECTOR",
   "T265",
-  "OBJECT",
+  "BRICK",
   "VIO",
   "ICP",
   "RTK",
@@ -13,32 +15,40 @@ estimator_types: [
 ]
 
 constraints: [
+  "slow",
   "medium",
+  "fast",
+  "darpa",
 ]
 
 constraint_management:
 
   # list of allowed gains per odometry mode
   allowed_constraints:
-    T265: ["medium"]
-    OBJECT: ["medium"]
-    VIO: ["medium"]
-    ICP: ["medium"]
-    RTK: ["medium"]
-    OPTFLOWGPS: ["medium"]
-    GPS: ["medium"]
-    OPTFLOW: ["medium"]
-    OTHER: ["medium"]
+    BRICKFLOW: ["slow", "medium", "fast", "darpa"]
+    OPTFLOW: ["slow", "medium", "fast", "darpa"]
+    HECTOR: ["slow", "medium", "fast", "darpa"]
+    T265: ["slow", "medium", "fast"]
+    BRICK: ["slow"]
+    VIO: ["slow"]
+    ICP: ["slow", "darpa"]
+    RTK: ["slow", "medium", "fast", "darpa"]
+    OPTFLOWGPS: ["slow", "darpa"]
+    GPS: ["slow", "medium", "fast", "darpa"]
+    OPTFLOW: ["slow", "medium", "fast", "darpa"]
+    OTHER: ["slow"]
 
   # those gains will be used automatically when a localization mode switches
   # and the current gains are not in the allowed list (next paragraphs)
   fallback_constraints:
-    T265: "medium"
-    OBJECT: "medium"
-    VIO: "medium"
-    ICP: "medium"
+    BRICKFLOW: "slow"
+    HECTOR: "darpa"
+    T265: "slow"
+    BRICK: "slow"
+    VIO: "slow"
+    ICP: "darpa"
     RTK: "medium"
-    OPTFLOWGPS: "medium"
+    OPTFLOWGPS: "slow"
     GPS: "medium"
-    OPTFLOW: "medium"
-    OTHER: "medium"
+    OPTFLOW: "slow"
+    OTHER: "slow"
