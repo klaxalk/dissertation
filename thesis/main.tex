@@ -2,6 +2,7 @@
 
 \pdfoutput=1
 \documentclass[a4paper,11pt,titlepage,twoside]{article}
+
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb,amsmath}
@@ -27,6 +28,8 @@
 \usepackage{relsize}
 \usepackage{pdfpages}
 \usepackage{url}
+
+%%{ BIBLATEX
 
 \usepackage[backend=bibtex,defernumbers=true,style=ieee]{biblatex}
 
@@ -56,7 +59,9 @@
 
 \addbibresource{bib_postprocessed.bib}
 
-%%{ custom macros
+%%}
+
+%%{ CUSTOM MACROS
 
 \newcommand{\unit}[2]{$#1~\ensuremath{\mathrm{#2}}$}
 \newcommand{\strong}[1]{\textbf{#1}}
@@ -107,15 +112,17 @@
 \setlength{\headheight}{18pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
-%\lfoot{ČVUT FEL, Katedra Kybernetiky, Gerstner Laboratory}
+% \lfoot{ČVUT FEL, Katedra Kybernetiky, Gerstner Laboratory}
 \cfoot{}
-%\rfoot{\thepage$/$\pageref{LastPage}}
+% \rfoot{\thepage$/$\pageref{LastPage}}
 
 \fancypagestyle{plain}
 
 \fancyhead[R]{}
 
 \begin{document}
+
+\input{chapters/title}
 
 \pagestyle{fancy}
 \pagenumbering{roman}
@@ -126,87 +133,77 @@
 
 %%}
 
-%%{ INTRODUCTION
+%% --------------------------------------------------------------
+%% |                  Chapter 1 - Introduction                  |
+%% --------------------------------------------------------------
 
 \section{Introduction}
 
-Lorem ipsum
+\clearpage
 
-%%}
+%% --------------------------------------------------------------
+%% |            Chapter 2 - Unmanned Aerial Vehicles            |
+%% --------------------------------------------------------------
 
-%%{ IONIZING RADIATION IMAGING
-
-\section{Radiation imaging and dosimetry}
-
-%%{ RADIATION DETECTORS
-
-\subsection{Radiation detectors}
-
-%%{ SCINTILLATING DOSIMETERS
-
-\subsubsection{Scintillating dosimeters}
-
-%%}
-
-%%{ CCD DETECTORS
-
-\subsubsection{CCD detectors}
-
-%%}
-
-%%{ TIMEPIX DETECTOR
-
-\subsubsection{Timepix detector}
-
-%%}
-
-%%}
-
-%%{ RADIATION IMAGING TECHNIQUES
-
-\subsection{Radiation imaging techniques}
-
-%%{ CODED APERTURES
-
-\subsubsection{Coded apertures}
-
-%%}
-
-%%{ PINHOLE CAMERAS
-
-\subsubsection{Pinhole cameras}
-
-%%}
-
-%%{ PINHOLE CAMERAS
-
-\subsubsection{X-Ray Optics}
-
-%%}
-
-%%{ COMPTON CAMERAS
-
-\subsubsection{Compton cameras}
-
-%%}
-
-%%}
-
-%%}
+\section{Unmanned Aerial Vehicles}
 
 \clearpage
 
-%%{ GAMMA-RAY CAMERA
+%% --------------------------------------------------------------
+%% |            Chapter 3 - Sensor-driven UAV control           |
+%% --------------------------------------------------------------
 
-\section{Compton $\gamma$-ray camera}
+\section{Sensor-driven UAV control}
 
-%%{ INTERACTION OF IONIZING RADIATION WITH MATTER
+\clearpage
 
-\subsection{Interaction of ionizing radiation with matter}
+%% --------------------------------------------------------------
+%% |           Chapter 4 - Ioning Radiation Detection           |
+%% --------------------------------------------------------------
 
-%%{ DIFFERENTIAL CROSS SECTION
+\section{Ionizing Radiation Detection and Imaging}
 
-\subsubsection{Differential cross section}
+%%{ Ionizing Radiation Detection and Imaging
+
+\subsection{Ionizing Radiation detectors}
+
+%%{ Ionizing Radiation detectors
+
+\subsubsection*{Scintillating dosimeters}
+
+\subsubsection*{Semi-conductor detectors}
+
+\subsubsection*{Pixel detectors}
+
+%%}
+
+\subsection{Radiation imaging techniques}
+
+%%{ Radiation imaging techniques
+
+\subsubsection*{Coded apertures}
+
+\subsubsection*{Pinhole cameras}
+
+\subsubsection*{X-Ray Optics}
+
+\subsubsection*{Compton cameras}
+
+%%}
+
+%%}
+
+\subsection{Compton $\gamma$-ray camera}
+
+%%{ Compton gamma-ray camera
+
+\subsubsection{Interaction of ionizing radiation with matter}
+
+%%{ Interaction of ionizing radiation with matter
+
+\subsubsection*{Differential cross section}
+
+%%{ Differential cross section
 
 In a classical mechanics, the properties of non-elastic scattering of a particle from an object (scattering center) are described by a differential cross section.
 A total cross section characterizes an effective area of an event (collision, scattering).
@@ -283,9 +280,9 @@ This the probability of an \emph{event} (photoelectric effect, Compton scatterin
 
 %%}
 
-%%{ PHOTOELECTRIC EFFECT
+\subsubsection*{Photoelectric effect}
 
-\subsubsection{Photoelectric effect}
+%%{ Photoelectric effect
 
 Photoelectric effect (Einstein, 1905) describes a total absorption of a photon by an electron.
 When the electron is absorbed, the energy of the photon is completely consumed.
@@ -338,9 +335,9 @@ The probability of a single photoelectric effect event within a material of thic
 
 %%}
 
-%%{ COMPTON SCATTERING
+\subsubsection*{Compton scattering}
 
-\subsubsection{Compton scattering}
+%%{ Compton scattering
 
 Compton scattering occurs when a photon transfers a portion of its energy to an electron.
 During this interaction, the photon is deflected from its original path by the radial angle $\theta$ and azimuthal angle $\phi$.
@@ -404,9 +401,9 @@ Figure~\ref{fig:compton_probs} shows the differential cross section of the Compt
 
 %%}
 
-%%{ ELECTRON PAIR PRODUCTION
+\subsubsection*{Electron-positron pair and triplet production}
 
-\subsubsection{Electron-positron pair and triplet production}
+%%{ Electron-positron pair and triplet production
 
 At higher energies, \unit{>1}{MeV}, the photoelectric effect and Compton scattering are dominated by the electron-positron pair and triplet productions effects \cite{hubbell1980pair}.
 Since the aim of this work is to simulate the Compton camera, where only the first two effects are responsible in producing measurement, we omit the later two.
@@ -414,9 +411,9 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 
 %%}
 
-%%{ PHOTON ATTENUATION
+\subsubsection*{Photon attenuation}
 
-\subsubsection{Photon attenuation}
+%%{ Photon attenuation
 
 \begin{figure}[ht]
   \centering
@@ -442,25 +439,25 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 
 \clearpage
 
-%%%{ RADIATION SOURCE ESTIMATION
+%% --------------------------------------------------------------
+%% |        Chapter 5 - radiation source state estimation       |
+%% --------------------------------------------------------------
 
-%\section{Radiation source state estimation}
+\section{Radiation source state estimation}
 
-%%%}
+\clearpage
 
-%%%{ DISTRIBUTED SENSING USING MULTIPLE UAVS
+%% --------------------------------------------------------------
+%% |               Chapter 6 - Distributed sensing              |
+%% --------------------------------------------------------------
 
-%\section{Distributed sensing using multiple UAVs}
+\section{Distributed sensing using multiple UAVs}
 
-%%%}
+\section{Autonomous tracking of a moving radiation source}
 
-%%%{ AUTONOMOUS TRACKING OF A MOVING RADIATION SOURCE
-
-%\section{Autonomous tracking of a moving radiation source}
-
-%\subsection{Predicting target motion}
-
-%%%}
+%% --------------------------------------------------------------
+%% |                   Chapter 5 - Conclusions                  |
+%% --------------------------------------------------------------
 
 %%%{ CONCLUSIONS
 
@@ -499,8 +496,6 @@ Unrelated conferences:
 
 %%%}
 
-%%{ DOC BOTTOM
-
 %%{ REFERENCES
 
 \conditionalClearPage
@@ -513,7 +508,7 @@ Unrelated conferences:
 
 \appendix
 
-\section{Related Publications}
+\section{Thesis-related author's publications}
 
 Below are listed all publications of the author.
 % Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
@@ -532,7 +527,7 @@ Below are listed all publications of the author.
 \nocite{}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={conference},heading=none,title={}]
 
-\section{Unrelated Publications}
+\section{Thesis-unrelated author's publications}
 
 \subsection*{Articles in peer-reviewed journals with impact factor}
 \nocite{}
@@ -547,5 +542,3 @@ Below are listed all publications of the author.
 %%}
 
 \end{document}
-
-%%}
