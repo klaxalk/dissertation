@@ -1,7 +1,7 @@
 %%{ DOC HEAD
 
 \pdfoutput=1
-\documentclass[a4paper,11pt,titlepage,twoside]{article}
+\documentclass[a4paper,11pt,titlepage,twoside]{book}
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
@@ -13,11 +13,10 @@
 \usepackage{color}
 \usepackage{indentfirst}
 \usepackage{graphicx}       %%% graphics for dvips
-\usepackage{fancyhdr}
+\usepackage{fancyhdr, lastpage}
 \usepackage{longtable}
 \usepackage{pifont}
 \usepackage{makeidx}
-\usepackage{lastpage}
 \usepackage{multirow}
 \usepackage{dcolumn}
 \usepackage{epstopdf}
@@ -28,6 +27,7 @@
 \usepackage{relsize}
 \usepackage{pdfpages}
 \usepackage{url}
+\usepackage{lipsum}
 
 %%{ BIBLATEX
 
@@ -88,14 +88,20 @@
 
 \newcommand{\Author}{Ing. Tomáš Báča}
 \newcommand{\Supervisor}{Ing. Martin Saska, Dr. rer. nat.}
-\newcommand{\Title}{Distributed Sensing with Group of Unmanned Aerial Vehicles}
-\newcommand{\DocName}{Thesis}
-\newcommand{\Keywords}{mobile robotics}
+\newcommand{\Title}{Distributed Sensing with Group of Micro Unmanned Aerial Vehicles}
+\newcommand{\DocName}{Doctoral Thesis}
+\newcommand{\Keywords}{Unmanned Aerial Vehicles, Ionizing localization}
 \newcommand{\Date}{1/1/2019}
 \newcommand{\DOCVersion}{0.1}
 
+% altered margins
+\setlength{\oddsidemargin}{+0.5cm}
+\setlength{\evensidemargin}{-0.5cm}
+
+% ??
 \def\clinks{false}
 
+% listings
 \lstset{breaklines=true,captionpos=b,frame=single,language=sh,float=h}
 \lstloadlanguages{sh,c}
 \def\lstlistingname{Listing}%{Výpis}
@@ -108,100 +114,177 @@
 \setlength{\parindent}{1cm}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
-\pagestyle{fancy}
+% offsets the head down
 \setlength{\headheight}{18pt}
-\renewcommand{\footrulewidth}{0.4pt}
 
-% \lfoot{ČVUT FEL, Katedra Kybernetiky, Gerstner Laboratory}
-\cfoot{}
-% \rfoot{\thepage$/$\pageref{LastPage}}
+% foot line
+\renewcommand{\footrulewidth}{0.4pt}
 
 \fancypagestyle{plain}
 
-\fancyhead[R]{}
+% clear the default layout
+\fancyhead{}
+\fancyfoot{}
+
+% page header
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+\fancyhead[LE,RO]{\thepage/\pageref{LastPageg}
+
+% page footer
+\fancyfoot[L]{CTU in Prague}
+\fancyfoot[R]{Department of Cybernetics}
+\fancyfoot[C]{}
 
 \begin{document}
 
 \input{chapters/title}
 
 \pagestyle{fancy}
-\pagenumbering{roman}
-\cfoot{\thepage}
+
 \tableofcontents
-\pagenumbering{arabic}
-\cleardoublepage
 
 %%}
+
+\cleardoublepage
 
 %% --------------------------------------------------------------
 %% |                  Chapter 1 - Introduction                  |
 %% --------------------------------------------------------------
 
-\section{Introduction}
+\chapter{Introduction}
+
+\section{Review of the Art}
+
+\subsection{Micro Aerial Vehicles}
+
+\subsection{Sensor-driven MAV control}
+
+\subsection{Ionizing radiation localization}
+
+\subsection{Distributed radiation localization using MAVs}
+
+\section{Contributions}
+
+\section{Mathematical notation and nomenclature}
+
+%%{ mathematical notation
+
+The table \ref{tab:notation} denotes the mathematical notation used throughout this thesis.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ll}
+    \hline
+    Symbol & Description \\
+    \hline
+    lower or uppercase letter, e.g., $n$, $N$ & a scalar \\
+    bold lowercase letter, e.g., \textbf{x} & a column vector \\
+    bold uppercase letter, e.g., \textbf{A} & a matrix \\
+    $\textbf{x}^T$, $\textbf{A}^T$ & vector and matrix transpose \\
+    underlined vector, e.g., \textbf{\underline{x}} & concatenated vectors $\left[\textbf{x}_1^T,\textbf{x}_2^T,...,\textbf{x}_n^T\right]^T$ \\
+    \textbf{I} & identity matrix \\
+    \textbf{1} & unity matrix \\
+    $x^{(W)}$ & $x$ in coordinate system $W$ \\
+    $x_{[n]}$, $\textbf{x}_{[n]}$ & $x$, $\textbf{x}$ in the sample time $n \in \mathbb{N}$ \\
+    $\mathbb{R}$, $\mathbb{N}$ & set of real and natural numbers \\
+    \hline
+  \end{tabular}
+  \caption{Overview of mathematical notation.}
+  \label{tab:notation}
+\end{table}
+
+%%}
 
 \clearpage
 
 %% --------------------------------------------------------------
-%% |            Chapter 2 - Unmanned Aerial Vehicles            |
+%% |              Chapter 2 - Micro Aerial Vehicles             |
 %% --------------------------------------------------------------
 
-\section{Unmanned Aerial Vehicles}
+\chapter{Micro Aerial Vehicles}
+
+\section{Automatic control of multirotor MAVs}
+
+\subsection{Multirotor MAV model}
+
+\section{Trajectory tracking using MPC tracker}
+
+\section{Robust control with MPC controller}
 
 \clearpage
 
 %% --------------------------------------------------------------
-%% |            Chapter 3 - Sensor-driven UAV control           |
+%% |               Chapter 3 - MAV system platform              |
 %% --------------------------------------------------------------
 
-\section{Sensor-driven UAV control}
+\chapter{Research-focused MAV software platform}
+
+\section{Paradigms for research evaluation}
+
+\section{System's building blocks}
+
+\section{Control system architecture}
 
 \clearpage
 
 %% --------------------------------------------------------------
-%% |           Chapter 4 - Ioning Radiation Detection           |
+%% |            Chapter 4 - Sensor-driven UAV control           |
 %% --------------------------------------------------------------
 
-\section{Ionizing Radiation Detection and Imaging}
+\chapter{Sensor-driven MAV control}
+
+\clearpage
+
+%% --------------------------------------------------------------
+%% |           Chapter 5 - Ioning Radiation Detection           |
+%% --------------------------------------------------------------
+
+\chapter{Ionizing Radiation Detection and Imaging}
 
 %%{ Ionizing Radiation Detection and Imaging
 
-\subsection{Ionizing Radiation detectors}
+\section{Ionizing Radiation detectors}
 
 %%{ Ionizing Radiation detectors
 
-\subsubsection*{Scintillating dosimeters}
+\subsection{Scintillating dosimeters}
 
-\subsubsection*{Semi-conductor detectors}
+\subsection{Semi-conductor detectors}
 
-\subsubsection*{Pixel detectors}
+\subsection{Pixel detectors}
 
 %%}
 
-\subsection{Radiation imaging techniques}
+\section{Radiation imaging techniques}
 
 %%{ Radiation imaging techniques
 
-\subsubsection*{Coded apertures}
+\subsection{Coded apertures}
 
-\subsubsection*{Pinhole cameras}
+\subsection{Pinhole cameras}
 
-\subsubsection*{X-Ray Optics}
+\subsection{X-Ray Optics}
 
-\subsubsection*{Compton cameras}
-
-%%}
+\subsection{Compton cameras}
 
 %%}
 
-\subsection{Compton $\gamma$-ray camera}
+%%}
 
-%%{ Compton gamma-ray camera
+\clearpage
 
-\subsubsection{Interaction of ionizing radiation with matter}
+%% --------------------------------------------------------------
+%% |                 Chapter 6 - Compton camera                 |
+%% --------------------------------------------------------------
+
+\chapter{Compton $\gamma$-ray camera}
+
+\section{Interaction of ionizing radiation with matter}
 
 %%{ Interaction of ionizing radiation with matter
 
-\subsubsection*{Differential cross section}
+\subsection{Differential cross section}
 
 %%{ Differential cross section
 
@@ -280,7 +363,7 @@ This the probability of an \emph{event} (photoelectric effect, Compton scatterin
 
 %%}
 
-\subsubsection*{Photoelectric effect}
+\subsection{Photoelectric effect}
 
 %%{ Photoelectric effect
 
@@ -335,7 +418,7 @@ The probability of a single photoelectric effect event within a material of thic
 
 %%}
 
-\subsubsection*{Compton scattering}
+\subsection{Compton scattering}
 
 %%{ Compton scattering
 
@@ -401,7 +484,7 @@ Figure~\ref{fig:compton_probs} shows the differential cross section of the Compt
 
 %%}
 
-\subsubsection*{Electron-positron pair and triplet production}
+\subsection{Electron-positron pair and triplet production}
 
 %%{ Electron-positron pair and triplet production
 
@@ -411,7 +494,7 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 
 %%}
 
-\subsubsection*{Photon attenuation}
+\subsection{Photon attenuation}
 
 %%{ Photon attenuation
 
@@ -435,33 +518,39 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 
 %%}
 
-%%}
+\clearpage
+
+%% --------------------------------------------------------------
+%% |        Chapter 7 - radiation source state estimation       |
+%% --------------------------------------------------------------
+
+\chapter{Radiation source state estimation}
 
 \clearpage
 
 %% --------------------------------------------------------------
-%% |        Chapter 5 - radiation source state estimation       |
+%% |               Chapter 8 - Distributed sensing              |
 %% --------------------------------------------------------------
 
-\section{Radiation source state estimation}
+\chapter{Distributed sensing using multiple UAVs}
 
 \clearpage
 
 %% --------------------------------------------------------------
-%% |               Chapter 6 - Distributed sensing              |
+%% |          Chapter 9 - Radiation source localization         |
 %% --------------------------------------------------------------
 
-\section{Distributed sensing using multiple UAVs}
+\chapter{Radiation source localization and tracking}
 
-\section{Autonomous tracking of a moving radiation source}
+\clearpage
 
 %% --------------------------------------------------------------
-%% |                   Chapter 5 - Conclusions                  |
+%% |                  Chapter 10 - Conclusions                  |
 %% --------------------------------------------------------------
 
-%%%{ CONCLUSIONS
+\chapter{Conclusions}
 
-\section{Conclusions}
+%%{ conclusion
 
 Related journals (impacted):
 \cite{baca2019jfr}
@@ -494,7 +583,7 @@ Unrelated conferences:
 \cite{daniel2016terrestrial}
 \cite{daniel2017xray}
 
-%%%}
+%%}
 
 %%{ REFERENCES
 
@@ -507,13 +596,16 @@ Unrelated conferences:
 %%{ APENDICES
 
 \appendix
+\renewcommand\chaptername{Appendix}
 
-\section{Thesis-related author's publications}
+\chapter{List of author's publications}
 
 Below are listed all publications of the author.
-% Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
-% Journal articles also contains information about the Impact Factor~(IF) by Thomson Reuters and the CiteScore~(CS) by Scopus.
-% The publications~\cite{VNS_DOP, Loianno_RAL_desert, Penicka_POP} are only reported with CS due to the novelty of journal that is expected to receive impact factor in June 2020.
+Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
+Journal articles also contains information about the Impact Factor~(IF) by Web of Science and the CiteScore~(CS) by Scopus.
+The publication~\cite{Loianno_RAL_desert} is only reported with CS due to the novelty of journal that is expected to receive impact factor in June 2020.
+
+\section{Thesis-related author's publications}
 
 \subsection*{Thesis-related articles in peer-reviewed journals with Impact Factor~(IF)}
 \nocite{}
