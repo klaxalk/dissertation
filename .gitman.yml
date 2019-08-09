@@ -87,7 +87,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
   sparse_paths:
   -
-  rev: 44f39449d022844ea74c3a4ae9545bef056ac078
+  rev: 682fafdb9386b683ea6ba16ad9aaa2a11e161f6a
   link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
