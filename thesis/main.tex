@@ -29,6 +29,13 @@
 \usepackage{url}
 \usepackage{lipsum}
 
+% change formatting of lists
+\usepackage{enumitem}
+\setlist{nosep}
+% \setlist{noitemsep}
+% how to format particular lists?
+% \begin{itemize}[topsep=8pt,itemsep=4pt,partopsep=4pt, parsep=4pt]
+
 %%{ BIBLATEX
 
 \usepackage[backend=bibtex,defernumbers=true,style=ieee]{biblatex}
@@ -97,9 +104,9 @@
 \newcommand{\Date}{1/1/2019}
 \newcommand{\DOCVersion}{0.1}
 
-% % altered margins
-% \setlength{\oddsidemargin}{+0.5cm}
-% \setlength{\evensidemargin}{-0.5cm}
+% altering margins
+\setlength{\oddsidemargin}{+0.5cm}
+\setlength{\evensidemargin}{-0.5cm}
 
 % ??
 \def\clinks{false}
@@ -157,15 +164,9 @@
 
 \chapter{Introduction}
 
-\section{Review of the Art}
+%%{ Introduction
 
-\subsection{Micro Aerial Vehicles}
-
-\subsection{Sensor-driven MAV control}
-
-\subsection{Ionizing radiation localization}
-
-\subsection{Distributed radiation localization using MAVs}
+\section{Motivation \& Thesis goals}
 
 \section{Contributions}
 
@@ -199,29 +200,72 @@ The table \ref{tab:notation} denotes the mathematical notation used throughout t
 
 %%}
 
-\clearpage
+%%}
 
 %% --------------------------------------------------------------
-%% |              Chapter 2 - Micro Aerial Vehicles             |
+%% |                  Chapter 2 - Related work                  |
+%% --------------------------------------------------------------
+
+\chapter{Background and related work}
+
+%%{ Related work
+
+\section{Micro Aerial Vehicles}
+
+\subsection{Control inputs}
+
+\subsection{Multirotor dynamics}
+
+\subsection{Automatic control}
+
+\subsection{Frame of reference conventions and nomenclature}
+
+\section{Target following with an MAV}
+
+\section{Ionizing radiation localization}
+
+\subsection{Radiation detection principles}
+
+\subsection{Detector types}
+
+\subsection{Radiation localization by aerial vehicles}
+
+\section{Distributed radiation localization using MAVs}
+
+%%}
+
+%% --------------------------------------------------------------
+%% |              Chapter 3 - Micro Aerial Vehicles             |
+%% --------------------------------------------------------------
+%% |                   MMAR 2016 Embedded MPC                   |
+%% |                    IROS 2018 MPC Tracker                   |
 %% --------------------------------------------------------------
 
 \chapter{Micro Aerial Vehicles}
 
-\section{Automatic control of multirotor MAVs}
+%%{ Micro Aerial Vehicles
 
-\subsection{Multirotor MAV model}
+\section{Multirotor helicopter model}
 
-\section{Trajectory tracking using MPC tracker}
+\subsection{Rotational dynamics}
 
-\section{Robust control with MPC controller}
+\subsection{Translational dynamics}
 
-\clearpage
+\subsection{Propulsion model}
+
+\section{Agile trajectory tracking with MAV collision avoidance}
+
+\section{Robust hybrid nonlinear predictive controller}
+
+%%}
 
 %% --------------------------------------------------------------
-%% |               Chapter 3 - MAV system platform              |
+%% |                  Chapter 4 - MRS Platform                  |
 %% --------------------------------------------------------------
 
 \chapter{Research-focused MAV software platform}
+
+%%{ MRS platform
 
 \section{Paradigms for research evaluation}
 
@@ -229,18 +273,28 @@ The table \ref{tab:notation} denotes the mathematical notation used throughout t
 
 \section{Control system architecture}
 
-\clearpage
+%%}
 
 %% --------------------------------------------------------------
-%% |            Chapter 4 - Sensor-driven UAV control           |
+%% |          Chapter 5 - Target following with an MAV          |
+%% --------------------------------------------------------------
+%% |           JFR 2018 MBZIRC Landing + Trasure hunt           |
 %% --------------------------------------------------------------
 
-\chapter{Sensor-driven MAV control}
+\chapter{Target following with an MAV}
 
-\clearpage
+%%{ Target following
+
+\section{Target state estimation}
+
+\section{Trajectory planning}
+
+\section{The MBZIRC 2017 robotic challenge}
+
+%%}
 
 %% --------------------------------------------------------------
-%% |           Chapter 5 - Ioning Radiation Detection           |
+%% |           Chapter 6 - Ioning Radiation Detection           |
 %% --------------------------------------------------------------
 
 \chapter{Ionizing Radiation Detection and Imaging}
@@ -275,13 +329,15 @@ The table \ref{tab:notation} denotes the mathematical notation used throughout t
 
 %%}
 
-\clearpage
-
 %% --------------------------------------------------------------
-%% |                 Chapter 6 - Compton camera                 |
+%% |                 Chapter 7 - Compton camera                 |
+%% --------------------------------------------------------------
+%% |                      JINST 2018 Rospix                     |
 %% --------------------------------------------------------------
 
 \chapter{Compton $\gamma$-ray camera}
+
+%%{ Compton camera
 
 \section{Interaction of ionizing radiation with matter}
 
@@ -521,31 +577,63 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 
 %%}
 
-\clearpage
+\section{Compton camera principle}
+
+\section{Gazebo/ROS camera model}
+
+%%}
 
 %% --------------------------------------------------------------
-%% |        Chapter 7 - radiation source state estimation       |
+%% |  Chapter 8 - radiation source localization and estimation  |
 %% --------------------------------------------------------------
 
 \chapter{Radiation source state estimation}
 
-\clearpage
+%%{ Radiation source estimation
+
+\section{The source direction hypotheses}
+
+\subsection{Uncertainty propagation}
+
+\section{Static case}
+
+\section{Dynamic case}
+
+\subsection{Assumptions}
+
+\begin{itemize}
+  \item A single radiation source,
+  \item compact source,
+  \item static,
+  \item or moving with respect to a known model,
+  \item ...
+\end{itemize}
+
+\subsection{2-D relaxation}
+
+\subsection{General case}
+
+%%}
 
 %% --------------------------------------------------------------
-%% |               Chapter 8 - Distributed sensing              |
+%% |                   Chapter 9 - Evaluation                  |
 %% --------------------------------------------------------------
 
-\chapter{Distributed sensing using multiple UAVs}
+\chapter{Evaluation}
 
-\clearpage
+%%{ Evaluation
 
-%% --------------------------------------------------------------
-%% |          Chapter 9 - Radiation source localization         |
-%% --------------------------------------------------------------
+\section{Simulation scenarios}
 
-\chapter{Radiation source localization and tracking}
+\section{``Traditional'' mapping with a scintillator}
 
-\clearpage
+\section{Micro Aerial Vehicle with the Compton camera}
+
+\section{Group of Micro Aerial Vehicles with the Compton camera}
+
+\section{Results}
+
+%%}
 
 %% --------------------------------------------------------------
 %% |                  Chapter 10 - Conclusions                  |
@@ -553,7 +641,7 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 
 \chapter{Conclusions}
 
-%%{ conclusion
+%%{ Author's publications
 
 Related journals (impacted):
 \cite{baca2019jfr}
@@ -631,8 +719,6 @@ The publication~\cite{loianno2018localization} is only reported with CS due to t
 \subsection*{Conference proceedings}
 \nocite{}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={conference},heading=none,title={}]
-
-\clearpage
 
 %%}
 
