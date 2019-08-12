@@ -1,0 +1,116 @@
+\usetikzlibrary{shapes.arrows,backgrounds,arrows,automata,shapes,positioning,calc,through}
+
+%%{ ARROWS
+
+\tikzset{
+  myarrow/.style={
+    draw,
+    fill=orange,
+    single arrow,
+    minimum height=3.5ex,
+    single arrow head extend=1ex
+  }
+}
+
+\newcommand{\arrowup}{%
+  \vspace{-0.8em}
+  \tikz [baseline=-0.5ex]{\node [myarrow,rotate=90] {};}
+  \vspace{-1.4em}
+}
+
+\newcommand{\arrowdown}{%
+  \vspace{-0.8em}
+  \tikz [baseline=-1ex]{\node [myarrow,rotate=-90] {};}
+  \vspace{-1.5em}
+}
+
+\newcommand{\arrowright}{%
+  \tikz [baseline=-1ex]{\node [myarrow,rotate=0] {};}
+}
+
+\newcommand{\arrowleft}{%
+  \tikz [baseline=-1ex]{\node [myarrow,rotate=180] {};}
+}
+
+%%}
+
+%%{ CHECKMARK
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+%%}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzset{
+  state/.style={
+    rectangle,
+    draw=black, very thick,
+    minimum height=1.0em,
+    text centered,
+  },
+  state_gray/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=gray!40,
+    minimum height=1.0em,
+    text centered,
+  },
+  state_white/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=white,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+  },
+  state_green/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=green!50,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+  },
+  state_red/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=red!70,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+  },
+  state_blue/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=blue!40,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+  },
+  final_state/.style={
+    rectangle,
+    rounded corners,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  initial_state/.style={
+    rectangle,
+    double=white,
+    double distance=1pt,
+    inner sep=2pt,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  point/.style={
+    circle,
+    inner sep=0pt,
+    minimum size=3pt,
+    fill=red
+  },
+}
+

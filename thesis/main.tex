@@ -29,12 +29,27 @@
 \usepackage{url}
 \usepackage{lipsum}
 
+\usepackage{tikz}
+\include{tikz-templates}
+
 % change formatting of lists
 \usepackage{enumitem}
 \setlist{nosep}
 % \setlist{noitemsep}
 % how to format particular lists?
 % \begin{itemize}[topsep=8pt,itemsep=4pt,partopsep=4pt, parsep=4pt]
+
+% change spacing of the table of contents
+\usepackage{tocloft}
+% \renewcommand\cftchapafterpnum{\vskip5pt}
+% \renewcommand\cftsecafterpnum{\vskip5pt}
+
+% change formatting of a chapter
+\usepackage{titlesec}
+\titleformat{\chapter}[block]
+{\normalfont\huge\bfseries}{Chapter \thechapter\\\vspace{0.1em}\\}{1em}{\Huge}
+% {?}{before}{after}
+\titlespacing*{\chapter}{0pt}{-1em}{2em}
 
 %%{ BIBLATEX
 
@@ -104,9 +119,9 @@
 \newcommand{\Date}{1/1/2019}
 \newcommand{\DOCVersion}{0.1}
 
-% altering margins
-\setlength{\oddsidemargin}{+0.5cm}
-\setlength{\evensidemargin}{-0.5cm}
+% % altering margins
+% \setlength{\oddsidemargin}{+0.5cm}
+% \setlength{\evensidemargin}{-0.5cm}
 
 % ??
 \def\clinks{false}
@@ -166,9 +181,9 @@
 
 %%{ Introduction
 
-\section{Motivation \& Thesis goals}
+\section{Motivation \& thesis goals}
 
-\section{Contributions}
+\section{Thesis contributions}
 
 \section{Mathematical notation and nomenclature}
 
@@ -228,9 +243,9 @@ The table \ref{tab:notation} denotes the mathematical notation used throughout t
 
 \subsection{Detector types}
 
-\subsection{Radiation localization by aerial vehicles}
+\subsection{Pixel detectors}
 
-\section{Distributed radiation localization using MAVs}
+\section{Radiation localization by aerial vehicles}
 
 %%}
 
@@ -263,15 +278,21 @@ The table \ref{tab:notation} denotes the mathematical notation used throughout t
 %% |                  Chapter 4 - MRS Platform                  |
 %% --------------------------------------------------------------
 
-\chapter{Research-focused MAV software platform}
+\chapter{Research-focused MAV platform}
 
 %%{ MRS platform
 
-\section{Paradigms for research evaluation}
+\section{Paradigms for research and evaluation}
 
 \section{System's building blocks}
 
 \section{Control system architecture}
+
+\begin{figure}
+  \input{./fig/tikz/mrs_platform_diagram.tex}
+  \label{fig:mrs_platform_all}
+  \caption{TODO}
+\end{figure}
 
 %%}
 
@@ -392,13 +413,13 @@ In physics literature, the unit of the cross section is typically $\mathrm{m}^2$
   \centering
   \begin{subfigure}{0.49\textwidth}
     \centering
-    \includegraphics[width=0.8\textwidth]{./fig/compton_scattering_illustration_1.pdf}
+    \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_scattering_illustration_1.pdf}
     \caption{Showcase of solid angle $d\Omega$ and the differential size of the impact plane $d\sigma$ for $\theta=$~\unit{60}{deg}.}
     \label{fig:differential_cross_section_1}
   \end{subfigure}
   \begin{subfigure}{0.49\textwidth}
     \centering
-    \includegraphics[width=0.8\textwidth]{./fig/compton_scattering_illustration_2.pdf}
+    \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_scattering_illustration_2.pdf}
     \caption{Showcase of solid angle $d\Omega$ and the differential size of the impact plane $d\sigma$ for $\theta=$~\unit{120}{deg}.}
     \label{fig:differential_cross_section_2}
   \end{subfigure}

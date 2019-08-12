@@ -1,0 +1,251 @@
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzset{radiation/.style={{decorate,decoration={expanding waves,angle=90,segment length=0.1em}}}}
+
+\begin{tikzpicture}[->,>=stealth', node distance=7.0em]
+
+  \node[state_blue, shift = {(0.0em, 0.0em)}] (uav_manager) {
+    \begin{tabular}{c}
+      \small UAV manager
+    \end{tabular}
+  };
+
+  \node[state_blue, below of = uav_manager, shift = {(0.0em, -0.0em)}] (control_manager) {
+    \begin{tabular}{c}
+      \small Control manager
+    \end{tabular}
+  };
+
+  \node[state_red, right of = control_manager, shift = {(5.0em, 0.0em)}] (landoff_tracker) {
+    \begin{tabular}{c}
+      \small Landoff Tracker
+    \end{tabular}
+  };
+
+  \node[state_red, below of = landoff_tracker, shift = {(0.0em, 4.5em)}] (mpc_tracker) {
+    \begin{tabular}{c}
+      \small MPC tracker
+    \end{tabular}
+  };
+
+  \node[state_red, below of = mpc_tracker, shift = {(0.0em, 4.5em)}] (joy_tracker) {
+    \begin{tabular}{c}
+      \small Joy Tracker
+    \end{tabular}
+  };
+
+  \node[state_red, below of = joy_tracker, shift = {(0.0em, 4.5em)}] (matlab_tracker) {
+    \begin{tabular}{c}
+      \small Matlab Tracker
+    \end{tabular}
+  };
+
+  \node[state_red, below of = matlab_tracker, shift = {(0.0em, 4.5em)}] (csv_tracker) {
+    \begin{tabular}{c}
+      \small CSV tracker
+    \end{tabular}
+  };
+
+  \node[state_green, left of = control_manager, shift = {(-5.0em, 0.0em)}] (so3_controller) {
+    \begin{tabular}{c}
+      \small SO(3) controller
+    \end{tabular}
+  };
+
+  \node[state_green, below of = so3_controller, shift = {(0.0em, 4.5em)}] (mpc_controller) {
+    \begin{tabular}{c}
+      \small MPC controller
+    \end{tabular}
+  };
+
+  \node[state_blue, above of = so3_controller, shift = {(0.0em, -2.0em)}] (gain_manager) {
+    \begin{tabular}{c}
+      \small Gain manager
+    \end{tabular}
+  };
+
+  \node[state_green, below of = mpc_controller, shift = {(0.0em, 4.5em)}] (failsafe_controller) {
+    \begin{tabular}{c}
+      \small Failsafe controller
+    \end{tabular}
+  };
+
+  \node[state_green, below of = failsafe_controller, shift = {(0.0em, 4.5em)}] (nsf_controller) {
+    \begin{tabular}{c}
+      \small NSF conroller
+    \end{tabular}
+  };
+
+  \node[state_green, below of = nsf_controller, shift = {(0.0em, 4.5em)}] (attitude_controller) {
+    \begin{tabular}{c}
+      \small Attitude controller
+    \end{tabular}
+  };
+
+  \node[state_blue, above of = landoff_tracker, shift = {(0.0em, -2.0em)}] (constraint_manager) {
+    \begin{tabular}{c}
+      \small Constraint manager
+    \end{tabular}
+  };
+
+  \node[state, below of = control_manager, shift = {(4.0em, 0.0em)}] (mavros2) {
+    \begin{tabular}{c}
+      \small Mavros
+    \end{tabular}
+  };
+
+  \node[state, below of = mavros2, shift = {(0.0em, 4.5em)}] (pixhawk2) {
+    \begin{tabular}{c}
+      \small Pixhawk
+    \end{tabular}
+  };
+
+  \node[state_white, below of = control_manager, shift = {(0.0em, -6.0em)}] (odometry) {
+    \begin{tabular}{c}
+      \small Odometry
+    \end{tabular}
+  };
+
+  \node[state, left of = odometry, shift = {(-5.0em, -3.0em)}] (bumper) {
+    \begin{tabular}{c}
+      \small Obstacle bumper
+    \end{tabular}
+  };
+
+  \node[state, below of = odometry, shift = {(0.0em, -1.0em)}] (mavros_interface) {
+    \begin{tabular}{c}
+      \small Mavros interface
+    \end{tabular}
+  };
+
+  \node[state, below of = mavros_interface, shift = {(0.0em, 4.5em)}] (mavros) {
+    \begin{tabular}{c}
+      \small Mavros
+    \end{tabular}
+  };
+
+  \node[state_gray, below of = mavros, shift = {(0.0em, 4.5em)}] (pixhawk) {
+    \begin{tabular}{c}
+      \small Pixhawk
+    \end{tabular}
+  };
+
+  \node[state, right of = mavros_interface, shift = {(1.0em, 0.0em)}] (optic_flow) {
+    \begin{tabular}{c}
+      \small Optic flow
+    \end{tabular}
+  };
+
+  \node[state, below of = optic_flow, shift = {(0.0em, 4.5em)}] (auto_exposure) {
+    \begin{tabular}{c}
+      \small Auto exposure
+    \end{tabular}
+  };
+
+  \node[state_gray, below of = auto_exposure, shift = {(0.0em, 4.5em)}] (bluefox) {
+    \begin{tabular}{c}
+      \small Bluefox
+    \end{tabular}
+  };
+
+  \node[state_gray, left of = mavros_interface, shift = {(0.0em, 0.0em)}] (garmin) {
+    \begin{tabular}{c}
+      \small Garmin
+    \end{tabular}
+  };
+
+  \node[state_gray, left of = garmin, shift = {(1.0em, 0.0em)}] (rplidar) {
+    \begin{tabular}{c}
+      \small Rplidar
+    \end{tabular}
+  };
+
+  \node[state_gray, right of = optic_flow, shift = {(1.0em, 0.0em)}] (realsense) {
+    \begin{tabular}{c}
+      \small Realsense
+    \end{tabular}
+  };
+
+  \node[state, above of = realsense, shift = {(0.0em, -3.5em)}] (orb_slab) {
+    \begin{tabular}{c}
+      \small ORB slam
+    \end{tabular}
+  };
+
+  \begin{pgfonlayer}{background}
+    \path (so3_controller.east |- so3_controller.north)+(+0.3, 0.3) node (a) {};
+    \path (attitude_controller.south -| so3_controller.west)+(-0.3,-0.3) node (b) {};
+    \path[fill=black!30, draw=black!50, dashed]
+    (a) rectangle (b);
+    \path (b) -- node [midway, shift = {(0.0, -3.2)}] {\begin{tabular}{c}
+        \small Controllers\\
+        \small (ROS Plugins)
+    \end{tabular}} (a);
+  \end{pgfonlayer}
+
+  \begin{pgfonlayer}{background}
+    \path (landoff_tracker.east |- landoff_tracker.north)+(+0.3, 0.3) node (a) {};
+    \path (csv_tracker.south -| landoff_tracker.west)+(-0.3,-0.3) node (b) {};
+    \path[fill=black!30, draw=black!50, dashed]
+    (a) rectangle (b);
+    \path (b) -- node [midway, shift = {(0.0, -3.2)}] {\begin{tabular}{c}
+        \small Trackers\\
+        \small (ROS Plugins)
+    \end{tabular}} (a);
+  \end{pgfonlayer}
+
+  %% | ---------- connections from sensors to odometry ---------- |
+  \path[-] ($(rplidar.north)$) edge [->] ($(odometry.south) + (-1em, 0)$);
+  \path[-] ($(garmin.north)$) edge [->] ($(odometry.south) + (-0.5em, 0)$);
+  \path[-] ($(mavros_interface.north)$) edge [->] ($(odometry.south) + (0, 0)$);
+  \path[-] ($(optic_flow.north)$) edge [->] ($(odometry.south) + (0.5em, 0)$);
+  \path[-] ($(orb_slab.west)$) edge [->] ($(odometry.south) + (1em, 0)$);
+
+  \path[-] ($(mavros.north)$) edge [->] ($(mavros_interface.south)$);
+  \path[-] ($(bluefox.north)$) edge [->] ($(auto_exposure.south)$);
+  \path[-] ($(auto_exposure.north)$) edge [->] ($(optic_flow.south)$);
+  \draw[->] ($(bluefox.east)$) -- +(2em, 0) |- ($(optic_flow.east)$);
+
+  %% | ------------------ orb slam to realsense ----------------- |
+  \path[-] ($(realsense.north)$) edge [->] ($(orb_slab.south)$);
+
+  %% | ----- connections from controllers to control manager ---- |
+  \path ($(so3_controller.east)$) edge [<->] ($(control_manager.west) + (0, 0.4em)$);
+  \path ($(mpc_controller.east)$) edge [<->] ($(control_manager.west) + (0, 0.20em)$);
+  \path ($(failsafe_controller.east)$) edge [<->] ($(control_manager.west) + (0, 0.0em)$);
+  \path ($(nsf_controller.east)$) edge [<->] ($(control_manager.west) + (0, -0.20em)$);
+  \path ($(attitude_controller.east)$) edge [<->] ($(control_manager.west) + (0, -0.40em)$);
+
+  %% | ------ connections from trackers to control manager ------ |
+  \path ($(landoff_tracker.west)$) edge [<->] ($(control_manager.east) + (0, 0.40em)$);
+  \path ($(mpc_tracker.west)$) edge [<->] ($(control_manager.east) + (0, 0.20em)$);
+  \path ($(joy_tracker.west)$) edge [<->] ($(control_manager.east) + (0, 0.00em)$);
+  \path ($(matlab_tracker.west)$) edge [<->] ($(control_manager.east) + (0, -0.20em)$);
+  \path ($(csv_tracker.west)$) edge [<->] ($(control_manager.east) + (0, -0.40em)$);
+
+  %% | ------------------- gain manager to so3 ------------------ |
+  \path[-] ($(gain_manager.south)$) edge [->] ($(so3_controller.north)$);
+
+  %% | ---------- constraint manager to control manager --------- |
+  \draw[<-] ($(constraint_manager.west)$) -- ($(control_manager.north |- constraint_manager.west) + (2em, 0)$) edge [->] ($(control_manager.north) + (2em, 0)$);
+  \draw[<-] ($(gain_manager.east)$) -- ($(control_manager.north |- constraint_manager.east) + (-2em, 0)$) edge [->] ($(control_manager.north) + (-2em, 0)$);
+
+  %% | ------------- control manager to uav manager ------------- |
+  \path ($(uav_manager.south)$) edge [<->] ($(control_manager.north)$);
+
+  %% | --------------- odometry to control manager -------------- |
+  \path ($(odometry.north)$) edge [<->] ($(control_manager.south)$);
+
+  %% | ------------------------- pixhawk ------------------------ |
+  \path ($(pixhawk.north)$) edge [->] ($(mavros.south)$);
+
+  %% | ------------------------ pixhawk 2 ----------------------- |
+  \path ($(control_manager.south) + (2em, 0)$) edge [->] ($(mavros2.north)$);
+  \path ($(pixhawk2.north)$) edge [<-] ($(mavros2.south)$);
+
+  %% | --------------------- obstacle bumper -------------------- |
+  \path ($(rplidar.north)$) edge [<->] ($(bumper.south)$);
+  \path ($(bumper.east)$) edge [<->] ($(control_manager.south) + (-4em, 0)$);
+
+\end{tikzpicture}
