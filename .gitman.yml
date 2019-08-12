@@ -1,14 +1,5 @@
 location: .gitman
 sources:
-- name: mbzirc_landing
-  type: git
-  repo: git@mrs.felk.cvut.cz:papers/mbzirc_landing
-  sparse_paths:
-  -
-  rev: master
-  link: ros_packages/compton_camera_filter
-  scripts:
-  - git submodule update --init --recursive
 - name: compton_camera_filter
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
