@@ -28,6 +28,7 @@
 \usepackage{pdfpages}
 \usepackage{url}
 \usepackage{lipsum}
+\usepackage{isotope}
 
 \usepackage{tikz}
 \include{tikz-templates}
@@ -80,6 +81,11 @@
 {#1}}}
 
 \addbibresource{bib_postprocessed.bib}
+
+\defbibenvironment{favoritebib}
+{\itemize}
+{\enditemize}
+{\item}
 
 %%}
 
@@ -180,6 +186,49 @@
 \chapter{Introduction}
 
 %%{ Introduction
+
+Before remotely controlled and autonomous mobile robots become available, human presence was required for any in situ measurement.
+Be it at the bottom of a sea or outside of the Earth's atmosphere, sensing in unreachable places was impossible.
+Nowadays, terrestrial sensing is not short on utilizing robotic platforms in hazardous environments.
+Since the widespread of Unmanned Aerial Vehicles (UAVs), often called \textit{drones}, much effort was directed towards creating flying platforms capable of sensing the environment \cite{pajares2015overview}.
+Aircraft can traverse ground obstacles and move quickly to the desired location when compared to ground robots.
+Although, the presented system is designed for use with any mobile platform, including even satellites, where it was successfully deployed \cite{baca2018vzlusat, baca2018rospix}, let us put this paper into the context of MAVs, with their highest applicability,
+
+Micro Aerial Vehicles (MAVs) are small UAVs which can be handled by a single person.
+Multirotor helicopters are popular MAVs due to their simple construction and low maintenance.
+As the technology of small and intelligent aircraft became available, many fields started to utilize new options for carrying sensor equipment.
+Security and rescue forces utilize camera equipment and often thermal imaging cameras to assist ground forces during environmental disasters like earthquakes and floods \cite{yuan2015survey, perks2016advances}.
+In research and science, unmanned aircraft have various roles, from testbeds for control algorithms to autonomous sensor carriers.
+This paper will focus on a novel sensor setups for autonomous ionizing radiation mapping and localization by UAVs.
+
+Demand for UAV platforms capable of localizing an unknown radiation source is increasing.
+Early attempts to design a radiation detection module for a UAV was presented in \cite{kurvinen2005design}.
+Fixed-wing aircraft, equipped with Kromek \unit{1}{cm^3} gamma-ray spectrometer, was used to scan legacy mines in England \cite{martin2015use}.
+Area of the size of \unit{300}{m} $\times$ \unit{400}{m} was covered during the total of 5 hours of flight, and a radiation map was created ex-post.
+A solution suited for a search for compact sources of radiation was presented in \cite{pollanen2009radiation, pollanen2009performance}.
+The system utilizes \unit{5}{cm^3} scintillator with an air sampler, which takes measurement of \textit{counts per second} in \unit{1}{s} intervals.
+Authors tested that the aircraft can detect presence of \isotope[137]{Cs} (activity \unit{2.3}{GBq}) and \isotope[60]{Co} (activity \unit{1.1}{GBq}) from a distance up to \unit{50}{m}, while flying at \unit{70}{km/h}.
+The plane followed a path designed by a human operator.
+Another remotely controlled aircraft system is proposed in \cite{aleotti2015unmanned}.
+
+Since Fukushima Daiichi nuclear power plant (FDNPP) incident, research groups aim to prepare aircraft, that would remotely scan the affected area without endangering human workers \cite{macfarlane2014lightweight, martin20163d, martin2015use, sanada2015aerial, tang2016efficiency, towler2012radiation, han2013lowcost}.
+Authors of \cite{tang2016efficiency} present an aerial solution equipped with two gamma-ray spectrometers.
+Data would be transmitted to a ground station over a data link during the flight.
+In \cite{han2013lowcost} a multi-UAV approach was taken to enhance the potential yield of information gain from onboard sensors.
+Three formation types and trajectory schemes for three fixed-wing aircraft are proposed in a scenario with simulated sensor scanning.
+A multirotor MAV was used in \cite{macfarlane2014lightweight} to carry lightweight CdZnTe \textit{Kromek} spectrometer with \unit{1}{cm^3} of detection material.
+Real-world experiments, situated in \unit{20}{m^2} area, showed a process of creating a radiation map where several uranium samples were located.
+During the flight, the unmanned vehicle followed a flight plan with a set of waypoints.
+Scanning of \unit{1}{km^2} area was also conducted using the \textit{Kromek} detector, near FDNPP \cite{martin20163d, martin2015use}.
+The fixed-wing plane carried a laser rangefinder, which was later used to create a 3-D map of the radiation above the affected area.
+The plane was controlled remotely or flew according to a pre-fabricated flight plan.
+
+A multitude of published work relies on Kromek spectrometer, which measures the \textit{counts per second}, i.e., the number of ionizing particles that interacted with the detector \cite{han2013lowcost, macfarlane2014lightweight, martin20163d, martin2015use}.
+Others use scintillating detectors \cite{sanada2015aerial, towler2012radiation}.
+Scintillators are large and heavy, compared to other sensors, and require a large aircraft.
+A \unit{94}{kg} UAV conducted flights around FDNPP \cite{sanada2015aerial} and a radiation map of the area was estimated.
+The UAV was flying a preprogrammed path through waypoints.
+The only exhibit of an algorithmic approach to locating an unknown radiation source in real-time was presented in \cite{towler2012radiation}.
 
 \section{Motivation \& thesis goals}
 
@@ -476,25 +525,25 @@ The probability of a single photoelectric effect event within a material of thic
   \mathrm{P}\left(E_{pe}\right) = 1 - e^{-n\sigma_{pe} z}.
 \end{equation}
 
-% Cross section $\sigma_{ph}$ for $k > 0.9$
-% \begin{equation}
-%   \sigma_{ph} = Z^5\left[\sum_{n=1}^4 \frac{a_n + b_nZ}{1 + c_nZ}K^{-p_n}\right],
-% \end{equation}
-% where {\color{red} TODO } \cite{hubbell1980pair}.
-% \begin{table}
-%   \centering
-%   \begin{tabular}{c c c c c}
-%     \hline
-%     n & $a_n$ & $b_n$ & $c_n$ & $p_a$ \\
-%     \hline
-%     1 \rule{0pt}{2.3ex} & $1.6268 \cdot 10^{-9}$ & $-2.683 \cdot 10^{-12}$ & $4.173 \cdot 10^{-2}$ & 1 \\
-%     2 & $1.5274 \cdot 10^{-9}$ & $-5.110 \cdot 10^{-13}$ & $1.027 \cdot 10^{-2}$ & 2 \\
-%     3 & $1.1330 \cdot 10^{-9}$ & $-2.177 \cdot 10^{-12}$ & $2.013 \cdot 10^{-2}$ & 3.5 \\
-%     4 & $-9.12 \cdot 10^{-11}$ & 0 & 0 & 4\\
-%     \hline
-%   \end{tabular}
-%   \caption{\cite{hubbell1980pair}}
-% \end{table}
+Cross section $\sigma_{ph}$ for $k > 0.9$
+\begin{equation}
+  \sigma_{ph} = Z^5\left[\sum_{n=1}^4 \frac{a_n + b_nZ}{1 + c_nZ}K^{-p_n}\right],
+\end{equation}
+where {\color{red} TODO } \cite{hubbell1980pair}.
+\begin{table}
+  \centering
+  \begin{tabular}{c c c c c}
+    \hline
+    n & $a_n$ & $b_n$ & $c_n$ & $p_a$ \\
+    \hline
+    1 \rule{0pt}{2.3ex} & $1.6268 \cdot 10^{-9}$ & $-2.683 \cdot 10^{-12}$ & $4.173 \cdot 10^{-2}$ & 1 \\
+    2 & $1.5274 \cdot 10^{-9}$ & $-5.110 \cdot 10^{-13}$ & $1.027 \cdot 10^{-2}$ & 2 \\
+    3 & $1.1330 \cdot 10^{-9}$ & $-2.177 \cdot 10^{-12}$ & $2.013 \cdot 10^{-2}$ & 3.5 \\
+    4 & $-9.12 \cdot 10^{-11}$ & 0 & 0 & 4\\
+    \hline
+  \end{tabular}
+  \caption{\cite{hubbell1980pair}}
+\end{table}
 
 %%}
 
@@ -665,10 +714,10 @@ In the real sensor, the pair and triplet production would create an unwanted sig
 %%{ Author's publications
 
 Related journals (impacted):
-\cite{baca2019jfr}
+\cite{baca2019autonomous}
 \cite{baca2018rospix}
-\cite{spurny2018jfr}
-\cite{saska2016auro}
+\cite{spurny2018cooperative}
+\cite{saska2016system}
 \cite{giernacky2019realtime}
 \cite{chudoba2016exploration}
 
@@ -677,7 +726,7 @@ Related journals (unimpacted):
 
 Related conferences:
 \cite{baca2019timepix}
-\cite{baca2018mpc}
+\cite{baca2018model}
 \cite{baca2016embedded}
 \cite{baca2017autonomous}
 \cite{saska2017documentation}
@@ -686,7 +735,7 @@ Related conferences:
 \cite{saska2016migrating}
 
 Unrelated journals (impacted):
-\cite{baca2016vzlusat}
+\cite{baca2016miniaturized}
 \cite{baca2018vzlusat}
 \cite{daniel2019inorbit}
 \cite{urban2017vzlusat}
@@ -740,6 +789,84 @@ The publication~\cite{loianno2018localization} is only reported with CS due to t
 \subsection*{Conference proceedings}
 \nocite{}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={conference},heading=none,title={}]
+
+\appendix
+\renewcommand\chaptername{Citations of author's work}
+
+\chapter{Citations of author's work}
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}
+\clearfield{type}\usedriver
+{\defcounter{minnames}{0}\defcounter{maxnames}{10}}
+{\DeclareNameAlias{sortname}{default}}
+}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\noindent
+\fullcite{baca2019autonomous}
+\begin{refsection}[citations/baca2019autonomous.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{spurny2018cooperative}
+\begin{refsection}[citations/spurny2018cooperative.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{saska2016system}
+\begin{refsection}[citations/saska2016system.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{giernacky2019realtime}
+\begin{refsection}[citations/giernacky2019realtime.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{chudoba2016exploration}
+\begin{refsection}[citations/chudoba2016exploration.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{loianno2018localization}
+\begin{refsection}[citations/loianno2018localization.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{baca2018model}
+\begin{refsection}[citations/baca2018model.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{baca2016embedded}
+\begin{refsection}[citations/baca2016embedded.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\noindent
+\fullcite{baca2016miniaturized}
+\begin{refsection}[citations/baca2016miniaturized.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
 
 %%}
 
