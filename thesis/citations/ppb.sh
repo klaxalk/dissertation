@@ -59,6 +59,13 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/rcar/RCAR/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/wrx-r/WRX-R/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/med-hoc-net/Med-Hoc-Net/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/eth-mav/ETH-MAV/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/uav/UAV/gi" -c "wqa" -- "$filename"
+
+  $VIM_BIN $HEADLESS -nEs -c "%s/ Of / of /g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/ The / the /g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/ On / on /g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/ For / for /g" -c "wqa" -- "$filename"
 
   filename2=$NO_AUTOCIT_DIR/$file
   cp "$filename" "$filename2"
