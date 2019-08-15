@@ -45,5 +45,12 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/icarcv/ICARCV/gi" -c "wqa" -- "$file"
   $VIM_BIN $HEADLESS -nEs -c "%s/(ae)/(AE)/gi" -c "wqa" -- "$file"
   $VIM_BIN $HEADLESS -nEs -c "%s/mbzirc/MBZIRC/gi" -c "wqa" -- "$file"
+  $VIM_BIN $HEADLESS -nEs -c "%s/Cern@school/CERN school/gi" -c "wqa" -- "$file"
+  $VIM_BIN $HEADLESS -nEs -c "%s/cern/CERN/gi" -c "wqa" -- "$file"
+  $VIM_BIN $HEADLESS -nEs -c "%s/vzlusat/VZLUSAT/gi" -c "wqa" -- "$file"
+  $VIM_BIN $HEADLESS -nEs -c "%s/euv/EUV/gi" -c "wqa" -- "$file"
+  $VIM_BIN $HEADLESS -nEs -c "%s/mesas/MESAS/gi" -c "wqa" -- "$file"
+  $VIM_BIN $HEADLESS -nEs -c "%s/rcar/RCAR/gi" -c "wqa" -- "$file"
+  $VIM_BIN $HEADLESS -nEs -c "%s/wrx-r/WRX-R/gi" -c "wqa" -- "$file"
 
 done
