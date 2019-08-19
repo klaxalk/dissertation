@@ -1,5 +1,41 @@
 location: .gitman
 sources:
+- name: baca2019autonomous
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mbzirc-landing
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/iros2019autonomous
+  scripts:
+  - git submodule update --init --recursive
+- name: spurny2018cooreparive
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mbzirc-treasure-hunt
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/spurny2018cooperative
+  scripts:
+  - git submodule update --init --recursive
+- name: baca2018model
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/iros2018mpc
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/baca2018model
+  scripts:
+  - git submodule update --init --recursive
+- name: baca2019timepix
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/iros2019radiation
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/baca2019timepix
+  scripts:
+  - git submodule update --init --recursive
 - name: compton_camera_filter
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
