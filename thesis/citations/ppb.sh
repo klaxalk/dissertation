@@ -11,28 +11,36 @@ fi
 
 FULL_DIR=full_list
 NO_AUTOCIT_DIR=no_autocit
+ORIGINAL_DIR=original_exports
 AUTHORS_DIR=author_list
 
-FILES=`ls $FULL_DIR | grep .bib`
+FILES=`ls $ORIGINAL_DIR | grep .bib`
 
 for file in $FILES; do
 
   INPUT_FILE=${file%.bib}
 
+  # copy the original file
   filename=$FULL_DIR/$file
+  original=$ORIGINAL_DIR/$file
+  cp "$original" "$filename"
 
   echo Pre-processing $filename
 
-  $VIM_BIN $HEADLESS -nEs -c "%g/Booktitle/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "%g/Journal/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^booktitle/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^journal/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
 
-  $VIM_BIN $HEADLESS -nEs -c "%g/^Unique-ID/norm ct=keywords ^f{C{$INPUT_FILE}," -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^doi/norm dd" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^isbn/norm dd" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^issn/norm dd" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^note/norm dd" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^editor/norm dd" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^series/norm dd" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^unique-id/norm ct=keywords ^f{C{$INPUT_FILE, mine}," -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^doi/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^isbn/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^issn/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^eissn/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^note/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^editor/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^series/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^organization/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^orcid-numbers/norm maf{%mbd'a" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^researcherid-numbers/norm maf{%mbd'a" -c "wqa" -- "$filename"
 
   $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^pages/norm :s/--/-/g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^pages/norm :s/-/--/g" -c "wqa" -- "$filename"

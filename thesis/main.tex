@@ -68,7 +68,7 @@
 \makeatletter
 \AtDataInput{%
   \ifkeyword{mine}
-  {\addtocounter{bbx:allcount}{1}}%
+  {}
   {\addtocounter{bbx:primcount}{1}%
     \blx@setlabwidth{\labelnumberwidth}{%
 \csuse{abx@ffd@*@labelnumberwidth}{\thefield{labelnumber}a}}}}
@@ -78,9 +78,9 @@
 \DeclareFieldFormat{labelnumber}{%
   \ifkeyword{mine}
   {{\number\numexpr#1-\value{bbx:primcount}}a}
-{#1}}}
+{#1}}
 
-\addbibresource{bib_postprocessed.bib}
+\addbibresource{main.bib}
 
 \defbibenvironment{favoritebib}
 {\itemize}
@@ -732,7 +732,7 @@ Related conferences:
 \cite{saska2017documentation}
 \cite{spurny2016complex}
 \cite{faigl2017onsolution}
-\cite{saska2016migrating}
+\cite{saska2016formations}
 
 Unrelated journals (impacted):
 \cite{baca2016miniaturized}
@@ -769,38 +769,36 @@ The publication~\cite{loianno2018localization} is only reported with CS due to t
 \section{Thesis-related author's publications}
 
 \subsection*{Thesis-related articles in peer-reviewed journals with Impact Factor~(IF)}
-\nocite{}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={if},heading=none,title={}]
 
 \subsection*{Thesis-related articles in peer-reviewed journals only with CiteScore~(CS)}
-\nocite{}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={cs},heading=none,title={}]
 
 \subsection*{Thesis-related conference proceedings}
-\nocite{}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={conference},heading=none,title={}]
 
 \section{Thesis-unrelated author's publications}
 
 \subsection*{Articles in peer-reviewed journals with impact factor}
-\nocite{}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={journal},keyword={if},heading=none,title={}]
 
 \subsection*{Conference proceedings}
-\nocite{}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={conference},heading=none,title={}]
 
 \appendix
-\renewcommand\chaptername{Citations of author's work}
+\renewcommand\chaptername{Citations of author's publications}
 
-\chapter{Citations of author's work}
+\chapter{Citations of author's publications}
+
+Below are listed all citations of author's publications without self-citations.
 
 \DeclareCiteCommand{\fullcite}
 {\usebibmacro{prenote}}
-{\usedriver
+{\clearfield{addendum}%
+  \usedriver
   {\defcounter{minnames}{6}%
   \defcounter{maxnames}{6}}
-{\thefield{entrytype}\clearfield{addendum}}}
+{\thefield{entrytype}}}
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
@@ -811,12 +809,12 @@ The publication~\cite{loianno2018localization} is only reported with CS due to t
 %   \printbibliography[heading=none,title={},env=favoritebib]
 % \end{refsection}
 
-% \noindent
-% \fullcite{spurny2018cooperative}
-% \begin{refsection}[citations/no_autocit/spurny2018cooperative.bib]
-%   \nocite{*}
-%   \printbibliography[heading=none,title={},env=favoritebib]
-% \end{refsection}
+\noindent
+\fullcite{spurny2018cooperative}
+\begin{refsection}[citations/no_autocit/spurny2018cooperative.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
 
 \noindent
 \fullcite{saska2016system}
@@ -834,7 +832,7 @@ The publication~\cite{loianno2018localization} is only reported with CS due to t
 
 % \noindent
 % \fullcite{chudoba2016exploration}
-% \begin{refsection}[citations/no_autocit/chudoba2016exploration.bib]
+% begin{refsection}[citations/no_autocit/chudoba2016exploration.bib]
 %   \nocite{*}
 %   \printbibliography[heading=none,title={},env=favoritebib]
 % \end{refsection}
@@ -889,8 +887,8 @@ The publication~\cite{loianno2018localization} is only reported with CS due to t
 % \end{refsection}
 
 % \noindent
-% \fullcite{saska2016migrating}
-% \begin{refsection}[citations/no_autocit/saska2016migrating.bib]
+% \fullcite{saska2016formations}
+% \begin{refsection}[citations/no_autocit/saska2016formations.bib]
 %   \nocite{*}
 %   \printbibliography[heading=none,title={},env=favoritebib]
 % \end{refsection}

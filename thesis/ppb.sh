@@ -10,7 +10,7 @@ elif [ -x "$(whereis vim | awk '{print $2}')" ]; then
 fi
 
 INPUT_FILE=bib.bib
-OUTPUT_FILE=bib_postprocessed.bib
+OUTPUT_FILE=main.bib
 
 cp $INPUT_FILE $OUTPUT_FILE
 
