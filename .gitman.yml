@@ -1,23 +1,5 @@
 location: .gitman
 sources:
-- name: baca2019autonomous
-  type: git
-  repo: git@mrs.felk.cvut.cz:papers/mbzirc-landing
-  sparse_paths:
-  -
-  rev: master
-  link: thesis/papers/iros2019autonomous
-  scripts:
-  - git submodule update --init --recursive
-- name: spurny2018cooreparive
-  type: git
-  repo: git@mrs.felk.cvut.cz:papers/mbzirc-treasure-hunt
-  sparse_paths:
-  -
-  rev: master
-  link: thesis/papers/spurny2018cooperative
-  scripts:
-  - git submodule update --init --recursive
 - name: baca2018model
   type: git
   repo: git@mrs.felk.cvut.cz:papers/iros2018mpc
@@ -25,6 +7,15 @@ sources:
   -
   rev: master
   link: thesis/papers/baca2018model
+  scripts:
+  - git submodule update --init --recursive
+- name: baca2019autonomous
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mbzirc-landing
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/iros2019autonomous
   scripts:
   - git submodule update --init --recursive
 - name: baca2019timepix
@@ -99,6 +90,15 @@ sources:
   link: ros_packages/rviz_visual_tools
   scripts:
   - git submodule update --init --recursive
+- name: spurny2018cooreparive
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mbzirc-treasure-hunt
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/spurny2018cooperative
+  scripts:
+  - git submodule update --init --recursive
 sources_locked:
 - name: compton_camera_filter
   type: git
@@ -123,7 +123,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
   sparse_paths:
   -
-  rev: 682fafdb9386b683ea6ba16ad9aaa2a11e161f6a
+  rev: f98c100905a05627bb72d3e27538fe7084020734
   link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
@@ -141,7 +141,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: 647346bb604f44b9f87ca5ed4a0be9a0405020e1
+  rev: 4946eba45ecc242a1f084d8a58bb541f8dfebb2a
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
