@@ -9,15 +9,6 @@ sources:
   link: thesis/papers/baca2018model
   scripts:
   - git submodule update --init --recursive
-- name: petrlik2020robust
-  type: git
-  repo: git@mrs.felk.cvut.cz:papers/icra2020darpa
-  sparse_paths:
-  -
-  rev: master
-  link: thesis/papers/petrlik2020robust
-  scripts:
-  - git submodule update --init --recursive
 - name: baca2019autonomous
   type: git
   repo: git@mrs.felk.cvut.cz:papers/mbzirc-landing
@@ -88,6 +79,15 @@ sources:
   -
   rev: master
   link: ros_packages/geometry_visual_utils
+  scripts:
+  - git submodule update --init --recursive
+- name: petrlik2020robust
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/icra2020darpa
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/petrlik2020robust
   scripts:
   - git submodule update --init --recursive
 - name: rviz_visual_tools
