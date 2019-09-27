@@ -109,12 +109,39 @@ sources:
   scripts:
   - git submodule update --init --recursive
 sources_locked:
+- name: baca2018model
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/iros2018mpc
+  sparse_paths:
+  -
+  rev: 1ead8f51a31375f6a2916a3f36cd5ff08f83c7aa
+  link: thesis/papers/baca2018model
+  scripts:
+  - git submodule update --init --recursive
+- name: baca2019autonomous
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mbzirc-landing
+  sparse_paths:
+  -
+  rev: 6c19cb11e3336db90b9f103c078b197ed3dfb473
+  link: thesis/papers/iros2019autonomous
+  scripts:
+  - git submodule update --init --recursive
+- name: baca2019timepix
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/iros2019radiation
+  sparse_paths:
+  -
+  rev: ec9f6608ee0ecb12650d112a655df233e7dca819
+  link: thesis/papers/baca2019timepix
+  scripts:
+  - git submodule update --init --recursive
 - name: compton_camera_filter
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: e84856c79c5404b68a67daaba78c9d3ddc19774b
+  rev: f9939781b72af02c9c21aa023efc95ffe6c72533
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -163,6 +190,15 @@ sources_locked:
   link: ros_packages/geometry_visual_utils
   scripts:
   - git submodule update --init --recursive
+- name: petrlik2020robust
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/icra2020darpa
+  sparse_paths:
+  -
+  rev: 6bdc4ee615f835b4f4208268304c3f3e4da74533
+  link: thesis/papers/petrlik2020robust
+  scripts:
+  - git submodule update --init --recursive
 - name: rviz_visual_tools
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/rviz_visual_tools
@@ -170,5 +206,14 @@ sources_locked:
   -
   rev: 277e38f0118e096c9a366ac920129d21fcdbe34b
   link: ros_packages/rviz_visual_tools
+  scripts:
+  - git submodule update --init --recursive
+- name: spurny2018cooreparive
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mbzirc-treasure-hunt
+  sparse_paths:
+  -
+  rev: 903ca4adc55116ba80cd910aaf9ed30154103bd0
+  link: thesis/papers/spurny2018cooperative
   scripts:
   - git submodule update --init --recursive

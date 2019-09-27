@@ -2,7 +2,7 @@ name: simulation
 root: ./
 
 startup_window: optimizer
-pre_window: export UAV_NAME=uav1
+pre_window: export UAV_NAME=uav1; export UAV_TYPE=f550
 windows:
   - roscore:
       layout: even-vertical
@@ -19,23 +19,23 @@ windows:
   - spawn:
       layout: even-vertical
       panes:
-        - waitForSimulation; spawn 1 --run --delete --enable-rangefinder --enable-ground-truth
+        - waitForSimulation; spawn 1 --$UAV_TYPE --run --delete --enable-rangefinder --enable-ground-truth
   - control:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav1; waitForOdometry; roslaunch radiation_simulation uav_manager.launch
+        - export UAV_NAME=uav1; waitForOdometry; roslaunch mrs_general core.launch config_control_manager:=control_manager.yaml
   - compton_camera:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav1; waitForRos; roslaunch compton_camera_python compton_camera_1.launch
+        - read; export UAV_NAME=uav1; waitForRos; roslaunch compton_camera_python compton_camera_1.launch
   - compton_filter:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav1; waitForRos; roslaunch compton_camera_filter compton_filter_1.launch
+        - read; export UAV_NAME=uav1; waitForRos; roslaunch compton_camera_filter compton_filter_1.launch
   - optimizer:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav1; waitForRos; roslaunch compton_camera_filter optimizer_1.launch
+        - read; export UAV_NAME=uav1; waitForRos; roslaunch compton_camera_filter optimizer_1.launch
   - planner:
       layout: even-vertical
       panes:
@@ -57,8 +57,7 @@ windows:
           rosservice call /$UAV_NAME/control_manager/motors 1;
           rosservice call /$UAV_NAME/mavros/cmd/arming 1;
           rosservice call /$UAV_NAME/mavros/set_mode 0 offboard;
-          rosservice call /$UAV_NAME/uav_manager/takeoff;
-          rosservice call /$UAV_NAME/control_manager/switch_controller mrs_controllers/MpcController'
+          rosservice call /$UAV_NAME/uav_manager/takeoff'
         #}
   - gazebo_camera_follow:
       layout: even-vertical
