@@ -243,9 +243,9 @@ def plot_everything(*args):
       for axis in [ax.xaxis, ax.yaxis]:
           axis.set_major_formatter(ScalarFormatter())
       fig.canvas.set_window_title("Photon-attenuation scatterer")
-      ax.plot(pe_energies, prob_pe_scatterer, label="Photoelectric effect prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
-      ax.plot(pe_energies, prob_cs_scatterer, label="Compton scattering prob., {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0))
-      ax.plot(pe_energies, prob_scatterer_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(scatterer_material.name, scatterer_z/1000.0), linestyle="dashed")
+      ax.plot(pe_energies, prob_pe_scatterer, label="Photoelectric effect prob., {}, {} mm".format(scatterer_material.name, scatterer_z*1000.0))
+      ax.plot(pe_energies, prob_cs_scatterer, label="Compton scattering prob., {}, {} mm".format(scatterer_material.name, scatterer_z*1000.0))
+      ax.plot(pe_energies, prob_scatterer_attenuation, label="Total attenutaion by PE and CS, {}, {} mm".format(scatterer_material.name, scatterer_z*1000.0), linestyle="dashed")
       ax.set_xlabel("Photon energy [keV]")
       ax.set_ylabel("Probability [-]")
       ax.grid(True)
