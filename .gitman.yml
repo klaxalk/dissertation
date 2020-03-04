@@ -204,7 +204,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/rviz_visual_tools
   sparse_paths:
   -
-  rev: 277e38f0118e096c9a366ac920129d21fcdbe34b
+  rev: 0cd0954e7acfc154d1ca23ea058b400a6bd27725
   link: ros_packages/rviz_visual_tools
   scripts:
   - git submodule update --init --recursive
