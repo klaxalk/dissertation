@@ -132,7 +132,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:papers/iros2019radiation
   sparse_paths:
   -
-  rev: ec9f6608ee0ecb12650d112a655df233e7dca819
+  rev: 52457132a1a93181642c6bfb7dfdc5535ce7be51
   link: thesis/papers/baca2019timepix
   scripts:
   - git submodule update --init --recursive
@@ -141,7 +141,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: f9939781b72af02c9c21aa023efc95ffe6c72533
+  rev: ff2e30621f1791553203ac106ab1ecdaab11e7f5
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -150,7 +150,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_python
   sparse_paths:
   -
-  rev: 34c6e60da4f6e26174831119f349edf560b64a17
+  rev: 2c1ae04f6abd862da647cc5d9dea40d588626da0
   link: ros_packages/compton_camera_python
   scripts:
   - git submodule update --init --recursive
@@ -177,7 +177,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: 4946eba45ecc242a1f084d8a58bb541f8dfebb2a
+  rev: 4d5f6e6b76bdc674137833822c9f445fef35fc64
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
@@ -186,7 +186,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/geometry_visual_utils.git
   sparse_paths:
   -
-  rev: f368fc032795006a9bb4c633c5b4279791ee3703
+  rev: fb1f51571200459d351d739d1bfb251384884d79
   link: ros_packages/geometry_visual_utils
   scripts:
   - git submodule update --init --recursive
@@ -195,7 +195,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:papers/icra2020darpa
   sparse_paths:
   -
-  rev: 6bdc4ee615f835b4f4208268304c3f3e4da74533
+  rev: de91db47441202c1cab25f692132d6fc4ab76847
   link: thesis/papers/petrlik2020robust
   scripts:
   - git submodule update --init --recursive
