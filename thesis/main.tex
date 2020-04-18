@@ -88,7 +88,7 @@
 \DeclareFieldFormat{labelnumber}{%
   \ifkeyword{mine}
   {\ifkeyword{phd_unrelated}
-    {{\number\numexpr#1}p}%
+    {{\number\numexpr#1}a}%
 {{\number\numexpr#1}a}}{{\number\numexpr#1}}}
 
 % {{\number\numexpr#1-\value{bbx:primcount}}a}
@@ -223,7 +223,7 @@ Related journals (impacted):
 \cite{chudoba2016exploration}
 \cite{saska2020formation}
 
-Related journals (unimpacted):
+Related journals (unimpacted, RA-L):
 \cite{loianno2018localization}
 \cite{petrlik2020robust}
 \cite{stibinger2020localization}
@@ -305,8 +305,8 @@ Partially-related conference papers:
 
 \subsection{Automatic control of a multirotor UAV}
 
-\cite{lee2010geometric}
-\cite{lee2013nonlinear}
+% \cite{lee2010geometric}
+% \cite{lee2013nonlinear}
 
 \subsection{Frame of reference conventions and nomenclature}
 
@@ -411,11 +411,15 @@ The MBZIRC 2020 not yet published.
 
 %%{ Target following
 
-\section{Automatic target following with a UAV}
+\section{Autonomous landing on a moving car}
 
 \cite{baca2017autonomous, baca2019autonomous}
 
 \subsection{Target state estimation}
+
+\subsection{Target tracking}
+
+\cite{baca2018model}
 
 \subsection{Landing on a moving vehicle}
 
@@ -449,7 +453,11 @@ Partially-related journal publications: \cite{baca2016miniaturized, baca2018vzlu
 
 \subsection{Semi-conductor detectors}
 
+Related: \cite{urban2017vzlusat}
+
 \subsection{Pixel detectors}
+
+Related: \cite{baca2016miniaturized, baca2019timepix, baca2018rospix, baca2018vzlusat}
 
 %%}
 
@@ -463,7 +471,11 @@ Partially-related journal publications: \cite{baca2016miniaturized, baca2018vzlu
 
 \subsection{X-Ray Optics}
 
+Related: \cite{baca2016miniaturized}
+
 \subsection{Compton cameras}
+
+Related: \cite{baca2019timepix}
 
 %%}
 
@@ -475,7 +487,7 @@ Partially-related journal publications: \cite{baca2016miniaturized, baca2018vzlu
 
 \chapternoclear{Compton $\gamma$-ray camera}
 
-Principle published in \cite{turecek2018compton, baca2019timepix}.
+Related to the accepted TACR project: "FW01010317, Lokalizace zdrojů ionizující radiace pomocí malých bezpilotních helikoptér s detektorem na principu Comptonovy kamery".
 
 Partially published in \cite{baca2019timepix}.
 
@@ -727,7 +739,9 @@ Related publications \cite{baca2019timepix, stibinger2020localization, baca2018r
 
 \section{Compton camera principle}
 
-\section{Gazebo/ROS camera model}
+\section{Monte-Carlo Gazebo/ROS camera model}
+
+Work-in-progress
 
 %%}
 
@@ -741,7 +755,7 @@ This has not been published, yet.
 
 %%{ Radiation source estimation
 
-\section{The source direction hypotheses}
+\section{The direction-to-source hypotheses}
 
 \subsection{Uncertainty propagation}
 
@@ -755,33 +769,12 @@ This has not been published, yet.
   \item A single radiation source,
   \item compact source,
   \item static,
-  \item or moving with respect to a known model,
-  \item ...
+  \item moving with respect to a known model.
 \end{itemize}
 
 \subsection{2-D relaxation}
 
 \subsection{General 3-D case}
-
-%%}
-
-%% --------------------------------------------------------------
-%% |                   Chapter 9 - Evaluation                  |
-%% --------------------------------------------------------------
-
-\chapternoclear{Evaluation}
-
-%%{ Evaluation
-
-\section{Simulation scenarios}
-
-\section{``Traditional'' mapping with a scintillator}
-
-\section{Micro Aerial Vehicle with the Compton camera}
-
-\section{Group of Micro Aerial Vehicles with the Compton camera}
-
-\section{Results}
 
 %%}
 
