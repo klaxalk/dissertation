@@ -17,4 +17,4 @@ cp $INPUT_FILE $OUTPUT_FILE
 $VIM_BIN $HEADLESS -nEs -c '%g/url =/norm dd' -c "wqa" -- "$OUTPUT_FILE"
 $VIM_BIN $HEADLESS -nEs -c '%g/doi =/norm dd' -c "wqa" -- "$OUTPUT_FILE"
 $VIM_BIN $HEADLESS -nEs -c '%s/Baca, Tomas/\\textbf\{T. Baca\}/g' -c "wqa" -- "$OUTPUT_FILE"
-$VIM_BIN $HEADLESS -nEs -c '%s/Baca, T./\\textbf\{T. Baca\}/g' -c "wqa" -- "$OUTPUT_FILE"
+$VIM_BIN $HEADLESS -nEs -c '%s/Baca, T\./\\textbf\{T. Baca\}/g' -c "wqa" -- "$OUTPUT_FILE"

@@ -1,0 +1,141 @@
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzset{radiation/.style={{decorate,decoration={expanding waves,angle=90,segment length=4pt}}}}
+
+\begin{tikzpicture}[->,>=stealth', node distance=3.0cm]
+
+  \node[state, shift = {(0.0, 0.0)}] (user_software) {
+      \begin{tabular}{c}
+        \small Mission \\
+        \small planner
+      \end{tabular}
+    };
+
+  \node[state, right of = user_software, shift = {(0.6, 0.0)}] (collision_avoidance) {
+      \begin{tabular}{c}
+        \small Collision \\
+        \small avoidance
+      \end{tabular}
+    };
+
+  \node[state, right of = collision_avoidance, shift = {(0, -0)}] (mpc_tracker) {
+      \begin{tabular}{c}
+        \small MPC \\
+        \small tracker
+      \end{tabular}
+    };
+
+  \node[state, right of = mpc_tracker, shift = {(0, -0)}] (so3_controller) {
+      \begin{tabular}{c}
+        \small SO(3) \\
+        \small controller
+      \end{tabular}
+    };
+
+  \node[state, right of = so3_controller, shift = {(0.2, -0)}] (pixhawk) {
+      \begin{tabular}{c}
+        \small Attitude \\
+        \small controller
+      \end{tabular}
+    };
+
+  \node[state, right of = pixhawk, shift = {(0, -0)}] (uav_plant) {
+      \begin{tabular}{c}
+        \small UAV \\
+        \small plant
+      \end{tabular}
+    };
+
+  \node[state, below of = so3_controller, shift = {(0, 0.5)}] (state_observer) {
+      \begin{tabular}{c}
+        \small State \\
+        \small observer
+      \end{tabular}
+    };
+
+    \path[->] ($(user_software.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {  
+      \begin{tabular}{c}
+        \small desired trajectory\\
+        \small $\mathbf{r}_D, \phi_D$\\
+        \small \textit{on demand}
+    \end{tabular}} ($(collision_avoidance.west) + (0.0, 0.00)$);
+
+    \path[->] ($(collision_avoidance.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {  
+      \begin{tabular}{c}
+        \small reshaped trajectory\\
+        \small $\mathbf{r}_R, \phi_R$\\
+        \small \textit{100 Hz}
+    \end{tabular}} ($(mpc_tracker.west) + (0.0, 0.00)$);
+
+    \path[->] ($(mpc_tracker.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {  
+      \begin{tabular}{c}
+        % \small $\textbf{x}_D, \dot{\textbf{x}}_D, \ddot{\textbf{x}}_D$ \\
+        % \small $\phi_{D}, \dot{\phi}_D, \ddot{\phi}_D$\\
+        $\textbf{x}_D$\\
+        \small \textit{100 Hz}
+    \end{tabular}} ($(so3_controller.west) + (0.0, 0.00)$);
+
+    \path[->] ($(so3_controller.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {  
+      \begin{tabular}{c}
+        \small $\textbf{R}\left(\phi_D, \theta_D, \psi_D\right)$ \\
+        \small $T_D$ \\
+        \small \textit{100 Hz}
+    \end{tabular}} ($(pixhawk.west) + (0.0, 0.00)$);
+
+    \path[->] ($(pixhawk.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {  
+      \begin{tabular}{c}
+        \small motor \\
+        \small control \\
+        \small \textit{$\approx1$ kHz}
+    \end{tabular}} ($(uav_plant.west) + (0.0, 0.00)$);
+
+    \pgfmathsetmacro{\offsetA}{-1.5}
+    \coordinate (under_mpc) at ($(mpc_tracker.south) + (0.0, \offsetA)$);
+    \coordinate (under_avoidance) at ($(collision_avoidance.south) + (0.0, \offsetA)$);
+    \path[-] ($(mpc_tracker.south) + (0.0, 0)$) edge [] (under_mpc) -- (under_mpc) edge [] (under_avoidance) edge [] node[above, midway, shift = {(0.0, 0.0)}] {  
+      \begin{tabular}{c}
+        \small predicted \\
+        \small trajectory \\
+        \small \textit{2 Hz}
+    \end{tabular}} (under_avoidance) -- (under_avoidance) edge [->] ($(collision_avoidance.south) + (0.0, 0.0)$);
+    \pgfmathsetmacro{\offsetB}{-0.45}
+    \path[->] ($(collision_avoidance.south)+(+\offsetB, -3.5)$) edge [dashed] node[left, near start, shift = {(0.2, -0.3)}] {  
+      \begin{tabular}{c}
+        \small \corrected {predicted} \\
+        \small \corrected {trajectory} \\
+        \small \corrected {of other UAVs} \\
+        \small \corrected {\textit{2 Hz}}
+    \end{tabular}} ($(collision_avoidance.south)+(+\offsetB, 0)$);
+
+    \draw[-, radiation, decoration={angle=45}] ($(collision_avoidance.south) + (\offsetB+0.14, -3.2)$) -- +(0:0.5);
+
+    \pgfmathsetmacro{\offsetC}{0.0}
+    \path[<-] ($(mpc_tracker.south)+(+\offsetC, -3.5)$) edge [dashed] node[left, near start, shift = {(0.2, -0.3)}] {  
+      \begin{tabular}{c}
+        \small predicted \\ 
+        \small trajectory \\
+        \small \textit{2 Hz}
+    \end{tabular}} ($(mpc_tracker.south)+(+\offsetC, 0)$);
+
+    \draw[-, radiation, decoration={angle=45}] ($(mpc_tracker.south) + (0.15, -3.2)$) -- +(0:0.5);
+    % \draw[-, radiation, decoration={angle=45}] ($(mpc_tracker.south) + (+0.50, -3.5)$) -- +(90:0.5);
+
+    \path[-] ($(state_observer.west)+(0, 0)$) edge [dotted] node[above, near end, shift = {(-1.2, 0.0)}] {  
+      \begin{tabular}{c}
+        \small UAV state \\
+        \small estimate \\
+        \small \textit{100 Hz}
+    \end{tabular}} ($(user_software.south |- state_observer.west)$) -- ($(user_software.south |- state_observer.west)$) edge [->,dotted] ($(user_software.south)+(0, 0)$);
+
+    \path[->] ($(state_observer.north)+(0, 0)$) edge [dotted] ($(so3_controller.south)$);
+
+    \path[-] ($(pixhawk.south)+(0, 0)$) edge [dotted] ($(pixhawk.south |- state_observer.east)$);
+
+    \path[-] ($(uav_plant.south)+(0, 0)$) edge [dotted] ($(uav_plant.south |- state_observer.east)$) -- ($(uav_plant.south |- state_observer.east)$) edge [->, dotted] node[below, near start, shift = {(-0.3, 0.0)}] {  
+      \begin{tabular}{c}
+        \small onboard sensor data \\
+        \small \textit{$\approx100$ Hz}
+    \end{tabular}}($(state_observer.east)$);
+
+  \end{tikzpicture}

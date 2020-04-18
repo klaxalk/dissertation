@@ -77,6 +77,8 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/\sFor\s/ for /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sAnd\s/ and /g" -c "wqa" -- "$filename"
 
+  $VIM_BIN $HEADLESS -nEs -c "%g/\cmonth.*=/norm f=lC 1," -c "wqa" -- "$filename"
+
   filename2=$NO_AUTOCIT_DIR/$file
   cp "$filename" "$filename2"
 
