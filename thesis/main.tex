@@ -30,9 +30,56 @@
 \usepackage{isotope}
 \usepackage{verbatim}
 \usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
 
 \usepackage{tikz}
 \include{tikz-templates}
+
+%%{ fullcite box
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinbox}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%\vspace{3em}%
+%\raisebox{3em}[3em][3em]{%
+% \vspace{-0.2em}
+\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{0.07\linewidth}%
+\raggedright%
+\cite{#1}%
+\end{minipage}%
+\begin{minipage}[t]{0.93\linewidth}%
+\fullcite{#1}%
+\end{minipage}%
+\end{tcolorbox}%
+%}%
+% \vspace{-0.5em}
+}%
+
+%%}
+
+%%{ include paper
+
+\newcommand{\includepaper}[1]{\includepdf[scale=0.90,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
+% \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
+% \newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
+
+%%}
 
 % subfloat
 % \usepackage{subfig}
@@ -203,7 +250,7 @@
 \cleardoublepage
 
 %% --------------------------------------------------------------
-%% |                  Chapter 1 - Introduction                  |
+%% |                        Introduction                        |
 %% --------------------------------------------------------------
 
 \chapternoclear{Introduction}
@@ -241,7 +288,7 @@ Related conference papers:
 
 Partially-related journals (impacted):
 \cite{baca2016miniaturized}
-\cite{baca2018vzlusat}
+\cite{baca2018timepix}
 \cite{daniel2019inorbit}
 \cite{urban2017vzlusat}
 
@@ -292,55 +339,21 @@ Partially-related conference papers:
 %%}
 
 %% --------------------------------------------------------------
-%% |                  Chapter 2 - Related work                  |
+%% |                        Related work                        |
 %% --------------------------------------------------------------
 
 \chapternoclear{Related work and formal background}
 
-%%{ Related work
 
 \section{Micro Aerial Vehicles}
 
-\subsection{Quadrotor dynamics}
+\subsection{Multirotor dynamics}
 
 \subsection{Automatic control of a multirotor UAV}
-
-% \cite{lee2010geometric}
-% \cite{lee2013nonlinear}
-
-\subsection{Frame of reference conventions and nomenclature}
-
-\section{Target following with an UAV}
-
-\section{Ionizing radiation localization}
-
-\subsection{Radiation detection principles}
-
-\subsection{Detector types}
-
-\subsection{Pixel detectors}
-
-\section{Radiation localization by aerial vehicles}
-
-%%}
-
-%% --------------------------------------------------------------
-%% |              Chapter 3 - Micro Aerial Vehicles             |
-%% --------------------------------------------------------------
-
-\chapternoclear{Micro Aerial Vehicles}
-
-%%{ Micro Aerial Vehicles
 
 \section{Multirotor helicopter model}
 
 A description of the generic UAV properties: kinematics, dynamics, the control approaches, etc.
-
-\subsection{Rotational dynamics}
-
-\subsection{Translational dynamics}
-
-\subsection{Propulsion model}
 
 \section{Robust UAV trajectory tracking (The MPC tracker)}
 
@@ -354,78 +367,43 @@ Relates to \cite{baca2019autonomous, baca2017autonomous, spurny2019cooperative, 
 
 Published in \cite{petrlik2020robust, roucek2019darpa,}.
 
-%%}
-
 %% --------------------------------------------------------------
-%% |                  Chapter 4 - MRS Platform                  |
+%% |                        MRS Platform                        |
 %% --------------------------------------------------------------
 
 \chapternoclear{Research-focused UAV platform}
 
-Publications on topic \cite{baca2016embedded, baca2018model, petrlik2020robust, baca2019autonomous, spurny2019cooperative}.
+Relevant author's publications (will be referenced):
+\fullciteinbox{baca2016embedded}{}
+\fullciteinbox{baca2019autonomous}{}
+\fullciteinbox{spurny2019cooperative}{}
 
-%%{ MRS platform
+% \section{Paradigms for research evaluation and experimentation}
 
-\section{Paradigms for research evaluation and experimentation}
+% \section{Control system architecture}
 
-\section{Control system architecture}
+% \subsection{Robustness vs. punctuality}
 
-\subsection{Robustness vs. punctuality}
+% \section{System's building blocks}
 
-\section{System's building blocks}
-
-% \begin{figure}
-%   \centering
-%   \adjustbox{max width=\linewidth}{\input{./fig/tikz/pipeline_diagram.tex}}
-%   \label{fig:mrs_platform_all}
-%   \caption{TODO}
-% \end{figure}
-
-% \begin{figure}
-%   \centering
-%   \input{./fig/tikz/tracker_diagram.tex}
-%   \label{fig:mrs_platform_all}
-%   \caption{TODO}
-% \end{figure}
-
-% \begin{figure}
-%   \centering
-%   \input{./fig/tikz/mrs_platform_diagram.tex}
-%   \label{fig:mrs_platform_all}
-%   \caption{TODO}
-% \end{figure}
-
-%%}
+Author's publications to be included in the thesis:
+\includepaper{baca2018model}
+\includepaper{petrlik2020robust}
 
 %% --------------------------------------------------------------
-%% |           Chapter 5 - advances in UAV deployment           |
+%% |                 Advances in UAV deployment                 |
 %% --------------------------------------------------------------
 
-\chapternoclear{Advances in UAV applications on sensing and manipulations}
+\chapternoclear{Advances in UAV deployment}
 
-Published in journals \cite{baca2019autonomous, spurny2019cooperative} (MBZIRC 2017).
+Relevant author's publications (will be referenced):
+\fullciteinbox{petrlik2020robust}{}
 
-Related authored publications: \cite{baca2018model, petrlik2020robust}.
-
-The MBZIRC 2020 not yet published.
-
-%%{ Target following
-
-\section{Autonomous landing on a moving car}
-
-\cite{baca2017autonomous, baca2019autonomous}
-
-\subsection{Target state estimation}
-
-\subsection{Target tracking}
-
-\cite{baca2018model}
-
-\subsection{Landing on a moving vehicle}
-
-\section{Object gathering by a group of UAVs}
-
-\cite{spurny2019cooperative}
+Author's publications to be included in the thesis:
+\includepaper{baca2019autonomous}
+\includepaper{spurny2019cooperative}
+\includepaper{loianno2018localization}
+\includepaper{saska2020formation}
 
 \section{Wall building by a group of UAVs}
 
@@ -439,9 +417,14 @@ TODO: MBZIRC 2020
 
 \chapternoclear{Ionizing Radiation Detection, Imaging and Mapping (background)}
 
-Related publications \cite{baca2019timepix, baca2018rospix, stibinger2020localization}.
+Relevant author's publications (will be referenced):
+\fullciteinbox{baca2016miniaturized}{}
 
-Partially-related journal publications: \cite{baca2016miniaturized, baca2018vzlusat}.
+Author's publications to be included in the thesis:
+\includepaper{baca2018timepix}
+\includepaper{baca2018rospix}
+\includepaper{baca2019timepix}
+\includepaper{stibinger2020localization}
 
 %%{ Ionizing Radiation Detection and Imaging
 
@@ -457,7 +440,7 @@ Related: \cite{urban2017vzlusat}
 
 \subsection{Pixel detectors}
 
-Related: \cite{baca2016miniaturized, baca2019timepix, baca2018rospix, baca2018vzlusat}
+Related: \cite{baca2016miniaturized, baca2019timepix, baca2018rospix, baca2018timepix}
 
 %%}
 
