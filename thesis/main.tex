@@ -30,9 +30,56 @@
 \usepackage{isotope}
 \usepackage{verbatim}
 \usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
 
 \usepackage{tikz}
 \include{tikz-templates}
+
+%%{ fullcite box
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinbox}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%\vspace{3em}%
+%\raisebox{3em}[3em][3em]{%
+% \vspace{-0.2em}
+\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{0.07\linewidth}%
+\raggedright%
+\cite{#1}%
+\end{minipage}%
+\begin{minipage}[t]{0.93\linewidth}%
+\fullcite{#1}%
+\end{minipage}%
+\end{tcolorbox}%
+%}%
+% \vspace{-0.5em}
+}%
+
+%%}
+
+%%{ include paper
+
+% \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
+% \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
+\newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
+
+%%}
 
 % subfloat
 % \usepackage{subfig}
@@ -65,31 +112,31 @@
 
 \renewcommand*{\bibfont}{\Font}
 
-\newcounter{mycounter}
-\setcounter{mycounter}{0}
-\newcounter{unrelatedcount}
-\setcounter{unrelatedcount}{0}
-\newcounter{totalcounter}
-\setcounter{totalcounter}{0}
+% \newcounter{mycounter}
+% \setcounter{mycounter}{0}
+% \newcounter{unrelatedcount}
+% \setcounter{unrelatedcount}{0}
+% \newcounter{totalcounter}
+% \setcounter{totalcounter}{0}
 
-% Print labelnumbers with suffixes, adjust secondary labelnumber 1/2 (start new numbering of my publications)
-\makeatletter
-\AtDataInput{%
-  \ifkeyword{mine}
-  {
-    \addtocounter{mycounter}{1}
-  }
-  {}
-  \addtocounter{totalcounter}{1}
-}
-\makeatother
+% % Print labelnumbers with suffixes, adjust secondary labelnumber 1/2 (start new numbering of my publications)
+% \makeatletter
+% \AtDataInput{%
+%   \ifkeyword{mine}
+%   {
+%     \addtocounter{mycounter}{1}
+%   }
+%   {}
+%   \addtocounter{totalcounter}{1}
+% }
+% \makeatother
 
 % Print labelnumbers with suffixes, adjust secondary labelnumber 2/2
 \DeclareFieldFormat{labelnumber}{%
   \ifkeyword{mine}
   {\ifkeyword{phd_unrelated}
     {{\number\numexpr#1}a}%
-{{\number\numexpr#1}a}}{{\number\numexpr#1}}}
+{{\number\numexpr#1}a}}{#1}}
 
 % {{\number\numexpr#1-\value{bbx:primcount}}a}
 
@@ -200,17 +247,15 @@
 
 %%}
 
-\cleardoublepage
-
 %% --------------------------------------------------------------
-%% |                  Chapter 1 - Introduction                  |
+%% |                        Introduction                        |
 %% --------------------------------------------------------------
 
 \chapternoclear{Introduction}
 
 %%{ Introduction
 
-\section{The author's publications}
+\section{Author's publications}
 
 %%{ Author's publications
 
@@ -227,6 +272,7 @@ Related journals (unimpacted, RA-L):
 \cite{loianno2018localization}
 \cite{petrlik2020robust}
 \cite{stibinger2020localization}
+\cite{saikin2020wildfire}
 
 Related conference papers:
 \cite{baca2019timepix}
@@ -241,7 +287,7 @@ Related conference papers:
 
 Partially-related journals (impacted):
 \cite{baca2016miniaturized}
-\cite{baca2018vzlusat}
+\cite{baca2018timepix}
 \cite{daniel2019inorbit}
 \cite{urban2017vzlusat}
 
@@ -254,8 +300,6 @@ Partially-related conference papers:
 \section{Motivation \& thesis goals}
 
 \section{Contributions}
-
-\section{Mathematical notation and nomenclature}
 
 \begin{comment}
 
@@ -291,211 +335,116 @@ Partially-related conference papers:
 
 %%}
 
+\section{Related work and formal background}
+
+\subsection{Unmanned Aerial Vehicles}
+
+\subsection{UAV control and trajectory tracking}
+
+\subsection{Radiation localization and mapping with UAVs}
+
 %% --------------------------------------------------------------
-%% |                  Chapter 2 - Related work                  |
+%% |                        MRS Platform                        |
 %% --------------------------------------------------------------
 
-\chapternoclear{Related work and formal background}
+\chapternoclear{Research-focused UAV Platform}
 
-%%{ Related work
+Relevant author's publications (will be discussed):
+\fullciteinbox{baca2016embedded}{}
+\fullciteinbox{baca2019autonomous}{}
+\fullciteinbox{spurny2019cooperative}{}
 
-\section{Micro Aerial Vehicles}
+Author's publications to be included in the thesis:
+\includepaper{baca2018model}
+\includepaper{petrlik2020robust}
 
-\subsection{Quadrotor dynamics}
+\section{System architecture}
 
-\subsection{Automatic control of a multirotor UAV}
+%% --------------------------------------------------------------
+%% |                 Advances in UAV deployment                 |
+%% --------------------------------------------------------------
 
-% \cite{lee2010geometric}
-% \cite{lee2013nonlinear}
+\chapternoclear{Advances in UAV Deployment}
 
-\subsection{Frame of reference conventions and nomenclature}
+Will describe how the proposed platform allows pushing the boundaries of the experimental verification of basic and applied research.
 
-\section{Target following with an UAV}
+\section{UAV localization}
 
-\section{Ionizing radiation localization}
+System used in applied research of mutual UAV localization: \cite{walter2017selflocalization, walter2018fast, walter2018mutual, walter2019uvdar, vrba2020markerless, vrba2019onboard}.
 
-\subsection{Radiation detection principles}
+\section{UAV motion planning}
 
-\subsection{Detector types}
+System used in evaluation of robot planning algorithms: \cite{penicka2019data, faigl2019unsupervised, penicka2017dubins, penicka2017neighborhoods, spurny2019transport, petrlik2019coverage, faigl2017onsolution, spurny2016complex}
 
-\subsection{Pixel detectors}
+\section{Automatic control}
+System used in research of automatic control: \cite{giernacky2019realtime, saikin2020wildfire}
 
-\section{Radiation localization by aerial vehicles}
+\section{Data gathering}
+
+System used for autonomous documentation of historical buildings: \cite{petracek2020dronument, saska2017documentation, vrba2019realtime}
+
+\section{UAV swarms and formations}
+
+System used in basic research of UAV swarms and formations: \cite{saska2020formation, saska2016formations}.
+
+\clearpage
+
+\section{MBZIRC 2017 competition}
+
+\subsection{Autonomous Gathering of ferrous objects}
+\includepaper{baca2019autonomous}
+\includepaper{loianno2018localization}
+
+\subsection{Autonomous landing on a moving car}
+\includepaper{spurny2019cooperative}
+
+Related papers: \cite{faigl2019unsupervised, stepan2019vision}
+
+\section{DARPA Subterranean}
+
+Author's relevant papers: \cite{petrlik2020robust, roucek2019darpa}
+
+\section{MBZIRC 2020 competition}
+
+TODO: Not yet published, papers are Work-in-progress.
+
+\subsection{Automatic wall-building by a group of UAVs}
+
+Will describe in detail. Should relate to the main building blocks of the pipeline, namely the trajectory tracking \cite{baca2018model} and the robust control \cite{petrlik2020robust} which were both used.
+
+\subsection{Ball catching and balloon popping by a group of UAVs}
+
+No need to describe extensively, just showcase how was the platform utilized, namely the trajectory tracking \cite{baca2018model}.
+
+\subsection{Fire extinguishing by a group of UAVs}
+
+No need to describe extensively, just showcase how was the platform utilized, namely the robust control \cite{petrlik2020robust}.
 
 %%}
 
 %% --------------------------------------------------------------
-%% |              Chapter 3 - Micro Aerial Vehicles             |
+%% |   Ionizing radiation detection, localization and mapping   |
 %% --------------------------------------------------------------
 
-\chapternoclear{Micro Aerial Vehicles}
+\chapternoclear{Ionizing Radiation Detection by UAVs}
 
-%%{ Micro Aerial Vehicles
+Ongoing research realized in the accepted TACR 2020-2022 project FW01010317:\\
+``\textit{Lokalizace zdrojů ionizující radiace pomocí malých bezpilotních helikoptér s detektorem na principu Comptonovy kamery}''.
 
-\section{Multirotor helicopter model}
+Relevant author's publications (will be discussed):
+\fullciteinbox{baca2016miniaturized}{}
+\fullciteinbox{baca2018timepix}{}
 
-A description of the generic UAV properties: kinematics, dynamics, the control approaches, etc.
+Author's publications to be included in the thesis:
+\includepaper{baca2018rospix}
+\includepaper{baca2019timepix}
+\includepaper{stibinger2020localization}
 
-\subsection{Rotational dynamics}
+Related author's publications: \cite{baca2016miniaturized, urban2017vzlusat}
 
-\subsection{Translational dynamics}
+\section{Compton $\gamma$-ray camera}
 
-\subsection{Propulsion model}
-
-\section{Robust UAV trajectory tracking (The MPC tracker)}
-
-Published in to \cite{baca2018model}.
-
-Originated from \cite{baca2016embedded}.
-
-Relates to \cite{baca2019autonomous, baca2017autonomous, spurny2019cooperative, loianno2018localization, saska2017documentation}.
-
-\section{Robust hybrid nonlinear predictive controller}
-
-Published in \cite{petrlik2020robust, roucek2019darpa,}.
-
-%%}
-
-%% --------------------------------------------------------------
-%% |                  Chapter 4 - MRS Platform                  |
-%% --------------------------------------------------------------
-
-\chapternoclear{Research-focused UAV platform}
-
-Publications on topic \cite{baca2016embedded, baca2018model, petrlik2020robust, baca2019autonomous, spurny2019cooperative}.
-
-%%{ MRS platform
-
-\section{Paradigms for research evaluation and experimentation}
-
-\section{Control system architecture}
-
-\subsection{Robustness vs. punctuality}
-
-\section{System's building blocks}
-
-% \begin{figure}
-%   \centering
-%   \adjustbox{max width=\linewidth}{\input{./fig/tikz/pipeline_diagram.tex}}
-%   \label{fig:mrs_platform_all}
-%   \caption{TODO}
-% \end{figure}
-
-% \begin{figure}
-%   \centering
-%   \input{./fig/tikz/tracker_diagram.tex}
-%   \label{fig:mrs_platform_all}
-%   \caption{TODO}
-% \end{figure}
-
-% \begin{figure}
-%   \centering
-%   \input{./fig/tikz/mrs_platform_diagram.tex}
-%   \label{fig:mrs_platform_all}
-%   \caption{TODO}
-% \end{figure}
-
-%%}
-
-%% --------------------------------------------------------------
-%% |           Chapter 5 - advances in UAV deployment           |
-%% --------------------------------------------------------------
-
-\chapternoclear{Advances in UAV applications on sensing and manipulations}
-
-Published in journals \cite{baca2019autonomous, spurny2019cooperative} (MBZIRC 2017).
-
-Related authored publications: \cite{baca2018model, petrlik2020robust}.
-
-The MBZIRC 2020 not yet published.
-
-%%{ Target following
-
-\section{Autonomous landing on a moving car}
-
-\cite{baca2017autonomous, baca2019autonomous}
-
-\subsection{Target state estimation}
-
-\subsection{Target tracking}
-
-\cite{baca2018model}
-
-\subsection{Landing on a moving vehicle}
-
-\section{Object gathering by a group of UAVs}
-
-\cite{spurny2019cooperative}
-
-\section{Wall building by a group of UAVs}
-
-TODO: MBZIRC 2020
-
-%%}
-
-%% --------------------------------------------------------------
-%% |           Chapter 6 - Ioning Radiation Detection           |
-%% --------------------------------------------------------------
-
-\chapternoclear{Ionizing Radiation Detection, Imaging and Mapping (background)}
-
-Related publications \cite{baca2019timepix, baca2018rospix, stibinger2020localization}.
-
-Partially-related journal publications: \cite{baca2016miniaturized, baca2018vzlusat}.
-
-%%{ Ionizing Radiation Detection and Imaging
-
-\section{Ionizing Radiation detectors}
-
-%%{ Ionizing Radiation detectors
-
-\subsection{Scintillating dosimeters}
-
-\subsection{Semi-conductor detectors}
-
-Related: \cite{urban2017vzlusat}
-
-\subsection{Pixel detectors}
-
-Related: \cite{baca2016miniaturized, baca2019timepix, baca2018rospix, baca2018vzlusat}
-
-%%}
-
-\section{Radiation imaging techniques}
-
-%%{ Radiation imaging techniques
-
-\subsection{Coded apertures}
-
-\subsection{Pinhole cameras}
-
-\subsection{X-Ray Optics}
-
-Related: \cite{baca2016miniaturized}
-
-\subsection{Compton cameras}
-
-Related: \cite{baca2019timepix}
-
-%%}
-
-%%}
-
-%% --------------------------------------------------------------
-%% |                 Chapter 7 - Compton camera                 |
-%% --------------------------------------------------------------
-
-\chapternoclear{Compton $\gamma$-ray camera}
-
-Related to the accepted TACR project: "FW01010317, Lokalizace zdrojů ionizující radiace pomocí malých bezpilotních helikoptér s detektorem na principu Comptonovy kamery".
-
-Partially published in \cite{baca2019timepix}.
-
-Related publications \cite{baca2019timepix, stibinger2020localization, baca2018rospix}.
-
-%%{ Compton camera
-
-\section{Interaction of ionizing radiation with matter}
+Partially published in \cite{baca2019timepix}, no need to describe extensively.
 
 \begin{comment}
 
@@ -737,46 +686,13 @@ Related publications \cite{baca2019timepix, stibinger2020localization, baca2018r
 
 \end{comment}
 
-\section{Compton camera principle}
+\section{Monte-Carlo camera model}
 
-\section{Monte-Carlo Gazebo/ROS camera model}
+Work-in-progress, will describe the principles and publish the simulations.
 
-Work-in-progress
+\section{Radiation source localization and state estimation}
 
-%%}
-
-%% --------------------------------------------------------------
-%% |  Chapter 8 - radiation source localization and estimation  |
-%% --------------------------------------------------------------
-
-\chapternoclear{Radiation source state estimation onboard a UAV}
-
-This has not been published, yet.
-
-%%{ Radiation source estimation
-
-\section{The direction-to-source hypotheses}
-
-\subsection{Uncertainty propagation}
-
-\section{Static case}
-
-\section{Dynamic case}
-
-\subsection{Assumptions}
-
-\begin{itemize}
-  \item A single radiation source,
-  \item compact source,
-  \item static,
-  \item moving with respect to a known model.
-\end{itemize}
-
-\subsection{2-D relaxation}
-
-\subsection{General 3-D case}
-
-%%}
+Work-in-progress, will describe the principles and publish the simulations.
 
 %% --------------------------------------------------------------
 %% |                  Chapter 10 - Conclusions                  |
@@ -787,12 +703,12 @@ This has not been published, yet.
 \appendix
 \renewcommand\chaptername{Appendix}
 
-\chapter{References}
+\chapternoclear{References}
 
 Below are listed all publications of the author.
 Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
 Journal articles also contains information about the Impact Factor~(IF) by Web of Science and the CiteScore~(CS) by Scopus.
-The publications~\cite{loianno2018localization, petrlik2020robust, stibinger2020localization} are only reported with CS due to the novelty of the journal that is expected to receive impact factor in June 2020.
+The publications~\cite{loianno2018localization, petrlik2020robust, stibinger2020localization, saikin2020wildfire} are only reported with CS due to the novelty of the journal that is expected to receive impact factor in June 2020.
 
 \section{Thesis-related author's publications}
 
