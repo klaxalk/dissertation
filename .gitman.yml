@@ -9,6 +9,15 @@ sources:
   link: thesis/papers/baca2018model
   scripts:
   - git submodule update --init --recursive
+- name: petrlik_fusion
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/iros2018fusion.git
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/petrlik_fusion
+  scripts:
+  - git submodule update --init --recursive
 - name: baca2019autonomous
   type: git
   repo: git@mrs.felk.cvut.cz:papers/mbzirc-landing
