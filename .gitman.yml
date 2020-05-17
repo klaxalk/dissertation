@@ -59,7 +59,7 @@ sources:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_source
   sparse_paths:
   -
-  rev: master
+  rev: devel
   link: ros_packages/gazebo_rad_source
   scripts:
   - git submodule update --init --recursive
@@ -97,6 +97,15 @@ sources:
   -
   rev: master
   link: thesis/papers/petrlik_fusion
+  scripts:
+  - git submodule update --init --recursive
+- name: radiation_utils
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
 - name: rviz_visual_tools
@@ -150,7 +159,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: ff2e30621f1791553203ac106ab1ecdaab11e7f5
+  rev: ed86d646be2188989126202cf890da475cca8c7b
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -159,7 +168,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_python
   sparse_paths:
   -
-  rev: 2c1ae04f6abd862da647cc5d9dea40d588626da0
+  rev: 7f3b926969672b57a712232ab60285db34c1dd52
   link: ros_packages/compton_camera_python
   scripts:
   - git submodule update --init --recursive
@@ -168,7 +177,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
   sparse_paths:
   -
-  rev: f98c100905a05627bb72d3e27538fe7084020734
+  rev: b57ca6b1fe5df88c18d70a9567e59521c362bf90
   link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
@@ -177,7 +186,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_source
   sparse_paths:
   -
-  rev: 7c3077a97a653738ee8bcec563e8eeddc8f34177
+  rev: 6a5e97e6582c6f1757789c29b27cb509134b8c18
   link: ros_packages/gazebo_rad_source
   scripts:
   - git submodule update --init --recursive
@@ -186,7 +195,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: 4d5f6e6b76bdc674137833822c9f445fef35fc64
+  rev: 1049791906f1729b38dc5820944bece2e7f625cc
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
@@ -206,6 +215,24 @@ sources_locked:
   -
   rev: de91db47441202c1cab25f692132d6fc4ab76847
   link: thesis/papers/petrlik2020robust
+  scripts:
+  - git submodule update --init --recursive
+- name: petrlik_fusion
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/iros2018fusion.git
+  sparse_paths:
+  -
+  rev: 4c4d5b2105d9c899bd09977b629545f56b8ac191
+  link: thesis/papers/petrlik_fusion
+  scripts:
+  - git submodule update --init --recursive
+- name: radiation_utils
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
+  sparse_paths:
+  -
+  rev: bfa2e94cfcaa76c5ed52ad96e735783a05d366a2
+  link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
 - name: rviz_visual_tools
