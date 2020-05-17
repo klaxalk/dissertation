@@ -159,7 +159,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: ed86d646be2188989126202cf890da475cca8c7b
+  rev: 6a62cca02101d34e02800db0b7a69b5db9da7f59
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -168,7 +168,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_python
   sparse_paths:
   -
-  rev: 7f3b926969672b57a712232ab60285db34c1dd52
+  rev: 9b5f072287232189a372b56eec501d45ee9e8b5d
   link: ros_packages/compton_camera_python
   scripts:
   - git submodule update --init --recursive
@@ -186,7 +186,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_source
   sparse_paths:
   -
-  rev: 6a5e97e6582c6f1757789c29b27cb509134b8c18
+  rev: acc719c1df49cdea11afb4d201cc11571d1135a3
   link: ros_packages/gazebo_rad_source
   scripts:
   - git submodule update --init --recursive
@@ -253,3 +253,4 @@ sources_locked:
   link: thesis/papers/spurny2018cooperative
   scripts:
   - git submodule update --init --recursive
+groups: []

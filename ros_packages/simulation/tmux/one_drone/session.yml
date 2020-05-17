@@ -1,7 +1,7 @@
 name: simulation
 root: ./
 startup_window: optimizer
-pre_window: export UAV_NAME=uav1; export UAV_TYPE=f550
+pre_window: export UAV_NAME=uav1; export UAV_TYPE=t650
 windows:
   - roscore:
       layout: even-vertical
@@ -23,7 +23,7 @@ windows:
   - control:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav1; waitForOdometry; roslaunch mrs_uav_general core.launch config_control_manager:=./custom_configs/control_manager.yaml
+        - export UAV_NAME=uav1; waitForOdometry; roslaunch mrs_uav_general core.launch WORLD_FILE:=./world.yaml config_control_manager:=./custom_configs/control_manager.yaml
   - compton_camera:
       layout: even-vertical
       panes:
@@ -39,7 +39,7 @@ windows:
   - planner:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav1; waitForRos; roslaunch compton_camera_filter trajectory_planner_1.launch
+        - export UAV_NAME=uav1; waitForRos; read; roslaunch compton_camera_filter trajectory_planner_1.launch
   - plotter:
       layout: even-vertical
       panes:
@@ -49,7 +49,7 @@ windows:
       panes:
         #{ uav1
         - 'waitForControl;
-          export UAV_NAME=uav1; 
+          export UAV_NAME=uav1;
           rosservice call /$UAV_NAME/mavros/cmd/arming 1;
           sleep 2;
           rosservice call /$UAV_NAME/mavros/set_mode 0 offboard'
