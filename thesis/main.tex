@@ -446,7 +446,7 @@ Related author's publications: \cite{baca2016miniaturized, urban2017vzlusat}
 
 Partially published in \cite{baca2019timepix}, no need to describe extensively.
 
-\begin{comment}
+% \begin{comment}
 
   %%{ Interaction of ionizing radiation with matter
 
@@ -614,9 +614,9 @@ Partially published in \cite{baca2019timepix}, no need to describe extensively.
     \mathrm{P}\left(\theta \mid E_{cs}\right) = \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}},
   \end{equation}
   where $\sigma_{cs}$ is the total differential cross section for Compton scattering obtained from (\ref{eq:compton_differential_cross_section}).
-  To obtain the posterior probability density of the scattering under by the angle $\theta$, the likelihood (\ref{eq:compton_likelihood}) is multiplied by the prior probability of the Compton scattering (\ref{eq:compton_prior}):
+  To obtain the joint distribution of a photon with energy $E_{cs}$ scattering under by the angle $\theta$, the likelihood (\ref{eq:compton_likelihood}) is multiplied by the prior probability of the Compton scattering (\ref{eq:compton_prior}):
   \begin{equation}
-    \mathrm{P}\left(E_{cs} \mid \theta\right) = \mathrm{P}\left(\theta \mid E_{cs}\right) \mathrm{P}\left(E_{cs}\right) = \left(1 - e^{-n\sigma_{cs} z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}}.
+    \mathrm{P}\left(E_{cs}, \theta\right) = \mathrm{P}\left(\theta \mid E_{cs}\right) \mathrm{P}\left(E_{cs}\right) = \left(1 - e^{-n\sigma_{cs} z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}}.
   \end{equation}
 
   Figure~\ref{fig:compton_probs} shows the differential cross section of the Compton scattering, the likelihood of scattering by the angle $\theta$ and the posterior probability of scattering by the angle $\theta$, calculated for \unit{1}{mm} of silicon.
@@ -635,7 +635,7 @@ Partially published in \cite{baca2019timepix}, no need to describe extensively.
     \end{subfigure}
     \begin{subfigure}{0.32\textwidth}
       \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_2.png}
-      \caption{Plots of posterior probability $\mathrm{P}\left(E_0 \mid \theta\right)$, integrated over azimuthal angle $\phi$.}
+      \caption{Plots of probability $\mathrm{P}\left(E_0, \theta\right)$, integrated over azimuthal angle $\phi$.}
       \label{fig:klein_3}
     \end{subfigure}
     \caption{Plots of the Klein-Nishina differential cross section (\ref{fig:klein_1}), the cross section normalized by the total cross section, integrate over the radial angle $\phi$ (\ref{fig:klein_2}) and the resulting probability distribution (\ref{fig:klein_3}), integrate over $\phi$.}
@@ -684,7 +684,7 @@ Partially published in \cite{baca2019timepix}, no need to describe extensively.
 
   %%}
 
-\end{comment}
+% \end{comment}
 
 \section{Monte-Carlo camera model}
 
