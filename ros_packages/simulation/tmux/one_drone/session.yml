@@ -16,6 +16,7 @@ windows:
       panes:
         - waitForRos; roslaunch radiation_simulation rviz.launch
         - waitForRos; roslaunch mrs_rviz_plugins rviz_interface.launch
+        - waitForRos; roslaunch mrs_rviz_plugins load_robot.launch
   - spawn:
       layout: even-vertical
       panes:
