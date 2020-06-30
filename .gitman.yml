@@ -50,7 +50,7 @@ sources:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
   sparse_paths:
   -
-  rev: master
+  rev: devel
   link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
@@ -68,7 +68,7 @@ sources:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: master
+  rev: devel
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
@@ -177,7 +177,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
   sparse_paths:
   -
-  rev: f98c100905a05627bb72d3e27538fe7084020734
+  rev: b57ca6b1fe5df88c18d70a9567e59521c362bf90
   link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
@@ -195,7 +195,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: 4d5f6e6b76bdc674137833822c9f445fef35fc64
+  rev: ddca36e057105a1e5672c8b0cad8e3c73c0ef7eb
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
@@ -253,4 +253,3 @@ sources_locked:
   link: thesis/papers/spurny2018cooperative
   scripts:
   - git submodule update --init --recursive
-groups: []
