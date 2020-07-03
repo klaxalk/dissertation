@@ -9,6 +9,33 @@ sources:
   link: thesis/papers/baca2018model
   scripts:
   - git submodule update --init --recursive
+- name: rad_msgs
+  type: git
+  repo: git@github.com:rospix/rad_msgs
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/rad_msgs
+  scripts:
+  - git submodule update --init --recursive
+- name: utils
+  type: git
+  repo: git@github.com:rospix/utils
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/utils
+  scripts:
+  - git submodule update --init --recursive
+- name: compton_camera
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/compton_camera
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/compton_camera
+  scripts:
+  - git submodule update --init --recursive
 - name: baca2019autonomous
   type: git
   repo: git@mrs.felk.cvut.cz:papers/mbzirc-landing
