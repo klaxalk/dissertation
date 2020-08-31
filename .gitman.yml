@@ -177,7 +177,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:papers/iros2019radiation
   sparse_paths:
   -
-  rev: 52457132a1a93181642c6bfb7dfdc5535ce7be51
+  rev: c6bef28564e55dc23545f6de6064f63002f427ce
   link: thesis/papers/baca2019timepix
   scripts:
   - git submodule update --init --recursive
