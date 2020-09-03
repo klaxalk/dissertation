@@ -1,6 +1,6 @@
 name: simulation
 root: ./
-startup_window: status
+startup_window: cone_generator
 pre_window: export UAV_NAME=uav46; export RUN_TYPE=uav; export UAV_TYPE=f450
 windows:
   - roscore:
@@ -10,4 +10,40 @@ windows:
   - rosbag:
       layout: tiled
       panes:
-        - waitForRos; rosbag play ~/radiation_bags/29_2020_07_13_12_43_39_let_8_indoor_2d_random_slabsi_zdroj/_2020-07-13-12-44-07.bag
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/29_2020_07_13_12_43_39_let_8_indoor_2d_random_slabsi_zdroj/_2020-07-13-12-44-07.bag -l --clock -r 4.0
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/29_2020_07_13_12_43_39_let_8_indoor_2d_random_slabsi_zdroj/_2020-07-13-12-44-07.bag -r 1.0 -u 1 -l --topics /tf_static
+
+        - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/25_2020_07_13_12_22_31_let_6_indoor_1d_tam_a_zpet/_2020-07-13-12-23-31.bag -l --clock -r 2.0 -s 20
+        - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/25_2020_07_13_12_22_31_let_6_indoor_1d_tam_a_zpet/_2020-07-13-12-23-31.bag -r 1.0 -u 1 -l --topics /tf_static
+
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/26_2020_07_13_12_29_02_let_7_indoor_2d_random_letani/_2020-07-13-12-30-12.bag -l --clock -r 3.0 -s 20
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/26_2020_07_13_12_29_02_let_7_indoor_2d_random_letani/_2020-07-13-12-30-12.bag -r 1.0 -u 1 -l --topics /tf_static
+
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/18_2020_07_13_11_33_02_let_1_outdoor/_2020-07-13-11-34-04.bag -l --clock -r 2.0
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/18_2020_07_13_11_33_02_let_1_outdoor/_2020-07-13-11-34-04.bag -u 1 -l --topics /tf_static
+
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/20_2020_07_13_11_49_55_let_3_outdoor_prelety_pred_a_za_zdrojem/_2020-07-13-11-50-44.bag -l --clock -r 2.0
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/20_2020_07_13_11_49_55_let_3_outdoor_prelety_pred_a_za_zdrojem/_2020-07-13-11-50-44.bag -u 1 -l --topics /tf_static
+
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/22_2020_07_13_12_05_03_let_5_outdoor_testovani_detekcniho_dosahu/_2020-07-13-12-05-48.bag -l --clock -r 3.0 -s 20
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/22_2020_07_13_12_05_03_let_5_outdoor_testovani_detekcniho_dosahu/_2020-07-13-12-05-48.bag -u 1 -l --topics /tf_static
+  - cone_generator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_cone_generator compton_cone_generator.launch
+  - optimizer:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter optimizer_1.launch
+  - filter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter compton_filter_1.launch
+  - cone_plotter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_python compton_plotter_rosbag.launch
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForRos; rosrun rviz rviz -d ./rviz.rviz

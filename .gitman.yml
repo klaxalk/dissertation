@@ -36,15 +36,6 @@ sources:
   link: ros_packages/compton_camera
   scripts:
   - git submodule update --init --recursive
-- name: compton_cone_generator
-  type: git
-  repo: git@mrs.felk.cvut.cz:radiation/compton_cone_generator.git
-  sparse_paths:
-  -
-  rev: master
-  link: ros_packages/compton_cone_generator
-  scripts:
-  - git submodule update --init --recursive
 - name: compton_camera_filter
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
@@ -61,6 +52,15 @@ sources:
   -
   rev: master
   link: ros_packages/compton_camera_python
+  scripts:
+  - git submodule update --init --recursive
+- name: compton_cone_generator
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/compton_cone_generator.git
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/compton_cone_generator
   scripts:
   - git submodule update --init --recursive
 - name: gazebo_rad_msgs
@@ -190,12 +190,21 @@ sources_locked:
   link: thesis/papers/baca2019timepix
   scripts:
   - git submodule update --init --recursive
+- name: compton_camera
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/compton_camera
+  sparse_paths:
+  -
+  rev: 795018faaad20e3393ee3477422b86f2a11924fd
+  link: ros_packages/compton_camera
+  scripts:
+  - git submodule update --init --recursive
 - name: compton_camera_filter
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: f0bdc9c072fd188e5611b1249abc15359a3396ce
+  rev: 22f9129c27028cf6ad897f91fa5e92e6bdb2a107
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -204,8 +213,17 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_python
   sparse_paths:
   -
-  rev: 942d46eba8742a97b2ec4042a72a6d2a04d56940
+  rev: a7182a8c625b661ad71bd7fde052acede4aefd84
   link: ros_packages/compton_camera_python
+  scripts:
+  - git submodule update --init --recursive
+- name: compton_cone_generator
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/compton_cone_generator.git
+  sparse_paths:
+  -
+  rev: 81d81160181da170413d24e696c7574bdb061a44
+  link: ros_packages/compton_cone_generator
   scripts:
   - git submodule update --init --recursive
 - name: gazebo_rad_msgs
@@ -213,7 +231,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
   sparse_paths:
   -
-  rev: b57ca6b1fe5df88c18d70a9567e59521c362bf90
+  rev: f98c100905a05627bb72d3e27538fe7084020734
   link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
@@ -222,7 +240,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_source
   sparse_paths:
   -
-  rev: acc719c1df49cdea11afb4d201cc11571d1135a3
+  rev: 7c3077a97a653738ee8bcec563e8eeddc8f34177
   link: ros_packages/gazebo_rad_source
   scripts:
   - git submodule update --init --recursive
@@ -231,7 +249,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: ddca36e057105a1e5672c8b0cad8e3c73c0ef7eb
+  rev: 4d5f6e6b76bdc674137833822c9f445fef35fc64
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
@@ -267,7 +285,7 @@ sources_locked:
   repo: git@github.com:rospix/rad_msgs
   sparse_paths:
   -
-  rev: 3ea5897074a9d7d170390e9a3d0514868d6d4ca2
+  rev: 43259e3fd8457a0f16049601cd23d2152269c16f
   link: ros_packages/rad_msgs
   scripts:
   - git submodule update --init --recursive
@@ -276,7 +294,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
   sparse_paths:
   -
-  rev: bfa2e94cfcaa76c5ed52ad96e735783a05d366a2
+  rev: a10e77e03da6abfc96589434c4e448ba7bc1fb75
   link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
@@ -296,5 +314,14 @@ sources_locked:
   -
   rev: 903ca4adc55116ba80cd910aaf9ed30154103bd0
   link: thesis/papers/spurny2018cooperative
+  scripts:
+  - git submodule update --init --recursive
+- name: utils
+  type: git
+  repo: git@github.com:rospix/utils
+  sparse_paths:
+  -
+  rev: 6488fd7aadf1a0a538dd451d4d96201286255560
+  link: ros_packages/utils
   scripts:
   - git submodule update --init --recursive
