@@ -1,0 +1,13 @@
+name: simulation
+root: ./
+startup_window: status
+pre_window: export UAV_NAME=uav46; export RUN_TYPE=uav; export UAV_TYPE=f450
+windows:
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - rosbag:
+      layout: tiled
+      panes:
+        - waitForRos; rosbag play ~/radiation_bags/29_2020_07_13_12_43_39_let_8_indoor_2d_random_slabsi_zdroj/_2020-07-13-12-44-07.bag

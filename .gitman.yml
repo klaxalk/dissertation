@@ -36,6 +36,15 @@ sources:
   link: ros_packages/compton_camera
   scripts:
   - git submodule update --init --recursive
+- name: compton_cone_generator
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/compton_cone_generator.git
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/compton_cone_generator
+  scripts:
+  - git submodule update --init --recursive
 - name: compton_camera_filter
   type: git
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
