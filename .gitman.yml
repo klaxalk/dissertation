@@ -18,6 +18,24 @@ sources:
   link: thesis/papers/iros2019autonomous
   scripts:
   - git submodule update --init --recursive
+- name: baca2020mrs
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mrs-platform
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/mrs-platform
+  scripts:
+  - git submodule update --init --recursive
+- name: roberts_thesis
+  type: git
+  repo: git@mrs.felk.cvut.cz:penicrob/dissertation
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/roberts_thesis
+  scripts:
+  - git submodule update --init --recursive
 - name: baca2019timepix
   type: git
   repo: git@mrs.felk.cvut.cz:papers/iros2019radiation

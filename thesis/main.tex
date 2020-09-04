@@ -179,14 +179,25 @@
 
 %%{ CUSTOM MACROS
 
-\newcommand{\unit}[2]{$#1~\ensuremath{\mathrm{#2}}$}
 \newcommand{\strong}[1]{\textbf{#1}}
 \newcommand{\coord}[1]{\textbf{#1}}
 \newcommand{\norm}[1]{\left\lvert#1\right\rvert}
 \newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\corrected}[1]{{\color{black} {#1}}}
-\newcommand{\updated}[1]{{\color{black} {#1}}}
+% \newcommand{\comment}[1]{{\color{blue} {#1}}}
+\newcommand{\add}[1]{{\color{green} {#1}}}
+\newcommand{\todo}[1]{{\color{red} TODO {#1}}}
+\newcommand{\updated}[1]{{\color{blue} {#1}}}
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\refalg}[1]{Alg.~\ref{#1}}
+\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}
+\newcommand{\plus}{\scalebox{0.8}[0.8]{$+$}}
+\newcommand{\figvspace}{\vspace{-1em}} % this may eventually do something, so far just a placeholder
 
 \newcommand{\chapternoclear}[1]{
   \begingroup
@@ -466,6 +477,7 @@ Work-in-progress, will describe the principles and publish the simulations.
 
 Below are listed all publications of the author.
 Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
+\todo{updated citations}
 % Journal articles also contains information about the Impact Factor~(IF) by Web of Science and the CiteScore~(CS) by Scopus.
 % The publications~\cite{loianno2018localization, petrlik2020robust, stibinger2020localization, saikin2020wildfire} are only reported with CS due to the novelty of the journal that is expected to receive impact factor in June 2020.
 
