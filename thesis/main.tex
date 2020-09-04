@@ -22,19 +22,21 @@
 \usepackage{epstopdf}
 \usepackage{url}
 \usepackage{listings}
-\usepackage{caption}
 \usepackage{relsize}
 \usepackage{pdfpages}
 \usepackage{url}
 \usepackage{lipsum}
 \usepackage{isotope}
 \usepackage{verbatim}
-\usepackage{subcaption}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 
 \usepackage{tikz}
 \include{tikz-templates}
+
+% \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
+% \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
+\newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
 
 %%{ fullcite box
 
@@ -73,17 +75,43 @@
 
 %%}
 
-%%{ include paper
+%%{ acronym
 
-% \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
-% \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
-\newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
+\usepackage[nolist,nohyperlinks]{acronym}
+\acrodef{GPS}[GPS]{Global Positioning System}
+\acrodef{SLAM}[SLAM]{Simultaneous Localization And Mapping}
+\acrodef{SLAMs}[SLAMs]{Simultaneous Localization And Mapping systems}
+\acrodef{GPS}[GPS]{Global Positioning System}
+\acrodef{RTK}[RTK]{Real-time Kinematics}
+\acrodef{GNSS}[GNSS]{Global Navigation Satellite System}
+\acrodef{ROS}[ROS]{Robot Operating System}
+\acrodef{API}[API]{Application Programming Interface}
+\acrodef{UAV}[UAV]{Unmanned Aerial Vehicle}
+\acrodef{UGV}[UGV]{Unmanned Ground Vehicle}
+\acrodef{UV}[UV]{Ultra-Violet}
+\acrodef{LED}[LED]{Light-emitting Diode}
+\acrodef{MBZIRC}[MBZIRC]{Mohamed Bin Zayed International Robotics Challenge}
+\acrodef{DARPA}[DARPA]{Defense Advanced Research Projects Agency}
+\acrodef{IMU}[IMU]{Inertial Measurement Unit}
+\acrodef{LTI}[LTI]{Linear time-invariant}
+\acrodef{MPC}[MPC]{Model Predictive Control}
+\acrodef{UVDAR}[UVDAR]{Ultra-Violet Direction And Ranging}
+\acrodef{DOF}[DOF]{degree-of-freedom}
+\acrodef{DOFs}[DOFs]{degrees-of-freedom}
+\acrodef{LiDAR}[LiDAR]{Light Detection and Ranging}
+\acrodef{ESC}[ESC]{Electronic Speed Controller}
+\acrodef{LKF}[LKF]{Linear Kalman Filter}
+\acrodef{UKF}[UKF]{Unscented Kalman Filter}
+\acrodef{EKF}[EKF]{Extended Kalman Filter}
+\acrodef{RAS}[RAS]{Robotics and Automation Society}
+\acrodef{IEEE}[IEEE]{Institute of Electrical and Electronics Engineers}
+\acrodef{MRS}[MRS]{Multi-robot Systems Group}
 
 %%}
 
 % subfloat
-% \usepackage{subfig}
-% \usepackage[export]{adjustbox}
+\usepackage{subfig}
+\usepackage[export]{adjustbox}
 
 % change formatting of lists
 \usepackage{enumitem}
@@ -259,7 +287,7 @@
 
 %%{ Author's publications
 
-Related journals (impacted):
+Related journals:
 \cite{baca2018rospix}
 \cite{baca2019autonomous}
 \cite{spurny2019cooperative}
@@ -267,12 +295,11 @@ Related journals (impacted):
 \cite{giernacky2019realtime}
 \cite{chudoba2016exploration}
 \cite{saska2020formation}
-
-Related journals (unimpacted, RA-L):
 \cite{loianno2018localization}
 \cite{petrlik2020robust}
 \cite{stibinger2020localization}
 \cite{saikin2020wildfire}
+\cite{baca2020mrs}
 
 Related conference papers:
 \cite{baca2019timepix}
@@ -285,7 +312,7 @@ Related conference papers:
 \cite{saska2016formations}
 \cite{roucek2019darpa}
 
-Partially-related journals (impacted):
+Partially-related journals:
 \cite{baca2016miniaturized}
 \cite{baca2018timepix}
 \cite{daniel2019inorbit}
@@ -300,38 +327,6 @@ Partially-related conference papers:
 \section{Motivation \& thesis goals}
 
 \section{Contributions}
-
-\begin{comment}
-
-  %%{ mathematical notation
-
-  The table \ref{tab:notation} denotes the mathematical notation used throughout this thesis.
-
-  \begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-      \hline
-      Symbol & Description \\
-      \hline
-      lower or uppercase letter, e.g., $n$, $N$ & a scalar \\
-      bold lowercase letter, e.g., \textbf{x} & a column vector \\
-      bold uppercase letter, e.g., \textbf{A} & a matrix \\
-      $\textbf{x}^T$, $\textbf{A}^T$ & vector and matrix transpose \\
-      underlined vector, e.g., \textbf{\underline{x}} & concatenated vectors $\left[\textbf{x}_1^T,\textbf{x}_2^T,...,\textbf{x}_n^T\right]^T$ \\
-      \textbf{I} & identity matrix \\
-      \textbf{1} & unity matrix \\
-      $x^{(W)}$ & $x$ in coordinate system $W$ \\
-      $x_{[n]}$, $\textbf{x}_{[n]}$ & $x$, $\textbf{x}$ in the sample time $n \in \mathbb{N}$ \\
-      $\mathbb{R}$, $\mathbb{N}$ & set of real and natural numbers \\
-      \hline
-    \end{tabular}
-    \caption{Overview of mathematical notation.}
-    \label{tab:notation}
-  \end{table}
-
-  %%}
-
-\end{comment}
 
 %%}
 
@@ -427,7 +422,8 @@ No need to describe extensively, just showcase how was the platform utilized, na
 %% |   Ionizing radiation detection, localization and mapping   |
 %% --------------------------------------------------------------
 
-\chapternoclear{Ionizing Radiation Detection by UAVs}
+\chapternoclear{Ionizing Radiation Detection and Localization by UAVs}
+\chaptermark{Ionizing Radiation Localization}
 
 Ongoing research realized in the accepted TACR 2020-2022 project FW01010317:\\
 ``\textit{Lokalizace zdrojů ionizující radiace pomocí malých bezpilotních helikoptér s detektorem na principu Comptonovy kamery}''.
@@ -447,246 +443,6 @@ Related author's publications: \cite{baca2016miniaturized, urban2017vzlusat}
 
 Partially published in \cite{baca2019timepix}, no need to describe extensively.
 
-\begin{comment}
-
-  %%{ Interaction of ionizing radiation with matter
-
-  \subsection{Differential cross section}
-
-  %%{ Differential cross section
-
-  In a classical mechanics, the properties of non-elastic scattering of a particle from an object (scattering center) are described by a differential cross section.
-  A total cross section characterizes an effective area of an event (collision, scattering).
-  For simulating the interaction of X-Ray and $\gamma$-Ray photons with matter, differential and total cross sections of the interaction need to be derived.
-
-  I am considering a single particle on an incident trajectory with the scattering object.
-  The displacement $b$ of the particle from the path to the scattering center is called the impact parameter, the radial angle of scattering is denoted as $\theta$.
-  Various types of reactions have a distinct relation between $b$ and $\theta$.
-  The total area of the impact parameter is the impact cross section $\sigma$, which can be obtained by integrating the impact parameter $b$ over all possible azimuthal angles $\phi$:
-  \begin{equation}
-    \sigma\left(b\right) = \int_\Phi b\left(\phi\right)\,d\phi.
-  \end{equation}
-  In a case where the scattering does not influence $\phi$ (axially symmetrical case), the impact cross section takes following form
-  \begin{equation}
-    \sigma\left(b\right) = \int_\Phi b\,d\phi = \frac{b^{2}}{2}\,2\pi = \pi\,b^2.
-  \end{equation}
-  Such relaxation is viable for Compton scattering, since the scattering bodies are spherically symmetrical objects.
-  The differential of the impact cross section is
-  \begin{equation}
-    d\sigma\left(b\right) = \frac{\partial \sigma}{\partial b}\,db = 2\pi\,b\,db.
-  \end{equation}
-
-  The solid angle on a unit sphere under the angle $\theta < \Theta$ is obtained by the integration:
-  \begin{equation}
-    \Omega\left(r, \Theta\right) = \int_0^\Theta 2\pi r\,\cos\theta\,r\,d\theta = \left[-2\pi r^2\,\sin\theta\right]_0^\Theta = 2\pi r^2 - 2\pi r^2\cos\Theta.
-  \end{equation}
-  The differential of the solid angle is
-  \begin{equation}
-    d\Omega\left(\theta\right) = \frac{\partial \Omega}{\partial r}\,dr + \frac{\partial \Omega}{\partial \theta}\,d\theta = -4\pi r\,\cos\theta\,dr + 4\pi r\,dr + 2\pi r^2\sin\theta\,d\theta.
-  \end{equation}
-  In the case of a unit sphere, the differential of the area simplifies to
-  \begin{equation}
-    d\Omega(\theta) = 2\pi r^2\sin\theta\,d\theta.
-  \end{equation}
-
-  The total cross section $\sigma$ (sometimes just \emph{cross section}) is obtained by integrating the differential cross section over the area of a unit sphere:
-  \begin{equation}
-    \sigma = \oint_{4\pi} \frac{d\sigma}{d\Omega}\,d\Omega = \int_0^{2\pi} \int_0^{\pi} \frac{d\sigma}{d\Omega}\sin\theta\,d\theta\,d\phi.
-  \end{equation}
-  The total cross section is used in physics to calculate a probability of a reaction (collision, scattering, etc.) and can be interpreted as an effective area in a which a colliding particle has to impact to cause the event.
-  In physics literature, the unit of the cross section is typically $\mathrm{m}^2$, $\mathrm{cm}^2$ or the barn = \unit{10^{-28}}{m^2}.
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}{0.49\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_scattering_illustration_1.pdf}
-      \caption{Showcase of solid angle $d\Omega$ and the differential size of the impact plane $d\sigma$ for $\theta=$~\unit{60}{deg}.}
-      \label{fig:differential_cross_section_1}
-    \end{subfigure}
-    \begin{subfigure}{0.49\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_scattering_illustration_2.pdf}
-      \caption{Showcase of solid angle $d\Omega$ and the differential size of the impact plane $d\sigma$ for $\theta=$~\unit{120}{deg}.}
-      \label{fig:differential_cross_section_2}
-    \end{subfigure}
-    \caption{Illustration of the differential cross section for two possible values of $\theta$. The solid angle $d\Omega$ is integrated over all values of $\phi$ since the azimuthal angle $\phi$ is not changed by the scattering process.}
-    \label{fig:differential_cross_section}
-  \end{figure}
-
-  Photon attenuation, i.e., the decrease of the intensity $d\Phi$ of an incident beam with original flux $\Phi \left[\mathrm{s}^{-1}\right]$ is described as
-  \begin{equation}
-    \frac{d\Phi}{dz} = -n\sigma\Phi
-  \end{equation}
-  where $dz$ is the thickness of the blocking material, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the material and $\sigma \left[\mathrm{m}^{2}\right]$ is the total cross section of the interaction.
-  By solving the differential equation, we obtain a relationship between the initial flux $\Phi$ and the remaining flux $\Phi_{out}$ behind the object with the thickness $z$:
-  \begin{equation}
-    \Phi_{out} = \Phi e^{-n\sigma z}.
-  \end{equation}
-  This the probability of an \emph{event} (photoelectric effect, Compton scattering, etc.) $\mathrm{P}\left(E\right)$ is modeled as
-  \begin{equation}
-    \mathrm{P}\left(E\right) = 1 - e^{-n\sigma z}.
-  \end{equation}
-
-  %%}
-
-  \subsection{Photoelectric effect}
-
-  %%{ Photoelectric effect
-
-  Photoelectric effect (Einstein, 1905) describes a total absorption of a photon by an electron.
-  When the electron is absorbed, the energy of the photon is completely consumed.
-  A portion of the energy is responsible for releasing the electron from the atomic orbital; the rest is converted to kinetic energy of the electron.
-
-  Photon energy can be expressed using its wavelength \unit{\lambda}{\left[m\right]} or frequency \unit{\nu}{\left[Hz\right]} as
-  \begin{equation}
-    E_{\gamma} = \frac{hc}{\lambda} = h\nu,
-  \end{equation}
-  where $h \approx $ \unit{6.62 \cdot 10^{-34}}{m^2\,kg\,s^{-1}} is the Planck constant and \unit{c \approx 2.99 \cdot 10^{8}}{m\,s^{-1}} is the speed of light in a vacuum.
-  Let us define the ratio
-  \begin{equation}
-    k = \frac{E_{\gamma}}{E_e}
-  \end{equation}
-  between the photon energy $E_{\gamma} = h\nu \left[\mathrm{eV}\right]$ and the electron rest mass energy \unit{E_e = m_ec^2 \approx 5.11 \cdot 10^5}{eV}.
-  According to \cite{fornalski2018simple}, the simplified version of the Gavrila-Pratt \cite{davisson1965interaction} cross section for the photoelectric effect is
-  \begin{equation}
-    \label{eq:pe_cross_section}
-    \sigma_{ph} = \frac{16}{3}\sqrt{2}\pi r_e^2\alpha^4\frac{Z^5}{k^{3.5}},
-  \end{equation}
-  where \unit{r_e \approx 2.81 \cdot 10^{-15}}{m} is the classical electron radius, $\alpha \approx 1/137.04$ is the fine structure constant and $Z$ is the atomic number of the element.
-  The accuracy of (\ref{eq:pe_cross_section}) is low even in the energy range, where it should be used ($\approx 1$ -- \unit{1000}{keV}).
-  To achieve better accuracy, one could build upon the work of, e.g., Gavrila-Pratt \cite{davisson1965interaction}, Scofield et al. \cite{scofield1973theoretical}, or Hubbell et al. \cite{hubbell1980pair}.
-  However, the cross section (\ref{eq:pe_cross_section}) will suffice for this work.
-
-  The probability of a single photoelectric effect event within a material of thickness $z$ is calculated as
-  \begin{equation}
-    \mathrm{P}\left(E_{pe}\right) = 1 - e^{-n\sigma_{pe} z}.
-  \end{equation}
-
-  Cross section $\sigma_{ph}$ for $k > 0.9$
-  \begin{equation}
-    \sigma_{ph} = Z^5\left[\sum_{n=1}^4 \frac{a_n + b_nZ}{1 + c_nZ}K^{-p_n}\right],
-  \end{equation}
-  where {\color{red} TODO } \cite{hubbell1980pair}.
-  \begin{table}
-    \centering
-    \begin{tabular}{c c c c c}
-      \hline
-      n & $a_n$ & $b_n$ & $c_n$ & $p_a$ \\
-      \hline
-      1 \rule{0pt}{2.3ex} & $1.6268 \cdot 10^{-9}$ & $-2.683 \cdot 10^{-12}$ & $4.173 \cdot 10^{-2}$ & 1 \\
-      2 & $1.5274 \cdot 10^{-9}$ & $-5.110 \cdot 10^{-13}$ & $1.027 \cdot 10^{-2}$ & 2 \\
-      3 & $1.1330 \cdot 10^{-9}$ & $-2.177 \cdot 10^{-12}$ & $2.013 \cdot 10^{-2}$ & 3.5 \\
-      4 & $-9.12 \cdot 10^{-11}$ & 0 & 0 & 4\\
-      \hline
-    \end{tabular}
-    \caption{\cite{hubbell1980pair}}
-  \end{table}
-
-  %%}
-
-  \subsection{Compton scattering}
-
-  %%{ Compton scattering
-
-  Compton scattering occurs when a photon transfers a portion of its energy to an electron.
-  During this interaction, the photon is deflected from its original path by the radial angle $\theta$ and azimuthal angle $\phi$.
-
-  The ratio $E_r$ of the energy of incoming ($E_{0}$) and scattered ($E_{s}$) particles was observed and described by Compton as
-  \begin{equation}
-    E_r\left(\theta, E_0\right) = \frac{E_s\left(\theta, E_0\right)}{E_{0}} = \frac{1}{1 + \frac{E_0}{m_ec^2}\left(1 - \cos\theta\right)},
-  \end{equation}
-  where $\theta \in \left[-\pi, \pi\right)$ is the radial angle at which the photons are scattered, $E_0, E_s$ $\left[\mathrm{J}\right]$ are the energies of the incoming and scattered photons, \unit{m_e \approx 9.10 \cdot 10^{-31}}{kg} is the invariant mass of the electron, \unit{c \approx 2.99 \cdot 10^{8}}{m\,s^{-1}} is the speed of light in vacuum.
-
-  The Klein-Nishina formula \cite{leo2012techniques} describes the differential cross section \unit{d\sigma/d\Omega}{[m^2/sr]} of the incident and scattered beam as
-  \begin{equation}
-    \label{eq:compton_differential_cross_section}
-    \frac{d\sigma}{d\Omega}\left(\theta\right) = \frac{1}{2}\,r_{e}^2\,E_r\left(\theta\right)^2\left(E_r\left(\theta\right) + \frac{1}{E_r\left(\theta\right)} - \sin^2\theta\right),
-  \end{equation}
-  where \unit{r_e \approx 2.81 \cdot 10^{-15}}{m} is the classical electron radius.
-  As with the photoelectric effect, the prior probability of the scattering in a material with thickness $z$ is computed as:
-  \begin{equation}
-    \label{eq:compton_prior}
-    \mathrm{P}\left(E_{cs}\right) = 1 - e^{-n\sigma_{cs} z}.
-  \end{equation}
-  The value of likelihood probability density corresponding to the event $E_{cs}$ of a single photon with initial energy \unit{E_o}{[eV]} being scattered by the angle \unit{\theta}{[rad]} is calculated as
-  \begin{equation}
-    \label{eq:compton_likelihood}
-    \mathrm{P}\left(\theta \mid E_{cs}\right) = \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}},
-  \end{equation}
-  where $\sigma_{cs}$ is the total differential cross section for Compton scattering obtained from (\ref{eq:compton_differential_cross_section}).
-  To obtain the joint distribution of a photon with energy $E_{cs}$ scattering under by the angle $\theta$, the likelihood (\ref{eq:compton_likelihood}) is multiplied by the prior probability of the Compton scattering (\ref{eq:compton_prior}):
-  \begin{equation}
-    \mathrm{P}\left(E_{cs}, \theta\right) = \mathrm{P}\left(\theta \mid E_{cs}\right) \mathrm{P}\left(E_{cs}\right) = \left(1 - e^{-n\sigma_{cs} z}\right) \frac{\int_0^{2\pi} \frac{d\sigma}{d\Omega}\,\sin \theta\,d\phi}{\sigma_{cs}}.
-  \end{equation}
-
-  Figure~\ref{fig:compton_probs} shows the differential cross section of the Compton scattering, the likelihood of scattering by the angle $\theta$ and the posterior probability of scattering by the angle $\theta$, calculated for \unit{1}{mm} of silicon.
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}{0.32\textwidth}
-      \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_1.png}
-      \caption{Plots of the differential cross $d\sigma/d\Omega$ section for various photon energies.}
-      \label{fig:klein_1}
-    \end{subfigure}
-    \begin{subfigure}{0.32\textwidth}
-      \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_3.png}
-      \caption{Plots of likelihood probability $\mathrm{P}\left(\theta \mid E_0\right)$, integrated over azimuthal angle $\phi$.}
-      \label{fig:klein_2}
-    \end{subfigure}
-    \begin{subfigure}{0.32\textwidth}
-      \includegraphics[width=1.0\textwidth]{./fig/klein_nishina_2.png}
-      \caption{Plots of probability $\mathrm{P}\left(E_0, \theta\right)$, integrated over azimuthal angle $\phi$.}
-      \label{fig:klein_3}
-    \end{subfigure}
-    \caption{Plots of the Klein-Nishina differential cross section (\ref{fig:klein_1}), the cross section normalized by the total cross section, integrate over the radial angle $\phi$ (\ref{fig:klein_2}) and the resulting probability distribution (\ref{fig:klein_3}), integrate over $\phi$.}
-    \label{fig:compton_probs}
-  \end{figure}
-
-  % The intensity of the scattered beam \unit{N_s}{\left[s^{-1}\right]} is calculated for a small finite solid angle \unit{\Delta \theta}{\left[sr\right]} as
-  % \begin{equation}
-  %   N_s = N_o\,\frac{d\sigma}{d\Omega}\left(\theta\right)\,n_e\,t\,\Delta\theta,
-  % \end{equation}
-  % where \unit{N_0}{\left[s^{-1}\right]} is the intensity of the incoming beam, \unit{n_e}{\left[m^{-3}\right]} is the electron density of the scattering material and \unit{t}{\left[m\right]} is the effective thickness of the scattering material.
-
-  %%}
-
-  \subsection{Electron-positron pair and triplet production}
-
-  %%{ Electron-positron pair and triplet production
-
-  At higher energies, \unit{>1}{MeV}, the photoelectric effect and Compton scattering are dominated by the electron-positron pair and triplet productions effects \cite{hubbell1980pair}.
-  Since the aim of this work is to simulate the Compton camera, where only the first two effects are responsible in producing measurement, we omit the later two.
-  In the real sensor, the pair and triplet production would create an unwanted signal which would be filtered out by the processing software, responsible for particle track classification.
-
-  %%}
-
-  \subsection{Photon attenuation}
-
-  %%{ Photon attenuation
-
-  \begin{figure}[ht]
-    \centering
-    \begin{subfigure}{0.49\textwidth}
-      \includegraphics[width=1.0\textwidth]{./fig/scatterer_attenuation.png}
-      \caption{Photon attenuation on \unit{1}{mm} of Si.}
-      \label{fig:scatterer_attenuation}
-    \end{subfigure}
-    \begin{subfigure}{0.49\textwidth}
-      \includegraphics[width=1.0\textwidth]{./fig/absorber_attenuation.png}
-      \caption{Photon attenuation on \unit{1}{mm} of CdTe.}
-      \label{fig:absorber_attenuation}
-    \end{subfigure}
-    \label{fig:photon_attenuation}
-    \caption{Photon attenuation on (\ref{fig:scatterer_attenuation}) the scatterer and (\ref{fig:absorber_attenuation}) the absorber.}
-  \end{figure}
-
-  %%}
-
-  %%}
-
-\end{comment}
-
 \section{Monte-Carlo camera model}
 
 Work-in-progress, will describe the principles and publish the simulations.
@@ -696,8 +452,10 @@ Work-in-progress, will describe the principles and publish the simulations.
 Work-in-progress, will describe the principles and publish the simulations.
 
 %% --------------------------------------------------------------
-%% |                  Chapter 10 - Conclusions                  |
+%% |                         Conclusion                         |
 %% --------------------------------------------------------------
+
+\chapternoclear{Conclusions}
 
 %%{ REFERENCES
 
@@ -708,23 +466,26 @@ Work-in-progress, will describe the principles and publish the simulations.
 
 Below are listed all publications of the author.
 Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
-Journal articles also contains information about the Impact Factor~(IF) by Web of Science and the CiteScore~(CS) by Scopus.
-The publications~\cite{loianno2018localization, petrlik2020robust, stibinger2020localization, saikin2020wildfire} are only reported with CS due to the novelty of the journal that is expected to receive impact factor in June 2020.
+% Journal articles also contains information about the Impact Factor~(IF) by Web of Science and the CiteScore~(CS) by Scopus.
+% The publications~\cite{loianno2018localization, petrlik2020robust, stibinger2020localization, saikin2020wildfire} are only reported with CS due to the novelty of the journal that is expected to receive impact factor in June 2020.
 
 \section{Thesis-related author's publications}
 
 \subsection*{Thesis-related articles in peer-reviewed journals with Impact Factor~(IF)}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={if},heading=none,title={}]
 
-\subsection*{Thesis-related articles in peer-reviewed journals only with CiteScore~(CS)}
-\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={cs},heading=none,title={}]
+\subsection*{Thesis-related articles --- submitted}
+\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={submitted},heading=none,title={}]
+
+% \subsection*{Thesis-related articles in peer-reviewed journals only with CiteScore~(CS)}
+% \printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={cs},heading=none,title={}]
 
 \subsection*{Thesis-related conference proceedings}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={conference},heading=none,title={}]
 
 \section{Partially-related author's publications}
 
-\subsection*{Articles in peer-reviewed journals with impact factor}
+\subsection*{Articles in peer-reviewed journals with Impact Factor~(IF)}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={journal},keyword={if},heading=none,title={}]
 
 \subsection*{Conference proceedings}
