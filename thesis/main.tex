@@ -179,6 +179,11 @@
 
 %%{ CUSTOM MACROS
 
+%%%%%%%%%%%%%%% changemargin environment begin %%%%%%%%%%%%%%%%%%%%%%%%%
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+%%%%%%%%%%%%%%% changemargin environment end %%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newcommand{\strong}[1]{\textbf{#1}}
 \newcommand{\coord}[1]{\textbf{#1}}
 \newcommand{\norm}[1]{\left\lvert#1\right\rvert}
@@ -222,14 +227,17 @@
 
 \newcommand{\Author}{Ing. Tomáš Báča}
 \newcommand{\Supervisor}{Ing. Martin Saska, Dr. rer. nat.}
-\newcommand{\Specialist}{Ing. Michal Platkevic, Ph.D.}
+\newcommand{\SupervisorSpecialist}{Ing. Michal Platkevic, Ph.D.}
 \newcommand{\Programme}{Electrical Engineering and Information Technology}
 \newcommand{\Field}{Artificial Intelligence and Biocybernetics}
-\newcommand{\Title}{Cooperative Sensing with Group of Unmanned Aerial Vehicles}
+\newcommand{\Title}{Cooperative Sensing with Group\\[0.5em]of Unmanned Aerial Vehicles}
 \newcommand{\DocName}{Doctoral Thesis}
 \newcommand{\Keywords}{Unmanned Aerial Vehicles, Ionizing localization}
-\newcommand{\Date}{1/1/2019}
 \newcommand{\DOCVersion}{0.1}
+\newcommand{\Year}{2020}
+\newcommand{\Month}{September}
+\newcommand{\Date}{\Month~\Year}
+\newcommand{\Location}{Prague}
 
 % % altering margins
 % \setlength{\oddsidemargin}{+0.5cm}
@@ -276,15 +284,25 @@
 % without it it does not compile!
 \let\bibfont\small
 
+%%}
+
 \begin{document}
 
-\input{chapters/title}
+\input{src/title}
+
+\conditionalClearPage
+\input{src/acknowledgments.tex}
+
+\conditionalClearPage
+\input{src/copyright.tex}
+
+\conditionalClearPage
+\input{src/abstract.tex}
 
 \pagestyle{fancy}
 
+\conditionalClearPage
 \tableofcontents
-
-%%}
 
 %% --------------------------------------------------------------
 %% |                        Introduction                        |
