@@ -213,7 +213,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_python
   sparse_paths:
   -
-  rev: a7182a8c625b661ad71bd7fde052acede4aefd84
+  rev: 83b17236e7ac85439156c373afa7a9053943239e
   link: ros_packages/compton_camera_python
   scripts:
   - git submodule update --init --recursive
@@ -231,7 +231,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_msgs
   sparse_paths:
   -
-  rev: f98c100905a05627bb72d3e27538fe7084020734
+  rev: b57ca6b1fe5df88c18d70a9567e59521c362bf90
   link: ros_packages/gazebo_rad_msgs
   scripts:
   - git submodule update --init --recursive
@@ -240,7 +240,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_rad_source
   sparse_paths:
   -
-  rev: 7c3077a97a653738ee8bcec563e8eeddc8f34177
+  rev: acc719c1df49cdea11afb4d201cc11571d1135a3
   link: ros_packages/gazebo_rad_source
   scripts:
   - git submodule update --init --recursive
@@ -249,7 +249,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: 4d5f6e6b76bdc674137833822c9f445fef35fc64
+  rev: fa2e2f29f7069d921431c8d5a6c0af73b5334dbe
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
@@ -294,7 +294,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
   sparse_paths:
   -
-  rev: a10e77e03da6abfc96589434c4e448ba7bc1fb75
+  rev: efc19673dae3148e7cd36467a94e6ef7eddc7871
   link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
