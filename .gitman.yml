@@ -18,24 +18,6 @@ sources:
   link: thesis/papers/iros2019autonomous
   scripts:
   - git submodule update --init --recursive
-- name: baca2020mrs
-  type: git
-  repo: git@mrs.felk.cvut.cz:papers/mrs-platform
-  sparse_paths:
-  -
-  rev: master
-  link: thesis/papers/mrs-platform
-  scripts:
-  - git submodule update --init --recursive
-- name: roberts_thesis
-  type: git
-  repo: git@mrs.felk.cvut.cz:penicrob/dissertation
-  sparse_paths:
-  -
-  rev: master
-  link: thesis/papers/roberts_thesis
-  scripts:
-  - git submodule update --init --recursive
 - name: baca2019timepix
   type: git
   repo: git@mrs.felk.cvut.cz:papers/iros2019radiation
@@ -43,6 +25,15 @@ sources:
   -
   rev: master
   link: thesis/papers/baca2019timepix
+  scripts:
+  - git submodule update --init --recursive
+- name: baca2020mrs
+  type: git
+  repo: git@mrs.felk.cvut.cz:papers/mrs-platform
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/mrs-platform
   scripts:
   - git submodule update --init --recursive
 - name: compton_camera
@@ -151,6 +142,15 @@ sources:
   -
   rev: master
   link: ros_packages/radiation_utils
+  scripts:
+  - git submodule update --init --recursive
+- name: roberts_thesis
+  type: git
+  repo: git@mrs.felk.cvut.cz:penicrob/dissertation
+  sparse_paths:
+  -
+  rev: master
+  link: thesis/papers/roberts_thesis
   scripts:
   - git submodule update --init --recursive
 - name: rviz_visual_tools
@@ -312,7 +312,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
   sparse_paths:
   -
-  rev: efc19673dae3148e7cd36467a94e6ef7eddc7871
+  rev: 8309f7363fe2868e5d961ee82aaad40d0d317b38
   link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
