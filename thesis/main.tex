@@ -30,8 +30,10 @@
 \usepackage{verbatim}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
-
+\usepackage{subfig} % subfloat
+\usepackage[export]{adjustbox}
 \usepackage{tikz}
+
 \include{tikz-templates}
 
 % \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
@@ -109,9 +111,6 @@
 
 %%}
 
-% subfloat
-\usepackage{subfig}
-\usepackage[export]{adjustbox}
 
 % change formatting of lists
 \usepackage{enumitem}
@@ -121,7 +120,7 @@
 % \begin{itemize}[topsep=8pt,itemsep=4pt,partopsep=4pt, parsep=4pt]
 
 % change spacing of the table of contents
-\usepackage{tocloft}
+% \usepackage{tocloft}
 % \renewcommand\cftchapafterpnum{\vskip5pt}
 % \renewcommand\cftsecafterpnum{\vskip5pt}
 
@@ -304,17 +303,15 @@
 \conditionalClearPage
 \tableofcontents
 
-%% --------------------------------------------------------------
-%% |                        Introduction                        |
-%% --------------------------------------------------------------
-
-\chapternoclear{Introduction}
+%% | ------------------------ Chapter 1 ----------------------- |
 
 %%{ Introduction
 
-\section{Author's publications}
+\chapternoclear{Introduction}
 
 %%{ Author's publications
+
+\section{Author's publications}
 
 Related journals:
 \cite{baca2018rospix}
@@ -353,23 +350,19 @@ Partially-related conference papers:
 
 %%}
 
-\section{Motivation \& thesis goals}
+%%}
 
-\section{Contributions}
+%% | ------------------------ Chapter 2 ----------------------- |
+
+%%{ Contributions
+
+\chapternoclear{Contributions and Related Work}
 
 %%}
 
-\section{Related work and formal background}
+%% | ------------------------ Chapter 3 ----------------------- |
 
-\subsection{Unmanned Aerial Vehicles}
-
-\subsection{UAV control and trajectory tracking}
-
-\subsection{Radiation localization and mapping with UAVs}
-
-%% --------------------------------------------------------------
-%% |                        MRS Platform                        |
-%% --------------------------------------------------------------
+%%{ MRS platform
 
 \chapternoclear{Research-focused UAV Platform}
 
@@ -385,9 +378,11 @@ Author's publications to be included in the thesis:
 
 \section{System architecture}
 
-%% --------------------------------------------------------------
-%% |                 Advances in UAV deployment                 |
-%% --------------------------------------------------------------
+%%}
+
+%% | ------------------------ Chapter 4 ----------------------- |
+
+%%{ Advances in UAV Deployment
 
 \chapternoclear{Advances in UAV Deployment}
 
@@ -447,9 +442,9 @@ No need to describe extensively, just showcase how was the platform utilized, na
 
 %%}
 
-%% --------------------------------------------------------------
-%% |   Ionizing radiation detection, localization and mapping   |
-%% --------------------------------------------------------------
+%% | ------------------------ Chapter 5 ----------------------- |
+
+%%{ Ionizing Radiation Detection and Localization by UAVs
 
 \chapternoclear{Ionizing Radiation Detection and Localization by UAVs}
 \chaptermark{Ionizing Radiation Localization}
@@ -480,13 +475,17 @@ Work-in-progress, will describe the principles and publish the simulations.
 
 Work-in-progress, will describe the principles and publish the simulations.
 
-%% --------------------------------------------------------------
-%% |                         Conclusion                         |
-%% --------------------------------------------------------------
+%%}
 
-\chapternoclear{Conclusions}
+%% | ------------------------ Chapter 6 ----------------------- |
 
-%%{ REFERENCES
+%%{ Conclusion
+
+\chapternoclear{Conclusion}
+
+%%}
+
+%%{ References
 
 \appendix
 \renewcommand\chaptername{Appendix}
@@ -526,7 +525,7 @@ Each citation is displayed with percentage contribution of the author and number
 
 %%}
 
-%%{ APENDICES
+%%{ Apendices
 
 \appendix
 \renewcommand\chaptername{Citations of author's publications}
