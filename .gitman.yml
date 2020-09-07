@@ -321,7 +321,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
   sparse_paths:
   -
-  rev: efc19673dae3148e7cd36467a94e6ef7eddc7871
+  rev: 8309f7363fe2868e5d961ee82aaad40d0d317b38
   link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
