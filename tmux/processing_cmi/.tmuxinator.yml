@@ -16,7 +16,7 @@ windows:
         # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/25_2020_07_13_12_22_31_let_6_indoor_1d_tam_a_zpet/_2020-07-13-12-23-31.bag -l --clock -r 1.0 -s 33
         # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/25_2020_07_13_12_22_31_let_6_indoor_1d_tam_a_zpet/_2020-07-13-12-23-31.bag -r 1.0 -u 1 -l --topics /tf_static
 
-        - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/26_2020_07_13_12_29_02_let_7_indoor_2d_random_letani/_2020-07-13-12-30-12.bag -l --clock -r 2.0 -s 20
+        - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/26_2020_07_13_12_29_02_let_7_indoor_2d_random_letani/_2020-07-13-12-30-12.bag -l --clock -r 2.0 -s 0
         - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/26_2020_07_13_12_29_02_let_7_indoor_2d_random_letani/_2020-07-13-12-30-12.bag -r 1.0 -u 1 -l --topics /tf_static
 
         # - waitForRos; rosparam set use_sim_time true; rosbag play ~/radiation_bags/18_2020_07_13_11_33_02_let_1_outdoor/_2020-07-13-11-34-04.bag -l --clock -r 2.0
@@ -31,6 +31,7 @@ windows:
       layout: tiled
       panes:
         - waitForRos; roslaunch compton_cone_generator compton_cone_generator.launch
+        - waitForRos; roslaunch compton_cone_generator tf.launch
   - optimizer:
       layout: tiled
       panes:
