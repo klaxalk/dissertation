@@ -213,7 +213,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:papers/mrs-platform
   sparse_paths:
   -
-  rev: 59bed1ffed6aac955ea6b47231d2a3b7245022eb
+  rev: f82e5c9a9856dc6e6a2ef3934d768b7344fd0412
   link: thesis/papers/mrs-platform
   scripts:
   - git submodule update --init --recursive
@@ -222,7 +222,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera
   sparse_paths:
   -
-  rev: accd59a6db703b167b94878bedd0db7f04b98675
+  rev: 73904ca9a0ef5aba899ee19255e9e7da907ffc3b
   link: ros_packages/compton_camera
   scripts:
   - git submodule update --init --recursive
@@ -231,7 +231,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: cc4486d7aeb4bbc58c6160c17a4a2feefd9a7641
+  rev: e87c7b7140085ce973debf5b71c6cfccc617e500
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -249,7 +249,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_cone_generator.git
   sparse_paths:
   -
-  rev: 2f5df7bf305d15fbe629857e5c054c70a5861532
+  rev: 94affde2385c0a95fba087cfc193c52174c471b8
   link: ros_packages/compton_cone_generator
   scripts:
   - git submodule update --init --recursive
@@ -321,7 +321,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
   sparse_paths:
   -
-  rev: 8309f7363fe2868e5d961ee82aaad40d0d317b38
+  rev: 2734e9e99c93a6ce0cac898423e7c96669ceebdb
   link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
