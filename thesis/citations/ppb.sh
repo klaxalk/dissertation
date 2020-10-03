@@ -76,6 +76,7 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/uav/UAV/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/X-ray/X-Ray/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\<Uv\>/UV/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/Rtdp/RTDP/gi" -c "wqa" -- "$filename"
 
   $VIM_BIN $HEADLESS -nEs -c "%s/\sOf\s/ of /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sThe\s/ the /g" -c "wqa" -- "$filename"
@@ -92,7 +93,7 @@ for file in $FILES; do
 
   for author in `cat $AUTHORS_DIR/$INPUT_FILE.txt`; do
 
-    $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^author.*$author/norm dap" -c "wqa" -- "$filename2"
+    $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^author.*\(\(},\)\@<!\n.*\)\{0,5\}$author/norm dap" -c "wqa" -- "$filename2"
 
   done
 
