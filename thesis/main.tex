@@ -386,59 +386,531 @@ Author's publications to be included in the thesis:
 
 \chapternoclear{Advances in UAV Deployment}
 
-Will describe how the proposed platform allows pushing the boundaries of the experimental verification of basic and applied research.
+  The proposed \ac{UAV} system has been used extensively for evaluating of basic research outside laboratory conditions, in applied research, and during real-world verification of novel approaches within robotic challenges and competitions.
+  The system has been evolving continuously over the years as we have faced the challenges of various scenarios described in this section.
+  None of the previously published papers contains a complete and up-to-date description of the system, mainly due to their focus on high-level robotics tasks.
+  This publication therefore focuses solely on the underlying UAV system, which has been shaped by the vast number of application scenarios that have required different onboard sensor configurations.
+  One of the main contributions of this publication resulting from the diverse application requirements is the creation of a universal system.
+  The following subsections will briefly discuss the major results achieved using the proposed architecture.
 
-\section{UAV localization}
+  \subsection{UAV mutual detection and localization}
 
-System used in applied research of mutual UAV localization: \cite{walter2017selflocalization, walter2018fast, walter2018mutual, walter2019uvdar, vrba2020markerless, vrba2019onboard}.
+  The system played an integral role in the ongoing research on relatively-localized \ac{UAV} swarms and formations.
+  Onboard marker-less \ac{UAV} detection and localization were studied in \cite{vrba2020markerless, vrba2019onboard}.
+  Two approaches to \ac{UAV} detection were proposed, and were experimentally verified with the proposed system: a Convolutional Neural Network-based method, and a system for processing depth-camera images.
+  Mutual localization of \acp{UAV} within swarms and formations was presented in \cite{walter2017selflocalization, walter2018fast, walter2018mutual, walter2019uvdar}.
+  The system relies on modulated \ac{UV} \ac{LED} blinkers, which are detected using specialized onboard cameras (see \reffig{fig:uvdar}).
+  This \ac{UVDAR} system is also available as open-source\footnote{UVDAR, \url{http://github.com/ctu-mrs/uvdar}}.
 
-\section{UAV motion planning}
+  \begin{figure}
+    \centering
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.345\textwidth]{./fig/photos/uvdar.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
 
-System used in evaluation of robot planning algorithms: \cite{penicka2019data, faigl2019unsupervised, penicka2017dubins, penicka2017neighborhoods, spurny2019transport, petrlik2019coverage, faigl2017onsolution, spurny2016complex}
+        \draw[->, white, thick] (0.40, 0.20) -- (0.18, 0.59);
+        \draw[->, white, thick] (0.40, 0.20) -- (0.48, 0.56);
+        \draw[->, white, thick] (0.40, 0.20) -- (0.58, 0.24);
+        \draw (0.40,0.15) node [text=white] {\small UV blinkers};
 
-\section{Automatic control}
-System used in research of automatic control: \cite{giernacky2019realtime, saikin2020wildfire}
+        \draw[->, white, thick] (0.80, 0.80) -- (0.80, 0.4);
+        \draw[->, white, thick] (0.80, 0.80) -- (0.66, 0.4);
+        \draw[->, white, thick] (0.80, 0.80) -- (0.50, 0.77);
+        \draw (0.80,0.86) node [text=white] {\small UV cameras};
 
-\section{Data gathering}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.08,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.04,0.06) node [text=black] {\small (a)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.115\textwidth]{./fig/photos/uvdar_camera.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.20,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.10,0.06) node [text=black] {\small (b)};
+      \end{scope}
+    \end{tikzpicture}}
+    \caption{Mutual localization of \acp{UAV} by the UVDAR system is provided by (a) \ac{UV} blinkers on the \ac{UAV} arms and top. The blinkers are observed by onboard cameras (b) equipped with \ac{UV} band pass filters.}
+    \label{fig:uvdar}
+  \end{figure}
 
-System used for autonomous documentation of historical buildings: \cite{petracek2020dronument, saska2017documentation, vrba2019realtime}
+  \subsection{UAV motion planning}
 
-\section{UAV swarms and formations}
+  Basic research on optimal planning for data collection with \acp{UAV} was studied in \cite{penicka2019data, penicka2017dubins, penicka2017neighborhoods, penicka2017reactive, faigl2017onsolution}.
+  The platform provided real-world verification and showed the feasibility of the proposed approaches.
+  Coverage optimization for multi-\ac{UAV} cooperative surveillance was tackled in \cite{petrlik2019coverage, faigl2019unsupervised}.
+  Complex maneuvers and cooperative load-carrying by multiple \acp{UAV} were reported on in \cite{spurny2019transport, spurny2016complex}.
 
-System used in basic research of UAV swarms and formations: \cite{saska2020formation, saska2016formations}.
+  \subsection{Automatic control}
 
-\clearpage
+  A system for automatic gain tuning for the \emph{SE(3) controller} (see \refsec{sec:se3_state_feedback}) was published in \cite{giernacky2019realtime}.
+  A novel optimal control design approach for automatic fire extinguishing is showcased in \cite{saikin2020wildfire}.
+  The properties of the SE(3) geometric feedback proved crucial for verifying the feasibility of the almost-free-fall trajectories designed to dispatch water during extreme maneuvers (see \reffig{fig:control}).
 
-\section{MBZIRC 2017 competition}
+  \begin{figure}
+    \centering
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/control_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (a)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/eagle_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (b)};
+      \end{scope}
+    \end{tikzpicture}}
+    \caption{Novel control approaches can be tested on a real hardware. Off-the-shelf platforms such as (a) Tarot 650, and also (b) custom-built airframes, can be equipped with the proposed system.}
+    \label{fig:control}
+  \end{figure}
 
-\subsection{Autonomous Gathering of ferrous objects}
-\includepaper{spurny2019cooperative}
-\includepaper{loianno2018localization}
+  \subsection{Data gathering}
 
-\subsection{Autonomous landing on a moving car}
-\includepaper{baca2019autonomous}
+  The system is being used actively in a project working on indoor aerial inspection of historical buildings and monuments \cite{petracek2020dronument, saska2017documentation, kratky2020autonomous}.
+  Within this scenario, a \ac{UAV} is equipped with a 3D \ac{LiDAR} sensor and is automatically guided through an indoor environment, where it captures detailed imagery of hard-to-reach points of interest (see \reffig{fig:dronument}).
+  In another project\footnote{\url{http://mrs.felk.cvut.cz/radron}}, ionizing radiation mapping and localization is studied in \cite{baca2018rospix, baca2019timepix, stibinger2020localization}.
+  Similarly, transmission radio sources were automatically localized in \cite{vrba2019realtime}.
 
-Related papers: \cite{faigl2019unsupervised, stepan2019vision}
+  \begin{figure}
+    \centering
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/dronument_2_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (a)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/dronument_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (b)};
+      \end{scope}
+    \end{tikzpicture}}
+    \caption{An inspection of an indoor historical building is conducted (a) to monitor the state of frescoes, and (b) to assess the state of wall paintings.}
+    \label{fig:dronument}
+  \end{figure}
 
-\section{DARPA Subterranean}
+  \subsection{UAV swarms and formations}
+  \label{sec:uav_swarms_and_formations}
 
-Author's relevant papers: \cite{petrlik2020robust, roucek2019darpa}
+  Basic research in the area of \ac{UAV} swarming and formation flying was studied in \cite{saska2020formation, saska2016formations, saska2019large}.
+  UAV swarm control is a relatively new field of research, and its applications are yet to be explored.
+  One of many possibilities being explored by the authors is the use of \acp{UAV} for inspecting hard-to-access locations such as power line towers without putting personnel at risk\footnote{\url{https://aerial-core.eu}}.
+  % The need for a swarm of \acp{UAV} is essential in this type of application.
+  This type of application requires the swarm coordination to be flexible, and to move, while minimizing the observed object estimation error.
+  % A crucial piece of information required for coordination of multi-robot systems working in the same workspace is a precise knowledge of mutual states of teammates.
+  Flocking capabilities are being explored within the framework of ongoing projects with real-world experiments in a field, and also within a forest environment (see \reffig{fig:swarms}).
+  Interactions between \acp{UAV} are studied in order to overcome challenging situations such as GNSS-denied environment navigation.
 
-\section{MBZIRC 2020 competition}
+  \begin{figure}
+    \centering
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/swarm_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        % plot some stuff over the image
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (a)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/swarm_forest_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
 
-TODO: Not yet published, papers are Work-in-progress.
+        \draw[->, white, thick] (0.45, 0.20) -- (0.07, 0.57);
+        \draw[->, white, thick] (0.45, 0.20) -- (0.30, 0.55);
+        \draw[->, white, thick] (0.45, 0.20) -- (0.40, 0.45);
+        \draw[->, white, thick] (0.45, 0.20) -- (0.85, 0.40);
+        \draw (0.45,0.15) node [text=white] {\small UAVs};
 
-\subsection{Automatic wall-building by a group of UAVs}
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        % plot some stuff over the image
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (b)};
+      \end{scope}
+    \end{tikzpicture}}
+    \caption{Swarms of multirotor \acp{UAV} testing novel flocking algorithms while localized (a) by a \ac{GNSS} system, and (b) by onboard sensors only within a forest environment.}
+    \label{fig:swarms}
+  \end{figure}
 
-Will describe in detail. Should relate to the main building blocks of the pipeline, namely the trajectory tracking \cite{baca2018model} and the robust control \cite{petrlik2020robust} which were both used.
+  % Most cited approaches, although achieving great results, lack reliability in terms of independence to changing environmental conditions in the real-world, which is not acceptable in such the proposed safety-critical work. This means that a fully distributed control approach is needed. To achieve that, we plan to apply our achievements in the endeavor to design a robust system usable in various environments, both relying on vision-based precise mutual object detection in UAV proximity \cite{krajnik14jint} as well as using robust active UV patterns to solve this problem \cite{Walter2018}.
 
-\subsection{Ball catching and balloon popping by a group of UAVs}
+  \subsection{MBZIRC 2017 competition}
 
-No need to describe extensively, just showcase how was the platform utilized, namely the trajectory tracking \cite{baca2018model}.
+  The \ac{MBZIRC} 2017\footnote{MBZIRC 2017, \url{http://mbzirc.com/challenge/2017}} aimed at pushing the frontiers of field robotics.
+  Two tasks out of the three challenges within the competition were focused solely on aerial manipulation and UAV control.
+  The competition imposed real-world constraints in its tasks that forced the participating teams to show the current state of the art in robotics and to perform the tasks within a short time window and within specified time slots.
+  The first task --- autonomous gathering of colored ferrous objects by a group of \acp{UAV} --- was successfully tackled by the CTU-UPENN-UoL\footnote{Collaboration of Czech Technical University in Prague, University of Pennsylvania, and the University of Lincoln.} team, using the proposed system \cite{spurny2019cooperative, faigl2019unsupervised, loianno2018localization} (see \reffig{fig:mbzirc_2017}).
+  We won 1$^{\mathrm{st}}$ place among the best teams from all over the world.
+  The second task of autonomous landing on a moving car was also tackled by the proposed system.
+  We achieved the fastest autonomous landing among all the teams, and we took the 2$^{\text{nd}}$ place overall in the competition \cite{baca2019autonomous, stepan2019vision}.
 
-\subsection{Fire extinguishing by a group of UAVs}
+  \begin{figure}
+    \centering
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/grasping_2017_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (a)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/landing_2017_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (b)};
+      \end{scope}
+    \end{tikzpicture}}
+    \caption{The CTU-UPENN-UoL team during the MBZIRC 2017 competition. The photos show (a) two \acp{UAV} while delivering ferrous objects, and (b) a UAV during autonomous landing on a moving car.}
+    \label{fig:mbzirc_2017}
+  \end{figure}
 
-No need to describe extensively, just showcase how was the platform utilized, namely the robust control \cite{petrlik2020robust}.
+  \subsection{The DARPA Subterranean (SubT) challenge}
+
+  The \ac{DARPA}, an agency of the United States Department of Defense, organizes series of challenges focused on automatic search \& rescue in an underground environment --- the \ac{DARPA} Subterranean challenge.
+  In the \ac{DARPA} Tunnel Circuit, the first round of the challenge, we deployed autonomous \acp{UAV} and semi-autonomous ground robots to explore underground mine shafts \cite{petrlik2020robust, roucek2019darpa}.
+  Our team deployed autonomous \acp{UAV} with the proposed system (see \reffig{fig:darpa}), which navigated the underground tunnels and returned safely to the entrance while autonomously localizing objects of interest.
+  We won the 1$^{\mathrm{st}}$ prize among the self-funded teams and the 3$^{\mathrm{rd}}$ prize overall.
+  To the best of our knowledge, our \acp{UAV} managed to explore a greater distance into the tunnels than any of the other teams.
+  \begin{figure}
+    \centering
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/darpa_stix_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (a)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/darpa_drone_beta_2_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.06,0.06) node [text=black] {\small (b)};
+      \end{scope}
+    \end{tikzpicture}}
+    \caption{Unmanned Aerial Vehicles during the \ac{DARPA} SubT challenge. The photos depict (a) a UAV exploring an underground mine, and (b) mapping an unfinished nuclear power plant.}
+    \label{fig:darpa}
+  \end{figure}
+
+  In the \ac{DARPA} Urban Circuit, the second round of the challenge, we deployed autonomous \acp{UAV} and semi-autonomous ground robots to explore the infrastructure of an unfinished nuclear power plant.
+  Our \acp{UAV} managed to explore \SI{2867}{\meter\cubed} of one floor of the reactor building while automatically navigating up to \SI{100}{\meter} in just \SI{200}{\second} in a completely unknown environment.
+  We again took 1$^{\text{st}}$ place among the self-funded teams, and 3$^{\text{rd}}$ place overall.
+  Scientific publications on tasks within the Urban Circuit are under preparation.
+
+  \subsection{MBZIRC 2020 competition}
+
+  The second round of the \ac{MBZIRC} competition was organized in 2020.
+  It pushed the current state of the art in aerial robotics to its limits, with tasks such as organizing a group of \acp{UAV} and a \ac{UGV} to build a brick wall autonomously, autonomous indoor and outdoor firefighting with \acp{UAV}, and autonomously catching a ball carried by a \ac{UAV}, performed simultaneously with balloon popping by a group of \acp{UAV} (see \reffig{fig:mbzirc_2020}).
+  All of the tasks were solved using the proposed UAV system, and our participation in the competition helped to consolidate many of the platform's functionalities.
+  The CTU-UPENN-NYU\footnote{Collaboration between the Czech Technical University in Prague, the University of Pennsylvania, and the New York University.} team achieved the highest score of all the teams for building the brick wall autonomously.
+  We also took $2^{\text{nd}}$ in the autonomous balloon popping and ball-catching task.
+  We won the gold medal in the \emph{grand challenge} in which all the tasks were tested simultaneously.
+  Scientific publications reporting on \ac{MBZIRC} 2020 are under preparation.
+
+  \begin{figure}
+    \centering
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/brick_placing_1-25_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.09,0.06) node [text=black] {\small (a)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/ball_catching_1-25_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.09,0.06) node [text=black] {\small (b)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/ext_1-25_1-5.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.09,0.06) node [text=black] {\small (c)};
+      \end{scope}
+    \end{tikzpicture}}\\
+    \vspace{-0.8em}
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/blanket_2_1.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.13,0.20);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.065,0.090) node [text=black] {\small (d)};
+      \end{scope}
+    \end{tikzpicture}}
+    \hfill%
+    \subfloat {\begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/popping_2_1.jpg}};
+      \begin{scope}[x={(a.south east)},y={(a.north west)}]
+        %%{ grid
+        % % useful grid to help you find coordinates for plotting the overlay
+        % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+        % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+        %   \node[align=center] at (\i, -0.05) {\i};
+        %   \node[align=center] at (\i, 1.05) {\i};
+        %   \node[align=center] at (-0.05, \i) {\i};
+        %   \node[align=center] at (1.05, \i) {\i};
+        % }
+        %%}
+        % plot some stuff over the image
+        \fill[white] (0.001, 0.001) rectangle (0.13,0.20);
+        \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+        \draw (0.065,0.090) node [text=black] {\small (e)};
+      \end{scope}
+    \end{tikzpicture}}
+    \caption{The CTU-UPENN-NYU team during the MBZIRC 2020 competition. The photos depict (a) autonomous wall building, (b) autonomous ball catching, (c) autonomous fire extinguishing, (d) autonomous fire blanket deployment, and (e) autonomous balloon popping.}
+    \label{fig:mbzirc_2020}
+  \end{figure}
+
+  \subsection{IEEE RAS Summer School on Multi-robot Systems}
+
+  The proposed system was used as an educational tool during the 2019 \ac{IEEE} \ac{RAS} summer school on multirobot systems\footnote{\url{http://mrs.felk.cvut.cz/summer-school-2019}}.
+  More than 70 international students were challenged to solve a multi-UAV Dubins traveling salesman problem with neighborhoods during the summer school exercises.
+  Student solutions were put to test during an outdoor experimental session.
+
+  %\begin{figure}
+  %  \centering
+  %  \subfloat {\begin{tikzpicture}
+  %    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/summer_schoo_pc.jpg}};
+  %    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+  %      %%{ grid
+  %      % % useful grid to help you find coordinates for plotting the overlay
+  %      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+  %      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+  %      %   \node[align=center] at (\i, -0.05) {\i};
+  %      %   \node[align=center] at (\i, 1.05) {\i};
+  %      %   \node[align=center] at (-0.05, \i) {\i};
+  %      %   \node[align=center] at (1.05, \i) {\i};
+  %      % }
+  %      %%}
+  %      % plot some stuff over the image
+  %      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+  %      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+  %      \draw (0.06,0.06) node [text=black] {\small (a)};
+  %    \end{scope}
+  %  \end{tikzpicture}}
+  %  \hfill%
+  %  \subfloat {\begin{tikzpicture}
+  %    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/summer_school_outdoor.jpg}};
+  %    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+  %      %%{ grid
+  %      % % useful grid to help you find coordinates for plotting the overlay
+  %      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+  %      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+  %      %   \node[align=center] at (\i, -0.05) {\i};
+  %      %   \node[align=center] at (\i, 1.05) {\i};
+  %      %   \node[align=center] at (-0.05, \i) {\i};
+  %      %   \node[align=center] at (1.05, \i) {\i};
+  %      % }
+  %      %%}
+  %      % plot some stuff over the image
+  %      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+  %      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+  %      \draw (0.06,0.06) node [text=black] {\small (b)};
+  %    \end{scope}
+  %  \end{tikzpicture}}
+  %  \caption{The 2019 IEEE RAS summer school on multirobot systems organized theoretical lectures, (a) exercises with the proposed system, and (b) a practical experimental session, in which students competed in an automatic planning challenge. Go to \protect\url{http://youtu.be/m_AxZs-_DXI} for a summary video from the event.}
+  %  \label{fig:summer_school_2019}
+  %\end{figure}
 
 %%}
 
