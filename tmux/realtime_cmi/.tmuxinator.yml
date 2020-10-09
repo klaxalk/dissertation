@@ -1,0 +1,29 @@
+name: plotter
+root: ./
+startup_window: compton_cone_generator
+pre_window: export UAV_NAME=uav68; export RUN_TYPE=uav; export UAV_TYPE=t650
+windows:
+  - integrator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch rospix_utils integrator.launch topic_cluster_list:=/$UAV_NAME/compton_camera/cluster_list
+  - normalizer:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch rospix_utils normalizer.launch topic:=/integrator_0/image_out
+  - cone_generator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_cone_generator compton_cone_generator.launch
+  - optimizer:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter optimizer_1.launch
+  - filter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter compton_filter_1.launch
+  - cone_plotter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_python compton_plotter_rosbag.launch
