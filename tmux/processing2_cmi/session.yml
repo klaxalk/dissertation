@@ -1,0 +1,72 @@
+name: simulation
+root: ./
+startup_window: rosbag
+pre_window: export UAV_NAME=uav68; export RUN_TYPE=uav; export UAV_TYPE=t650
+windows:
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+        - waitForRos; rosparam set use_sim_time true
+  - rosbag:
+      layout: tiled
+      panes:
+
+        # # short and not very interesting
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/17_2020_10_06_12_49_14_outdoor_zigzag_Cs137/_2020-10-06-12-50-19.bag --clock -r 4.0
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/17_2020_10_06_12_49_14_outdoor_zigzag_Cs137/_2020-10-06-12-50-19.bag -r 1.0 -u 1 -l --topics /tf_static
+        # - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=0.2 z:=0.3 frame:=uav68/aloam_origin
+
+        # # no bluefox, zigzag at the start
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/20_2020_10_06_13_09_52/_2020-10-06-13-11-43.bag --clock -r 4.0
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/20_2020_10_06_13_09_52/_2020-10-06-13-11-43.bag -r 1.0 -u 1 -l --topics /tf_static
+        # - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=1.8 z:=0.3 frame:=uav68/aloam_origin
+
+        # super awesom cool the best rosbag
+        - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/21_2020_10_06_13_23_14/_2020-10-06-13-24-54.bag --clock -r 4.0
+        - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/21_2020_10_06_13_23_14/_2020-10-06-13-24-54.bag -r 1.0 -u 1 -l --topics /tf_static
+        - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=1.8 z:=0.3 frame:=uav68/aloam_origin
+
+        # # forwards
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/22_2020_10_06_13_34_40/_2020-10-06-13-36-54.bag --clock -r 4.0
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/22_2020_10_06_13_34_40/_2020-10-06-13-36-54.bag -r 1.0 -u 1 -l --topics /tf_static
+        # - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=0.8 z:=0.3 frame:=uav68/aloam_origin
+
+        # # backwards, eland in the end
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/23_2020_10_06_13_41_26/_2020-10-06-13-42-18.bag --clock -r 4.0
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/23_2020_10_06_13_41_26/_2020-10-06-13-42-18.bag -r 1.0 -u 1 -l --topics /tf_static
+        # - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.8 y:=-1.6 z:=0.3 frame:=uav68/aloam_origin
+
+        # backwards and forwards
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/23_2020_10_06_13_41_26/_2020-10-06-13-42-18.bag --clock
+        # - waitForRos; rosparam set use_sim_time true; rosbag play ~/cmi_rosbags/23_2020_10_06_13_41_26/_2020-10-06-13-42-18.bag -r 1.0 -u 1 -l --topics /tf_static
+
+  - tfs:
+      layout: tiled
+      panes:
+        - waitForControl; rosrun tf2_ros static_transform_publisher 0.09 0.025 -0.01 -1.57005 0.0 -1.25 uav68/fcu uav68/bluefox
+  - cone_generator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_cone_generator compton_cone_generator.launch
+  - optimizer:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter optimizer_1.launch
+  - filter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter compton_filter_1.launch
+  - cone_plotter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_python compton_plotter_rosbag.launch
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForRos; rosrun rviz rviz -d ./rviz.rviz
+        - waitForRos; roslaunch mrs_rviz_plugins load_robot.launch
+  - layout:
+      layout: tiled
+      panes:
+        - waitForRos; sleep 2; ~/.i3/layout_manager.sh ./layout.json

@@ -222,7 +222,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera
   sparse_paths:
   -
-  rev: 56726e66609862ca425a16ff9d247793110d1408
+  rev: 9b7c3b19f9d9ec5d55c122e4296406523c4eda84
   link: ros_packages/compton_camera
   scripts:
   - git submodule update --init --recursive
@@ -231,7 +231,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: 2a6b5d4121f860fe2d269c0a879080c83c89904c
+  rev: a822d19783474f4f1ef5d3a1f29b3d5434ec95c2
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -249,7 +249,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_cone_generator.git
   sparse_paths:
   -
-  rev: 94affde2385c0a95fba087cfc193c52174c471b8
+  rev: fa1e7c6716097e077f9ff927b33c6978658303e5
   link: ros_packages/compton_cone_generator
   scripts:
   - git submodule update --init --recursive
