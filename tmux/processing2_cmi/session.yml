@@ -64,11 +64,13 @@ windows:
   - integrator:
       layout: tiled
       panes:
-        - waitForRos; roslaunch rospix_utils integrator.launch topic_cluster_list:=/$UAV_NAME/compton_camera/cluster_list
+        - waitForRos; roslaunch rospix_utils integrator.launch topic_cluster_list:=/$UAV_NAME/compton_camera/cluster_list node_name:=integrator_all
+        - waitForRos; roslaunch rospix_utils integrator.launch topic_cluster_list:=/$UAV_NAME/compton_cone_generator/coincidences node_name:=integrator_coincidences
   - normalizer:
       layout: tiled
       panes:
-        - waitForRos; roslaunch rospix_utils normalizer.launch topic:=/integrator_0/image_out
+        - waitForRos; roslaunch rospix_utils normalizer.launch topic:=/integrator_all/image_out node_name:=normalizer_all
+        - waitForRos; roslaunch rospix_utils normalizer.launch topic:=/integrator_coincidences/image_out node_name:=normalizer_coincidences
   - rviz:
       layout: tiled
       panes:
