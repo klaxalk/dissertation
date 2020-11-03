@@ -1,0 +1,221 @@
+def detector_1_position [0,0,0.0]
+
+def theta 45
+def phi -130
+def scatered_dist 0.5
+
+def electron_event_x 0.0
+def electron_event_y 0.0
+def electron_event_z 1.2
+
+def photon_event_x electron_event_x - sin(theta)*scatered_dist*cos(phi)
+def photon_event_y electron_event_y - sin(theta)*scatered_dist*sin(phi)
+def photon_event_z electron_event_z - cos(theta)*scatered_dist
+
+def electron_event_pos [electron_event_x, electron_event_y, electron_event_z]
+def photon_event_pos [photon_event_x, photon_event_y, photon_event_z]
+
+def cone_axis [electron_event_x-photon_event_x, electron_event_y-photon_event_y, electron_event_z-photon_event_z]
+
+def detector_side 1.5
+def detector_thickness 1.5
+
+% %{ coordinates
+
+def coordinates {
+
+	def size 0.5
+
+	line[arrows=->,lay=over,linewidth=3pt] (0, 0, 0)(size, 0, 0)
+
+	special |\scriptsize
+		\uput{2pt}[dl]#1{\large $\mathbf{\hat{c}}_x$}|
+		(size, 0, 0)
+
+	line[arrows=->,lay=over,linewidth=2pt] (0, 0, 0)(0, size, 0)
+
+	special |\scriptsize
+		\uput{2pt}[r]#1{\large $\mathbf{\hat{c}}_y$}|
+		(-0.02, size, 0)
+
+	line[arrows=->,lay=over,linewidth=2pt] (0, 0, 0)(0, 0, size)
+
+	special |\scriptsize
+		\uput{2pt}[dr]#1{\large $\mathbf{\hat{c}}_z$}|
+		(0, 0, size)
+
+	special |\large
+		\uput{8pt}[ul]#1{$\mathcal{C}$}|
+		(0.0, 0.0, 0)
+}
+
+% %}
+
+% %{ detector
+
+def detector {
+
+	def size detector_side/2.0
+
+	def p1 (size,size,0)
+  def p2 (size,-size,0)
+  def p3 (-size,-size,0)
+  def p4 (-size,size,0)
+
+	def p5 (size,size,detector_thickness)
+  def p6 (size,-size,detector_thickness)
+  def p7 (-size,-size,detector_thickness)
+  def p8 (-size,size,detector_thickness)
+
+  % polygon[linecolor=blue,lay=under](p1)(p2)(p3)(p4)
+  % polygon[linecolor=blue,lay=under](p5)(p6)(p7)(p8)
+
+  polygon[linecolor=blue,cull=false](p2)(p1)(p5)(p6)
+  polygon[linecolor=blue,cull=false](p3)(p2)(p6)(p7)
+  polygon[linecolor=blue,lay=over](p4)(p3)(p7)(p8)
+  polygon[linecolor=blue,lay=over](p1)(p4)(p8)(p5)
+
+  line[linecolor=black,linestyle=dashed,lay=over](-size, electron_event_y, 0)(electron_event_x, electron_event_y, 0)
+  line[linecolor=black,linestyle=dashed,lay=over](electron_event_x, -size, 0)(electron_event_x, electron_event_y, 0)
+  line[linecolor=black,linestyle=dashed,lay=over](-size, electron_event_y, 0)(-size, electron_event_y, electron_event_z)
+  special |\small
+    \uput{2pt}[d]#1{$e^-_x$}|
+    (electron_event_x, -size, 0)
+  special |\small
+    \uput{2pt}[dr]#1{$e^-_y$}|
+    (-size, electron_event_y, 0)
+  special |\small
+    \uput{2pt}[d]#1{$e^-_z$}|
+    (-size, electron_event_y, electron_event_z)
+
+  line[linecolor=black,linestyle=dashed,lay=over](-size, photon_event_y, 0)(photon_event_x, photon_event_y, 0)
+  line[linecolor=black,linestyle=dashed,lay=over](photon_event_x, -size, 0)(photon_event_x, photon_event_y, 0)
+  line[linecolor=black,linestyle=dashed,lay=over](-size, photon_event_y, 0)(-size, photon_event_y, photon_event_z)
+  special |\small
+    \uput{2pt}[dr]#1{$\lambda^{'}_y$}|
+    (-size, photon_event_y, 0)
+  special |\small
+    \uput{2pt}[dr]#1{$\lambda^{'}_z$}|
+    (-size, photon_event_y, photon_event_z)
+  special |\small
+    \uput{2pt}[d]#1{$\lambda^{'}_x$}|
+    (photon_event_x, -size, 0)
+
+  def n_cells 5
+  def step 0.08
+  put { translate ([size-n_cells*step, -size, 0]) }
+    sweep [cull=false, linecolor=blue!20] { n_cells, translate([0,step,0]) }
+      sweep [cull=false] { n_cells, translate([step,0,0]) } 
+        (0, 0, 0)
+
+	special |\large
+		\uput{4pt}[d]#1{sensor pixels}|
+		(size, -size-0.1, 0)
+
+    line[linecolor=black,arrows=->,linewidth=2pt,lay=over](size, -size-0.1, 0)(size-n_cells*step/2, -size+ n_cells*step/2, 0)
+
+  line[linecolor=black,arrows=->,linewidth=2pt,lay=over](-0.6, detector_side/2.0+0.2, detector_thickness)(-0.6, detector_side/2.0+0.2, 0)
+
+  line[linecolor=black,arrows=-,linewidth=2pt,lay=over,linestyle=dashed](-0.6, detector_side/2.0+0.2, 0)(-0.6, detector_side/2.0, 0)
+  line[linecolor=black,arrows=-,linewidth=2pt,lay=over,linestyle=dashed](-0.6, detector_side/2.0+0.2, detector_thickness)(-0.6, detector_side/2.0, detector_thickness)
+
+	special |\large
+		\uput{4pt}[u]#1{450\,V bias}|
+		(-0.6, detector_side/2.0+0.35, detector_thickness/2.0)
+}
+
+% %}
+
+% %{ electron_cone_1
+
+def electron_cone_1 {
+
+	def length electron_event_z
+	def angle 8
+  def rise sin(angle)*length
+
+  def n_segs 32
+  sweep [cull=false] { n_segs<>, rotate(360 / n_segs, (0,0,0), [0,0,1]) } (0,rise,-length)
+  sweep [fillcolor=red!40,lay=over] { n_segs<>, rotate(360 / n_segs, (0,0,0), [0,0,1]) } line[linecolor=red!40](0,0,0)(0,rise,-length)
+}
+
+% %}
+
+% %{ electron_cone_2
+
+def electron_cone_2 {
+
+	def length photon_event_z
+	def angle 8
+  def rise sin(angle)*length
+
+  def n_segs 16
+  sweep [cull=false,lay=over] { n_segs<>, rotate(360 / n_segs, (0,0,0), [0,0,1]) } (0,rise,-length)
+  sweep [fillcolor=green!40,lay=over] { n_segs<>, rotate(360 / n_segs, (0,0,0), [0,0,1]) } line[linecolor=green!40,lay=over](0,0,0)(0,rise,-length)
+}
+
+% %}
+
+% %{ result_cone
+
+def result_cone {
+
+	def length 1.5
+
+  def n_segs 32
+  sweep { n_segs<>, rotate(360 / n_segs, (electron_event_x, electron_event_y, electron_event_z), [cone_axis]) }
+    line[linecolor=gray](electron_event_x, electron_event_y, electron_event_z)(electron_event_x, electron_event_y, electron_event_z+length)
+
+  line[linecolor=red,arrows=-,linewidth=3pt,lay=over](electron_event_x, electron_event_y, electron_event_z)(electron_event_x, electron_event_y, electron_event_z+1.1)
+
+  put {rotate(80, (electron_event_x, electron_event_y, electron_event_z), [cone_axis])}
+    special |\large
+      \uput{4pt}[ur]#1{$\mathbb{C}$}|
+      (electron_event_x, electron_event_y, electron_event_z+length)
+}
+
+% %}
+
+def scene {
+
+  put { translate([detector_1_position]) } {detector}
+
+  put { translate([-detector_side/2.0-0.00, -detector_side/2.0-0.00, -0.00]) } {coordinates}
+
+  put { translate([electron_event_pos]) } {electron_cone_1}
+  put { translate([photon_event_pos]) } {electron_cone_2}
+
+  % scattered ray
+  line[linecolor=green,arrows=-,linewidth=3pt](photon_event_x, photon_event_y, photon_event_z)(electron_event_x, electron_event_y, electron_event_z)
+	special |\large
+		\uput{5pt}[u]#1{$\lambda^{'}$}|
+		(photon_event_x, photon_event_y, photon_event_z)
+
+  {result_cone}
+
+  % in ray
+  line[linecolor=red,arrows=-,linewidth=3pt](electron_event_x, electron_event_y, electron_event_z)(electron_event_x, electron_event_y, electron_event_z+4.0)
+	special |\large
+		\uput{2pt}[r]#1{$\lambda$}|
+		(electron_event_x, electron_event_y, electron_event_z+4.0)
+	special |\large
+		\uput{10pt}[u]#1{$e^-$}|
+		(electron_event_x, electron_event_y, electron_event_z)
+	special |\small
+		\uput{-4pt}[d]#1{$e_{e^{-}}$}|
+		(electron_event_x, electron_event_y, 0)
+	special |\small
+		\uput{-4pt}[d]#1{$e_{\lambda^{'}}$}|
+		(photon_event_x, photon_event_y, 0)
+
+  % detector label
+	special |\large
+		\uput{4pt}[u]#1{CdTe detector}|
+		(0.13, detector_side/2.0, 0.5)
+
+}
+
+def eye (-4,3,-10)
+def look_at (0,0,0)
+
+put { view((eye), (look_at)) then perspective(50) } {scene}

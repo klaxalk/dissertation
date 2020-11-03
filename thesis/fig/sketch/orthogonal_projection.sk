@@ -1,0 +1,189 @@
+def d_x 0
+def d_y 0
+def d_z 1
+
+def theta 10
+def u_x 0
+def u_y sin(theta)
+def u_z cos(theta)
+
+def alpha 25
+def x_dist 1.5
+def x_x 0
+def x_y sin(alpha)*x_dist
+def x_z cos(alpha)*x_dist
+
+def beta alpha-theta
+
+def x_proj_x 0
+def x_proj_y cos(beta)*sin(theta)*x_dist
+def x_proj_z cos(beta)*cos(theta)*x_dist
+
+def v_x 0
+def v_y sin(theta)
+def v_z cos(theta)
+
+% %{ coordinates
+
+def coordinates {
+
+	def size 0.5
+
+	line[arrows=->,lay=over,linewidth=3pt] (0, 0, 0)(size, 0, 0)
+
+	special |\scriptsize
+		\uput{2pt}[dl]#1{\small $\mathbf{\hat{c}}_x$}|
+		(size, 0, 0)
+
+	line[arrows=->,lay=over,linewidth=2pt] (0, 0, 0)(0, size, 0)
+
+	special |\scriptsize
+		\uput{2pt}[r]#1{\small $\mathbf{\hat{c}}_y$}|
+		(-0.02, size, 0)
+
+	line[arrows=->,lay=over,linewidth=2pt] (0, 0, 0)(0, 0, size)
+
+	special |\scriptsize
+		\uput{2pt}[dr]#1{\small $\mathbf{\hat{c}}_z$}|
+		(0, 0, size)
+
+	special |\small
+		\uput{8pt}[ul]#1{$\mathcal{C}$}|
+		(0.0, 0.0, 0)
+}
+
+% %}
+
+% %{ sphere
+
+def sphere {
+
+  def faces 20
+  def radius 0.005
+
+  sweep [fillcolor=black] { faces, rotate(360 / faces, (0, 0, 0), [0, 0, 1]) }
+    sweep { faces, rotate(360 / faces, (0, 0, 0), [1, 0, 0]) }
+      (0, radius, 0)
+}
+
+% %}
+
+% %{ cone
+
+def cone {
+
+  def len_1 1
+  def len_2 1.4
+  def len_3 1.8
+
+  def offset 11
+  put {rotate(offset, (0, 0, 0), [0, 0, 1])} line[linecolor=lightgray,linewidth=1pt](0, 0, 0)(0, sin(theta)*len_3*1.1, cos(theta)*len_3*1.1)
+  put {rotate(offset, (0, 0, 0), [0, 0, 1])} line[linecolor=lightgray,linewidth=1pt](0, 0, 0)(0, sin(-theta)*len_3*1.1, cos(-theta)*len_3*1.1)
+  % put {rotate(offset+90, (0, 0, 0), [0, 0, 1])} line[linecolor=lightgray,linewidth=1pt](0, 0, 0)(0, sin(-theta)*len_3*1.1, cos(-theta)*len_3*1.1)
+  % put {rotate(offset-90, (0, 0, 0), [0, 0, 1])} line[linecolor=lightgray,linestyle=dashed,linewidth=1pt](0, 0, 0)(0, sin(-theta)*len_3*1.1, cos(-theta)*len_3*1.1)
+
+	def n_segs 32
+
+	sweep [linecolor=lightgray,linestyle=dashed] { n_segs, rotate(180 / n_segs, (0, 0, 0), [0, 0, 1]) }
+    (0, sin(theta)*len_1, cos(theta)*len_1)
+	sweep [linecolor=lightgray] { n_segs, rotate(-(180 / n_segs), (0, 0, 0), [0, 0, 1]) }
+    (0, sin(theta)*len_1, cos(theta)*len_1)
+
+	sweep [linecolor=lightgray,linestyle=dashed] { n_segs, rotate(180 / n_segs, (0, 0, 0), [0, 0, 1]) }
+    (0, sin(theta)*len_2, cos(theta)*len_2)
+	sweep [linecolor=lightgray] { n_segs, rotate(-(180 / n_segs), (0, 0, 0), [0, 0, 1]) }
+    (0, sin(theta)*len_2, cos(theta)*len_2)
+
+	sweep [linecolor=lightgray,linestyle=dashed] { n_segs, rotate(180 / n_segs, (0, 0, 0), [0, 0, 1]) }
+    (0, sin(theta)*len_3, cos(theta)*len_3)
+	sweep [linecolor=lightgray] { n_segs, rotate(-(180 / n_segs), (0, 0, 0), [0, 0, 1]) }
+    (0, sin(theta)*len_3, cos(theta)*len_3)
+
+	special |\scriptsize
+		\uput{4pt}[dr]#1{$\mathbb{C}$}|
+		(0, sin(-theta)*len_3, cos(-theta)*len_3)
+}
+
+% %}
+
+def scene {
+
+  {cone}
+
+  % {coordinates}
+
+  {sphere}
+	special |\small
+		\uput{3pt}[ur]#1{$\mathbf{o}$}|
+		(0, 0, 0)
+
+  line[linecolor=black,arrows=->,linewidth=1pt](0, 0, 0)(d_x, d_y, d_z)
+
+	special |\small
+		\uput{3pt}[u]#1{$\mathbf{\hat{d}}$}|
+		(d_x, d_y, d_z)
+
+  line[linecolor=black,arrows=->,linewidth=1pt](0, 0, 0)(0, sin(alpha), cos(alpha))
+	special |\small
+		\uput{3pt}[u]#1{$\mathbf{\hat{u}}$}|
+		(0, sin(alpha), cos(alpha))
+
+  line[linecolor=black,arrows=->,linewidth=1pt,lay=over](0, 0, 0)(v_x, v_y, v_z)
+	special |\small
+		\uput{3pt}[u]#1{$\mathbf{\hat{v}}$}|
+		(v_x, v_y, v_z)
+
+  line[linecolor=black,arrows=->,linewidth=1pt](0, 0, 0)(1, 0, 0)
+	special |\small
+		\uput{6pt}[dl]#1{$\mathbf{\mathbf{\hat{u}} \times \mathbf{\hat{d}}}$}|
+		(1, 0, 0)
+
+	def n_segs 64
+
+  put {translate([x_x, x_y, x_z])} {sphere}
+	special |\small
+		\uput{3pt}[u]#1{$\mathbf{x}$}|
+		(x_x, x_y, x_z)
+	sweep [linecolor=black,linestyle=dashed,arrows=-] { n_segs, rotate(beta / n_segs, (0, 0, 0), [1, 0, 0]) }
+    (x_x, x_y, x_z)
+
+  put {translate([x_proj_x, x_proj_y, x_proj_z])} {sphere}
+	special |\small
+		\uput{3pt}[dr]#1{$\mathbf{x}'$}|
+		(x_proj_x, x_proj_y, x_proj_z)
+
+  def right_angle_len 0.05
+  line[linecolor=lightgray,arrows=-,linewidth=1pt](x_proj_x, x_proj_y+cos(-theta)*right_angle_len, x_proj_z+sin(-theta)*right_angle_len)(x_proj_x, x_proj_y+cos(-theta-45)*right_angle_len*1.41, x_proj_z+sin(-theta-45)*right_angle_len*1.41)
+  line[linecolor=lightgray,arrows=-,linewidth=1pt](x_proj_x, x_proj_y+cos(-theta-90)*right_angle_len, x_proj_z+sin(-theta-90)*right_angle_len)(x_proj_x, x_proj_y+cos(-theta-45)*right_angle_len*1.41, x_proj_z+sin(-theta-45)*right_angle_len*1.41)
+
+  line[linecolor=lightgray,arrows=-,linewidth=1pt](x_x, x_y, x_z)(x_proj_x, x_proj_y, x_proj_z)
+
+  put {translate([x_x, x_y, x_z]) then rotate(beta, (0, 0, 0), [1, 0, 0])} {sphere}
+  put {translate([x_x, x_y, x_z]) then rotate(beta, (0, 0, 0), [1, 0, 0])}
+	special |\small
+		\uput{3pt}[dl]#1{$\mathbf{x}_r$}|
+		(0, 0, 0)
+
+	sweep [linecolor=black,arrows=->] { n_segs, rotate(-theta / n_segs, (0, 0, 0), [1, 0, 0]) }
+    (0, 0, 0.5)
+	special |\scriptsize
+		\uput{0pt}[r]#1{$\Theta$}|
+		(0, 0.47*sin(theta*0.5), 0.47*cos(theta*0.5))
+
+	sweep [linecolor=black,arrows=->] { n_segs, rotate(-alpha / n_segs, (0, 0, 0), [1, 0, 0]) }
+    (0, 0, 0.7)
+	special |\scriptsize
+		\uput{0pt}[r]#1{$\alpha$}|
+		(0, 0.67*sin(alpha*0.25), 0.67*cos(alpha*0.25))
+
+	sweep [linecolor=black,arrows=<-] { n_segs, rotate(-beta / n_segs, (0, 0, 0), [1, 0, 0]) }
+    (0, 0.6*sin(theta), 0.6*cos(theta))
+	special |\scriptsize
+		\uput{0pt}[r]#1{$\beta$}|
+		(0, 0.57*sin(theta + beta*0.5), 0.57*cos(theta + beta*0.5))
+}
+
+def eye (10,1,-1)
+def look_at (0,0,0)
+
+put { view((eye), (look_at)) then perspective(50) } {scene}

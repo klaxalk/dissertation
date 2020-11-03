@@ -1,0 +1,18 @@
+\begin{tikzpicture}[thick]
+  \tikzset{snake it/.style={decorate, decoration=snake}}
+    \draw[draw=red,snake it] (0.0, 0.0) -- (2.0, 0.0);
+    \node at (0.0, 0.3) {$\lambda$};
+
+    \draw[draw=green,snake it] (2.0, 0.0) -- (3.414, 1.414);
+    \node at (3.614, 1.414) {$\lambda'$};
+
+    \draw[draw=black,dashed] (2.0, 0.0) -- (3.0, 0.0);
+
+    \draw[->, draw=black] (2.0, 0.0) -- (3.0, -0.5);
+    \node at (3.2, -0.5) {$e^{\minus}$};
+
+    \draw[black, dashed] (3,0) arc (0:40:1);
+    \node at (2.7, 0.25) {$\Theta$};
+
+    \fill[circle,shading=ball,outer color=gray!30] (2.0,0) circle (5pt);
+\end{tikzpicture}
