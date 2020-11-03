@@ -180,6 +180,15 @@ sources:
   link: ros_packages/utils
   scripts:
   - git submodule update --init --recursive
+- name: map_builder
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/map_builder
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/map_builder
+  scripts:
+  - git submodule update --init --recursive
 sources_locked:
 - name: baca2018model
   type: git

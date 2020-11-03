@@ -23,7 +23,7 @@ windows:
         # - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=1.8 z:=0.3 frame:=uav68/aloam_origin
 
         # super awesom cool the best rosbag
-        - waitForRos; rosbag play ./bags/21_2020_10_06_13_23_14_long_encircling/_2020-10-06-13-24-54.bag --clock -r 2.0
+        - waitForRos; rosbag play ./bags/21_2020_10_06_13_23_14_long_encircling/_2020-10-06-13-24-54.bag --clock -r 1.0
         - waitForRos; rosbag play ./bags/21_2020_10_06_13_23_14_long_encircling/_2020-10-06-13-24-54.bag -r 1.0 -u 1 -l --topics /tf_static
         - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=1.8 z:=0.3 frame:=uav68/aloam_origin
 
@@ -45,6 +45,10 @@ windows:
       layout: tiled
       panes:
         - waitForControl; rosrun tf2_ros static_transform_publisher 0.09 0.025 -0.01 -1.57005 0.0 -1.25 uav68/fcu uav68/bluefox
+  - map_generator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch map_builder map_builder.launch
   - cone_generator:
       layout: tiled
       panes:
