@@ -9,7 +9,7 @@ elif [ -x "$(whereis vim | awk '{print $2}')" ]; then
   HEADLESS=""
 fi
 
-INPUT_FILE=bib.bib
+INPUT_FILE=papis_export.bib
 OUTPUT_FILE=main.bib
 
 cp $INPUT_FILE $OUTPUT_FILE
