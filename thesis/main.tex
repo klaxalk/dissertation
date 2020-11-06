@@ -37,6 +37,8 @@
 \usepackage{subfig} % subfloat
 \usepackage[export]{adjustbox}
 
+%%{ tikz
+
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
@@ -59,6 +61,8 @@
       anchor=south west,
   },
 }
+
+%%}
 
 % \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
 % \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
@@ -141,7 +145,8 @@
 
 \usepackage[]{hyperref}
 
-% For SI mearument units
+%%{ siunitx
+
 \usepackage{siunitx}
 \DeclareSIUnit \parsec {pc}
 \DeclareSIUnit \electronvolt {eV}
@@ -149,6 +154,8 @@
 \DeclareSIUnit \arcmin {arcmin}
 \DeclareSIUnit \erg {erg}
 \DeclareSIUnit \joul {J}
+
+%%}
 
 % change formatting of lists
 \usepackage{enumitem}
@@ -169,7 +176,7 @@
 % {?}{before}{after}
 \titlespacing*{\chapter}{0pt}{-1em}{2em}
 
-\hyphenation{Imaging}
+\hyphenation{}
 
 %%{ BIBLATEX
 
@@ -199,9 +206,12 @@
 % Print labelnumbers with suffixes, adjust secondary labelnumber 2/2
 \DeclareFieldFormat{labelnumber}{%
   \ifkeyword{mine}
-  {\ifkeyword{phd_unrelated}
-    {{\number\numexpr#1}a}%
-{{\number\numexpr#1}a}}{#1}}
+    {\ifkeyword{core}
+      {{\number\numexpr#1}c}%
+      {{\number\numexpr#1}a}%
+    }%
+    {#1}%
+}
 
 % {{\number\numexpr#1-\value{bbx:primcount}}a}
 
@@ -364,6 +374,13 @@ Related journals:
 \cite{stibinger2020localization}
 \cite{saikin2020wildfire}
 \cite{baca2020mrs}
+\cite{petracek2020bioinspired}
+\cite{kratky2020autonomous2}
+\cite{stasinchuk2020multiuav}
+\cite{dmytruk2020safe}
+\cite{smrcka2020admittance}
+\cite{walter2020extinguishing}
+\cite{silano2020power}
 
 Related conference papers:
 \cite{baca2019timepix}
@@ -375,6 +392,7 @@ Related conference papers:
 \cite{faigl2017onsolution}
 \cite{saska2016formations}
 \cite{roucek2019darpa}
+\cite{baca2020gamma}
 
 Partially-related journals:
 \cite{baca2016miniaturized}
@@ -392,7 +410,7 @@ Partially-related conference papers:
 
 %% | ------------------------ Chapter 2 ----------------------- |
 
-%%{ Contributions
+%%{ Contributions and Related Work
 
 \chapternoclear{Contributions and Related Work}
 
@@ -400,7 +418,7 @@ Partially-related conference papers:
 
 %% | ------------------------ Chapter 3 ----------------------- |
 
-%%{ MRS platform
+%%{ Research-focused UAV Platform
 
 \chapternoclear{Research-focused UAV Platform}
 
@@ -417,9 +435,9 @@ Author's publications to be included in the thesis:
 
 %% | ------------------------ Chapter 4 ----------------------- |
 
-%%{ Advances in UAV Deployment
+%%{ Advances in remote sensing
 
-\chapternoclear{Advances in UAV Deployment}
+\chapternoclear{Advances in remote sensing}
 
 Relevant author's publications (will be discussed):
 
@@ -1022,7 +1040,7 @@ Relevant author's publications (will be discussed):
 \fullciteinbox{baca2018timepix}{}
 
 Author's publications to be included in the thesis:
-\includepaper{baca2018rospix}
+\includepaper{baca2018timepix}
 \includepaper{baca2019timepix}
 \includepaper{stibinger2020localization}
 
@@ -1602,7 +1620,11 @@ However, despite the occasional outliers, the estimator performed well despite t
 
 \chapternoclear{Conclusion}
 
+\todo{}
+
 %%}
+
+%% | ----------------------- References ----------------------- |
 
 %%{ References
 
@@ -1617,32 +1639,45 @@ Each citation is displayed with percentage contribution of the author and number
 % Journal articles also contains information about the Impact Factor~(IF) by Web of Science and the CiteScore~(CS) by Scopus.
 % The publications~\cite{loianno2018localization, petrlik2020robust, stibinger2020localization, saikin2020wildfire} are only reported with CS due to the novelty of the journal that is expected to receive impact factor in June 2020.
 
+\section{Thesis core publications}
+
+\subsection*{Core articles in peer-reviewed journals}
+\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={core},notkeyword={submitted},heading=none,title={}]
+
+\subsection*{Core conference proceedings}
+\printbibliography[keyword={mine},keyword={phd_related},keyword={conference},keyword={core},notkeyword={submitted},heading=none,title={}]
+
+\subsection*{Core articles --- submitted}
+\printbibliography[keyword={mine},keyword={phd_related},keyword={submitted},keyword={core},heading=none,title={}]
+
 \section{Thesis-related author's publications}
 
-\subsection*{Thesis-related articles in peer-reviewed journals with Impact Factor~(IF)}
-\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={if},heading=none,title={}]
-
-\subsection*{Thesis-related articles --- submitted}
-\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={submitted},heading=none,title={}]
+\subsection*{Thesis-related articles in peer-reviewed journals}
+\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},notkeyword={core},notkeyword={submitted},heading=none,title={}]
 
 % \subsection*{Thesis-related articles in peer-reviewed journals only with CiteScore~(CS)}
 % \printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={cs},heading=none,title={}]
 
 \subsection*{Thesis-related conference proceedings}
-\printbibliography[keyword={mine},keyword={phd_related},keyword={conference},heading=none,title={}]
+\printbibliography[keyword={mine},keyword={phd_related},keyword={conference},notkeyword={core},notkeyword={submitted},heading=none,title={}]
+
+\subsection*{Thesis-related publications --- submitted}
+\printbibliography[keyword={mine},keyword={phd_related},keyword={submitted},notkeyword={core},heading=none,title={}]
 
 \section{Partially-related author's publications}
 
-\subsection*{Articles in peer-reviewed journals with Impact Factor~(IF)}
-\printbibliography[keyword={mine},keyword={phd_unrelated},keyword={journal},keyword={if},heading=none,title={}]
+\subsection*{Articles in peer-reviewed journals}
+\printbibliography[keyword={mine},keyword={phd_unrelated},keyword={journal},notkeyword={core},notkeyword={submitted},heading=none,title={}]
 
 \subsection*{Conference proceedings}
-\printbibliography[keyword={mine},keyword={phd_unrelated},keyword={conference},heading=none,title={}]
+\printbibliography[keyword={mine},keyword={phd_unrelated},keyword={conference},notkeyword={core},notkeyword={submitted},heading=none,title={}]
 
 \section{Cited references}
 \printbibliography[notkeyword=mine,heading=none,title={}]
 
 %%}
+
+%% | ------------------------ Apendices ----------------------- |
 
 %%{ Apendices
 
