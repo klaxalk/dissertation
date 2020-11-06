@@ -34,8 +34,12 @@
 \usepackage{verbatim}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
+\usepackage[]{hyperref}
+
 \usepackage{subfig} % subfloat
 \usepackage[export]{adjustbox}
+
+\hyphenation{}
 
 %%{ tikz
 
@@ -64,9 +68,13 @@
 
 %%}
 
+%%{ include paper box
+
 % \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
-% \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
-\newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
+\newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
+% \newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
+
+%%}
 
 %%{ fullcite box
 
@@ -143,8 +151,6 @@
 
 %%}
 
-\usepackage[]{hyperref}
-
 %%{ siunitx
 
 \usepackage{siunitx}
@@ -157,26 +163,33 @@
 
 %%}
 
-% change formatting of lists
+%%{ change formatting of lists
+
 \usepackage{enumitem}
 \setlist{nosep}
 % \setlist{noitemsep}
 % how to format particular lists?
 % \begin{itemize}[topsep=8pt,itemsep=4pt,partopsep=4pt, parsep=4pt]
 
-% change spacing of the table of contents
+%%}
+
+%%{ change spacing of the table of contents
+
 % \usepackage{tocloft}
 % \renewcommand\cftchapafterpnum{\vskip5pt}
 % \renewcommand\cftsecafterpnum{\vskip5pt}
 
-% change formatting of a chapter
+%%}
+
+%%{ change formatting of a chapter
+
 \usepackage{titlesec}
 \titleformat{\chapter}[block]
 {\normalfont\huge\bfseries}{Chapter \thechapter\\\vspace{0.1em}\\}{1em}{\Huge}
 % {?}{before}{after}
 \titlespacing*{\chapter}{0pt}{-1em}{2em}
 
-\hyphenation{}
+%%}
 
 %%{ BIBLATEX
 
@@ -272,6 +285,17 @@
 
 %%}
 
+%%{ listings
+
+\lstset{breaklines=true,captionpos=b,frame=single,language=sh,float=h}
+\lstloadlanguages{sh,c}
+\def\lstlistingname{Listing}
+\def\lstlistlistingname{Listings}
+
+%%}
+
+%%{ title page parameters
+
 \newcommand{\Author}{Ing. Tomáš Báča}
 \newcommand{\Supervisor}{Ing. Martin Saska, Dr. rer. nat.}
 \newcommand{\SupervisorSpecialist}{Ing. Michal Platkevic, Ph.D.}
@@ -286,21 +310,16 @@
 \newcommand{\Date}{\Month~\Year}
 \newcommand{\Location}{Prague}
 
+%%}
+
+%%{ layout parameters
+
 % % altering margins
 % \setlength{\oddsidemargin}{+0.5cm}
 % \setlength{\evensidemargin}{-0.5cm}
 
 % ??
 \def\clinks{false}
-
-% listings
-\lstset{breaklines=true,captionpos=b,frame=single,language=sh,float=h}
-\lstloadlanguages{sh,c}
-\def\lstlistingname{Listing}
-\def\lstlistlistingname{Listings}
-
-% European layout (no extra space after `.')
-\frenchspacing
 
 % no indent, free space between paragraphs
 \setlength{\parindent}{1cm}
@@ -328,8 +347,17 @@
 \fancyfoot[R]{Department of Cybernetics}
 \fancyfoot[C]{}
 
-% without it it does not compile!
+%%}
+
+%%{ other parameters
+
+% European layout (no extra space after `.')
+\frenchspacing
+
+% without this it does not compile!
 \let\bibfont\small
+
+%%}
 
 %%}
 
@@ -399,6 +427,7 @@ Partially-related journals:
 \cite{baca2018timepix}
 \cite{daniel2019inorbit}
 \cite{urban2017vzlusat}
+\cite{urban2020rex}
 
 Partially-related conference papers:
 \cite{daniel2016terrestrial}
@@ -424,8 +453,6 @@ Partially-related conference papers:
 
 Relevant author's publications (will be discussed):
 \fullciteinbox{baca2016embedded}{}
-\fullciteinbox{baca2019autonomous}{}
-\fullciteinbox{spurny2019cooperative}{}
 
 Author's publications to be included in the thesis:
 \includepaper{baca2018model}
@@ -435,95 +462,15 @@ Author's publications to be included in the thesis:
 
 %% | ------------------------ Chapter 4 ----------------------- |
 
-%%{ Advances in remote sensing
+%%{ Advances in remote sensing by UAVs
 
-\chapternoclear{Advances in remote sensing}
+\chapternoclear{Advances in remote sensing by UAVs}
 
 Relevant author's publications (will be discussed):
 
-\fullciteinbox{petrlik2020robust}{}
-\fullciteinbox{petracek2020bioinspired}{}
-\fullciteinbox{kratky2020autonomous2}{}
+%%{ Sec: Motion planning
 
-Author's publications to be included in the thesis:
-\includepaper{spurny2019cooperative}
-\includepaper{baca2019autonomous}
-\includepaper{loianno2018localization}
-
-\subsection{UAV mutual detection and localization}
-
-The system played an integral role in the ongoing research on relatively-localized \ac{UAV} swarms and formations.
-Onboard marker-less \ac{UAV} detection and localization were studied in \cite{vrba2020markerless, vrba2019onboard}.
-Two approaches to \ac{UAV} detection were proposed, and were experimentally verified with the proposed system: a Convolutional Neural Network-based method, and a system for processing depth-camera images.
-
-Mutual localization of \acp{UAV} within swarms and formations was presented in \cite{walter2017selflocalization, walter2018fast, walter2018mutual, walter2019uvdar}.
-The system relies on modulated \ac{UV} \ac{LED} blinkers, which are detected using specialized onboard cameras (see \reffig{fig:uvdar}).
-
-%%{ Fig: uvdar
-
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[height=10em]{./fig/photos/uvdar.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-
-      \draw[->, white, thick] (0.40, 0.20) -- (0.18, 0.59);
-      \draw[->, white, thick] (0.40, 0.20) -- (0.48, 0.56);
-      \draw[->, white, thick] (0.40, 0.20) -- (0.58, 0.24);
-      \draw (0.40,0.15) node [text=white] {\small UV blinkers};
-
-      \draw[->, white, thick] (0.80, 0.80) -- (0.80, 0.4);
-      \draw[->, white, thick] (0.80, 0.80) -- (0.66, 0.4);
-      \draw[->, white, thick] (0.80, 0.80) -- (0.50, 0.77);
-      \draw (0.80,0.86) node [text=white] {\small UV cameras};
-
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.08,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[height=10em]{./fig/photos/uvdar_camera.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.20,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{Mutual localization of \acp{UAV} by the UVDAR system is provided by (a) \ac{UV} blinkers on the \ac{UAV} arms and top. The blinkers are observed by onboard cameras (b) equipped with \ac{UV} band pass filters.}
-  \label{fig:uvdar}
-\end{figure}
-
-%%}
-
-%%{ Sub: Motion planning
-
-\subsection{UAV motion planning}
+\section{UAV motion planning}
 
 Basic research on optimal planning for data collection with \acp{UAV} was studied in \cite{penicka2019data, penicka2017dubins, penicka2017neighborhoods, penicka2017reactive, faigl2017onsolution}.
 
@@ -537,9 +484,9 @@ Complex maneuvers and cooperative load-carrying by multiple \acp{UAV} were repor
 
 %%}
 
-%%{ Sub: Automatic control
+%%{ Sec: Automatic control
 
-\subsection{Automatic control}
+\section{Automatic control}
 
 A system for automatic gain tuning for the \emph{geometric tracking controller on SE(3)} was published in \cite{giernacki2019realtime}.
 
@@ -602,7 +549,9 @@ The properties of the SE(3) geometric feedback proved crucial for verifying the 
 
 %%}
 
-\subsection{Data gathering}
+%%{ Sec: Data gathering
+
+\section{Data gathering}
 
 \fullciteinbox{saska2017documentation}{}
 The system is being used actively in a project working on indoor aerial inspection of historical buildings and monuments \cite{petracek2020dronument, kratky2020autonomous}.
@@ -658,7 +607,11 @@ Similarly, transmission radio sources were automatically localized in \cite{vrba
 
 %%}
 
-\subsection{UAV swarms and formations}
+%%}
+
+%%{ Sec: Swarms and formations
+
+\section{UAV swarms and formations}
 \label{sec:uav_swarms_and_formations}
 
 Basic research in the area of \ac{UAV} swarming and formation flying was studied in \cite{saska2020formation, saska2016formations, saska2019large}.
@@ -726,71 +679,15 @@ Interactions between \acp{UAV} are studied in order to overcome challenging situ
 
 %%}
 
-% Most cited approaches, although achieving great results, lack reliability in terms of independence to changing environmental conditions in the real-world, which is not acceptable in such the proposed safety-critical work. This means that a fully distributed control approach is needed. To achieve that, we plan to apply our achievements in the endeavor to design a robust system usable in various environments, both relying on vision-based precise mutual object detection in UAV proximity \cite{krajnik14jint} as well as using robust active UV patterns to solve this problem \cite{Walter2018}.
-
-\subsection{MBZIRC 2017 competition}
-
-The \ac{MBZIRC} 2017\footnote{MBZIRC 2017, \url{http://mbzirc.com/challenge/2017}} aimed at pushing the frontiers of field robotics.
-Two tasks out of the three challenges within the competition were focused solely on aerial manipulation and UAV control.
-The competition imposed real-world constraints in its tasks that forced the participating teams to show the current state of the art in robotics and to perform the tasks within a short time window and within specified time slots.
-The first task --- autonomous gathering of colored ferrous objects by a group of \acp{UAV} --- was successfully tackled by the CTU-UPENN-UoL\footnote{Collaboration of Czech Technical University in Prague, University of Pennsylvania, and the University of Lincoln.} team, using the proposed system \cite{spurny2019cooperative, faigl2019unsupervised, loianno2018localization} (see \reffig{fig:mbzirc_2017}).
-We won 1$^{\mathrm{st}}$ place among the best teams from all over the world.
-The second task of autonomous landing on a moving car was also tackled by the proposed system.
-We achieved the fastest autonomous landing among all the teams, and we took the 2$^{\text{nd}}$ place overall in the competition \cite{baca2019autonomous, stepan2019vision}.
-
-%%{ Fig: MBZIRC 2017
-
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/grasping_2017_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/landing_2017_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{The CTU-UPENN-UoL team during the MBZIRC 2017 competition. The photos show (a) two \acp{UAV} while delivering ferrous objects, and (b) a \ac{UAV} during autonomous landing on a moving car.}
-  \label{fig:mbzirc_2017}
-\end{figure}
-
 %%}
 
-\subsection{The DARPA Subterranean (SubT) challenge}
+%%{ Sec: DARPA SubT
+
+\section{The DARPA Subterranean (SubT) challenge}
 
 The \ac{DARPA}, an agency of the United States Department of Defense, organizes series of challenges focused on automatic search \& rescue in an underground environment --- the \ac{DARPA} Subterranean challenge.
 In the \ac{DARPA} Tunnel Circuit, the first round of the challenge, we deployed autonomous \acp{UAV} and semi-autonomous ground robots to explore underground mine shafts \cite{petrlik2020robust, roucek2019darpa}.
+\fullciteinbox{petrlik2020robust}{}
 Our team deployed autonomous \acp{UAV} with the proposed system (see \reffig{fig:darpa}), which navigated the underground tunnels and returned safely to the entrance while autonomously localizing objects of interest.
 We won the 1$^{\mathrm{st}}$ prize among the self-funded teams and the 3$^{\mathrm{rd}}$ prize overall.
 To the best of our knowledge, our \acp{UAV} managed to explore a greater distance into the tunnels than any of the other teams.
@@ -849,7 +746,74 @@ Our \acp{UAV} managed to explore \SI{2867}{\meter\cubed} of one floor of the rea
 We again took 1$^{\text{st}}$ place among the self-funded teams, and 3$^{\text{rd}}$ place overall.
 Scientific publications on tasks within the Urban Circuit are under preparation.
 
-\subsection{MBZIRC 2020 competition}
+%%}
+
+%%{ Sec: MBZIRC 2017
+
+\section{MBZIRC 2017 competition}
+
+The \ac{MBZIRC} 2017\footnote{MBZIRC 2017, \url{http://mbzirc.com/challenge/2017}} aimed at pushing the frontiers of field robotics.
+Two tasks out of the three challenges within the competition were focused solely on aerial manipulation and UAV control.
+The competition imposed real-world constraints in its tasks that forced the participating teams to show the current state of the art in robotics and to perform the tasks within a short time window and within specified time slots.
+The first task --- autonomous gathering of colored ferrous objects by a group of \acp{UAV} --- was successfully tackled by the CTU-UPENN-UoL\footnote{Collaboration of Czech Technical University in Prague, University of Pennsylvania, and the University of Lincoln.} team, using the proposed system \cite{spurny2019cooperative, faigl2019unsupervised, loianno2018localization} (see \reffig{fig:mbzirc_2017}).
+We won 1$^{\mathrm{st}}$ place among the best teams from all over the world.
+The second task of autonomous landing on a moving car was also tackled by the proposed system.
+We achieved the fastest autonomous landing among all the teams, and we took the 2$^{\text{nd}}$ place overall in the competition \cite{baca2019autonomous, stepan2019vision}.
+
+%%{ Fig: MBZIRC 2017
+
+\begin{figure}
+  \centering
+  \subfloat {\begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/grasping_2017_2_1-5.jpg}};
+    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+      %%{ grid
+      % % useful grid to help you find coordinates for plotting the overlay
+      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+      %   \node[align=center] at (\i, -0.05) {\i};
+      %   \node[align=center] at (\i, 1.05) {\i};
+      %   \node[align=center] at (-0.05, \i) {\i};
+      %   \node[align=center] at (1.05, \i) {\i};
+      % }
+      %%}
+      % plot some stuff over the image
+      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+      \node[imgletter,text=black] (label) at (a.south west) {(a)};
+    \end{scope}
+  \end{tikzpicture}}
+  \hfill%
+  \subfloat {\begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/landing_2017_2_1-5.jpg}};
+    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+      %%{ grid
+      % % useful grid to help you find coordinates for plotting the overlay
+      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+      %   \node[align=center] at (\i, -0.05) {\i};
+      %   \node[align=center] at (\i, 1.05) {\i};
+      %   \node[align=center] at (-0.05, \i) {\i};
+      %   \node[align=center] at (1.05, \i) {\i};
+      % }
+      %%}
+      % plot some stuff over the image
+      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+      \node[imgletter,text=black] (label) at (a.south west) {(b)};
+    \end{scope}
+  \end{tikzpicture}}
+  \caption{The CTU-UPENN-UoL team during the MBZIRC 2017 competition. The photos show (a) two \acp{UAV} while delivering ferrous objects, and (b) a \ac{UAV} during autonomous landing on a moving car.}
+  \label{fig:mbzirc_2017}
+\end{figure}
+
+%%}
+
+%%}
+
+%%{ Sec: MBZIRC 2020
+
+\section{MBZIRC 2020 competition}
 
 The second round of the \ac{MBZIRC} competition was organized in 2020.
 It pushed the current state of the art in aerial robotics to its limits, with tasks such as organizing a group of \acp{UAV} and a \ac{UGV} to build a brick wall autonomously, autonomous indoor and outdoor firefighting with \acp{UAV}, and autonomously catching a ball carried by a \ac{UAV}, performed simultaneously with balloon popping by a group of \acp{UAV} (see \reffig{fig:mbzirc_2020}).
@@ -968,60 +932,11 @@ Scientific publications reporting on \ac{MBZIRC} 2020 are under preparation.
 
 %%}
 
-\subsection{IEEE RAS Summer School on Multi-robot Systems}
-
-The proposed system was used as an educational tool during the 2019 \ac{IEEE} \ac{RAS} summer school on multirobot systems\footnote{\url{http://mrs.felk.cvut.cz/summer-school-2019}}.
-More than 70 international students were challenged to solve a multi-\ac{UAV} Dubins traveling salesman problem with neighborhoods during the summer school exercises.
-Student solutions were put to test during an outdoor experimental session.
-
-%%{ Fig: summer school
-
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/summer_schoo_pc.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/summer_school_outdoor.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{The 2019 IEEE RAS summer school on multirobot systems organized theoretical lectures, (a) exercises with the proposed system, and (b) a practical experimental session, in which students competed in an automatic planning challenge. Go to \protect\url{http://youtu.be/m_AxZs-_DXI} for a summary video from the event.}
-  \label{fig:summer_school_2019}
-\end{figure}
-
 %%}
+
+% INCLUDE THE FOLLOWING PDFS
+\includepaper{loianno2018localization}
+\includepaper{baca2019autonomous}
 
 %%}
 
@@ -1030,14 +945,13 @@ Student solutions were put to test during an outdoor experimental session.
 %%{ Ionizing Radiation Detection and Localization by UAVs
 
 \chapternoclear{Ionizing Radiation Detection and Localization by UAVs}
-\chaptermark{Ionizing Radiation Localization}
+\chaptermark{Ionizing Radiation Sources Localization}
 
 Ongoing research realized in the accepted TACR 2020-2022 project FW01010317:\\
 ``\textit{Lokalizace zdrojů ionizující radiace pomocí malých bezpilotních helikoptér s detektorem na principu Comptonovy kamery}''.
 
 Relevant author's publications (will be discussed):
 \fullciteinbox{baca2016miniaturized}{}
-\fullciteinbox{baca2018timepix}{}
 
 Author's publications to be included in the thesis:
 \includepaper{baca2018timepix}
@@ -1636,8 +1550,8 @@ However, despite the occasional outliers, the estimator performed well despite t
 Below are listed all publications of the author.
 Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
 \todo{updated citations}
-% Journal articles also contains information about the Impact Factor~(IF) by Web of Science and the CiteScore~(CS) by Scopus.
-% The publications~\cite{loianno2018localization, petrlik2020robust, stibinger2020localization, saikin2020wildfire} are only reported with CS due to the novelty of the journal that is expected to receive impact factor in June 2020.
+
+%%{ Core publications
 
 \section{Thesis core publications}
 
@@ -1649,6 +1563,10 @@ Each citation is displayed with percentage contribution of the author and number
 
 \subsection*{Core articles --- submitted}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={submitted},keyword={core},heading=none,title={}]
+
+%%}
+
+%%{ Related publications
 
 \section{Thesis-related author's publications}
 
@@ -1664,16 +1582,29 @@ Each citation is displayed with percentage contribution of the author and number
 \subsection*{Thesis-related publications --- submitted}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={submitted},notkeyword={core},heading=none,title={}]
 
+%%}
+
+%%{ Partially-related publications
+
 \section{Partially-related author's publications}
 
-\subsection*{Articles in peer-reviewed journals}
+\subsection*{Partially-related articles in peer-reviewed journals}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={journal},notkeyword={core},notkeyword={submitted},heading=none,title={}]
 
-\subsection*{Conference proceedings}
+\subsection*{Partially-related conference proceedings}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={conference},notkeyword={core},notkeyword={submitted},heading=none,title={}]
+
+\subsection*{Partially-related publications --- submitted}
+\printbibliography[keyword={mine},keyword={phd_unrelated},keyword={submitted},heading=none,title={}]
+
+%%}
+
+%%{ Cited references
 
 \section{Cited references}
 \printbibliography[notkeyword=mine,heading=none,title={}]
+
+%%}
 
 %%}
 
