@@ -411,16 +411,7 @@ This thesis focuses on ... \todo{}
 \section{Author's publications}
 
 Related journals:
-% \cite{baca2019autonomous} % core
-% \cite{stibinger2020localization} % core
-% \cite{loianno2018localization} % core
-% \cite{baca2018timepix} % core
-% \cite{baca2020mrs} % core
-\cite{baca2018rospix}
-\cite{spurny2019cooperative}
-\cite{saska2017system}
 \cite{giernacki2019realtime}
-\cite{chudoba2016exploration}
 \cite{saska2020formation}
 \cite{petrlik2020robust}
 \cite{saikin2020wildfire}
@@ -433,16 +424,11 @@ Related journals:
 \cite{silano2020power}
 
 Related conference papers:
-% \cite{baca2019timepix} % core
-% \cite{baca2018model} % core
-\cite{baca2016embedded}
-\cite{baca2017autonomous}
 \cite{saska2017documentation}
 \cite{spurny2016complex}
 \cite{faigl2017onsolution}
 \cite{saska2016formations}
 \cite{roucek2019darpa}
-\cite{baca2020gamma}
 
 Partially-related journals:
 \cite{baca2016miniaturized}
@@ -451,8 +437,6 @@ Partially-related journals:
 \cite{urban2020rex}
 
 Partially-related conference papers:
-\cite{daniel2016terrestrial}
-\cite{daniel2017xray}
 
 %%}
 
@@ -470,15 +454,30 @@ Partially-related conference papers:
 
 \section{Multirotor UAV systems for research verification}
 
-\todo{}
+\cite{baca2016embedded}
+\cite{baca2018model}
+\cite{baca2020mrs}
+
+% applications
+\cite{chudoba2016exploration}
+\cite{saska2017system}
 
 \section{Remote sensing and data collection by UAVs}
 
-\todo{}
+\cite{spurny2019cooperative}
+\cite{loianno2018localization}
+\cite{baca2019autonomous}
+\cite{baca2017autonomous}
 
 \section{Ionizing radiation mapping and localization by UAVs}
 
-\todo{}
+\cite{daniel2016terrestrial}
+\cite{daniel2017xray}
+\cite{baca2018timepix}
+\cite{baca2018rospix}
+\cite{baca2019timepix}
+\cite{stibinger2020localization}
+\cite{baca2020gamma}
 
 %%}
 
@@ -502,67 +501,6 @@ Partially-related conference papers:
 %%{ Advances in remote sensing by UAVs
 
 \chapternoclear{Advances in remote sensing by UAVs}
-
-%%{ Sec: Motion planning
-
-\section{UAV motion planning}
-
-%%}
-
-%%{ Sec: Automatic control
-
-\section{Automatic control}
-
-%%{ Fig: generic control and eagle
-
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/control_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/eagle_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{Novel control approaches can be tested on a real hardware. Off-the-shelf platforms such as (a) Tarot 650, and also (b) custom-built airframes, can be equipped with the proposed system.}
-  \label{fig:control}
-\end{figure}
-
-%%}
-
-%%}
 
 %%{ Sec: Data gathering
 
@@ -619,7 +557,7 @@ Partially-related conference papers:
 
 %%}
 
-%%{ Sec: Swarms and formations
+%%{ Sec: UAV swarms and formations
 
 \section{UAV swarms and formations}
 \label{sec:uav_swarms_and_formations}
@@ -682,7 +620,7 @@ Partially-related conference papers:
 
 %%}
 
-%%{ Sec: DARPA SubT
+%%{ Sec: The DARPA Subterranean (SubT) challenge
 
 \section{The DARPA Subterranean (SubT) challenge}
 
@@ -737,7 +675,7 @@ Partially-related conference papers:
 
 %%}
 
-%%{ Sec: MBZIRC 2017
+%%{ Sec: MBZIRC 2017 competition
 
 \section{MBZIRC 2017 competition}
 
@@ -795,7 +733,7 @@ Partially-related conference papers:
 
 %%}
 
-%%{ Sec: MBZIRC 2020
+%%{ Sec: MBZIRC 2020 competition
 
 \section{MBZIRC 2020 competition}
 
