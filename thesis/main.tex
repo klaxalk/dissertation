@@ -389,22 +389,23 @@ The emergence of small \acp{UAV} has created a new active field of mobile roboti
 The rise of multirotor helicopters spawned revolutionary possibilities of remote sensing and data gathering.
 Unlike traditional ground robots, multirotor helicopters combine a potentially fast and agile movement through a 3D environment with the ability to hover in place.
 Both traits require overcoming complex technological challenges as well as offer significant advantages over ground robots.
-The challenges arise from the inherently unstable dynamics of multirotor helicopters \cite{kumar2012opportunities}.
+The challenges arise from the inherently unstable dynamics of multirotor helicopters \cite{kumar2012opportunities, mueller2014stability}.
 Uninterrupted feedback control actions are required to maintain the machine in a desired state.
 Moreover, feedback control of agile \acp{UAV} is vitally dependent on a smooth and feasible state estimate.
-Both, the \ac{UAV} state estimation \cite{merino2006vision, burri2015robust} and feedback control \cite{lee2010geometric, goodarzi2015geometric} have been intensively studied during the past decade and are still very active field of research.
-Multirotor helicopters are a versatile platform for carrying out remote sensing, environment sampling, and providing technological support and aid in rescue operations.
+Both, the \ac{UAV} state estimation \cite{merino2006vision, burri2015robust, grabe2015nonlinear} and feedback control \cite{lee2010geometric, goodarzi2015geometric, kamel2017robust} have been intensively studied during the past decade and are still very active field of research.
+Multirotor helicopters are a versatile platform for carrying out remote sensing \cite{colomina2014unmanned, pajares2015overview}, environment sampling, and providing technological support and aid in natural disaster rescue operations \cite{yuan2015survey, perks2016advances}.
 
 This thesis focuses on advances in replicable research with autonomous multirotor helicopters and their use for cooperative remote sensing.
-Specifically, we focus on 
-Commercial \ac{UAV} systems are often closed-source and provide features tailored mostly for photographers, video makers and hobby pilots.
-Autonomous operation of commercial \acp{UAV} is typically limited to a single vehicle flying outdoors under a \ac{GNSS} localization while following a set of waypoints.
-
+Firstly, it focuses on development of a system and methods for execution of multi-\ac{UAV} experiments outside of laboratory conditions.
+Secondly, collaborative gathering of metal objects by a group of \acp{UAV} was studied in conjunction with an autonomous landing of a \ac{UAV} on top of a moving car.
+The approach was later extended to a collaborative wall-building by a group of \acp{UAV}.
+Finally, an interdisciplinary applied research has been pursuit for localization if ionizing sources of radiation by a \acp{UAV}.
+The objectives of the thesis were significantly shaped by the active participation of the \ac{MRS} research group in the 2017 and 2020 rounds of the \ac{MBZIRC}.
 
 \textbf{(1) Development of control system for real-world deployment of \acp{UAV}}, realistic verification of new methods of remote sensing and deployment in potentially hazardous environments.
 \todo{}
 
-\textbf{(2) Research of methods to accommodate cooperative remote sensing} by \aclp{UAV}.
+\textbf{(2) Research of methods of collaborative remote sensing} by a group of \aclp{UAV}.
 \todo{}
 
 \textbf{(3) Advancing the field of ionizing radiation dosimetry, mapping and localization by compact sources} by \aclp{UAV}.
@@ -426,6 +427,9 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 \cite{baca2020mrs} % MRS UAV System
 
 \section{Multirotor UAV systems for research verification}
+
+Commercial \ac{UAV} systems are often closed-source and provide features tailored for photographers, video makers and hobby pilots.
+Autonomous operation of commercial \acp{UAV} is typically limited to a single vehicle flying outdoors under a \ac{GNSS} localization while following a set of waypoints.
 
 \todo{the old embedded era}
 \cite{baca2016embedded} % embedded
