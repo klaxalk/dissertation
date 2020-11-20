@@ -108,6 +108,15 @@ sources:
   link: ros_packages/geometry_visual_utils
   scripts:
   - git submodule update --init --recursive
+- name: map_builder
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/map_builder
+  sparse_paths:
+  -
+  rev: master
+  link: ros_packages/map_builder
+  scripts:
+  - git submodule update --init --recursive
 - name: petrlik2020robust
   type: git
   repo: git@mrs.felk.cvut.cz:papers/icra2020darpa
@@ -180,15 +189,6 @@ sources:
   link: ros_packages/utils
   scripts:
   - git submodule update --init --recursive
-- name: map_builder
-  type: git
-  repo: git@mrs.felk.cvut.cz:radiation/map_builder
-  sparse_paths:
-  -
-  rev: master
-  link: ros_packages/map_builder
-  scripts:
-  - git submodule update --init --recursive
 sources_locked:
 - name: baca2018model
   type: git
@@ -222,7 +222,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:papers/mrs-platform
   sparse_paths:
   -
-  rev: f82e5c9a9856dc6e6a2ef3934d768b7344fd0412
+  rev: fcc3f18cf56351d56e0bd7c946780347a9b60785
   link: thesis/papers/mrs-platform
   scripts:
   - git submodule update --init --recursive
@@ -231,7 +231,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera
   sparse_paths:
   -
-  rev: c95bfec55c681727f5e912677e4f0a1c6ee9c642
+  rev: 87f5593315aa39e2a380d1a303ec160bec5ebc6f
   link: ros_packages/compton_camera
   scripts:
   - git submodule update --init --recursive
@@ -240,7 +240,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera_filter
   sparse_paths:
   -
-  rev: ed6ecfa244f782e563b0436def42999417f6f767
+  rev: 71ba49b9b6f3998b9e82d7d40d2afc2b88b37e9d
   link: ros_packages/compton_camera_filter
   scripts:
   - git submodule update --init --recursive
@@ -258,7 +258,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_cone_generator.git
   sparse_paths:
   -
-  rev: 62748d524b365cdf558718d7a8e0973b8093ebdc
+  rev: 6758b36b6123947c437be17920c51e6bc0bfba56
   link: ros_packages/compton_cone_generator
   scripts:
   - git submodule update --init --recursive
@@ -285,7 +285,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/gazebo_timepix
   sparse_paths:
   -
-  rev: fa2e2f29f7069d921431c8d5a6c0af73b5334dbe
+  rev: 1578585b99532e4d85f6465def96b99f21ab381c
   link: ros_packages/gazebo_timepix
   scripts:
   - git submodule update --init --recursive
@@ -296,6 +296,15 @@ sources_locked:
   -
   rev: fb1f51571200459d351d739d1bfb251384884d79
   link: ros_packages/geometry_visual_utils
+  scripts:
+  - git submodule update --init --recursive
+- name: map_builder
+  type: git
+  repo: git@mrs.felk.cvut.cz:radiation/map_builder
+  sparse_paths:
+  -
+  rev: e7e640d6cee870e6c0a65c22325c3495c3e5cc36
+  link: ros_packages/map_builder
   scripts:
   - git submodule update --init --recursive
 - name: petrlik2020robust
@@ -330,7 +339,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
   sparse_paths:
   -
-  rev: 656c9e928ce8ef59d9940179e23e3e4a333590c0
+  rev: 8bab1caf779e38e1972f0a323622628751fea01e
   link: ros_packages/radiation_utils
   scripts:
   - git submodule update --init --recursive
