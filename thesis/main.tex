@@ -34,7 +34,7 @@
 \usepackage{verbatim}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
-\usepackage[]{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 \usepackage{subfig} % subfloat
 \usepackage[export]{adjustbox}
@@ -46,7 +46,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
-\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy}
+\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy,shapes, shapes.geometric, shapes.multipart,fit,patterns}
 \pgfdeclarelayer{background}
 \pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
@@ -225,6 +225,15 @@
     }%
     {#1}%
 }
+
+\DeclareCiteCommand{\tabcite}%[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
 
 % {{\number\numexpr#1-\value{bbx:primcount}}a}
 
@@ -476,7 +485,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 \section{Remote sensing and data collection by UAVs}
 
 \todo{collective gathering of of objects}
-\cite{spurny2019cooperative}
+\cite{spurny2018cooperative}
 \cite{loianno2018localization}
 
 \todo{autonomous landing a on moving car}
@@ -521,6 +530,538 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 
 \todo{about the use of Compton camera to localize compact sources of radiation}
 \cite{baca2020gamma}
+
+\begin{figure}
+
+  %%{ tikzset
+  
+  \tikzset{
+    article/.style={
+      rectangle,
+      inner sep=0pt,
+      draw=black,
+      text=black,
+      minimum height=3.5em,
+      minimum width=6.7em,
+      text width=6.7em,
+    },
+    subarticle/.style={
+      rectangle,
+      inner sep=0pt,
+      draw=black,
+      pattern=north west lines,
+      pattern color=black!10,
+      text=black,
+      minimum height=3.5em,
+      minimum width=6.7em,
+      text width=6.7em,
+    },
+    subkeyarticle/.style={
+      rectangle,
+      inner sep=0pt,
+      draw=black,
+      pattern=north west lines,
+      pattern color=black!10,
+      line width=0.5mm,
+      text=black,
+      minimum height=3.5em,
+      minimum width=6.7em,
+      text width=6.7em,
+    },
+    keyarticle/.style={
+      rectangle,
+      inner sep=2pt,
+      draw=black,
+      text=black,
+      line width=0.5mm,
+      minimum height=3.5em,
+      minimum width=6.5em,
+      text width=6.5em,
+    },
+    stream/.style={
+      rectangle,
+      inner sep=2pt,
+      draw=black,
+      text=black,
+      line width=0.5mm,
+      minimum height=3em,
+      minimum width=8em,
+      rounded corners=1em,
+      font=\bfseries,
+    },
+    technology/.style={
+      rectangle,
+      inner sep=2pt,
+      draw=black,
+      text=black,
+      line width=0.5mm,
+      minimum height=3.5em,
+      minimum width=6.5em,
+      rounded corners=1em,
+      align=left,
+    },
+    cite/.style={
+      rectangle,
+      inner sep=2pt,
+      text=black,
+      draw=black,
+      % minimum height=1em,
+      text centered,
+      anchor=south east,
+    },
+    keycite/.style={
+      rectangle,
+      inner sep=2pt,
+      text=black,
+      draw=black,
+      line width=0.5mm,
+      % minimum height=1em,
+      text centered,
+      anchor=south east,
+    },
+  }
+  
+  %%}
+
+  %%{ commands
+  
+  \newcommand{\stream}[3]{
+    \node[stream, #1] (#2) {\scriptsize #3};
+  }
+  
+  \newcommand{\technology}[3]{
+    \node[technology, #1] (#2) {\tiny #3};
+  }
+  
+  \newcommand{\keyarticle}[4]{
+    \node[keyarticle, #1] (#2) {\scalebox{0.9}{\tiny #4}};
+    \node[keycite] at (#2.south east) {\tiny #3};
+  }
+  
+  \newcommand{\article}[4]{
+    \node[article, #1] (#2) {\scalebox{0.9}{\tiny #4}\vspace{0.1em}};
+    \node[cite] at (#2.south east) {\tiny #3};
+  }
+
+  \newcommand{\subarticle}[4]{
+    \node[subarticle, #1] (#2) {\scalebox{0.9}{\tiny #4}\vspace{0.1em}};
+    \node[cite] at (#2.south east) {\tiny #3};
+  }
+
+  \newcommand{\subkeyarticle}[4]{
+    \node[subkeyarticle, #1] (#2) {\scalebox{0.9}{\tiny #4}\vspace{0.1em}};
+    \node[keycite] at (#2.south east) {\tiny #3};
+  }
+  
+  %%}
+
+  \centering
+
+  \begin{tikzpicture}[node distance=1.0em and 1.0em, auto]
+
+    %%{ block type headlines
+    
+    \stream{}{stream_generic}{Research stream}
+    
+    \technology{right=of stream_generic}{technology_generic}{
+      \begin{tabular}{l}
+        Key technology\\
+        developped by\\
+        the thesis author
+      \end{tabular}
+    }
+    
+    \keyarticle{right=of technology_generic}{keyarticle_generic}{1c}{
+      \begin{tabular}{l}
+        Key article\\
+        included in\\
+        the thesis
+      \end{tabular}
+    }
+    
+    \article{right=of keyarticle_generic}{article_generic}{1a}{
+      \begin{tabular}{l}
+        Authored article
+      \end{tabular}
+    }
+
+    \subarticle{right=of article_generic}{article_submitted}{2a}{
+      \begin{tabular}{l}
+        Submitted article
+      \end{tabular}
+    }
+    
+    %%}
+
+    %%{ precursor publications
+    
+    \article{below=of stream_generic}{saska2013adhoc}{\tabcite{saska2013adhoc}}{
+      \begin{tabular}{l}
+        UAV-UGV\\
+        formations unde\\
+        relative localization\\
+        \emph{IROS 2013}
+      \end{tabular}
+    }
+    
+    \article{right=of saska2013adhoc}{chudoba2014localization}{\tabcite{chudoba2014localization}}{
+      \begin{tabular}{l}
+        UAV localization\\
+        and stabilization\\
+        using visual features\\
+        \emph{ICUAS 2014}
+      \end{tabular}
+    }
+    
+    \article{right=of chudoba2014localization}{baca2016embedded}{\tabcite{baca2016embedded}}{
+      \begin{tabular}{l}
+        Embedded MPC\\
+        for UAV control\\
+        \emph{MMAR 2016}
+      \end{tabular}
+    }
+    
+    \article{below=of saska2013adhoc,shift={(0em, 0em)}}{chudoba2016exploration}{\tabcite{chudoba2016exploration}}{
+      \begin{tabular}{l}
+        Exploration for\\
+        visual feature-based\\
+        UAV navigation\\
+        \emph{JIRS 2016}
+      \end{tabular}
+    }
+    
+    \article{right=of chudoba2016exploration}{saska2016formations}{\tabcite{saska2016formations}}{
+      \begin{tabular}{l}
+        UAV formations\\
+        with migratin\\
+        virtual leader\\
+        \emph{ICARCV 2016}
+      \end{tabular}
+    }
+    
+    \article{right=of saska2016formations}{spurny2016complex}{\tabcite{spurny2016complex}}{
+      \begin{tabular}{l}
+        Complex manouvres\\
+        of UAV-UGV\\
+        formations\\
+        \emph{MMAR 2016}
+      \end{tabular}
+    }
+
+    \article{right=of spurny2016complex}{saska2017system}{\tabcite{saska2017system}}{
+      \begin{tabular}{l}
+        System for UAV\\
+        in GPS-denied\\
+        \emph{Autonomous}\\
+        \emph{Robots 2017}
+      \end{tabular}
+    }
+
+    \article{right=of baca2016embedded, shift={(10.0em, 0.0em)}}{baca2016miniaturized}{\tabcite{baca2016miniaturized}}{
+      \begin{tabular}{l}
+        X-Ray telescope\\
+        with Timepix sensor\\
+        for VZLUSAT-1\\
+        nanosatellite\\
+        \emph{JINST 2016}
+      \end{tabular}
+    }
+
+    \article{below=of baca2016miniaturized}{daniel2016terrestrial}{\tabcite{daniel2016terrestrial}}{
+      \begin{tabular}{l}
+        Terrestrial gamma\\
+        ray monitor\\
+        in \emph{Optics \&}\\
+        \emph{Photonics 2016}
+      \end{tabular}
+    }
+    
+    %%}
+
+    %%{ research stream headlines
+    
+    \stream{below=of saska2013adhoc, shift={(0.00em, -4.5em)}}{uav_platform_stream}{
+      \begin{tabular}{l}
+        UAV platform\\
+        for research evaluation
+      \end{tabular}
+    }
+    
+    \stream{right=of uav_platform_stream}{uav_sensing_stream}{
+      \hspace{1em}
+      \begin{tabular}{l}
+        Application of UAV in remote\\
+        sensing and deployment
+      \end{tabular}
+      \hspace{1em}
+    }
+    
+    \stream{right=of uav_sensing_stream}{radiation_stream}{
+      \hspace{2em}
+      \begin{tabular}{l}
+        Ionizing Radiation\\
+        dosimetry and imaging
+      \end{tabular}
+      \hspace{2em}
+    }
+    
+    %%}
+
+    %%{ radiation stream
+    
+    \keyarticle{below=of radiation_stream,shift={(-4em, 0)}}{baca2018timepix}{\tabcite{baca2018timepix}}{
+      \begin{tabular}{l}
+        1 year of\\
+        VZLUSAT-1\\
+        dosimetry in orbit\\
+        \emph{JINST 2018}
+      \end{tabular}
+    }
+    
+    \article{right=of baca2018timepix}{urban2017vzlusat}{\tabcite{urban2017vzlusat}}{
+      \begin{tabular}{l}
+        VZLUSAT-1\\
+        nanosatellite\\
+        \emph{Acta Astronautica}\\
+        \emph{2017}
+      \end{tabular}
+    }
+    
+    \article{below=of urban2017vzlusat}{daniel2019inorbit}{\tabcite{daniel2019inorbit}}{
+      \begin{tabular}{l}
+        Commissioning\\
+        of VZLUSAT-1\\
+        \emph{Astronomy \&}\\
+        \emph{Astrophysics 2019}
+      \end{tabular}
+    }
+    
+    \article{below=of baca2018timepix}{baca2018rospix}{\tabcite{baca2018rospix}}{
+      \begin{tabular}{l}
+        Rospix: Timepix\\
+        interface for Robot\\
+        Operating System\\
+        \emph{JINST 2018}
+      \end{tabular}
+    }
+
+    \technology{below=of baca2018rospix}{rospix_technology}{
+      \begin{tabular}{l}
+        Rospix: Timepix\\
+        controller\\
+        for ROS
+      \end{tabular}
+    }
+
+    \article{below=of daniel2019inorbit}{daniel2017xray}{\tabcite{daniel2017xray}}{
+      \begin{tabular}{l}
+        X-Ray telescope\\
+        for NASA's sounding\\
+        rocket \emph{Optics \&}\\
+        \emph{Photonics 2016}
+      \end{tabular}
+    }
+
+    \subarticle{below=of daniel2017xray}{urban2020rex}{\tabcite{urban2020rex}}{
+      \begin{tabular}{l}
+        X-Ray telescope\\
+        on NASA's sounding\\
+        rocket \emph{Acta}\\
+        \emph{Astronautica 2020}
+      \end{tabular}
+    }
+    
+    %%}
+
+    %%{ uav platform stream
+    
+    \technology{below=of uav_platform_stream}{mpc_tracker_technology}{
+      \begin{tabular}{l}
+        MPC Tracker for\\
+        UAV trajectory\\
+        following
+      \end{tabular}
+    }
+
+    %%}
+
+    %%{ uav application stream
+
+    \article{below=of uav_sensing_stream,shift={(-4em, 0em)}}{loianno2018localization}{\tabcite{loianno2018localization}}{
+      \begin{tabular}{l}
+        Localization of\\
+        objects by UAVs\\
+        \emph{RA-L 2018}
+      \end{tabular}
+    }
+    
+    \article{right=of loianno2018localization,shift={(0em, 0em)}}{baca2017autonomous}{\tabcite{baca2017autonomous}}{
+      \begin{tabular}{l}
+        Autonomous UAV\\
+        landing on a car\\
+        \emph{ECMR 2017}
+      \end{tabular}
+    }
+
+    \article{below=of baca2017autonomous}{baca2019autonomous}{\tabcite{baca2019autonomous}}{
+      \begin{tabular}{l}
+        Autonomous UAV\\
+        landing on a car\\
+        \emph{JFR 2019}
+      \end{tabular}
+    }
+
+    \article{below=of loianno2018localization}{spurny2018cooperative}{\tabcite{spurny2018cooperative}}{
+      \begin{tabular}{l}
+        Cooperative object\\
+        gathering by UAVs\\
+        \emph{JFR 2018}
+      \end{tabular}
+    }
+
+    \begin{pgfonlayer}{background}
+      \path (baca2017autonomous.east |- baca2017autonomous.north)+(+0.2, 0.2) node (a) {};
+      \path (spurny2018cooperative.south -| spurny2018cooperative.west)+(-0.2,-0.4) node (b) {};
+      \path[fill=black!10, draw=black!50, dashed]
+      (a) rectangle (b);
+      \path ($(a |- b)$) -- node [midway, shift = {(0.0, 1.5em)}] {\begin{tabular}{c}
+        \tiny MBZIRC 2017\\
+      \end{tabular}} ($(b |- b)$);
+    \end{pgfonlayer}
+
+    %%}
+
+    \keyarticle{below=of $(mpc_tracker_technology.south |- baca2017autonomous.south)$}{baca2018model}{\tabcite{baca2018model}}{
+      \begin{tabular}{l}
+        Model Predictive\\
+        Control Tracker\\
+        for UAVs\\
+        \emph{IROS 2018}
+      \end{tabular}
+    }
+
+    \keyarticle{below=of baca2018model}{petrlik2020robust}{\tabcite{petrlik2020robust}}{
+      \begin{tabular}{l}
+        Robust UAV system\\
+        for constrained\\
+        environment\\
+        \emph{RA-L 2020}
+      \end{tabular}
+    }
+
+    \technology{below=of petrlik2020robust}{mrs_uav_system_technology}{
+      \begin{tabular}{l}
+        MRS UAV System
+      \end{tabular}
+    }
+
+    \subkeyarticle{below=of mrs_uav_system_technology,shift={(0em, 0em)}}{baca2020mrs}{\tabcite{baca2020mrs}}{
+      \begin{tabular}{l}
+        MRS UAV system\\
+        for research\\
+        evaluation\\
+        \emph{JINT 2020}
+      \end{tabular}
+    }
+
+    \article{below=of spurny2018cooperative,shift={(0em, -1em)}}{faigl2017onsolution}{\tabcite{faigl2017onsolution}}{
+      \begin{tabular}{l}
+        On solution of\\
+        Dubins touring\\
+        problem\\
+        \emph{ECMR 2017}
+      \end{tabular}
+    }
+
+    \article{right=of faigl2017onsolution,shift={(0em, 0em)}}{giernacki2019realtime}{\tabcite{giernacki2019realtime}}{
+      \begin{tabular}{l}
+        Real-time UAV\\
+        controller tuning\\
+        \emph{Sensors 2019}
+      \end{tabular}
+    }
+
+    \article{below=of faigl2017onsolution,shift={(0em, 0em)}}{roucek2019darpa}{\tabcite{roucek2019darpa}}{
+      \begin{tabular}{l}
+        DARPA SubT\\
+        mine exploration\\
+        by Robots\\
+        \emph{MESAS 2019}
+      \end{tabular}
+    }
+
+    \keyarticle{left=of urban2020rex,shift={(-3.5em, -1em)}}{baca2019timepix}{\tabcite{baca2019timepix}}{
+      \begin{tabular}{l}
+        Radiation mapping\\
+        with Timepix sensor\\
+        onboard UAV\\
+        \emph{IROS 2019}
+      \end{tabular}
+    }
+
+    \article{below=of baca2019timepix,shift={(0.0em, 0em)}}{stibinger2020localization}{\tabcite{stibinger2020localization}}{
+      \begin{tabular}{l}
+        Radiation mapping\\
+        with Timepix sensor\\
+        by UAVs\\
+        \emph{RA-L 2020}
+      \end{tabular}
+    }
+
+    \subarticle{below=of stibinger2020localization,shift={(0.0em, 0em)}}{baca2020gamma}{\tabcite{baca2020gamma}}{
+      \begin{tabular}{l}
+        $\gamma$-source localization\\
+        by a UAV with\\
+        a Compton camera\\
+        \emph{ICRA 2020}
+      \end{tabular}
+    }
+
+  %%{ paths
+
+    \path[-] (baca2016miniaturized) edge [->] (daniel2016terrestrial); 
+
+    \path[-] (baca2018timepix) edge [->] (baca2018rospix); 
+    \path[-] (baca2018timepix) edge [->] (urban2017vzlusat); 
+    \path[-] (urban2017vzlusat) edge [->] (daniel2019inorbit); 
+
+    \path[-] (rospix_technology) edge [->] (daniel2017xray); 
+    \path[-] (daniel2017xray) edge [->] (urban2020rex); 
+
+    \draw[-] ($(baca2016miniaturized.west)$) -- ($(radiation_stream.north |- baca2016miniaturized.east) + (-2.5em, 0.0em)$) edge [->] ($(radiation_stream.north) + (-2.5em, 0.0em)$);
+  
+    \path[-] (saska2013adhoc) edge [->] (chudoba2014localization); 
+    \path[-] (chudoba2014localization) edge [->] (baca2016embedded); 
+    \draw[-] ($(baca2016embedded.south)$) -- ($(baca2016embedded.south) + (0, -0.5em)$) -- ($(chudoba2016exploration.north |-baca2016embedded.south) + (0, -0.5em)$) edge [->] (chudoba2016exploration.north);
+    \draw[-] ($(baca2016embedded.south)$) -- ($(baca2016embedded.south) + (0, -0.5em)$) -- ($(uav_platform_stream.north |-baca2016embedded.south) + (-4.0em, -0.5em)$) edge [->] ($(uav_platform_stream.north) + (-4.0em, 0em)$);
+    \draw[-] ($(baca2016embedded.south)$) -- ($(baca2016embedded.south) + (0, -0.5em)$) -- ($(saska2016formations.north |-baca2016embedded.south) + (0, -0.5em)$) edge [->] (saska2016formations.north);
+    \draw[-] ($(baca2016embedded.south)$) -- ($(baca2016embedded.south) + (0, -0.5em)$) -- ($(spurny2016complex.north |-baca2016embedded.south) + (0, -0.5em)$) edge [->] (spurny2016complex.north);
+    \draw[-] ($(baca2016embedded.south)$) -- ($(baca2016embedded.south) + (0, -0.5em)$) -- ($(saska2017system.north |-baca2016embedded.south) + (0, -0.5em)$) edge [->] (saska2017system.north);
+
+    \draw[-] ($(chudoba2016exploration.south)$) -- ($(chudoba2016exploration.south) + (0, -0.5em)$) -- ($(uav_sensing_stream.north |-chudoba2016exploration.south) + (0, -0.5em)$) edge [->] (uav_sensing_stream.north);
+    \draw[-] ($(saska2016formations.south)$) -- ($(saska2016formations.south) + (0, -0.5em)$) -- ($(uav_sensing_stream.north |-saska2016formations.south) + (0, -0.5em)$) edge [->] (uav_sensing_stream.north);
+    \draw[-] ($(spurny2016complex.south)$) -- ($(spurny2016complex.south) + (0, -0.5em)$) -- ($(uav_sensing_stream.north |-spurny2016complex.south) + (0, -0.5em)$) edge [->] (uav_sensing_stream.north);
+    \draw[-] ($(saska2017system.south)$) -- ($(saska2017system.south) + (0, -0.5em)$) -- ($(uav_sensing_stream.north |-saska2017system.south) + (0, -0.5em)$) edge [->] (uav_sensing_stream.north);
+
+    \draw[-] ($(rospix_technology.south)$) -- ($(rospix_technology.south) + (0, -0.5em)$) -- ($(baca2019timepix.north |-rospix_technology.south) + (0, -0.5em)$) edge [->] (baca2019timepix.north);
+
+    \path[-] (baca2018rospix) edge [->] (rospix_technology); 
+    \path[-] (baca2019timepix) edge [->] (stibinger2020localization); 
+
+    \draw[-] ($(rospix_technology.south) + (1.0em, 0.0em)$) -- ($(rospix_technology.south |- baca2020gamma.east) + (1.0em, 0.0em)$) edge [->] (baca2020gamma.east);
+
+    \path[-] (mpc_tracker_technology) edge [->] (baca2018model); 
+    \path[-] (baca2018model) edge [->] (petrlik2020robust); 
+    \path[-] (petrlik2020robust) edge [->] (mrs_uav_system_technology); 
+    \path[-] (mrs_uav_system_technology) edge [->] (baca2020mrs); 
+    \path[-] (mpc_tracker_technology) edge [->] ($(loianno2018localization.west) + (-0.5em, 0)); 
+
+  
+  %%}
+
+  \end{tikzpicture}
+
+\end{figure}
 
 %%}
 
@@ -994,6 +1535,14 @@ Each citation is displayed with percentage contribution of the author and number
 
 %%}
 
+%%{ unrelated publications
+
+\section{Unrelated author's publications}
+
+\printbibliography[keyword={mine},notkeyword={phd_unrelated},notkeyword={phd_related},heading=none,title={}]
+
+%%}
+
 %%{ Cited references
 
 \section{Cited references}
@@ -1060,8 +1609,8 @@ Below are listed all citations of author's publications without self-citations.
 \end{refsection}
 
 \noindent
-\fullcite{spurny2019cooperative}
-\begin{refsection}[citations/no_autocit/spurny2019cooperative.bib]
+\fullcite{spurny2018cooperative}
+\begin{refsection}[citations/no_autocit/spurny2018cooperative.bib]
   \nocite{*}
   \printbibliography[heading=none,title={},env=favoritebib]
 \end{refsection}
