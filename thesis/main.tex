@@ -878,24 +878,6 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
     }
     
-    \article{below=of rospix_technology}{baca2018rospix}{\tabcite{baca2018rospix}}{
-      \begin{tabular}{l}
-        Rospix: Timepix\\
-        interface for Robot\\
-        Operating System\\
-        \emph{JINST 2018}
-      \end{tabular}
-    }
-    
-    \article{below=of daniel2019inorbit}{daniel2017xray}{\tabcite{daniel2017xray}}{
-      \begin{tabular}{l}
-        X-Ray telescope\\
-        for a sounding\\
-        rocket experiment\\
-        \emph{SPIE O\&P 2017}
-      \end{tabular}
-    }
-    
     \technology{below=of uav_platform_stream}{mpc_tracker_technology}{
       \begin{tabular}{l}
         MPC Tracker for\\
@@ -933,6 +915,24 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         Autonomous UAV\\
         landing on a car\\
         \emph{JFR 2019}
+      \end{tabular}
+    }
+
+    \article{below=of $(rospix_technology.south |- baca2019autonomous.south)$,shift={(0em, -1em)}}{baca2018rospix}{\tabcite{baca2018rospix}}{
+      \begin{tabular}{l}
+        Rospix: Timepix\\
+        interface for Robot\\
+        Operating System\\
+        \emph{JINST 2018}
+      \end{tabular}
+    }
+
+    \article{right=of baca2018rospix}{daniel2017xray}{\tabcite{daniel2017xray}}{
+      \begin{tabular}{l}
+        X-Ray telescope\\
+        for a sounding\\
+        rocket experiment\\
+        \emph{SPIE O\&P 2017}
       \end{tabular}
     }
     
@@ -1065,7 +1065,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
     }
     
-    \keyarticle{below=of baca2018rospix,shift={(-4.6em, -0.8em)}}{baca2019timepix}{\tabcite{baca2019timepix}}{
+    \keyarticle{below=of $(baca2018rospix.south |- faigl2017onsolution.south)$,shift={(-4.6em, 0.0em)}}{baca2019timepix}{\tabcite{baca2019timepix}}{
       \begin{tabular}{l}
         Radiation mapping\\
         with Timepix sensor\\
