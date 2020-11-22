@@ -842,8 +842,8 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 
     %%}
 
-    %%{ radiation stream
-
+    %%{ blocks
+    
     \keyarticle{below=of radiation_stream,shift={(-4em, 0)}}{baca2018timepix}{\tabcite{baca2018timepix}}{
       \begin{tabular}{l}
         1 year of\\
@@ -852,7 +852,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{JINST 2018}
       \end{tabular}
     }
-
+    
     \article{right=of baca2018timepix}{urban2017vzlusat}{\tabcite{urban2017vzlusat}}{
       \begin{tabular}{l}
         VZLUSAT-1\\
@@ -860,7 +860,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{AA 2017}
       \end{tabular}
     }
-
+    
     \article{below=of urban2017vzlusat}{daniel2019inorbit}{\tabcite{daniel2019inorbit}}{
       \begin{tabular}{l}
         Commissioning\\
@@ -869,7 +869,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{SSR 2019}
       \end{tabular}
     }
-
+    
     \technology{below=of baca2018timepix}{rospix_technology}{
       \begin{tabular}{l}
         Rospix: Timepix\\
@@ -877,7 +877,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         for ROS
       \end{tabular}
     }
-
+    
     \article{below=of rospix_technology}{baca2018rospix}{\tabcite{baca2018rospix}}{
       \begin{tabular}{l}
         Rospix: Timepix\\
@@ -886,7 +886,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{JINST 2018}
       \end{tabular}
     }
-
+    
     \article{below=of daniel2019inorbit}{daniel2017xray}{\tabcite{daniel2017xray}}{
       \begin{tabular}{l}
         X-Ray telescope\\
@@ -895,20 +895,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{SPIE O\&P 2017}
       \end{tabular}
     }
-
-    \subarticle{below=of daniel2017xray,shift={(0.0e, -14.7em)}}{urban2020rex}{\tabcite{urban2020rex}}{
-      \begin{tabular}{l}
-        X-Ray telescope\\
-        on NASA's sounding\\
-        rocket experiment\\
-        \emph{AA 2020}
-      \end{tabular}
-    }
-
-    %%}
-
-    %%{ uav platform stream
-
+    
     \technology{below=of uav_platform_stream}{mpc_tracker_technology}{
       \begin{tabular}{l}
         MPC Tracker for\\
@@ -916,11 +903,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         following
       \end{tabular}
     }
-
-    %%}
-
-    %%{ uav application stream
-
+    
     \article{below=of uav_sensing_stream,shift={(-4em, 0em)}}{loianno2018localization}{\tabcite{loianno2018localization}}{
       \begin{tabular}{l}
         Localization of\\
@@ -928,46 +911,32 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{RA-L 2018}
       \end{tabular}
     }
-
-    \article{right=of loianno2018localization,shift={(0em, 0em)}}{baca2017autonomous}{\tabcite{baca2017autonomous}}{
-      \begin{tabular}{l}
-        Autonomous UAV\\
-        landing on a car\\
-        \emph{ECMR 2017}
-      \end{tabular}
-    }
-
-    \keyarticle{below=of baca2017autonomous}{baca2019autonomous}{\tabcite{baca2019autonomous}}{
-      \begin{tabular}{l}
-        Autonomous UAV\\
-        landing on a car\\
-        \emph{JFR 2019}
-      \end{tabular}
-    }
-
-    \keyarticle{below=of loianno2018localization}{spurny2019cooperative}{\tabcite{spurny2019cooperative}}{
+    
+    \keyarticle{right=of loianno2018localization}{spurny2019cooperative}{\tabcite{spurny2019cooperative}}{
       \begin{tabular}{l}
         Cooperative object\\
         gathering by UAVs\\
         \emph{JFR 2019}
       \end{tabular}
     }
-
-    \begin{pgfonlayer}{background}
-      \path (baca2017autonomous.east |- baca2017autonomous.north)+(+0.2, 0.2) node (a) {};
-      \path (spurny2019cooperative.south -| spurny2019cooperative.west)+(-0.2,-0.4) node (b) {};
-      \path[fill=black!0, draw=black!50, dashed]
-      (a) rectangle (b);
-      \path ($(a |- b)$) -- node [midway, shift = {(0.0, 1.5em)}] {\begin{tabular}{c}
-        \tiny MBZIRC 2017\\
-      \end{tabular}} ($(b |- b)$);
-    \end{pgfonlayer}
-
-    %%}
-
-    %%{ the remaining mess
-
-    \keyarticle{below=of $(mpc_tracker_technology.south |- baca2017autonomous.south)$}{baca2018model}{\tabcite{baca2018model}}{
+    
+    \article{below=of loianno2018localization,shift={(0em, 0em)}}{baca2017autonomous}{\tabcite{baca2017autonomous}}{
+      \begin{tabular}{l}
+        Autonomous UAV\\
+        landing on a car\\
+        \emph{ECMR 2017}
+      \end{tabular}
+    }
+    
+    \keyarticle{right=of baca2017autonomous}{baca2019autonomous}{\tabcite{baca2019autonomous}}{
+      \begin{tabular}{l}
+        Autonomous UAV\\
+        landing on a car\\
+        \emph{JFR 2019}
+      \end{tabular}
+    }
+    
+    \keyarticle{below=of $(mpc_tracker_technology.south |- loianno2018localization.south)$}{baca2018model}{\tabcite{baca2018model}}{
       \begin{tabular}{l}
         Model Predictive\\
         Control Tracker\\
@@ -975,41 +944,14 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{IROS 2018}
       \end{tabular}
     }
-
-    \technology{below=of baca2018model}{mrs_uav_system_technology}{
+    
+    \technology{below=of $(baca2018model.south |- baca2017autonomous.south)$,shift={(0em, -1em)}}{mrs_uav_system_technology}{
       \begin{tabular}{l}
         MRS UAV System
       \end{tabular}
     }
-
-    \article{below=of mrs_uav_system_technology}{petrlik2020robust}{\tabcite{petrlik2020robust}}{
-      \begin{tabular}{l}
-        Robust UAV system\\
-        for constrained\\
-        environment\\
-        \emph{RA-L 2020}
-      \end{tabular}
-    }
-
-    \subkeyarticle{below=of petrlik2020robust,shift={(0em, -9.9em)}}{baca2020mrs}{\tabcite{baca2020mrs}}{
-      \begin{tabular}{l}
-        MRS UAV system\\
-        for research\\
-        evaluation\\
-        \emph{JINT 2020}
-      \end{tabular}
-    }
-
-    \subarticle{below=of baca2020mrs,shift={(0em, -0.85em)}}{smrcka2020admittance}{\tabcite{smrcka2020admittance}}{
-      \begin{tabular}{l}
-        Admittance UAV\\
-        stabilization for\\
-        building inspection\\
-        \emph{RA-L 2020}
-      \end{tabular}
-    }
-
-    \article{below=of spurny2019cooperative,shift={(0em, -1em)}}{faigl2017onsolution}{\tabcite{faigl2017onsolution}}{
+    
+    \article{below=of baca2017autonomous.south,shift={(0em, -1em)}}{faigl2017onsolution}{\tabcite{faigl2017onsolution}}{
       \begin{tabular}{l}
         On solution of\\
         Dubins touring\\
@@ -1018,6 +960,15 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
     }
 
+    \article{below=of $(mrs_uav_system_technology.south |- faigl2017onsolution.south)$}{petrlik2020robust}{\tabcite{petrlik2020robust}}{
+      \begin{tabular}{l}
+        Robust UAV system\\
+        for constrained\\
+        environment\\
+        \emph{RA-L 2020}
+      \end{tabular}
+    }
+    
     \article{below=of faigl2017onsolution,shift={(0em, 0em)}}{roucek2019darpa}{\tabcite{roucek2019darpa}}{
       \begin{tabular}{l}
         DARPA SubT\\
@@ -1026,7 +977,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{MESAS 2019}
       \end{tabular}
     }
-
+    
     \subarticle{right=of roucek2019darpa,shift={(0.0em, 0.0em)}}{kratky2020autonomous2}{\tabcite{kratky2020autonomous2}}{
       \begin{tabular}{l}
         DARPA Subt\\
@@ -1034,7 +985,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{JFR 2020}
       \end{tabular}
     }
-
+    
     \article{below=of roucek2019darpa,shift={(0em, 0em)}}{saikin2020wildfire}{\tabcite{saikin2020wildfire}}{
       \begin{tabular}{l}
         Wildlife firefighting\\
@@ -1042,7 +993,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{RA-L 2020}
       \end{tabular}
     }
-
+    
     \subarticle{right=of saikin2020wildfire,shift={(0em, 0em)}}{silano2020power}{\tabcite{silano2020power}}{
       \begin{tabular}{l}
         Powerline inspection\\
@@ -1051,7 +1002,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{RA-L 2020}
       \end{tabular}
     }
-
+    
     \article{right=of faigl2017onsolution,shift={(0em, 0em)}}{giernacki2019realtime}{\tabcite{giernacki2019realtime}}{
       \begin{tabular}{l}
         Real-time UAV\\
@@ -1059,7 +1010,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{Sensors 2019}
       \end{tabular}
     }
-
+    
     \article{below=of saikin2020wildfire,shift={(0em, 0em)}}{petracek2020bioinspired}{\tabcite{petracek2020bioinspired}}{
       \begin{tabular}{l}
         Bio-inspired\\
@@ -1069,6 +1020,15 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
     }
 
+    \subkeyarticle{below=of $(petrlik2020robust.south |- petracek2020bioinspired.south)$,shift={(0em, 0em)}}{baca2020mrs}{\tabcite{baca2020mrs}}{
+      \begin{tabular}{l}
+        MRS UAV system\\
+        for research\\
+        evaluation\\
+        \emph{JINT 2020}
+      \end{tabular}
+    }
+    
     \article{right=of petracek2020bioinspired,shift={(0em, 0em)}}{saska2020formation}{\tabcite{saska2020formation}}{
       \begin{tabular}{l}
         Formations of UAVs\\
@@ -1077,7 +1037,16 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{AuRo, 2020}\\
       \end{tabular}
     }
-
+    
+    \subarticle{below=of $(daniel2017xray.south |- saska2020formation.south)$}{urban2020rex}{\tabcite{urban2020rex}}{
+      \begin{tabular}{l}
+        X-Ray telescope\\
+        on NASA's sounding\\
+        rocket experiment\\
+        \emph{AA 2020}
+      \end{tabular}
+    }
+    
     \subarticle{below=of petracek2020bioinspired,shift={(0em, 0em)}}{ahmad2020autonomous}{\tabcite{ahmad2020autonomous}}{
       \begin{tabular}{l}
         Autonomous UAV\\
@@ -1095,7 +1064,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{RA-L, 2020}\\
       \end{tabular}
     }
-
+    
     \keyarticle{below=of baca2018rospix,shift={(-4.6em, -0.8em)}}{baca2019timepix}{\tabcite{baca2019timepix}}{
       \begin{tabular}{l}
         Radiation mapping\\
@@ -1104,7 +1073,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{IROS 2019}
       \end{tabular}
     }
-
+    
     \keyarticle{below=of baca2019timepix,shift={(0.0em, 0em)}}{stibinger2020localization}{\tabcite{stibinger2020localization}}{
       \begin{tabular}{l}
         Radiation mapping\\
@@ -1113,8 +1082,8 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{RA-L 2020}
       \end{tabular}
     }
-
-    \subarticle{below=of stibinger2020localization,shift={(0.0em, -4.5em)}}{baca2020gamma}{\tabcite{baca2020gamma}}{
+    
+    \subarticle{below=of $(stibinger2020localization.south |- saska2020formation.south)$}{baca2020gamma}{\tabcite{baca2020gamma}}{
       \begin{tabular}{l}
         $\gamma$-source localization\\
         by a UAV with\\
@@ -1122,12 +1091,8 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{ICRA 2020}
       \end{tabular}
     }
-
-    %%}
-
-    %%{ mbzirc 2020
-
-    \subarticle{below=of ahmad2020autonomous,shift={(-4.0em, -1.0em)}}{walter2020extinguishing}{\tabcite{walter2020extinguishing}}{
+    
+    \subarticle{below=of $(ahmad2020autonomous.south |- baca2020mrs.south)$,shift={(-4.0em, -1.0em)}}{walter2020extinguishing}{\tabcite{walter2020extinguishing}}{
       \begin{tabular}{l}
         Extinguishing of\\
         ground fires\\
@@ -1135,7 +1100,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{RA-L 2020}
       \end{tabular}
     }
-
+    
     \subarticle{right=of walter2020extinguishing,shift={(0.0em, -0em)}}{stasinchuk2020multiuav}{\tabcite{stasinchuk2020multiuav}}{
       \begin{tabular}{l}
         Autonomous\\
@@ -1145,6 +1110,15 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
     }
 
+    \subarticle{below=of baca2020mrs,shift={(0.0em, -1em)}}{smrcka2020admittance}{\tabcite{smrcka2020admittance}}{
+      \begin{tabular}{l}
+        Admittance UAV\\
+        stabilization for\\
+        building inspection\\
+        \emph{RA-L 2020}
+      \end{tabular}
+    }
+    
     \subarticle{right=of stasinchuk2020multiuav,shift={(0.0em, -0em)}}{spurny2020autonomous}{\tabcite{spurny2020autonomous}}{
       \begin{tabular}{l}
         Autonomous UAV\\
@@ -1153,7 +1127,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{SMCA 2020}
       \end{tabular}
     }
-
+    
     \subarticle{below=of walter2020extinguishing,shift={(0.0em, -0em)}}{vrba2020autonomous}{\tabcite{vrba2020autonomous}}{
       \begin{tabular}{l}
         Autonomous target\\
@@ -1161,7 +1135,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{SMCA 2020}
       \end{tabular}
     }
-
+    
     \subarticle{right=of vrba2020autonomous,shift={(0.0em, -0em)}}{baca2020autonomous}{\tabcite{baca2020autonomous}}{
       \begin{tabular}{l}
         Autonomous wall\\
@@ -1170,6 +1144,20 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \emph{RAS 2020}
       \end{tabular}
     }
+    
+    %%}
+
+    %%{ backgrounds
+    
+    \begin{pgfonlayer}{background}
+      \path (spurny2019cooperative.east |- spurny2019cooperative.north)+(+0.2, 0.2) node (a) {};
+      \path (baca2017autonomous.south -| baca2017autonomous.west)+(-0.2,-0.4) node (b) {};
+      \path[fill=black!0, draw=black!50, dashed]
+      (a) rectangle (b);
+      \path ($(a |- b)$) -- node [midway, shift = {(0.0, 1.5em)}] {\begin{tabular}{c}
+        \tiny MBZIRC 2017\\
+      \end{tabular}} ($(b |- b)$);
+    \end{pgfonlayer}
 
     \begin{pgfonlayer}{background}
       \path (spurny2020autonomous.east |- spurny2020autonomous.north)+(+0.2, 0.2) node (a) {};
@@ -1180,7 +1168,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \tiny MBZIRC 2020\\
       \end{tabular}} ($(b |- b)$);
     \end{pgfonlayer}
-
+    
     \begin{pgfonlayer}{background}
       \path (saska2020formation.east |- saska2020formation.north)+(+0.2, 0.2) node (a) {};
       \path (ahmad2020autonomous.south -| ahmad2020autonomous.west)+(-0.2,-0.4) node (b) {};
@@ -1190,7 +1178,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         \tiny UAV Formations and Swarms\\
       \end{tabular}} ($(b |- b)$);
     \end{pgfonlayer}
-
+    
     %%}
 
   %%{ paths
@@ -1201,6 +1189,9 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
     \path[-] (rospix_technology) edge [->] (baca2018rospix); 
     \path[-] (baca2018timepix) edge [->] (urban2017vzlusat); 
     \path[-] (urban2017vzlusat) edge [->] (daniel2019inorbit); 
+
+    \path[-] (loianno2018localization) edge [->] (spurny2019cooperative); 
+    \path[-] (baca2017autonomous) edge [->] (baca2019autonomous); 
 
     \path[-] (daniel2017xray) edge [->] (urban2020rex); 
 
@@ -1220,24 +1211,21 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
     \draw[-] ($(spurny2016complex.south)$) -- ($(spurny2016complex.south) + (0, -0.5em)$) -- ($(uav_sensing_stream.north |-spurny2016complex.south) + (0, -0.5em)$) edge [->] (uav_sensing_stream.north);
     \draw[-] ($(saska2017system.south)$) -- ($(saska2017system.south) + (0, -0.5em)$) -- ($(uav_sensing_stream.north |-saska2017system.south) + (0, -0.5em)$) edge [->] (uav_sensing_stream.north);
 
-    \draw[<-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) edge [->] ($(mrs_uav_system_technology.east |- stasinchuk2020multiuav.north) + (1.0em, 0.6em)$);
-    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- faigl2017onsolution.west) + (1.0em, 0.0em)$) edge [->] ($(faigl2017onsolution.west) + (0.0em, 0.0em)$);
-    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- roucek2019darpa.west) + (1.0em, 0.0em)$) edge [->] ($(roucek2019darpa.west) + (0.0em, 0.0em)$);
-    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- saikin2020wildfire.west) + (1.0em, 0.0em)$) edge [->] ($(saikin2020wildfire.west) + (0.0em, 0.0em)$);
-    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- petracek2020bioinspired.west) + (1.0em, 0.0em)$) edge [->] ($(petracek2020bioinspired.west) + (-0.6em, 0.0em)$);
-
-    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- smrcka2020admittance.north) + (1.0em, 1.2em)$) -- ($(smrcka2020admittance.north) + (0.0em, 1.2em)$) edge [->] ($(smrcka2020admittance.north) + (0.0em, 0.0em)$);
-
-    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- giernacki2019realtime.south) + (1.0em, -0.5em)$) -- ($(giernacki2019realtime.south) + (0.0em, -0.5em)$) edge [->] ($(giernacki2019realtime.south) + (0.0em, 0.0em)$);
-
-    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (1.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- silano2020power.north) + (1.0em, 0.5em)$) -- ($(silano2020power.north) + (0.0em, 0.5em)$) edge [->] ($(silano2020power.north) + (0.0em, 0.0em)$);
+    \draw[<-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) edge [->] ($(mrs_uav_system_technology.east |- stasinchuk2020multiuav.north) + (2.0em, 0.6em)$);
+    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- saikin2020wildfire.west) + (2.0em, 0.0em)$) edge [->] ($(saikin2020wildfire.west) + (0.0em, 0.0em)$);
+    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- petracek2020bioinspired.west) + (2.0em, 0.0em)$) edge [->] ($(petracek2020bioinspired.west) + (-0.6em, 0.0em)$);
+    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- smrcka2020admittance.north) + (2.0em, 1.2em)$) -- ($(smrcka2020admittance.north) + (0.0em, 1.2em)$) edge [->] ($(smrcka2020admittance.north) + (0.0em, 0.0em)$);
+    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- giernacki2019realtime.south) + (2.0em, -0.5em)$) -- ($(giernacki2019realtime.south) + (0.0em, -0.5em)$) edge [->] ($(giernacki2019realtime.south) + (0.0em, 0.0em)$);
+    \draw[-] ($(mrs_uav_system_technology.east)$) -- ($(mrs_uav_system_technology.east) + (2.0em, 0.0em)$) -- ($(mrs_uav_system_technology.east |- silano2020power.north) + (2.0em, 0.5em)$) -- ($(silano2020power.north) + (0.0em, 0.5em)$) edge [->] ($(silano2020power.north) + (0.0em, 0.0em)$);
 
     \draw[-] ($(urban2017vzlusat.east)$) -- ($(urban2017vzlusat.east) + (1.0em, 0.0em)$) -- ($(urban2017vzlusat.east) + (1.0em, 0.0em)$) -- ($(urban2017vzlusat.east |- daniel2017xray.east) + (1.0em, 0.0em)$) edge [->] ($(daniel2017xray.east) + (0.0em, 0.0em)$);
 
     \draw[-] ($(rospix_technology.south)$) -- ($(rospix_technology.south) + (0, -0.5em)$) -- ($(baca2019timepix.north |-rospix_technology.south) + (0, -0.5em)$) edge [->] (baca2019timepix.north);
 
     \path[-] (baca2019timepix) edge [->] (stibinger2020localization); 
+    \path[-] (mrs_uav_system_technology.east) edge [<->] ($(faigl2017onsolution.west |- mrs_uav_system_technology.east)$); 
     \path[-] (roucek2019darpa) edge [->] (kratky2020autonomous2); 
+    \path[-] (petrlik2020robust.east) edge [<->] (roucek2019darpa.west); 
 
     \draw[-] ($(rospix_technology.east) + (0.0em, 0.0em)$) -- ($(rospix_technology.east) + (0.5em, 0.0em)$) -- ($(rospix_technology.east |- baca2020gamma.west) + (0.5em, 0.0em)$) edge [->] (baca2020gamma.east);
     \draw[-] ($(rospix_technology.east) + (0.0em, 0.0em)$) -- ($(rospix_technology.east) + (0.5em, 0.0em)$) -- ($(rospix_technology.east |- urban2020rex.west) + (0.5em, 0.0em)$) edge [->] (urban2020rex.west);
