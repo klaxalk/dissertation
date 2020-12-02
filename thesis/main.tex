@@ -451,6 +451,16 @@ Remote sensing and collaborative remote sensing are
 
 \chapternoclear{Contributions and Related Work}
 
+\section{Author's publications and contributions}
+
+Figure~\ref{fig:research_graph} shows a publication graph composed of accepted peer-review publications, and publications that have been submitted in the time of writing this thesis.
+The publications are split into four main categories.
+The first category, a \emph{Pre Ph.D research}, consists of publications based upon the research done before the author started the pursue of Ph.D ($\leq 2015$).
+Although, some of these were written and submitted during the author's Ph.D studies.
+The second category is the research stream \ac{UAV} platform development for research validation and reliable deployment of novel methods in control, navigation, formation flying, and swarming.
+Thirdly, the largest group of the author's publications is from the field of multi-\ac{UAV} remote sensing, swarming and deployment.
+Lastly, the fourth category is the research in ionizing radiation detection onboard unmanned vehicles such as multirotor helicopters, small satellites and unmanned sounding rockets.
+
 \section{Multirotor helicopter control and trajectory tracking}
 
 \todo{my contributions}
@@ -462,97 +472,6 @@ Remote sensing and collaborative remote sensing are
 
 Commercial \ac{UAV} systems are often closed-source and provide features tailored for photographers, video makers and hobby pilots.
 Autonomous operation of commercial \acp{UAV} is typically limited to a single vehicle flying outdoors under a \ac{GNSS} localization while following a set of waypoints.
-
-\todo{the old embedded era}
-\cite{baca2016embedded} % embedded
-\cite{saska2017system} % embedded
-
-\todo{embedded system used for verification}
-\cite{spurny2016complex} % embedded
-\cite{chudoba2016exploration} % embedded
-\cite{saska2016formations} % embedded
-
-\todo{the new ROS era}
-\cite{baca2018model}
-\cite{baca2020mrs}
-
-\todo{the ROS system used for verification}
-\cite{saska2017documentation}
-\cite{faigl2017onsolution}
-\cite{giernacki2019realtime}
-\cite{petracek2020bioinspired}
-\cite{saska2020formation}
-\cite{saikin2020wildfire}
-
-% submitted -> ...
-
-\todo{DARPA SubT urban}
-\cite{kratky2020autonomous2} % DARPA urban
-
-\todo{forest swarms}
-\cite{dmytruk2020safe}
-\cite{ahmad2020autonomous}
-
-\todo{admittance control for automatically attaching sensors to indoor walls}
-\cite{smrcka2020admittance}
-
-\todo{automatic multi-UAV balloon popping --- toy example for anti-UAV defense mechanism.}
-\cite{stasinchuk2020multiuav}
-
-\todo{automatic fire extuinguishing using UAVs in the MBZIRC 2020 competition.}
-\cite{walter2020extinguishing}
-
-\todo{planning for power line inspection}
-\cite{silano2020power}
-
-\section{Remote sensing and data collection by UAVs}
-
-\todo{collective gathering of of objects}
-\cite{spurny2019cooperative}
-\cite{loianno2018localization}
-
-\todo{autonomous landing a on moving car}
-\cite{baca2017autonomous}
-\cite{baca2019autonomous}
-
-\todo{cooperative exploration of underground spaces}
-\cite{roucek2019darpa}
-\cite{petrlik2020robust}
-
-\section{Ionizing radiation mapping and localization}
-
-\subsection{Extraterrestrial radiation dosimetry and mapping}
-
-\todo{general info about VZLUSAT-1}
-\cite{urban2017vzlusat} % general info about the satellite
-\cite{daniel2019inorbit} % about the commisionning
-
-\todo{VZLUSAT-1 as terrestrial gamma-ray monitor}
-\cite{daniel2016terrestrial}
-
-\todo{miniaturized x-ray telescope}
-\cite{baca2016miniaturized}
-\cite{baca2018timepix} % results after 1st year
-
-\todo{proposal of rocket experiment experiment}
-\cite{daniel2017xray}
-
-\todo{ROS system for Timepix detectors}
-\cite{baca2018rospix}
-
-\todo{results from the rocket experiment}
-\cite{urban2020rex}
-
-\subsection{Terrestrial localization and mapping of ionizing sources}
-
-\todo{about the methods of radiation mapping and localization using Timepix detectors}
-\cite{baca2019timepix}
-
-\todo{about the use of Timepix sensor for aerial mapping using UAVs}
-\cite{stibinger2020localization}
-
-\todo{about the use of Compton camera to localize compact sources of radiation}
-\cite{baca2020gamma}
 
 %%{ Fig: research graph
 
@@ -859,7 +778,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \hspace{3em}
     }
 
-    \node [rotate=90, left=of uav_platform_stream, shift={(-4.2em, 3em)}] {Pre-Ph.D research};
+    \node [rotate=90, left=of stream_generic, shift={(-4.2em, -1.5em)}] {Pre-Ph.D research};
 
     %%}
 
@@ -1268,9 +1187,102 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
     The article numbering reflects the works in the reference section of this thesis.
   }
 
+  \label{fig:research_graph}
+
 \end{figure}
 
 %%}
+
+\todo{the old embedded era}
+\cite{baca2016embedded} % embedded
+\cite{saska2017system} % embedded
+
+\todo{embedded system used for verification}
+\cite{spurny2016complex} % embedded
+\cite{chudoba2016exploration} % embedded
+\cite{saska2016formations} % embedded
+
+\todo{the new ROS era}
+\cite{baca2018model}
+\cite{baca2020mrs}
+
+\todo{the ROS system used for verification}
+\cite{saska2017documentation}
+\cite{faigl2017onsolution}
+\cite{giernacki2019realtime}
+\cite{petracek2020bioinspired}
+\cite{saska2020formation}
+\cite{saikin2020wildfire}
+
+% submitted -> ...
+
+\todo{DARPA SubT urban}
+\cite{kratky2020autonomous2} % DARPA urban
+
+\todo{forest swarms}
+\cite{dmytruk2020safe}
+\cite{ahmad2020autonomous}
+
+\todo{admittance control for automatically attaching sensors to indoor walls}
+\cite{smrcka2020admittance}
+
+\todo{automatic multi-UAV balloon popping --- toy example for anti-UAV defense mechanism.}
+\cite{stasinchuk2020multiuav}
+
+\todo{automatic fire extuinguishing using UAVs in the MBZIRC 2020 competition.}
+\cite{walter2020extinguishing}
+
+\todo{planning for power line inspection}
+\cite{silano2020power}
+
+\section{Remote sensing and data collection by UAVs}
+
+\todo{collective gathering of of objects}
+\cite{spurny2019cooperative}
+\cite{loianno2018localization}
+
+\todo{autonomous landing a on moving car}
+\cite{baca2017autonomous}
+\cite{baca2019autonomous}
+
+\todo{cooperative exploration of underground spaces}
+\cite{roucek2019darpa}
+\cite{petrlik2020robust}
+
+\section{Ionizing radiation mapping and localization}
+
+\subsection{Extraterrestrial radiation dosimetry and mapping}
+
+\todo{general info about VZLUSAT-1}
+\cite{urban2017vzlusat} % general info about the satellite
+\cite{daniel2019inorbit} % about the commisionning
+
+\todo{VZLUSAT-1 as terrestrial gamma-ray monitor}
+\cite{daniel2016terrestrial}
+
+\todo{miniaturized x-ray telescope}
+\cite{baca2016miniaturized}
+\cite{baca2018timepix} % results after 1st year
+
+\todo{proposal of rocket experiment experiment}
+\cite{daniel2017xray}
+
+\todo{ROS system for Timepix detectors}
+\cite{baca2018rospix}
+
+\todo{results from the rocket experiment}
+\cite{urban2020rex}
+
+\subsection{Terrestrial localization and mapping of ionizing sources}
+
+\todo{about the methods of radiation mapping and localization using Timepix detectors}
+\cite{baca2019timepix}
+
+\todo{about the use of Timepix sensor for aerial mapping using UAVs}
+\cite{stibinger2020localization}
+
+\todo{about the use of Compton camera to localize compact sources of radiation}
+\cite{baca2020gamma}
 
 %%}
 
@@ -1692,8 +1704,11 @@ Relevant author's publications (will be discussed):
 
 \chapternoclear{References}
 
-Below are listed all publications of the author.
-Each citation is displayed with percentage contribution of the author and number of citations based on Web of Science~(WoS), Scopus and Google Scholar~(GS).
+Citations of the author's work are listed first, followed by other references cited within this work.
+The author's citations were extracted from the Web of Science~(WoS) catalogue.
+First- and second-order self-citations were removed.
+Each citation is displayed with the percentage contribution of the author and the number of citations based on WoS, Scopus and Google Scholar~(GS).
+The author has reached \mathbf{h-index} 7 in the time of writing the thesis.
 \todo{updated citations}
 
 %%{ Core publications
