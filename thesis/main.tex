@@ -405,12 +405,31 @@ Moreover, feedback control of agile \acp{UAV} is vitally dependent on a smooth a
 Both, the \ac{UAV} state estimation \cite{merino2006vision, burri2015robust, grabe2015nonlinear} and feedback control \cite{lee2010geometric, goodarzi2015geometric, kamel2017robust} have been intensively studied during the past decade and are still very active field of research.
 Multirotor helicopters are a versatile platform for carrying out remote sensing \cite{colomina2014unmanned, pajares2015overview}, environment sampling, and providing technological support and aid in natural disaster rescue operations \cite{yuan2015survey, perks2016advances}.
 
-This thesis focuses on advances in replicable research with autonomous multirotor helicopters and their use for cooperative remote sensing.
-Firstly, it focuses on development of a system and methods for execution of multi-\ac{UAV} experiments outside of laboratory conditions.
-Secondly, collaborative gathering of metal objects by a group of \acp{UAV} was studied in conjunction with an autonomous landing of a \ac{UAV} on top of a moving car.
-The approach was later extended to a collaborative wall-building by a group of \acp{UAV}.
-Finally, an interdisciplinary applied research has been pursuit for localization if ionizing sources of radiation by a \acp{UAV}.
+Remote sensing can be traditionally performed by a stationary sensory system, a satellite, or by a remotely controlled robot.
+In recent years, autonomous robotic remote sensing became available with to the emergence of autonomous systems.
+Onboard autonomy is used to control a robotics system when a human operation is not possible, e.g., deep underground \cite{apachristos2019autonomous, losch2018design}, or in a vicinity of a damaged nuclear power plant \cite{sato2019radiation}.
+Multi-robotic distributed sensing is however still in its infancy.
+Although, distributing the process offers robustness through redundancy and potential increase in information yield, it also poses new challenges in multi-robotic coordination and sensor fusion.
+The same applies to the use of multiple multirotor \ac{UAV} with even more added challenges.
+Just on its own, control of multi-\ac{UAV} swarms and formations is a challenging subfield which has direct implications to the field of distributed remote sensing.
+
+One of the most iconic sub-fields of remote sensing is the remote sensing of ionizing radiation.
+Not only, due to the very interesting nature of how is ionizing radiation measured \cite{andreo2017fundamentals}, but also due to the inherent danger ionizing radiation poses to living organisms.
+Recent advances in semiconductor technologies allow fabrication of small semi-conductor radiation detectors, which opened up a possibility to measure ionizing radiation onboard small \acp{UAV}.
+Thanks to onboard autonomy, small \acp{UAV} can be deployed to map ionizing radiation and even localize radioactive sources autonomously.
+
+This thesis focuses on advances in replicable research with autonomous multirotor helicopters and their use for remote sensing and remote sensing of ionizing radiation in particular.
 The objectives of the thesis were significantly shaped by the active participation of the \ac{MRS} research group in the 2017 and 2020 rounds of the \ac{MBZIRC}.
+MBZIRC proposed a set of robotics challenges that pushed the boundaries in \ac{UAV} autonomy.
+The challenges ranged from an autonomous landing on moving car by an unmanned aircraft, collaborative gathering of metal object by a fleet of \acp{UAV}, up to an autonomous brick wall-building by a fleet of \acp{UAV}.
+Finally, an interdisciplinary research is being pursuit for localization of ionizing sources of radiation by \acp{UAV}.
+The research closely follows advances in the use of novel imaging pixel radiation detectors, originally developed for medical imaging, in the remote sensing application of space dosimetry and X-ray imaging.
+
+% Firstly, it focuses on development of a system and methods for execution of multi-\ac{UAV} experiments outside of laboratory conditions.
+% Secondly, collaborative gathering of metal objects by a group of \acp{UAV} was studied in conjunction with an autonomous landing of a \ac{UAV} on top of a moving car.
+% The approach was later extended to a collaborative wall-building by a group of \acp{UAV}.
+
+The objectives of the thesis are the following:
 
 \textbf{(1) Development of control system for real-world deployment of \acp{UAV}}, realistic verification of new methods of remote sensing and deployment in potentially hazardous environments.
 Despite many platforms for multirotor \acp{UAV} control and deployment are available \cite{sanchez2016aerostack, xiao2020xtdrone, furrer2016rotors, schmittle2018openuav, abeywardena2015design, mellado2013mavwork}, they lack features necessary for real-world testing and deployment of the methods within focus of this thesis and within the focus of the \acl{MRS} group at \ac{CTU} in Prague.
@@ -1246,7 +1265,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 
   \caption{
     Diagram of research performed by the thesis author from 2013 to 2020 in the fields of UAV control, remote sensing and its applications, and the field of ionizing radiation imaging, dosimetry, mapping and localization.
-    The article numbering reflect the works in the reference section of this thesis.
+    The article numbering reflects the works in the reference section of this thesis.
   }
 
 \end{figure}
