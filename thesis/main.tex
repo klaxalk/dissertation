@@ -71,12 +71,12 @@
 %%{ include paper box
 
 % \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
-\newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
+\newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{This place will contain the full paper}}
 \newcommand{\includepaperwithimage}[1]{
   \conditionalClearPage
-  \fullciteinboxwithimage{#1}{Here will be the pdf of the paper}
+  \fullciteinboxwithimage{#1}{This place will contain the full paper}
 }
-% \newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
+% \newcommand{\includepaper}[1]{\fullciteinbox{#1}{This place will contain the full paper}}
 
 %%}
 
@@ -506,7 +506,7 @@ Remote sensing and collaborative remote sensing are
 
 Figure~\ref{fig:research_graph} shows a publication graph composed of accepted peer-review publications, and publications that have been submitted in the time of writing this thesis.
 The publications are split into four main categories.
-The first category, a \emph{Pre Ph.D research}, consists of publications based upon the research done before the author started the pursue of Ph.D ($\leq 2015$).
+The first category, a \emph{Pre-Ph.D research}, consists of publications based upon the research done before the author started the pursue of Ph.D ($\leq 2015$).
 Although, some of these were written and submitted during the author's Ph.D studies.
 The second category is the research stream \ac{UAV} platform development for research validation and reliable deployment of novel methods in control, navigation, formation flying, and swarming.
 Thirdly, the largest group of the author's publications is from the field of multi-\ac{UAV} remote sensing, swarming and deployment.
@@ -877,7 +877,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
     }
 
-    \article{below=of uav_sensing_stream,shift={(-4em, 0em)}}{loianno2018localization}{\tabcite{loianno2018localization}}{
+    \keyarticle{below=of uav_sensing_stream,shift={(-4em, 0em)}}{loianno2018localization}{\tabcite{loianno2018localization}}{
       \begin{tabular}{l}
         Localization of\\
         objects by UAVs\\
@@ -1701,6 +1701,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 %%%}
 
 \includepaperwithimage{loianno2018localization}
+\includepaperwithimage{spurny2019cooperative}
 \includepaperwithimage{baca2019autonomous}
 
 %%}
@@ -1726,8 +1727,6 @@ Relevant author's publications (will be discussed):
 \includepaperwithimage{baca2018timepix}
 \includepaperwithimage{baca2019timepix}
 \includepaperwithimage{stibinger2020localization}
-
-%%}
 
 %%}
 
