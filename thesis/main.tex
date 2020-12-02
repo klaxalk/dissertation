@@ -811,8 +811,6 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
     }
 
-    \node [rotate=90, left=of uav_platform_stream, shift={(-4.2em, 3em)}] {Pre-Ph.D research};
-
     %%}
 
     %%{ research stream headlines
@@ -841,6 +839,8 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
       \end{tabular}
       \hspace{3em}
     }
+
+    \node [rotate=90, left=of uav_platform_stream, shift={(-4.2em, 3em)}] {Pre-Ph.D research};
 
     %%}
 
@@ -1236,7 +1236,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
     \path[-] (baca2018model) edge [->] (mrs_uav_system_technology);
     \path[-] (mrs_uav_system_technology) edge [->] (petrlik2020robust);
     \path[-] (petrlik2020robust) edge [->] (baca2020mrs);
-    \path[-] (mpc_tracker_technology) edge [<->] ($(loianno2018localization.west |- mpc_tracker_technology.east) + (-0.6em, 0));
+    \path[-] (mpc_tracker_technology) edge [<->] ($(loianno2018localization.west |- mpc_tracker_technology.east) + (-0.6em, 0)$);
 
   %%}
 
