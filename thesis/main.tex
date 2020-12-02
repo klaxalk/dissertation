@@ -46,7 +46,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
-\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy,shapes, shapes.geometric, shapes.multipart,fit,patterns}
+\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy,shapes,shapes.geometric,shapes.multipart,fit,patterns,fadings}
 \pgfdeclarelayer{background}
 \pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
@@ -72,6 +72,10 @@
 
 % \newcommand{\includepaper}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
 \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{Here will be the pdf of the paper}}
+\newcommand{\includepaperwithimage}[1]{
+  \conditionalClearPage
+  \fullciteinboxwithimage{#1}{Here will be the pdf of the paper}
+}
 % \newcommand{\includepaper}[1]{\fullciteinbox{#1}{Here will be the pdf of the paper}}
 
 %%}
@@ -107,6 +111,53 @@
 \fullcite{#1}%
 \end{minipage}%
 \end{tcolorbox}%
+%}%
+% \vspace{-0.5em}
+}%
+
+%%}
+
+%%{ fullcite box with image
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinboxwithimage}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%\vspace{3em}%
+%\raisebox{3em}[3em][3em]{%
+% \vspace{-0.2em}
+\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{0.07\linewidth}%
+\raggedright%
+\cite{#1}%
+\end{minipage}%
+\begin{minipage}[t]{0.93\linewidth}%
+\fullcite{#1}
+\end{minipage}%
+\end{tcolorbox}
+\begin{center}
+  \tikzfading[name=fade down,
+    top color=transparent!100, bottom color=transparent!0]
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (a) at (0,0) {\includegraphics[height=0.8\textheight]{./papers_to_include_pdf/#1.png}};
+    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+      \fill[white, path fading=fade down] (0.0, 0.0) rectangle (1.0, 0.33);
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
 %}%
 % \vspace{-0.5em}
 }%
@@ -1001,7 +1052,7 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
         Tightly-constrained\\
         UAV swarms\\
         without GNSS\\
-        \emph{RA-L, 2020}\\
+        \emph{ICRA, 2020}\\
       \end{tabular}
     }
 
@@ -1292,12 +1343,8 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 
 \chapternoclear{Research-focused UAV Platform}
 
-\fullciteinbox{baca2018model}{}
-\fullciteinbox{baca2020mrs}{}
-
-% INCLUDE THE FOLLOWING PDFS
-\includepaper{baca2018model}
-\includepaper{baca2020mrs}
+\includepaperwithimage{baca2018model}
+\includepaperwithimage{baca2020mrs}
 
 %%}
 
@@ -1307,355 +1354,354 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 
 \chapternoclear{Advances in remote sensing by UAVs}
 
-%%{ Sec: Data gathering
+%%%{ Sec: Data gathering
 
-\section{Data gathering}
+%\section{Data gathering}
 
-%%{ Fig: dronument
+%%%{ Fig: dronument
 
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/dronument_2_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/dronument_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{An inspection of an indoor historical building is conducted (a) to monitor the state of frescoes, and (b) to assess the state of wall paintings.}
-  \label{fig:dronument}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/dronument_2_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(a)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \hfill%
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/dronument_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(b)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \caption{An inspection of an indoor historical building is conducted (a) to monitor the state of frescoes, and (b) to assess the state of wall paintings.}
+%  \label{fig:dronument}
+%\end{figure}
 
-%%}
+%%%}
 
-%%}
+%%%}
 
-%%{ Sec: UAV swarms and formations
+%%%{ Sec: UAV swarms and formations
 
-\section{UAV swarms and formations}
-\label{sec:uav_swarms_and_formations}
+%\section{UAV swarms and formations}
+%\label{sec:uav_swarms_and_formations}
 
-%%{ Fig: swamrs
+%%%{ Fig: swamrs
 
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/swarm_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      % plot some stuff over the image
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/swarm_forest_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
+%\begin{figure}
+%  \centering
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/swarm_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      % plot some stuff over the image
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(a)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \hfill
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/swarm_forest_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
 
-      \draw[->, white, thick] (0.45, 0.20) -- (0.07, 0.57);
-      \draw[->, white, thick] (0.45, 0.20) -- (0.30, 0.55);
-      \draw[->, white, thick] (0.45, 0.20) -- (0.40, 0.45);
-      \draw[->, white, thick] (0.45, 0.20) -- (0.85, 0.40);
-      \draw (0.45,0.15) node [text=white] {\small UAVs};
+%      \draw[->, white, thick] (0.45, 0.20) -- (0.07, 0.57);
+%      \draw[->, white, thick] (0.45, 0.20) -- (0.30, 0.55);
+%      \draw[->, white, thick] (0.45, 0.20) -- (0.40, 0.45);
+%      \draw[->, white, thick] (0.45, 0.20) -- (0.85, 0.40);
+%      \draw (0.45,0.15) node [text=white] {\small UAVs};
 
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      % plot some stuff over the image
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{Swarms of multirotor \acp{UAV} testing novel flocking algorithms while localized (a) by a \ac{GNSS} system, and (b) by onboard sensors only within a forest environment.}
-  \label{fig:swarms}
-\end{figure}
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      % plot some stuff over the image
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(b)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \caption{Swarms of multirotor \acp{UAV} testing novel flocking algorithms while localized (a) by a \ac{GNSS} system, and (b) by onboard sensors only within a forest environment.}
+%  \label{fig:swarms}
+%\end{figure}
 
-%%}
+%%%}
 
-%%}
+%%%}
 
-%%{ Sec: The DARPA Subterranean (SubT) challenge
+%%%{ Sec: The DARPA Subterranean (SubT) challenge
 
-\section{The DARPA Subterranean (SubT) challenge}
+%\section{The DARPA Subterranean (SubT) challenge}
 
-%%{ Fig: DARPA SubT
+%%%{ Fig: DARPA SubT
 
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/darpa_stix_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/darpa_drone_beta_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{Unmanned Aerial Vehicles during the \ac{DARPA} SubT challenge. The photos depict (a) a \ac{UAV} exploring an underground mine, and (b) mapping an unfinished nuclear power plant.}
-  \label{fig:darpa}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/darpa_stix_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(a)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \hfill%
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/darpa_drone_beta_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(b)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \caption{Unmanned Aerial Vehicles during the \ac{DARPA} SubT challenge. The photos depict (a) a \ac{UAV} exploring an underground mine, and (b) mapping an unfinished nuclear power plant.}
+%  \label{fig:darpa}
+%\end{figure}
 
-%%}
+%%%}
 
-%%}
+%%%}
 
-%%{ Sec: MBZIRC 2017 competition
+%%%{ Sec: MBZIRC 2017 competition
 
-\section{MBZIRC 2017 competition}
+%\section{MBZIRC 2017 competition}
 
-\fullciteinbox{baca2019autonomous}{}
-\fullciteinbox{loianno2018localization}{}
+%\fullciteinbox{baca2019autonomous}{}
+%\fullciteinbox{loianno2018localization}{}
 
-%%{ Fig: MBZIRC 2017
+%%%{ Fig: MBZIRC 2017
 
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/grasping_2017_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/landing_2017_2_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{The CTU-UPENN-UoL team during the MBZIRC 2017 competition. The photos show (a) two \acp{UAV} while delivering ferrous objects, and (b) a \ac{UAV} during autonomous landing on a moving car.}
-  \label{fig:mbzirc_2017}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/grasping_2017_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(a)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \hfill%
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/landing_2017_2_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.12,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(b)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \caption{The CTU-UPENN-UoL team during the MBZIRC 2017 competition. The photos show (a) two \acp{UAV} while delivering ferrous objects, and (b) a \ac{UAV} during autonomous landing on a moving car.}
+%  \label{fig:mbzirc_2017}
+%\end{figure}
 
-%%}
+%%%}
 
-%%}
+%%%}
 
-%%{ Sec: MBZIRC 2020 competition
+%%%{ Sec: MBZIRC 2020 competition
 
-\section{MBZIRC 2020 competition}
+%\section{MBZIRC 2020 competition}
 
-%%{ Fig: MBZIRC 2020
+%%%{ Fig: MBZIRC 2020
 
-\begin{figure}
-  \centering
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/brick_placing_1-25_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(a)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/ball_catching_1-25_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(b)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/ext_1-25_1-5.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(c)};
-    \end{scope}
-  \end{tikzpicture}}\\
-  \vspace{-0.8em}
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/blanket_2_1.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.13,0.20);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(d)};
-    \end{scope}
-  \end{tikzpicture}}
-  \hfill%
-  \subfloat {\begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/popping_2_1.jpg}};
-    \begin{scope}[x={(a.south east)},y={(a.north west)}]
-      %%{ grid
-      % % useful grid to help you find coordinates for plotting the overlay
-      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
-      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
-      %   \node[align=center] at (\i, -0.05) {\i};
-      %   \node[align=center] at (\i, 1.05) {\i};
-      %   \node[align=center] at (-0.05, \i) {\i};
-      %   \node[align=center] at (1.05, \i) {\i};
-      % }
-      %%}
-      % plot some stuff over the image
-      \fill[white] (0.001, 0.001) rectangle (0.13,0.20);
-      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
-      \node[imgletter,text=black] (label) at (a.south west) {(e)};
-    \end{scope}
-  \end{tikzpicture}}
-  \caption{The CTU-UPENN-NYU team during the MBZIRC 2020 competition. The photos depict (a) autonomous wall building, (b) autonomous ball catching, (c) autonomous fire extinguishing, (d) autonomous fire blanket deployment, and (e) autonomous balloon popping.}
-  \label{fig:mbzirc_2020}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/brick_placing_1-25_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(a)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \hfill%
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/ball_catching_1-25_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(b)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \hfill%
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.155\textwidth]{./fig/photos/ext_1-25_1-5.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.18,0.13);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(c)};
+%    \end{scope}
+%  \end{tikzpicture}}\\
+%  \vspace{-0.8em}
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/blanket_2_1.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.13,0.20);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(d)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \hfill%
+%  \subfloat {\begin{tikzpicture}
+%    \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.235\textwidth]{./fig/photos/popping_2_1.jpg}};
+%    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+%      %%{ grid
+%      % % useful grid to help you find coordinates for plotting the overlay
+%      % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+%      % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+%      %   \node[align=center] at (\i, -0.05) {\i};
+%      %   \node[align=center] at (\i, 1.05) {\i};
+%      %   \node[align=center] at (-0.05, \i) {\i};
+%      %   \node[align=center] at (1.05, \i) {\i};
+%      % }
+%      %%}
+%      % plot some stuff over the image
+%      \fill[white] (0.001, 0.001) rectangle (0.13,0.20);
+%      \fill[draw=black, draw opacity=0.5, fill opacity=0] (0,0) rectangle (1, 1);
+%      \node[imgletter,text=black] (label) at (a.south west) {(e)};
+%    \end{scope}
+%  \end{tikzpicture}}
+%  \caption{The CTU-UPENN-NYU team during the MBZIRC 2020 competition. The photos depict (a) autonomous wall building, (b) autonomous ball catching, (c) autonomous fire extinguishing, (d) autonomous fire blanket deployment, and (e) autonomous balloon popping.}
+%  \label{fig:mbzirc_2020}
+%\end{figure}
 
-%%}
+%%%}
 
-%%}
+%%%}
 
-% INCLUDE THE FOLLOWING PDFS
-\includepaper{loianno2018localization}
-\includepaper{baca2019autonomous}
+\includepaperwithimage{loianno2018localization}
+\includepaperwithimage{baca2019autonomous}
 
 %%}
 
@@ -1677,9 +1723,9 @@ Relevant author's publications (will be discussed):
 \fullciteinbox{stibinger2020localization}{}
 
 % INCLUDE THE FOLLOWING PDFs
-\includepaper{baca2018timepix}
-\includepaper{baca2019timepix}
-\includepaper{stibinger2020localization}
+\includepaperwithimage{baca2018timepix}
+\includepaperwithimage{baca2019timepix}
+\includepaperwithimage{stibinger2020localization}
 
 %%}
 
