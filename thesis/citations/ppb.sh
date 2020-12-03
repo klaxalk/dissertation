@@ -77,6 +77,7 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/X-ray/X-Ray/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\<Uv\>/UV/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/Rtdp/RTDP/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/Hierarchy of Ai/Hierarchy of AI/gi" -c "wqa" -- "$filename"
 
   $VIM_BIN $HEADLESS -nEs -c "%s/\sOf\s/ of /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sThe\s/ the /g" -c "wqa" -- "$filename"

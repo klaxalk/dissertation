@@ -461,7 +461,7 @@ In recent years, autonomous robotic remote sensing became available with to the 
 Onboard autonomy is used to control a robotics system when a human operation is not possible, e.g., deep underground \cite{apachristos2019autonomous, losch2018design}, or in a vicinity of a damaged nuclear power plant \cite{sato2019radiation}.
 Multi-robotic distributed sensing is however still in its infancy.
 Although, distributing the process offers robustness through redundancy and potential increase in information yield, it also poses new challenges in multi-robotic coordination and sensor fusion.
-The same applies to the use of multiple multirotor \ac{UAV} with even more added challenges.
+The same applies to the use of multiple multirotor \ac{UAV} with even more challenges.
 Just on its own, control of multi-\ac{UAV} swarms and formations is a challenging subfield which has direct implications to the field of distributed remote sensing.
 
 One of the most iconic sub-fields of remote sensing is the remote sensing of ionizing radiation.
@@ -476,23 +476,40 @@ The challenges ranged from an autonomous landing on moving car by an unmanned ai
 Finally, an interdisciplinary research is being pursuit for localization of ionizing sources of radiation by \acp{UAV}.
 The research closely follows advances in the use of novel imaging pixel radiation detectors, originally developed for medical imaging, in the remote sensing application of space dosimetry and X-ray imaging.
 
-% Firstly, it focuses on development of a system and methods for execution of multi-\ac{UAV} experiments outside of laboratory conditions.
-% Secondly, collaborative gathering of metal objects by a group of \acp{UAV} was studied in conjunction with an autonomous landing of a \ac{UAV} on top of a moving car.
-% The approach was later extended to a collaborative wall-building by a group of \acp{UAV}.
+\todo{add general figures}
 
-The objectives of the thesis are the following:
+\todo{Describe particular motivation for the development of the control platform.}
+
+\todo{Describe particular tasks in the MBZIRC challenge that fit into the remote sensing.}
+
+\todo{Describe the motivation for the radiation localization, copy from the ICRA paper.}
+
+The objectives of the thesis are summarized as follows:
 
 \textbf{(1) Development of control system for real-world deployment of \acp{UAV}}, realistic verification of new methods of remote sensing and deployment in potentially hazardous environments.
 Despite many platforms for multirotor \acp{UAV} control and deployment are available \cite{sanchez2016aerostack, xiao2020xtdrone, furrer2016rotors, schmittle2018openuav, abeywardena2015design, mellado2013mavwork}, they lack features necessary for real-world testing and deployment of the methods within focus of this thesis and within the focus of the \acl{MRS} group at \ac{CTU} in Prague.
 Therefore, the first objective, as well as a long-term effort of the author, is to develop a modular \ac{UAV} control system.
-Such control system should allow safe indoor and outdoor deployment of multirotor helicopters with the aim to test high-level methods for motion planning, swarming, formation flying.
+The control system should allow safe indoor and outdoor deployment of multirotor helicopters and should allow verification of high-level methods for motion planning, swarming, formation flying.
 The system should also allow basic research on low level control and stabilization of the multirotor \ac{UAV} dynamics.
 
-\textbf{(2) Research of methods of collaborative remote sensing} by a group of \aclp{UAV}.
-Remote sensing and collaborative remote sensing are
+\textbf{(2) Research of methods of collaborative remote sensing} by a group of \aclp{UAV} in real-world non-laboratory conditions.
+Executing UAV missions collaboratively poses challenges on many levels of onboard autonomy, e.g., task allocation, estimation, motion planning and control.
+Furthermore, mutual communication between the \acp{UAV} might be unreliable or completely unavailable.
+Therefore, sharing real time sensor readings in order to pursue a common goal might not be possible in all circumstances.
+Moreover, mutual collisions between the \acp{UAV} can be expected, especially of they are guided common goals.
+The objective is to explore and push forwards the field of collaborative remote sensing and deployment of \ac{UAV} in complex robotics tasks.
 
-\textbf{(3) Advancing the field of ionizing radiation dosimetry, mapping and localization by compact sources} by \aclp{UAV}.
-\todo{}
+\textbf{(3) Advancing the field of ionizing radiation dosimetry, mapping and localization of compact sources} by \aclp{UAV}.
+Ionizing radiation has been traditionally measured onboard \acp{UAV} using dosimeters \cite{nagatani2013emergency, sanada2015aerial, towler2012radiation, jiang2016prototype} --- sensors measuring the intensity of incoming radiation.
+Often, the intensity is utilized only to estimate the scalar field of radiation intensity.
+Rarely, direction measurement can be obtained with an addition device, e.g., the optical collimator or a coded aperture.
+However, those solutions are not well-suited for small \acp{UAV} due the heavy weight of the sensor equipment.
+This thesis aims to push the state-of-the art by utilizing miniature semi-conductor pixel detectors \cite{llopart2007timepix} onboard small \acp{UAV}.
+Moreover, the novel event-based radiation detectors \cite{poikela2014timepix3} promise new opportunities in localization of compact radiation sources, especially with miniature \acp{UAV}.
+
+\todo{The rest of the thesis is organized as follows...}
+\todo{The thesis is a compilation of 7 core publications (referenced as 1c -- 7c) included in the thesis.}
+\todo{Furthermore, the thesis is supported by additional authored publications that are not included, but are closely related (referenced as 8c -- 42c).}
 
 %%}
 
