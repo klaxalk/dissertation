@@ -1,0 +1,871 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /TF1/Frames1
+        - /Filter1/2d estimate1/Covariance1/Position1
+        - /Filter1/3d estimate1/Covariance1
+        - /Filter1/3d estimate1/Covariance1/Position1
+        - /RGB camera1/Visibility1
+      Splitter Ratio: 0.7063062787055969
+    Tree Height: 237
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: Compton coincidences (10 second buffer)
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.30000001192092896
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid_1
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 100
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Cell Size: 5
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid_5
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Class: rviz/TF
+      Enabled: false
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
+    - Class: rviz/Axes
+      Enabled: false
+      Length: 1
+      Name: local_origin
+      Radius: 0.10000000149011612
+      Reference Frame: uav35/local_origin
+      Value: false
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        uav35/fcu:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        uav35/fcu/arms:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        uav35/fcu/props:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        uav35/fcu/uav_marker:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: RobotModel
+      Robot Description: /uav35/robot_model
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz/Group
+      Displays:
+        - Class: rviz/Image
+          Enabled: false
+          Image Topic: /uav35/rs_d435/dept
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: rs_depth
+          Normalize Range: true
+          Queue Size: 2
+          Transport Hint: raw
+          Unreliable: false
+          Value: false
+        - Class: rviz/Image
+          Enabled: false
+          Image Topic: /uav35/bluefox_brick/image_raw
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: bluefox_brick
+          Normalize Range: true
+          Queue Size: 2
+          Transport Hint: compressed
+          Unreliable: false
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/LaserScan
+          Color: 0; 0; 0
+          Color Transformer: FlatColor
+          Decay Time: 0
+          Enabled: true
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Max Intensity: 15
+          Min Color: 0; 0; 0
+          Min Intensity: 9
+          Name: RPLidar
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.10000000149011612
+          Style: Spheres
+          Topic: /uav35/rplidar/scan
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: false
+          Value: true
+        - Class: rviz/Image
+          Enabled: false
+          Image Topic: /uav35/rs_d435/color/image_raw
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: rs_color
+          Normalize Range: true
+          Queue Size: 2
+          Transport Hint: raw
+          Unreliable: false
+          Value: false
+        - Alpha: 0.699999988079071
+          Class: rviz/Map
+          Color Scheme: map
+          Draw Behind: false
+          Enabled: false
+          Name: Map
+          Topic: /uav35/hector_mapping/map
+          Unreliable: false
+          Use Timestamp: false
+          Value: false
+      Enabled: true
+      Name: Sensors
+    - Class: rviz/Group
+      Displays:
+        - Angle Tolerance: 0.009999999776482582
+          Class: rviz/Odometry
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Keep: 1
+          Name: setpoint_odom
+          Position Tolerance: 0.009999999776482582
+          Shape:
+            Alpha: 1
+            Axes Length: 1
+            Axes Radius: 0.10000000149011612
+            Color: 255; 25; 0
+            Head Length: 0.30000001192092896
+            Head Radius: 0.10000000149011612
+            Shaft Length: 1
+            Shaft Radius: 0.05000000074505806
+            Value: Axes
+          Topic: /uav35/control_manager/mpc_tracker/setpoint_odom
+          Unreliable: false
+          Value: false
+        - Alpha: 1
+          Arrow Length: 0.30000001192092896
+          Axes Length: 0.30000001192092896
+          Axes Radius: 0.009999999776482582
+          Class: rviz/PoseArray
+          Color: 85; 0; 255
+          Enabled: true
+          Head Length: 0.07000000029802322
+          Head Radius: 0.029999999329447746
+          Name: prediction
+          Shaft Length: 0.23000000417232513
+          Shaft Radius: 0.009999999776482582
+          Shape: Arrow (Flat)
+          Topic: /uav35/control_manager/mpc_tracker/predicted_trajectory_debugging
+          Unreliable: false
+          Value: true
+        - Alpha: 1
+          Arrow Length: 0.30000001192092896
+          Axes Length: 0.20000000298023224
+          Axes Radius: 0.05000000074505806
+          Class: rviz/PoseArray
+          Color: 255; 25; 0
+          Enabled: false
+          Head Length: 0.07000000029802322
+          Head Radius: 0.029999999329447746
+          Name: mpc_internal_reference
+          Shaft Length: 0.23000000417232513
+          Shaft Radius: 0.009999999776482582
+          Shape: Axes
+          Topic: /uav35/control_manager/mpc_tracker/mpc_reference_debugging
+          Unreliable: false
+          Value: false
+        - Class: rviz/Group
+          Displays:
+            - Class: rviz/MarkerArray
+              Enabled: false
+              Marker Topic: /uav35/control_manager/mpc_tracker/trajectory_original/markers
+              Name: MarkerArray
+              Namespaces:
+                {}
+              Queue Size: 100
+              Value: false
+            - Alpha: 1
+              Arrow Length: 0.30000001192092896
+              Axes Length: 0.30000001192092896
+              Axes Radius: 0.009999999776482582
+              Class: rviz/PoseArray
+              Color: 255; 25; 0
+              Enabled: false
+              Head Length: 0.07000000029802322
+              Head Radius: 0.029999999329447746
+              Name: PoseArray
+              Shaft Length: 0.23000000417232513
+              Shaft Radius: 0.009999999776482582
+              Shape: Arrow (Flat)
+              Topic: /uav35/control_manager/mpc_tracker/trajectory_original/poses
+              Unreliable: false
+              Value: false
+          Enabled: true
+          Name: OriginalTrajectory
+        - Class: rviz/Group
+          Displays:
+            - Class: rviz/MarkerArray
+              Enabled: true
+              Marker Topic: /uav35/control_manager/mpc_tracker/trajectory_processed/markers
+              Name: MarkerArray
+              Namespaces:
+                "": true
+              Queue Size: 100
+              Value: true
+            - Alpha: 1
+              Arrow Length: 0.30000001192092896
+              Axes Length: 0.30000001192092896
+              Axes Radius: 0.009999999776482582
+              Class: rviz/PoseArray
+              Color: 255; 25; 0
+              Enabled: true
+              Head Length: 0.07000000029802322
+              Head Radius: 0.029999999329447746
+              Name: PoseArray
+              Shaft Length: 0.23000000417232513
+              Shaft Radius: 0.009999999776482582
+              Shape: Arrow (Flat)
+              Topic: /uav35/control_manager/mpc_tracker/trajectory_processed/poses
+              Unreliable: false
+              Value: true
+          Enabled: true
+          Name: PostProcessedTrajectory
+      Enabled: true
+      Name: MpcTracker
+    - Class: rviz/Group
+      Displays:
+        - Class: rviz/MarkerArray
+          Enabled: false
+          Marker Topic: /uav35/control_manager/disturbances_markers
+          Name: disturbances
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: false
+        - Angle Tolerance: 0.009999999776482582
+          Class: rviz/Odometry
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Keep: 1
+          Name: cmd_odom
+          Position Tolerance: 0.009999999776482582
+          Shape:
+            Alpha: 1
+            Axes Length: 1
+            Axes Radius: 0.10000000149011612
+            Color: 255; 25; 0
+            Head Length: 0.30000001192092896
+            Head Radius: 0.10000000149011612
+            Shaft Length: 1
+            Shaft Radius: 0.05000000074505806
+            Value: Arrow
+          Topic: /uav35/control_manager/cmd_odom
+          Unreliable: false
+          Value: false
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /uav35/control_manager/safety_area_markers
+          Name: SafetyArea
+          Namespaces:
+            "": true
+          Queue Size: 100
+          Value: true
+        - Class: rviz/MarkerArray
+          Enabled: false
+          Marker Topic: /uav35/control_manager/safety_area_coordinates_markers
+          Name: SafetyAreaCoordinates
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: false
+        - Alpha: 0.10000000149011612
+          Class: mrs_rviz_plugins/Bumper
+          Collision alpha: 0.5
+          Collision color: 255; 0; 0
+          Color: 204; 51; 204
+          Colorize collisions: true
+          Display mode: sensor types
+          Enabled: false
+          History Length: 1
+          Horizontal collision threshold: 1.2999999523162842
+          Name: Bumper
+          Show sectors with no data: false
+          Show undetected obstacles: true
+          Topic: /uav35/bumper/obstacle_sectors
+          Unreliable: false
+          Value: false
+          Vertical collision threshold: 1
+      Enabled: true
+      Name: ControlManager
+    - Class: rviz/Group
+      Displays:
+        - Angle Tolerance: 0.009999999776482582
+          Class: rviz/Odometry
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Keep: 1
+          Name: odom_main
+          Position Tolerance: 0.009999999776482582
+          Shape:
+            Alpha: 1
+            Axes Length: 1
+            Axes Radius: 0.10000000149011612
+            Color: 85; 0; 255
+            Head Length: 0.30000001192092896
+            Head Radius: 0.10000000149011612
+            Shaft Length: 1
+            Shaft Radius: 0.05000000074505806
+            Value: Axes
+          Topic: /uav35/odometry/odom_main
+          Unreliable: false
+          Value: false
+      Enabled: true
+      Name: Odometry
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Class: rviz/PointStamped
+          Color: 204; 41; 204
+          Enabled: true
+          History Length: 1
+          Name: ClickedPoint
+          Radius: 0.5
+          Topic: /clicked_point
+          Unreliable: false
+          Value: true
+      Enabled: true
+      Name: rviz_interface
+    - Class: rviz/Group
+      Displays:
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /uav35/map/occupied/throttled
+          Name: map
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+      Enabled: false
+      Name: vio
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Axes Length: 0.10000000149011612
+          Axes Radius: 0.10000000149011612
+          Class: rviz/PoseWithCovariance
+          Color: 255; 25; 0
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Head Length: 0.30000001192092896
+          Head Radius: 0.10000000149011612
+          Name: optimizer
+          Shaft Length: 1
+          Shaft Radius: 0.05000000074505806
+          Shape: Axes
+          Topic: /uav35/cone_optimizer/pose
+          Unreliable: false
+          Value: false
+        - Alpha: 1
+          Axes Length: 0.5
+          Axes Radius: 0.5
+          Class: rviz/PoseWithCovariance
+          Color: 255; 25; 0
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.5
+              Color: 255; 255; 0
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Head Length: 0.30000001192092896
+          Head Radius: 0.10000000149011612
+          Name: 2d estimate
+          Shaft Length: 1
+          Shaft Radius: 0.05000000074505806
+          Shape: Axes
+          Topic: /uav35/compton_filter/pose_2D
+          Unreliable: false
+          Value: false
+        - Alpha: 1
+          Axes Length: 0.5
+          Axes Radius: 0.5
+          Class: rviz/PoseWithCovariance
+          Color: 255; 25; 0
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.5
+              Color: 170; 255; 127
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: true
+          Head Length: 0.30000001192092896
+          Head Radius: 0.10000000149011612
+          Name: 3d estimate
+          Shaft Length: 1
+          Shaft Radius: 0.05000000074505806
+          Shape: Axes
+          Topic: /uav35/compton_filter/pose_3D
+          Unreliable: false
+          Value: true
+        - Alpha: 1
+          Axes Length: 1
+          Axes Radius: 0.10000000149011612
+          Class: rviz/PoseWithCovariance
+          Color: 255; 25; 0
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Head Length: 0.30000001192092896
+          Head Radius: 0.10000000149011612
+          Name: 2d_correction
+          Shaft Length: 1
+          Shaft Radius: 0.05000000074505806
+          Shape: Arrow
+          Topic: /uav35/compton_filter/correction_2d
+          Unreliable: false
+          Value: false
+        - Alpha: 1
+          Axes Length: 1
+          Axes Radius: 0.10000000149011612
+          Class: rviz/PoseWithCovariance
+          Color: 255; 25; 0
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Head Length: 0.30000001192092896
+          Head Radius: 0.10000000149011612
+          Name: 3d_correction
+          Shaft Length: 1
+          Shaft Radius: 0.05000000074505806
+          Shape: Arrow
+          Topic: /uav35/compton_filter/correction_3d
+          Unreliable: false
+          Value: false
+        - Class: rviz/MarkerArray
+          Enabled: false
+          Marker Topic: /uav35/compton_filter/compton_filter
+          Name: MarkerArray
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: false
+        - Class: rviz/MarkerArray
+          Enabled: false
+          Marker Topic: /uav35/compton_filter/hypothesis_2d
+          Name: 2d_hypo
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: false
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /uav35/compton_filter/hypothesis_3d
+          Name: 3d_hypo
+          Namespaces:
+            hypothesis_3d_lines: true
+            hypothesis_3d_points: true
+            hypothesis_3d_triangles: true
+          Queue Size: 100
+          Value: true
+      Enabled: true
+      Name: Filter
+    - Class: rviz/Group
+      Displays:
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /uav35/compton_cone_generator/compton_cones
+          Name: MarkerArray
+          Namespaces:
+            compton_cones_lines: true
+            compton_cones_points: true
+            compton_cones_triangles: true
+          Queue Size: 100
+          Value: true
+      Enabled: true
+      Name: ConeGenerator
+    - Class: rviz/Group
+      Displays:
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /uav35/ground_truth_visualizer/markers
+          Name: Marker
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /uav35/ground_truth_visualizer/text_marker
+          Name: Text
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+      Enabled: true
+      Name: Ground Truth
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /uav35/bluefox/image_raw
+      Name: RGB camera
+      Overlay Alpha: 0.6000000238418579
+      Queue Size: 2
+      Transport Hint: compressed
+      Unreliable: false
+      Value: true
+      Visibility:
+        Compton coincidences (10 second buffer): true
+        ConeGenerator:
+          MarkerArray: true
+          Value: false
+        ControlManager:
+          Bumper: true
+          SafetyArea: true
+          SafetyAreaCoordinates: true
+          Value: true
+          cmd_odom: true
+          disturbances: true
+        Filter:
+          2d estimate: true
+          2d_correction: true
+          2d_hypo: true
+          3d estimate: true
+          3d_correction: true
+          3d_hypo: true
+          MarkerArray: true
+          Value: true
+          optimizer: true
+        Grid_1: true
+        Grid_5: true
+        Ground Truth:
+          Marker: true
+          Text: true
+          Value: true
+        MpcTracker:
+          OriginalTrajectory:
+            MarkerArray: true
+            PoseArray: true
+            Value: true
+          PostProcessedTrajectory:
+            MarkerArray: true
+            PoseArray: true
+            Value: true
+          Value: false
+          mpc_internal_reference: true
+          prediction: true
+          setpoint_odom: true
+        Odometry:
+          Value: false
+          odom_main: true
+        RobotModel: false
+        Sensors:
+          Map: true
+          RPLidar: true
+          Value: true
+          bluefox_brick: true
+          rs_color: true
+          rs_depth: true
+        TF: true
+        Timepix events (10 second buffer): true
+        Value: true
+        local_origin: true
+        rviz_interface:
+          ClickedPoint: true
+          Value: true
+        vio:
+          Value: true
+          map: true
+      Zoom Factor: 1
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /normalizer_all/image_out
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Timepix events (10 second buffer)
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /normalizer_coincidences/image_out
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Compton coincidences (10 second buffer)
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 255; 255; 255
+    Default Light: true
+    Fixed Frame: uav35/vio_origin
+    Frame Rate: 60
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
+      Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 11.603437423706055
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 1.3012301921844482
+        Y: -1.222450852394104
+        Z: -0.7967609167098999
+      Focal Shape Fixed Size: false
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.7597970962524414
+      Target Frame: uav35/fcu
+      Value: Orbit (rviz)
+      Yaw: 3.4966840744018555
+    Saved: ~
+Window Geometry:
+  Compton coincidences (10 second buffer):
+    collapsed: false
+  Displays:
+    collapsed: false
+  Height: 772
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd0000000400000000000002d300000123fc020000000ffb0000001200530065006c0065006300740069006f006e00000001e10000009b0000004e00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730200000780000001a1000001a900000153fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007301000001c800000123000000a600fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001a0062006c007500650066006f0078005f0062007200690063006b000000028a000001690000001600fffffffb0000001000720073005f006400650070007400680000000231000000f00000001600fffffffb0000001a0062006c007500650066006f0078005f0062007200690063006b0000000291000001620000000000000000fb0000000a0049006d0061006700650100000236000000bd0000000000000000fb0000001000720073005f0063006f006c006f007200000001b9000000cc0000001600fffffffb0000000a0049006d00610067006500000002df000001140000000000000000fb0000000a0049006d00610067006501000001e50000010600000000000000000000000100000116000002aafc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a0056006900650077007300000002db000002aa0000008c00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000762000001b1fc0100000004fb0000004200540069006d00650070006900780020006500760065006e0074007300200028003100300020007300650063006f006e006400200062007500660066006500720029010000000000000234000000dc00fffffffb00000014005200470042002000630061006d0065007200610100000239000002b50000007100fffffffb0000004e0043006f006d00700074006f006e00200063006f0069006e0063006900640065006e00630065007300200028003100300020007300650063006f006e00640020006200750066006600650072002901000004f30000026f0000010100fffffffb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000003efc0100000002fb0000000800540069006d0065000000000000000780000001e900fffffffb0000000800540069006d006501000000000000045000000000000000000000048a0000012300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
+  RGB camera:
+    collapsed: false
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Timepix events (10 second buffer):
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1890
+  X: 1932
+  Y: 31
+  bluefox_brick:
+    collapsed: false
+  rs_color:
+    collapsed: false
+  rs_depth:
+    collapsed: false

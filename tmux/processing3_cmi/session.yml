@@ -1,0 +1,61 @@
+name: simulation
+root: ./
+startup_window: rosbag
+pre_window: export UAV_NAME=uav35; export RUN_TYPE=uav; export UAV_TYPE=f450
+windows:
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+        - waitForRos; rosparam set use_sim_time true
+  - rosbag:
+      layout: tiled
+      panes:
+
+        - waitForRos; rosbag play ./bags/15_2020_12_04_11_09_18/_2020-12-04-11-10-16.bag --clock -r 1.0
+        - waitForRos; rosbag play ./bags/15_2020_12_04_11_09_18/_2020-12-04-11-10-16.bag -r 1.0 -u 1 -l --topics /tf_static
+        # - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=1.8 z:=0.3 frame:=uav68/aloam_origin
+
+  # - tfs:
+  #     layout: tiled
+  #     panes:
+  #       - waitForControl; rosrun tf2_ros static_transform_publisher 0.09 0.025 -0.01 -1.57005 0.0 -1.25 uav68/fcu uav68/bluefox
+  - map_generator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch map_builder map_builder.launch
+  - cone_generator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_cone_generator compton_cone_generator.launch debug:=false
+  - optimizer:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter optimizer_1.launch
+  - filter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_filter compton_filter_1.launch
+  - cone_plotter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch compton_camera_python compton_plotter_rosbag.launch
+  - integrator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch rospix_utils integrator.launch topic_cluster_list:=/$UAV_NAME/compton_camera/cluster_list node_name:=integrator_all
+        - waitForRos; roslaunch rospix_utils integrator.launch topic_cluster_list:=/$UAV_NAME/compton_cone_generator/coincidences node_name:=integrator_coincidences
+  - normalizer:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch rospix_utils normalizer.launch topic:=/integrator_all/image_out node_name:=normalizer_all
+        - waitForRos; roslaunch rospix_utils normalizer.launch topic:=/integrator_coincidences/image_out node_name:=normalizer_coincidences
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForRos; rosrun rviz rviz -d ./rviz.rviz
+        - waitForRos; roslaunch mrs_rviz_plugins load_robot.launch
+  - layout:
+      layout: tiled
+      panes:
+        - waitForRos; sleep 2; ~/.i3/layout_manager.sh ./layout.json
