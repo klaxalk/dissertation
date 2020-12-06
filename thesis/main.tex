@@ -478,52 +478,66 @@ MBZIRC proposed a set of robotics challenges that pushed the boundaries in \ac{U
 The challenges ranged from an autonomous landing on a moving car by an unmanned aircraft, collaborative gathering of small objects by a fleet of \acp{UAV}, up to an autonomous brick wall-building by a fleet of \acp{UAV}.
 Those tasks provided excellent opportunity and conditions to take state-of-the art techniques outside of lab and compare the advances directly to the best university teams from around the world.
 
-Finally, interdisciplinary research is being pursued to localize ionizing radiation sources by \acp{UAV}.
+Furthermore, interdisciplinary research is being pursued to localize ionizing radiation sources by \acp{UAV}.
 The research closely follows advances in the use of novel imaging pixel radiation detectors, initially developed for medical imaging, in the remote sensing application of space dosimetry and X-ray imaging.
 Initial steps has been made by the thesis author to develop a remote sensing module with the Timepix~\cite{llopart2007timepix} detector for the first Czech CubeSat, the VZLUSAT-1.
 One of the goals of the thesis is to transfer the know how to the field of small \aclp{UAV}.
 
-\begin{figure}
+Experimental verification of novel methods is crucial to provide objective evaluation and to support new publications.
+Although, the accompanying sub-fields of cybernetics --- machine learning and computer vision --- benefit significantly from evaluation and comparison of new methods on datasets, this does not apply to mobile robotics.
+Even realistic simulation do not fully substitute the testing and verification using a real \ac{UAV} equipped with real sensors, and most importantly, outside of laboratory conditions.
+However, conducting real-world experiments requires an onboard control platform that can satisfy the needs of the tested method.
+Despite the plethora of existing solutions \cite{sanchez2016aerostack, xiao2020xtdrone, furrer2016rotors, schmittle2018openuav, abeywardena2015design, mellado2013mavwork}, none provides all the features needed to support the work presented in the thesis.
+To name a few, not all platforms support experiments both indoors and outdoors.
+The \ac{UAV} state estimation is often limited to a single localization approach.
+Mid-air switching of controllers and control reference generators is also not common.
+Finally, low-level control output using a desired \ac{UAV} attitude rate is rarely present.
+
+%%{ Fig: intro collage
+
+\begin{figure}[!htb]
   \centering
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/control_2_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/control_2_1-5.jpg}
   }
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/swarm_2_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/swarm_2_1-5.jpg}
   }
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/grasping_2017_2_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/grasping_2017_2_1-5.jpg}
   }\\
   \vspace{-0.3em}
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/brick_placing_2_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/brick_placing_2_1-5.jpg}
   }
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/landing_2017_2_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/landing_2017_2_1-5.jpg}
   }
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/darpa_drone_beta_2_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/darpa_drone_beta_2_1-5.jpg}
   }\\
   \vspace{-0.3em}
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/radron_vio_2_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/radron_vio_2_1-5.jpg}
   }
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/vzlusat_1_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/vzlusat_1_1-5.jpg}
   }
   \subfloat {
-    \includegraphics[width=0.30\textwidth]{./fig/photos/rex_1_1-5.jpg} 
+    \includegraphics[width=0.30\textwidth]{./fig/photos/rex_1_1-5.jpg}
   }
   \caption{Illustration of outcomes of the thesis author's contributions: deployments of multi-rotor \acp{UAV} as well as radiation measurements for space applications.}
   \label{fig:collage}
 \end{figure}
 
+%%}
+
 The objectives of the thesis are summarized as follows:
 
-\textbf{(1) Development of a control system for real-world deployment of \acp{UAV}}, realistic verification of new methods of remote sensing and deployment in potentially hazardous environments.
-Despite many platforms for multirotor \acp{UAV} control and deployment are available, \cite{sanchez2016aerostack, xiao2020xtdrone, furrer2016rotors, schmittle2018openuav, abeywardena2015design, mellado2013mavwork}, they lack features necessary for real-world testing and deployment of the methods within the focus of this thesis and the focus of the \acl{MRS} group at \ac{CTU} in Prague.
+\textbf{(1) Development of a control system for real-world deployment of \acp{UAV}}, verification of new methods for control, remote sensing, and deployment in indoor and outdoor environments.
+Despite many platforms for multirotor \acp{UAV} control and deployment are available, they lack features necessary for real-world testing and deployment of the methods within the focus of this thesis and the focus of the \acl{MRS} group at \ac{CTU} in Prague.
 Therefore, the first objective and a long-term effort of the author are to develop a modular \ac{UAV} control system.
-The control system should allow safe indoor and outdoor deployment of multirotor helicopters, allow verification of high-level methods for motion planning, swarming, formation flying.
+The control system should allow safe indoor and outdoor deployment of multirotor helicopters, allow verification of high-level methods for motion planning, multi-\ac{UAV} swarming, and formation flying.
 The system should also allow basic research on low-level control and stabilization of the multirotor \ac{UAV} dynamics.
 
 \textbf{(2) Research of methods of collaborative remote sensing} by a group of \aclp{UAV} in real-world non-laboratory conditions.
@@ -538,8 +552,7 @@ Ionizing radiation has been traditionally measured onboard \acp{UAV} using dosim
 Often, the intensity is utilized only to estimate the scalar field of radiation intensity.
 Rarely, direction measurement can be obtained with an additional device, e.g., the optical collimator or a coded aperture.
 However, those solutions are not well-suited for small \acp{UAV} due to the heavyweight of the sensor equipment.
-This thesis aims to push the state-of-the-art by utilizing miniature semi-conductor pixel detectors \cite{llopart2007timepix} onboard small \acp{UAV}.
-Moreover, the novel event-based radiation detectors \cite{poikela2014timepix3} promise new opportunities to localize compact radiation sources, especially with miniature \acp{UAV}.
+This thesis aims to push the state-of-the-art by utilizing miniature semi-conductor pixel detectors \cite{llopart2007timepix} and novel event-based radiation detectors \cite{poikela2014timepix3} onboard miniature \acp{UAV}.
 
 The rest of the thesis is organized as follows.
 This thesis is a compilation of 8 included core publications, referenced as 1c -- 8c.
