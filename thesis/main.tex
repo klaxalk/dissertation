@@ -206,6 +206,8 @@
 \acrodef{ISS}[ISS]{International Space Station}
 \acrodef{ASIC}[ASIC]{Application-Specific Integrated Circuit}
 \acrodef{CMOS}[CMOS]{Complementary Metal Oxide Semiconductor}
+\acrodef{CCD}[CCD]{Charge-Coupled Device}
+\acrodef{LEO}[LEO]{Low-Earth Orbit}
 
 %%}
 
@@ -1373,33 +1375,57 @@ The Timepix sensor \cite{llopart2007timepix, poikela2014timepix3} is an innovati
 Despite it being originally developed for medical imaging \cite{ballabriga2018asic} and laboratory measurements, the Timepix has found applications even outside laboratory environments.
 Timepix pixel detectors are unique for their capability to measure traces of incoming ionizing particles with the detector.
 With those traces, machine learning algorithms can be used to deduce the particle type, the energy of each particle \cite{granja2018resolving, baca2019timepix}.
-Long-term ability of radiation dosimetry with Timepix detectors is 
+Long-term and large-scale capability of radiation dosimetry with Timepix detectors has been also tested in space outside of the \ac{ISS}.
+Several satellites included the Timepix as their payloads: ESA's Proba-V \cite{granja2014directional, granja2016satram}, British TechDemoSat-2 \cite{furnell2018first}, and the Japanese RISESat \cite{filgas2019risepix}.
 
-\todo{general info about VZLUSAT-1}
-\cite{urban2017vzlusat} % general info about the satellite
-\cite{daniel2019inorbit} % about the commisionning
+The second use of radiation detectors in space is dedicated to capturing X-Ray/Gamma ray photons through a focusing device of a telescope.
+X-Ray observatories can not be deployed on the Earth's surface due to the presence of the atmosphere.
+The state-of-the-art observatories such as Chandra \cite{weisskopf2000chandra}, Swift \cite{gehrels2004swift}, and Fermi \cite{atwood2009large} typically use scintillating detectors to measure the incoming light, or \ac{CCD} detectors for low-energy X-rays.
+\ac{CMOS} detectors are rarely used in space applications, mainly due to undesired noise characteristics.
+However, Timepix detectors poses a special mechanism to produce images completely without noise, which allows to capture even single photon event.
 
-\todo{VZLUSAT-1 as terrestrial gamma-ray monitor}
-\cite{daniel2016terrestrial}
-
-\todo{miniaturized x-ray telescope}
-\cite{baca2016miniaturized}
-\cite{baca2018timepix} % results after 1st year
-
-\todo{proposal of rocket experiment experiment}
-\cite{daniel2017xray}
-
-\todo{ROS system for Timepix detectors}
-\cite{baca2018rospix}
-
-\todo{results from the rocket experiment}
-\cite{urban2020rex}
+We add to the list an embedded and lite-weight design of a Timepix payload for the first Czech CubeSat satellite, the VZLUSAT-1 \cite{urban2017vzlusat, daniel2019inorbit}.
+The payload was dedicated to radiation mapping of Earth's \ac{LEO} \cite{baca2018timepix} and capturing images using the onboard X-Ray telescope \cite{baca2016miniaturized}.
+The satellite has been operational for more than 3 years.
+New radiation data are being processed on regular basis while being added to an open-source dataset\footnote{\url{https://github.com/klaxalk/vzlusat-timepix-data}} potentially useful for the community of future CubeSat designers.
+Further research let to a design of a one-time sub-orbital rocket experiment \cite{daniel2017xray, urban2020rex}.
+A dedicated payload with two Timepix sensors were designed and developed based upon the \acl{ROS} \cite{baca2018rospix}.
+Embedded hardware with \ac{ROS} automatically managed recording of the measured data in real time.
+This crossover of technologies later allowed to continue on the development of \ac{ROS}-based Timepix technologies for the use onboard \aclp{UAV}.
 
 \subsection{Localization and mapping of ionizing radiation sources by \acp{UAV}}
 
-\cite{baca2019timepix}
-\cite{stibinger2020localization}
-\cite{baca2020gamma}
+In the field of radiation sensing, unmanned robotic vehicles offer several advantages over conventional handheld detectors or piloted aircraft.
+These advantages can be exploited in a wide variety of applications.
+
+Following the 2011 disaster at the \ac{FDNPP}, considerable amounts of radioactive material have been released into the plant area.
+Several \acp{UGV} have been deployed directly inside the damaged reactor buildings of \ac{FDNPP} under remote control.
+Various radiation detection methods have been tested inside the power plant, including a coded aperture scintillator \cite{ohno2011robotic}, a semiconductor digital dosimeter \cite{nagatani2013emergency}, a Compton event camera composed of two scintillators \cite{sato2019radiation}, and a time-of-flight gamma camera \cite{kinoshita2014development}.
+Ground-based robots offer higher payload capacity and the ability to carry heavier sensory equipment than most aerial vehicles.
+On the other hand, these robots tend to be relatively bulky, struggle to navigate the cluttered corridors and staircases inside the damaged buildings, and generally move slower than a multirotor aircraft.
+
+\acp{UAV} have been utilized to map the spread of the radioactive material outside of the power plant.
+These range from large aircraft weighing more than \SI{90}{\kilogram} equipped with heavy scintillation detectors \cite{sanada2015aerial, towler2012radiation, jiang2016prototype}
+to compact multi-rotors suitable for flying along a pre-defined trajectory close to the ground \cite{macfarlane2014lightweight, christie2017radiation, martin20163d}.
+Outside of Japan, several projects have employed \acp{UAV} for radiation intensity mapping around uranium ore mines \cite{salek2018mapping, keatley2018source, martin2015use}.
+
+In \cite{han2013lowcost}, multiple fixed-wing \acp{UAV} equipped with miniature scintillators are used for contour analysis of an irradiated area.
+Trajectory planning and data processing are performed offline, contrary to our approach, which estimates the position of the source in real-time during the flight.
+In \cite{newaz2016uav}, the contour analysis is tackled using a single multirotor \ac{UAV}. The contour analysis uses a Gaussian mixture model to estimate multiple radiation sources' positions with overlapping intensity fields.
+The projects mentioned above utilize unmanned vehicles to deliver a radiation sensor into a hazardous environment.
+However, the approaches do not respond to measured data in real-time and thus do not exploit the mobility of \acp{UAV} to improve the measurement.
+
+Active path-planning driven by the onboard measurements has been shown in \cite{towler2012radiation} for an outdoor environment and in \cite{mascarich2018radiation} for a GPS-denied indoor environment.
+Both of these works rely on a scintillator sensor to estimate the radiation intensity in the \ac{UAV}'s current position.
+As a result, the employed aerial platforms have to be large with a payload capacity exceeding \SI{2}{\kilogram}.
+As in \cite{towler2012radiation}, the aerial platform is a \SI{90}{\kilogram} unmanned aerial helicopter, which significantly limits its deployment conditions due to personal safety and considerable minimum distance to obstacles in the environment.
+
+The lack of lightweight radiation detectors with immediate readout capability severely limits the application potential of aerial dosimetry.
+However, the Timepix pixel detectors are ideal for the use onboard micro \acp{UAV} thanks to their low weight, small size and the absence of any active cooling mechanism.
+We propose a \ac{UAV} system for outdoor and indoor environments while utilizing the know-how obtained with the work on the embedded space applications.
+The \ac{ROS} interface for Timepix \cite{baca2018rospix}, originally developed for a suborbital rocket experiment \cite{urban2020rex}, has allowed the technology transfer to the robotics field.
+However, a new robotic methodology for motion planning and exploration needed to be developed to accommodate and utilize the proposed measurement system's specifics \cite{stibinger2020localization}.
+Moreover, the Compton camera mechanism \cite{turecek2018compton}, is being utilized to provide the smallest real-time single-sensor Compton camera ever used on a \acp{UAV} \cite{baca2020gamma}.
 
 %%}
 
