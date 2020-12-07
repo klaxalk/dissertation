@@ -1351,7 +1351,7 @@ The full-stack Aerostack system\footnote{Aerostack, \url{http://github.com/Visio
 The system is continuously being updated, and it offers an option to transfer to a real-world platform.
 According to the preprint\cite{suarez2020skyeye} where the authors used Aerostack during the MBZIRC 2020 competition, the system's real-world deployment is possible.
 However, with the used DJI-based flight controller, the control command supplied to the underlying embedded control layer are limited to desired orientation and thrust.
-This level of control limits the potential precision and control authority comparing to our system. 
+This level of control limits the potential precision and control authority comparing to our system.
 Furthermore, the system lacks the feature of switching between multiple frames of reference, which is one of our system's contributions.
 As it happens, the team of authors of Aerostack did not compete in the wall-building challenge of MBZIRC 2020, in which we found the feature to be crucial to precisely collect bricks by a group of \acp{UAV}.
 
@@ -1368,7 +1368,9 @@ For example, a novel adaptive backstepping controller \cite{zhang2019robust, lab
 The proposed extension to \emph{geometric tracking on SE(3)} \cite{lee2010geometric} can be further improved with remarks from \cite{lee2013nonlinear} to provide robust control to bounded uncertainties.
 Furthermore, nonlinear \ac{MPC} controllers are becoming popular \cite{nascimento2019nmpc, pereira2019nonlinear, kamel2017robust}, thanks to their inherent ability to deal with obstacle avoidance.
 However, when dealing not just with theoretical work but also with the deployment of \acp{UAV} in real-world conditions, we favor practicality over complexity.
-We therefore propose the use of relatively simple controllers (described further in \refsec{sec:reference_controller}), with well tractable performance.
+We therefore propose the use of relatively simple controllers \cite{baca2020mrs}, with well tractable inner mechanisms.
+
+%%{ Tab: embedded controllers
 
 \begin{table}
   \centering
@@ -1386,6 +1388,10 @@ We therefore propose the use of relatively simple controllers (described further
   \end{tabular}
   \caption{Comparison of commonly-used embedded flight controllers and low-level control systems. The Pixhawk flight controller was chosen due to several factors: both the hardware and software is open-source, the controller is modular enough to be used on a variety of custom multirotor platforms, Pixhawk supports both hardware- and software-in-the-loop simulation, can be used outside of laboratory conditions, and supports attitude rate input.\label{tab:embedded_flight_controllers}}
 \end{table}
+
+%%}
+
+%%{ Tab: UAV systems
 
 \begin{table*}
   \centering
@@ -1406,6 +1412,8 @@ We therefore propose the use of relatively simple controllers (described further
   \end{tabular}
   \caption{Comparison of high-level open-source \ac{UAV} systems. The proposed system is extensible and modular, comes with an extensive simulation environment, is designed to be used outside of laboratory conditions, provides the novel multi-frame localization estimator, and supplies the attitude rate command to the underlying embedded flight controller.\label{tab:uav_systems}}
 \end{table*}
+
+%%}
 
 The proposed system goes beyond existing systems with
 \begin{itemize}
