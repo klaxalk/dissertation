@@ -583,18 +583,8 @@ The first category, a \emph{Pre-Ph.D. research}, consists of publications based 
 Although, some of these were written and submitted during the author's Ph.D. studies.
 The second category is the research stream \ac{UAV} platform development for research validation and reliable deployment of novel methods in control, navigation, formation flying, and swarming.
 Thirdly, the largest group of the author's publications is from the field of multi-\ac{UAV} remote sensing, swarming, and deployment.
-Lastly, the fourth category is researching ionizing radiation detection onboard unmanned vehicles such as multirotor helicopters, small satellites, and unmanned sounding rockets.
-
-\section{Multirotor UAV control system}
-
-Commercial \ac{UAV} systems are often closed-source and provide features tailored for photographers, video makers and hobby pilots.
-Autonomous operation of commercial \acp{UAV} is typically limited to a single vehicle flying outdoors under a \ac{GNSS} localization while following a set of waypoints.
-
-\todo{my contributions}
-\cite{baca2016embedded} % embedded MPC
-\cite{baca2018model} % MPC tracker
-\cite{petrlik2020robust}
-\cite{baca2020mrs} % MRS UAV System
+Lastly, the fourth category is researching ionizing radiation detection, mapping and localization.
+The author conducts an interdisciplinary transfer from space-oriented physics field to the field of unmanned vehicles such as multirotor helicopters.
 
 %%{ Fig: research graph
 
@@ -1316,19 +1306,139 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 
 %%}
 
-\todo{application of the old embedded system}
-\cite{saska2017system} % embedded
-\cite{spurny2016complex} % embedded
-\cite{chudoba2016exploration} % embedded
-\cite{saska2016formations} % embedded
-\cite{saska2017documentation}
+%%{ UAV control system
 
-\todo{the ROS system used for verification}
-\cite{faigl2017onsolution}
-\cite{giernacki2019realtime}
-\cite{petracek2020bioinspired}
-\cite{saska2020formation}
-\cite{saikin2020wildfire}
+\section{Multirotor UAV control system}
+
+Commercial \ac{UAV} systems are often closed-source and provide features tailored for photographers, video makers and hobby pilots.
+Autonomous operation of commercial \acp{UAV} is typically limited to a single vehicle flying outdoors under a \ac{GNSS} localization while following a set of waypoints.
+Therefore, commercial platforms are rarely used for research and if so, then in field where the \ac{UAV} is only considered as a \emph{sensor carrier}, without added onboard autonomy.
+
+Research-focused \acp{UAV} are most commonly equipped with a low-level embedded flight controller.
+Available flight controllers \cite{ebeid2018survey} range from feature-packed open-source systems, such as Pixhawk, to proprietary commercial units manufactured by DJI.
+Table~\ref{tab:embedded_flight_controllers} shows a comparison of often used solutions.
+Pixhawk is often used in research projects (including our project), typically running either of the two open-source firmwares: PX4 \cite{meier2015px4} and ArduPilot\footnote{\url{http://ardupilot.org}}.
+Although all of these flight stacks provide sophisticated features up to waypoint tracking and mission execution, the features are rarely used within real-world applications.
+Instead, researchers use other onboard computers to execute a custom localization system, state estimators, and flight controllers, and only low-level control commands are provided for the embedded flight controller.
+% Thus the choice of the embedded flight controller is not a crucial one as an adaption of the high-level system to a different underlying platform is often just a matter of implementation detail.
+
+Several comparable \ac{UAV} systems have been published and released.
+Table~\ref{tab:uav_systems} compares existing solution with the system proposed in this publication.
+
+The RotorS \cite{furrer2016rotors} simulator is an initial release for the Aeroworks EU project\footnote{Aeroworks EU project, \url{http://www.aeroworks2020.eu}.}.
+It provides Gazebo-based simulation of the now discontinued \emph{Ascending Technologies} \ac{UAV} system.
+The control pipeline features are basic, with little potential for transfer to real-world conditions.
+The system does not appear to be kept up-to-date, which gradually diminishes its usability and applicability.
+Moreover, the latest supported version of ROS is \emph{ROS Kinetic}, which potentially provides lower compatibility with newer hardware and software.
+
+OpenUAV\footnote{OpenUAV, \url{http://github.com/Open-UAV}} \cite{schmittle2018openuav} is a \ac{UAV} swarm simulation testbed.
+The system does not appear to allow transfer to a real-world setting, and is designed only to support prototyping of basic research in swarming.
+The \acp{UAV} are assumed to be controlled and localized solely using an embedded flight controller with PX4 firmware.
+This is comparable hardly with the numerous sensors and localization systems that our system allows to simulate and to be used in a real-world scenario.
+
+ReCOPTER\footnote{ReCOPTER, \url{http://github.com/thedinuka/ReCOPTER}} \cite{abeywardena2015design} proposes an open-source multirotor system for research.
+The available materials were released as supporting material for the published paper.
+However, no software was attached, and the materials have not been updated since.
+Similarly, a framework for drone control using the Vicon localization system named MAVwork\footnote{MAVwork, \url{http://github.com/uavster/mavwork}} \cite{mellado2013mavwork} was published in 2011, but has not been updated since.
+Although sources were made available, they offered only basic features that would be difficult to transfer into a real-world scenario.
+
+The XTDrone\footnote{XTDrone, \url{http://github.com/robin-shaun/XTDrone}} \cite{xiao2020xtdrone} simulation testbed offers many complex functionalities that are comparable with our proposed system, including simulation of onboard sensors and complex localization systems.
+However, the control pipeline relies entirely on the PX4 embedded control software.
+This significantly limits any transfer to a custom hardware platform, or even the ability to simulate realistic conditions using onboard localization systems.
+Thus, the use of XTDrone outside laboratory conditions is mostly limited to \ac{GPS}-localized flight in a non-cluttered outdoor environment.
+
+The full-stack Aerostack system\footnote{Aerostack, \url{http://github.com/Vision4UAV/Aerostack}} \cite{sanchez2016aerostack, sanchez2016reliable} was designed for deployment of multirotor \acp{UAV}.
+The system is continuously being updated, and it offers an option to transfer to a real-world platform.
+According to the preprint\cite{suarez2020skyeye} where the authors used Aerostack during the MBZIRC 2020 competition, the system's real-world deployment is possible.
+However, with the used DJI-based flight controller, the control command supplied to the underlying embedded control layer are limited to desired orientation and thrust.
+This level of control limits the potential precision and control authority comparing to our system. 
+Furthermore, the system lacks the feature of switching between multiple frames of reference, which is one of our system's contributions.
+As it happens, the team of authors of Aerostack did not compete in the wall-building challenge of MBZIRC 2020, in which we found the feature to be crucial to precisely collect bricks by a group of \acp{UAV}.
+
+Besides the Aerostack system, no other existing platform provides a full-stack system for a multirotor \ac{UAV} that is actively being supported and updated.
+Many publications provide accompanying software sources that are released without being further updated.
+By contrast, we have decided to publish and release our working system with all its components to allow members of the research community, research teams, and students to engage in \ac{UAV} research as effortlessly as possible.
+We aim to provide a thoroughly-documented open-source system to allow researchers and students to shorten their initial learning curve and to focus on their research instead of developing yet another control pipeline.
+% In our case, the future continuity of our system is supported for use in the next 5+ years through our numerous activities in projects supported by European grants\footnote{\url{https://aerial-core.eu}, \url{http://rci.cvut.cz}} and by national grants\footnote{\url{http://mrs.felk.cvut.cz}}.
+
+The proposed platform is provided with two control designs --- extended \emph{SE(3) geometric tracking} \cite{lee2010geometric} for agile and aggressive flight, and the novel \emph{MPC controller} for stable flight using a potentially unreliable state estimate.
+However, we highlight the modularity of our platform, which can easily be extended with new control approaches as needed.
+The survey of UAV controllers provides a rich list of potentially useful control techniques \cite{nascimento2019position}.
+For example, a novel adaptive backstepping controller \cite{zhang2019robust, labbadi2019robust} may provide better performance during aggressive maneuvers, thanks to the included rotor drag compensation.
+The proposed extension to \emph{geometric tracking on SE(3)} \cite{lee2010geometric} can be further improved with remarks from \cite{lee2013nonlinear} to provide robust control to bounded uncertainties.
+Furthermore, nonlinear \ac{MPC} controllers are becoming popular \cite{nascimento2019nmpc, pereira2019nonlinear, kamel2017robust}, thanks to their inherent ability to deal with obstacle avoidance.
+However, when dealing not just with theoretical work but also with the deployment of \acp{UAV} in real-world conditions, we favor practicality over complexity.
+We therefore propose the use of relatively simple controllers (described further in \refsec{sec:reference_controller}), with well tractable performance.
+
+\begin{table}
+  \centering
+  \def\arraystretch{0.8}% 1 is the default, change whatever you need
+  \setlength\tabcolsep{1.5pt} % default value: 6pt
+  \begin{tabular}{c||c|c|c|c|c}
+    \hline\noalign{\smallskip}
+    \scriptsize platform         & \begin{tabular}{@{}c@{}} \scriptsize open \\ [-0.3em] \scriptsize source\end{tabular} & \scriptsize modular                     & \scriptsize SITL/HITL  & \begin{tabular}{@{}c@{}} \scriptsize outside \\ [-0.3em] \scriptsize lab\end{tabular} & \begin{tabular}{@{}c@{}} \scriptsize rate \\ [-0.3em] \scriptsize input\end{tabular} \\
+      \noalign{\smallskip}\hline\hline\noalign{\smallskip}
+    \scriptsize \textbf{Pixhawk} & \scriptsize \textbf{SW \& HW}              & \scriptsize \textbf{+}                   & \scriptsize \textbf{+}                  & \scriptsize \textbf{+} & \scriptsize \textbf{+}                       \\
+    \scriptsize DJI              & \scriptsize -                              & \scriptsize -                            & \scriptsize - \scriptsize (proprietary) & \scriptsize +          & \scriptsize \textbf{-}                       \\
+    \scriptsize Ardupilot        & \scriptsize SW                             & \scriptsize +                            & \scriptsize +                           & \scriptsize +          & \scriptsize \textbf{-}                       \\
+    \scriptsize Parrot           & \scriptsize SW                             & \scriptsize -                            & \scriptsize +                           & \scriptsize -          & \scriptsize \textbf{-}                       \\
+    \noalign{\smallskip}\hline
+  \end{tabular}
+  \caption{Comparison of commonly-used embedded flight controllers and low-level control systems. The Pixhawk flight controller was chosen due to several factors: both the hardware and software is open-source, the controller is modular enough to be used on a variety of custom multirotor platforms, Pixhawk supports both hardware- and software-in-the-loop simulation, can be used outside of laboratory conditions, and supports attitude rate input.\label{tab:embedded_flight_controllers}}
+\end{table}
+
+\begin{table*}
+  \centering
+  \def\arraystretch{0.8}%  1 is the default, change whatever you need
+  \setlength\tabcolsep{4.0pt} % default value: 6pt
+  \begin{tabular}{c|c|c|c|c|c|c|c}
+\noalign{\smallskip}\hline
+    \small platform                       & \small modular    & \small simulation & \begin{tabular}{@{}c@{}} \small outside \\ [-0.1em] \small lab.\end{tabular} & \begin{tabular}{@{}c@{}} \small multi-frame \\ [-0.1em] \small localization\end{tabular}  & \begin{tabular}{@{}c@{}} \small rate \\ [-0.1em] \small output\end{tabular} & \begin{tabular}{@{}c@{}} \small last \\ [-0.1em] \small updated\end{tabular} & \small reference \\
+      \noalign{\smallskip}\hline\hline\noalign{\smallskip}
+    \small \small \textbf{MRS UAV system} & \small \textbf{+}                   & \small \textbf{+} & \small \textbf{+} & \small \textbf{+}                        & \small \textbf{+}                       & \small \textbf{2020}                         & \cite{baca2020mrs}                                       \\
+    \small Aerostack                      & \small +                            & \small +          & \small +          & \small -                                 & \small -                                & \small 2020                                  & \small \cite{sanchez2016aerostack}        \\
+    \small XTDrone                        & \small +                            & \small +          & \small -          & \small -                                 & \small -                                & \small 2020                                  & \small \cite{xiao2020xtdrone}             \\
+    \small RotorS                         & \small +                            & \small +          & \small -          & \small -                                 & \small +                                & \small 2020                                  & \small \cite{furrer2016rotors}            \\
+    \small OpenUAV                        & \small -                            & \small +          & \small -          & \small -                                 & \small -                                & \small 2020                                  & \small \cite{schmittle2018openuav}        \\
+    \small ReCOPTER                       & \small -                            & \small -          & \small -          & \small -                                 & \small -                                & \small 2015                                  & \small \cite{abeywardena2015design}       \\
+    \small MAVwork                        & \small +                            & \small -          & \small -          & \small -                                 & \small -                                & \small 2013                                  & \small \cite{mellado2013mavwork}          \\
+\noalign{\smallskip}\hline
+  \end{tabular}
+  \caption{Comparison of high-level open-source \ac{UAV} systems. The proposed system is extensible and modular, comes with an extensive simulation environment, is designed to be used outside of laboratory conditions, provides the novel multi-frame localization estimator, and supplies the attitude rate command to the underlying embedded flight controller.\label{tab:uav_systems}}
+\end{table*}
+
+The proposed system goes beyond existing systems with
+\begin{itemize}
+  \item a novel bank-of-filters estimator design that overcomes challenges with diverse sensory equipment,
+  \item a heading-oriented control design, devoid of ambiguous use of Euler/Tait-Bryan angles,
+  \item a body/world disturbance estimation approach that does not rely on a specific state estimator design,
+  \item a reliable MPC-based controller with the benefits of the nonlinear SO(3) force feedback,
+  \item a system that can be employed with a variety of onboard localization systems and sensors,
+  \item an ability to supply references in coordinate frames, which differ from the feedback loop reference frame.
+\end{itemize}
+
+The system is not only innovative, but also provides practical contributions to the community.
+The open-source implementation\footnote{\url{http://github.com/ctu-mrs/mrs_uav_system}} of the proposed platform has been tested extensively in real-world settings and in conditions of outdoor fields, in a forest, indoors, in a factory, in mines, caves and tunnels, during object manipulation, during fast and aggressive flights, and in autonomous landing on a moving platform.
+The system includes a simulation environment based on the Gazebo 3D simulator with realistic sensors and models that can be run in real time.
+% The released platform is fully compatible with multiple releases of ROS (Melodic, Noetic), and is being actively used and maintained.
+The system is scalable for multiple \acp{UAV} and is well suited for research in swarming.
+
+%%}
+
+%%{ remote sensing
+
+\section{Remote sensing and data collection by UAVs}
+
+\todo{collective gathering of of objects}
+\cite{spurny2019cooperative}
+\cite{loianno2018localization}
+
+\todo{autonomous landing a on moving car}
+\cite{baca2017autonomous}
+\cite{baca2019autonomous}
+
+\todo{cooperative exploration of underground spaces}
+\cite{roucek2019darpa}
 
 % submitted -> ...
 
@@ -1351,20 +1461,14 @@ Autonomous operation of commercial \acp{UAV} is typically limited to a single ve
 \todo{planning for power line inspection}
 \cite{silano2020power}
 
-\section{Remote sensing and data collection by UAVs}
 
-\todo{collective gathering of of objects}
-\cite{spurny2019cooperative}
-\cite{loianno2018localization}
+%%}
 
-\todo{autonomous landing a on moving car}
-\cite{baca2017autonomous}
-\cite{baca2019autonomous}
-
-\todo{cooperative exploration of underground spaces}
-\cite{roucek2019darpa}
+%%{ Radiation
 
 \section{Measuring ionizing radiation, mapping and localization}
+
+%%{ extraterrestrial
 
 \subsection{Extraterrestrial radiation dosimetry and mapping}
 
@@ -1392,6 +1496,10 @@ Further research let to a design of a one-time sub-orbital rocket experiment \ci
 A dedicated payload with two Timepix sensors were designed and developed based upon the \acl{ROS} \cite{baca2018rospix}.
 Embedded hardware with \ac{ROS} automatically managed recording of the measured data in real time.
 This crossover of technologies later allowed to continue on the development of \ac{ROS}-based Timepix technologies for the use onboard \aclp{UAV}.
+
+%%}
+
+%%{ terrestrial
 
 \subsection{Localization and mapping of ionizing radiation sources by \acp{UAV}}
 
@@ -1426,6 +1534,10 @@ We propose a \ac{UAV} system for outdoor and indoor environments while utilizing
 The \ac{ROS} interface for Timepix \cite{baca2018rospix}, originally developed for a suborbital rocket experiment \cite{urban2020rex}, has allowed the technology transfer to the robotics field.
 However, a new robotic methodology for motion planning and exploration needed to be developed to accommodate and utilize the proposed measurement system's specifics \cite{stibinger2020localization}.
 Moreover, the Compton camera mechanism \cite{turecek2018compton}, is being utilized to provide the smallest real-time single-sensor Compton camera ever used on a \acp{UAV} \cite{baca2020gamma}.
+
+%%}
+
+%%}
 
 %%}
 
