@@ -1490,21 +1490,23 @@ With those traces, machine learning algorithms can be used to deduce the particl
 Long-term and large-scale capability of radiation dosimetry with Timepix detectors has been also tested in space outside of the \ac{ISS}.
 Several satellites included the Timepix as their payloads: ESA's Proba-V \cite{granja2014directional, granja2016satram}, British TechDemoSat-2 \cite{furnell2018first}, and the Japanese RISESat \cite{filgas2019risepix}.
 
-\begin{figure}
-  \centering
-  \subfloat[Image caption] {
-    \includegraphics[width=0.42\textwidth]{./fig/plots/vzusat_1_map.png} 
-  }
-  \subfloat[Image caption] {
-    \includegraphics[width=0.54\textwidth]{./fig/plots/iss_map.png} 
-  }
-\end{figure}
-
 The second use of radiation detectors in space is dedicated to capturing X-Ray/Gamma ray photons through a focusing device of a telescope.
 X-Ray observatories can not be deployed on the Earth's surface due to the presence of the atmosphere.
 The state-of-the-art observatories such as Chandra \cite{weisskopf2000chandra}, Swift \cite{gehrels2004swift}, and Fermi \cite{atwood2009large} typically use scintillating detectors to measure the incoming light, or \ac{CCD} detectors for low-energy X-rays.
 \ac{CMOS} detectors are rarely used in space applications, mainly due to undesired noise characteristics.
 However, Timepix detectors poses a special mechanism to produce images completely without noise, which allows to capture even single photon event.
+
+\begin{figure}[!h]
+  \centering
+  \subfloat[VZLUSAT-1] {
+    \includegraphics[width=0.42\textwidth]{./fig/plots/vzusat_1_map.png} 
+  }
+  \subfloat[ISS, courtesy of \cite{stoffle2015timepix}] {
+    \includegraphics[width=0.53\textwidth]{./fig/plots/iss_map_2.png} 
+  }
+  \caption{Ionizing radiation dose measured by the Timepix sensor onboard (a) VZLUSAT-1 ($\approx 500$\,km Sun-synchronous orbit), and (b) the \acl{ISS} ($\approx 350$\,km orbit).}
+  \label{fig:intro_radiation_maps}
+\end{figure}
 
 We add to the list an embedded and lite-weight design of a Timepix payload for the first Czech CubeSat satellite, the VZLUSAT-1 \cite{urban2017vzlusat, daniel2019inorbit}.
 The payload was dedicated to radiation mapping of Earth's \ac{LEO} \cite{baca2018timepix} and capturing images using the onboard X-Ray telescope \cite{baca2016miniaturized}.
