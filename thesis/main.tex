@@ -1496,17 +1496,21 @@ The state-of-the-art observatories such as Chandra \cite{weisskopf2000chandra}, 
 \ac{CMOS} detectors are rarely used in space applications, mainly due to undesired noise characteristics.
 However, Timepix detectors poses a special mechanism to produce images completely without noise, which allows to capture even single photon event.
 
+%%{ Fig: vzlusat example
+
 \begin{figure}[!h]
   \centering
   \subfloat[VZLUSAT-1] {
-    \includegraphics[width=0.42\textwidth]{./fig/plots/vzusat_1_map.png} 
+    \includegraphics[width=0.415\textwidth,trim={2.0cm 1.5cm 2.0cm 2.0cm},clip]{./fig/plots/vzlusat_map.eps} 
   }
   \subfloat[ISS, courtesy of \cite{stoffle2015timepix}] {
-    \includegraphics[width=0.53\textwidth]{./fig/plots/iss_map_2.png} 
+    \includegraphics[width=0.55\textwidth]{./fig/plots/iss_map_2.png} 
   }
   \caption{Ionizing radiation dose measured by the Timepix sensor onboard (a) VZLUSAT-1 ($\approx 500$\,km Sun-synchronous orbit), and (b) the \acl{ISS} ($\approx 350$\,km orbit).}
   \label{fig:intro_radiation_maps}
 \end{figure}
+
+%%}
 
 We add to the list an embedded and lite-weight design of a Timepix payload for the first Czech CubeSat satellite, the VZLUSAT-1 \cite{urban2017vzlusat, daniel2019inorbit}.
 The payload was dedicated to radiation mapping of Earth's \ac{LEO} \cite{baca2018timepix} and capturing images using the onboard X-Ray telescope \cite{baca2016miniaturized}.
@@ -1554,6 +1558,22 @@ We propose a \ac{UAV} system for outdoor and indoor environments while utilizing
 The \ac{ROS} interface for Timepix \cite{baca2018rospix}, originally developed for a suborbital rocket experiment \cite{urban2020rex}, has allowed the technology transfer to the robotics field.
 However, a new robotic methodology for motion planning and exploration needed to be developed to accommodate and utilize the proposed measurement system's specifics \cite{stibinger2020localization}.
 Moreover, the Compton camera mechanism \cite{turecek2018compton}, is being utilized to provide the smallest real-time single-sensor Compton camera ever used on a \acp{UAV} \cite{baca2020gamma}.
+
+%%{ Fig: example
+
+\begin{figure}[!h]
+  \centering
+  \subfloat[Visualization of the localization] {
+    \includegraphics[width=0.415\textwidth]{./fig/plots/rviz_3d.png} 
+  }
+  \subfloat[\ac{UAV} equipped with the Timepix3 sensor] {
+    \includegraphics[width=0.415\textwidth]{./fig/photos/radron_uav.jpg} 
+  }
+  \caption{Showcase from a radiation localization experiment with the MiniPIX\footnote{\url{https://advacam.com/camera/minipix}} Timepix3 Compton camera onboard a \ac{UAV}. The visualization shows the ground truth position of the radiation source (yellow) and the estimated position (red).}
+  \label{fig:intro_radiation_maps}
+\end{figure}
+
+%%}
 
 %%}
 
