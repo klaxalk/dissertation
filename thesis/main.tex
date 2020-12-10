@@ -1437,60 +1437,42 @@ The system is scalable for multiple \acp{UAV} and is well suited for research in
 
 \section{Remote sensing and data collection by UAVs}
 
-The topic of remote sensing by a group of \acp{UAV} was studied in the context of \ac{UAV} collaborative data collection and environment manipulation.
-% The task of collaborative remote sensing has been extensively studied \cite{colomina2014unmanned} in contexts of precise agriculture
-
-Remote sensing, where unmanned aerial vehicles are used as a sensor carriers, has been common since the first aerial platforms have been commercially available.
+Remote sensing by \acp{UAV} has been common since the first aerial platforms become available \cite{colomina2014unmanned, pajares2015overview}.
 Foliage and vegetation monitoring were among the first applications \cite{barrientos2011aerial}.
-In \cite{berni2009thermal} onboard thermal cameras provided information, that was later processed to make educating changes in farming in the scanned field.
-Also, authors of \cite{baluja2012assessment} provided monitoring of water status in a vineyard by conducting multi-spectral scanning of the area with an unmanned aerial vehicle.
-Such publications are examples of remote sensing, which utilizes a single UAV and a particular sensor equipment, that captures the desired data from bird's eye perspective.
-A parallel can be found in the field of radiation mapping and localization of unknown ionizing sources.
+In \cite{berni2009thermal} onboard thermal cameras provided information that was later used to make educating actions during farming in the scanned field.
+Also, water status monitoring within a vineyard \cite{baluja2012assessment} was conducted by multi-spectral scanning of the area with an \ac{UAV}.
+Nowadays, precise agriculture is a promising agricultural technique that utilizes multispectral cameras to decide upon adjustments within the agriculture processes.
+However, it is often conducted by a single \ac{UAV} dedicated to monitoring the field from a birds-eye perspective or to deliver chemicals to precise locations within the field.
 
-\subsubsection*{Remote sensing}
-
-The current state-of-the-art in remote sensing is well-documented in surveys \cite{colomina2014unmanned, pajares2015overview}.
-Particularly useful are chapters describing various sensor equipment that has been so far used onboard UAVs.
-Our interest resides in remote sensing using a coordinated fleet of multiple aircraft.
-Distributing a sensing task provides simultaneous measurement in different places and adds redundancy.
-In case of failure of a UAV, another one can replace its role and continue with the task.
-Simultaneous measurements also provide otherwise unobtainable data which can be used to alter the mission on-the-fly to achieve better results.
+Distributing the remote sensing task provides measurements in different places at once.
 Multiple UAVs equipped with gimballed cameras can be used to track a ground target \cite{sun2014distributed}.
-The redundancy increases the robustness of the system on image dropouts or camera occlusions.
-The presented system has been tested in simulation using fixed-wing aircraft, including scenarios with target search and tracking after it was detected.
-The problem of target tracking has been extended to multiple robots in \cite{farmani2015tracking}.
+The redundancy increases the robustness of the system.
+Missing information due to, e.g., image dropouts or target occlusions, can be substituted by mutual communication of the \acp{UAV}.
+The problem of target tracking by multiple \acp{UAV} is presented in \cite{farmani2015tracking}.
 Targets are estimated onboard in real time using distributed Unscented Kalman Filters \cite{wan2000unscented}.
 The path planning is also distributed to maximize the robustness of the system.
 Simulations with fixed-wing aircraft show quantifiable benefit of using distributed approach.
 
 We aim to utilize the capability fast flight and hovering of small multi-rotor vehicles to intelligently search a designated area with a given sensory equipment.
 Methods of artificial intelligence will be involved to conduct not only pre-planned missions but also autonomous missions in which actions of the fleet are influenced by currently perceived information.
-
-\subsubsection*{Distributed control and estimation}
-
-Control of a formation of multiple aircraft introduces new challenges.
+Control of a group of multiple aircraft introduces new challenges.
 If visibility between the UAVs is used to estimate their relative positions or is otherwise relevant to the task, the formation as a whole needs to be treated as a dynamical system.
 Authors of \cite{stipanovic2004decentralized} present a solution to a scenario, where aircraft require clear line of sight on the aircraft in front of them in the formation.
 Decentralized control using sliding mode controllers was successfully tested in simulation.
 Real world experiments of a system suitable for patrolling and surveillance have been conducted in \cite{ryan2007decentralized}.
-Four UAVs with completely decentralized and distributed sensing and planning communicated using an ad-hoc wireless network.
-Authors simulated a proximity sensor using GPS receivers, which were carried by people in an area approx. \SI{1}{\kilo\meter\squared}.
-The system was designed for a single human operator to coordinate the deployment of all aircraft remotely.
-A novel platform for designing and experimental verification of multi-UAV systems was presented in \cite{sanchez2016reliable}.
+Four \acp{UAV} with completely decentralized and distributed sensing and planning communicated using an ad-hoc wireless network.
+A novel platform for designing and experimental verification of multi-\ac{UAV} systems was presented in \cite{sanchez2016reliable}.
 Authors tackle various subproblems including control, planning, localization, communication and human machine interface.
-Both simulation and experimental results present an autonomous flight of four UAVs in a small area with obstacles.
+Both simulation and experimental results present an autonomous flight of four \acp{UAV} in a small area with obstacles.
 A solution with more attention to distributed measurement and estimation is presented in \cite{maza2011distributed}.
-Additional to \cite{sanchez2016reliable}, distributed task allocation and task synchronization are studied and verified using real-world scenarios of forest fire monitoring, fireman tracking, surveillance, and node deployment.
+In addition to \cite{sanchez2016reliable}, distributed task allocation and task synchronization are studied and verified using real-world scenarios of forest fire monitoring, fireman tracking, surveillance, and node deployment.
 Distributed delayed-state information filter \cite{capitan2009delayed, merino2007multi} is used to estimate the targets in real-time.
 Distributed information filter was also used in \cite{merino2007multi} for distributed estimation of the visually detected target.
-Multiple UAVs cooperatively tracked the detected targets and estimated states of other potential targets in a grid.
+Multiple \acp{UAV} cooperatively tracked the detected targets and estimated states of other potential targets in a grid.
 In the real world, communication delays often cause issues.
 Not only in estimation but also in autonomous control, communication delays have to be taken into account.
-Coupled sliding mode controller was presented in \cite{rezaee2013motion} to control a formation of UAVs using a virtual leader approach.
+Coupled sliding mode controller was presented in \cite{rezaee2013motion} to control a formation of \acp{UAV} using a virtual leader approach.
 The whole system is decentralized and was evaluated in simulations.
-
-Our goal is to improve upon the state-of-the-art by optimizing the shape of the formation of multiple UAVs to influence the estimated information in the environment.
-Additional robustness will be achieved by allocating the members of the formation dynamically, which will require generalizing the estimation and control approaches to address on-the-flight modification to goals and the composition of the team of UAVs.
 
 \todo{collective gathering of of objects}
 \cite{spurny2019cooperative}
