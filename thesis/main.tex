@@ -1439,19 +1439,19 @@ The system is scalable for multiple \acp{UAV} and is well suited for research in
 
 Remote sensing by \acp{UAV} has been common since the first aerial platforms become available \cite{colomina2014unmanned, pajares2015overview}.
 Foliage and vegetation monitoring were among the first applications \cite{barrientos2011aerial}.
-In \cite{berni2009thermal} onboard thermal cameras provided information that was later used to make educating actions during farming in the scanned field.
-Also, water status monitoring within a vineyard \cite{baluja2012assessment} was conducted by multi-spectral scanning of the area with an \ac{UAV}.
-Nowadays, precise agriculture is a promising agricultural technique that utilizes multispectral cameras to decide upon adjustments within the agriculture processes.
+In earlier attempts, thermal cameras provided information that was later used to make educating actions during farming in the scanned field \cite{berni2009thermal} .
+Also, water status monitoring within a vineyard \cite{baluja2012assessment} can be conducted by multi-spectral cameras onboard a \ac{UAV}.
+Nowadays, precise agriculture is a promising agricultural technique that utilizes multispectral cameras to decide upon adjustments within the agriculture processes \cite{fu2020wheat, zha2020improving, jang2020cost}.
 However, it is often conducted by a single \ac{UAV} dedicated to monitoring the field from a birds-eye perspective or to deliver chemicals to precise locations within the field.
 
 Distributing the remote sensing task provides measurements in different places at once.
-Multiple UAVs equipped with gimballed cameras can be used to track a ground target \cite{sun2014distributed}.
+Multiple UAVs equipped with gimballed cameras can track a ground target more reliable than a single \ac{UAV} \cite{sun2014distributed}.
 The redundancy increases the robustness of the system.
-Missing information due to, e.g., image dropouts or target occlusions, can be substituted by mutual communication of the \acp{UAV}.
-The problem of target tracking by multiple \acp{UAV} is presented in \cite{farmani2015tracking}.
-Targets are estimated onboard in real time using distributed Unscented Kalman Filters \cite{wan2000unscented}.
-The path planning is also distributed to maximize the robustness of the system.
-Simulations with fixed-wing aircraft show quantifiable benefit of using distributed approach.
+Missing information due to, e.g., image dropouts or target occlusions, can by substituted in real time by communication with neighboring \acp{UAV} \cite{baek2020optimal, farmani2015tracking}.
+Moreover, distributed state estimation can be applied in real time \cite{wan2000unscented}.
+
+Distributed fire monitoring: \cite{pham2020distributed}\\
+Distributed target interception: \cite{zhu2017distributed}
 
 We aim to utilize the capability fast flight and hovering of small multi-rotor vehicles to intelligently search a designated area with a given sensory equipment.
 Methods of artificial intelligence will be involved to conduct not only pre-planned missions but also autonomous missions in which actions of the fleet are influenced by currently perceived information.
