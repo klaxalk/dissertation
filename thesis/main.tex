@@ -1469,30 +1469,19 @@ Prior to our achievements \cite{loianno2018localization, spurny2019cooperative},
 The state-of-the art often focused on a subset of tasks needed for full autonomy, e.g., the autonomous grasping \cite{gawel2017aerial, thomas2014toward} and motion planning \cite{alejo2014collisionfree}.
 Other sub-tasks such as onboard detections of the objects, \ac{UAV} localization or the full mission autonomy are often omitted.
 The \ac{MBZIRC} 2017 challenged forced the research groups to leave ideal lab conditions, show a fully-integrated robotics system, and to provide repeatable results.
-Only handful of the 147 research groups who applied \cite{beul2019team, bahnemann2019eth, lee2019mission} were able to complete the task of automatically grasping an object and delivering it to a desired location, with us winning the challenge \cite{spurny2019cooperative}.
+Only handful of the 147 research groups who applied \cite{beul2019team, bahnemann2019eth, lee2019mission, castano2019robotics} were able to complete the task of automatically grasping an object and delivering it to a desired location, with us winning the challenge \cite{spurny2019cooperative}.
 The second challenge of autonomous landing on a moving car was also successfully tackled by a handful of groups \cite{beul2017fast,  li2019fast, battiato2017system, cantelli2017autonomous, jin2019ellipse} with only the team of Beijing Institute of Technology team \cite{jin2019ellipse} and us \cite{baca2019autonomous} completing the challenging.
-Prior to the competition, plethora of research was published on the topic.
-However, as with the first challenge, the solutions often relax important aspects of the problem, e.g., 
+Prior to the competition, plethora of research was published on the topic \cite{jin2016onboard}.
+However, as it was the case with the first \ac{MBZIRC} challenge, authors often relax on important aspects of the problem and focus on its subproblems, e.g., target detection and state estimation \cite{benini2016real, lin2017monocular}, simulation \cite{jung2015close, jung2016target, ghommam2017autonomous}, or use an external laboratory \ac{UAV} localization system \cite{ghamry2016real, lee2012autonomous, hui2013autonomous}.
+Those who attempted to solve the complete automatic landing with onboard detection, estimation, and control either conducted the manoeuvre at slow speed \cite{hoang2017vision} or while flying along a straight line \cite{borowczyk2017autonomous}.
 
-% Methods of artificial intelligence will be involved to conduct not only pre-planned missions but also autonomous missions in which actions of the fleet are influenced by currently perceived information.
-% Control of a group of multiple aircraft introduces new challenges.
-% If visibility between the UAVs is used to estimate their relative positions or is otherwise relevant to the task, the formation as a whole needs to be treated as a dynamical system.
-% Authors of \cite{stipanovic2004decentralized} present a solution to a scenario, where aircraft require clear line of sight on the aircraft in front of them in the formation.
-% Decentralized control using sliding mode controllers was successfully tested in simulation.
-% Real world experiments of a system suitable for patrolling and surveillance have been conducted in \cite{ryan2007decentralized}.
-% Four \acp{UAV} with completely decentralized and distributed sensing and planning communicated using an ad-hoc wireless network.
-% A novel platform for designing and experimental verification of multi-\ac{UAV} systems was presented in \cite{sanchez2016reliable}.
-% Authors tackle various subproblems including control, planning, localization, communication and human machine interface.
-% Both simulation and experimental results present an autonomous flight of four \acp{UAV} in a small area with obstacles.
-% A solution with more attention to distributed measurement and estimation is presented in \cite{maza2011distributed}.
-% In addition to \cite{sanchez2016reliable}, distributed task allocation and task synchronization are studied and verified using real-world scenarios of forest fire monitoring, fireman tracking, surveillance, and node deployment.
-% % Distributed delayed-state information filter \cite{, merino2007multi} is used to estimate the targets in real-time.
-% % Distributed information filter was also used in \cite{} for distributed estimation of the visually detected target.
-% % Multiple \acp{UAV} cooperatively tracked the detected targets and estimated states of other potential targets in a grid.
-% % In the real world, communication delays often cause issues.
-% % Not only in estimation but also in autonomous control, communication delays have to be taken into account.
-% % Coupled sliding mode controller was presented in \cite{rezaee2013motion} to control a formation of \acp{UAV} using a virtual leader approach.
-% % The whole system is decentralized and was evaluated in simulations.
+Since the 2017 \ac{MBZIRC} competition, the state of the art in the automatic grasping has further improved \cite{ruggiero2018aerial, feng2020packages}.
+Moreover, the subsequent \ac{MBZIRC} 2020 challenge proposed a new problem with even higher requirements.
+In the 2020 challenge, a group of \acp{UAV} was tasked to automatically building a wall from bricks, again, using only onboard sensors and computation resources.
+The task can be seen as an extension of the 2017 object-gathering challenges with higher requirements on grasping precision, the object delivery method and overall system robustness.
+The 2020 challenge again caught interest of approx. 200 research teams from all over the world.
+Even though many tried \cite{lenz2020autonomous, ankit2020multi}, only a few groups managed to automatically deliver even a single brick to the desired location \cite{baca2020autonomous, lenz2020autonomous, krizmancic2020cooperative}.
+Our solution \cite{baca2020autonomous, baca2020mrs} again managed to win the first place among many prestigious university teams in the world.
 
 %%}
 
@@ -1500,9 +1489,11 @@ However, as with the first challenge, the solutions often relax important aspect
 
 \section{Measuring ionizing radiation, mapping and localization}
 
-%%{ extraterrestria
+We focus on interdisciplinary research and transfer of know-how from ionizing radiation dosimetry for outer space applications to radiation dosimetry and localization of radiation source onboard \aclp{UAV}.
 
-\subsection{Extraterrestrial radiation dosimetry and mapping}
+%%{ outer space
+
+\subsection{Outer space radiation dosimetry and mapping}
 
 Ionizing radiation is commonly measured for two reasons in the constrained environment of space applications.
 The first one is to asses the radiation dose deposited to crew members onboard and the onboard space electronics.
