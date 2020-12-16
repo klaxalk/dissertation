@@ -115,7 +115,7 @@
 \end{minipage}%
 \end{tcolorbox}%
 %}%
-% \vspace{-0.5em}
+\vspace{-0.3em}
 }%
 
 %%}
@@ -819,7 +819,7 @@ The author conducts an interdisciplinary transfer from space-oriented physics fi
     \article{right=of chudoba2016exploration}{saska2016formations}{\tabcite{saska2016formations}}{
       \begin{tabular}{l}
         UAV formations\\
-        with migratin\\
+        with migrating\\
         virtual leader\\
         \emph{ICARCV 2016}
       \end{tabular}
@@ -1602,7 +1602,23 @@ Moreover, the Compton camera mechanism \cite{turecek2018compton}, is being utili
 
 \chapternoclear{Research-focused UAV Platform\label{chap:uav_platform}}
 
+Our initial work on relatively-localized \ac{UAV} formations \cite{saska2013adhoc, chudoba2014localization} led us to create a custom platform for experimental evaluation.
+This control system \cite{baca2016embedded} used an embedded \ac{MPC} controller executed in real time onboard in custom hardware.
+This embedded system, in conjunction with the novel relative localization system \cite{krajnik2014practical}, allowed us to conduct our first multi-\ac{UAV} research that was backed up by real-world experiments \cite{saska2016formations, saska2017system, spurny2016complex, chudoba2016exploration}.
+
+As the demands for the capabilities of the platform increased, we abandoned the embedded platform and adopted a modular approach of the \acl{ROS}.
+The first core publication in this thesis, presented at the IEEE IROS 2018 conference, proposes a model predictive tracking mechanism for fast generation of feasible control references for \acp{UAV}.
 \fullciteinbox{baca2018model}{}
+\noindent
+Obtaining a feasible control reference that satisfies state constraints of the \ac{UAV} is vital requirement for fast and precise feedback control.
+Moreover, the presented approach utilizes the \SI{8}{s} \ac{MPC} prediction horizon for a mutual \ac{UAV} collision avoidance, that is especially useful for the verification of new multi-\ac{UAV} methods.
+The presented control technique was partially responsible for our success in the MBZIRC 2018 robotic competition \cite{baca2019autonomous, loianno2018localization, spurny2019cooperative}.
+
+The \emph{MPC Tracker} \cite{baca2018model}, is however just a small part of complex system for multirotor \ac{UAV} experimental evaluation and deployment.
+With the second core publication in this thesis, we propose a modular control system for \ac{UAV} state estimation, trajectory tracking, feedback control and flight management.
+This open-source control system sets up novel paradigms, such as the multi-frame \ac{UAV} state estimation, and the heading-based control pipeline, devout of Euler and Tait-Bryan angles.
+Testing of new feedback controllers, reference generators, state estimators and other parts of the control pipeline are possible thanks to the modular design and the extensive simulation environment.
+The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic Systems and is being available as open source\footnote{\url{https://github.com/ctu-mrs/mrs_uav_system}}.
 \fullciteinbox{baca2020mrs}{}
 
 \includepaperwithimage{baca2018model}
