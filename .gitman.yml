@@ -231,7 +231,7 @@ sources_locked:
   repo: git@mrs.felk.cvut.cz:radiation/compton_camera
   sparse_paths:
   -
-  rev: 6c3bdf51a9df162c37a8d895e78d09924023d4d0
+  rev: 781f6cca8cd0372ff4b96f5f4434fc1235efb7be
   link: ros_packages/compton_camera
   scripts:
   - git submodule update --init --recursive
