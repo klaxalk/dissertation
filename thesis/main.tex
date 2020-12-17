@@ -70,8 +70,6 @@
 
 %%{ include paper box
 
-% \newcommand{\includepaper}[1]{\conditionalClearPage \fullciteinbox{#1}{This place will contain the full paper}}
-
 \newcommand{\includepaperwithimage}[1]{
   \conditionalClearPage
   \fullciteinboxwithimage{#1}{This place will contain the full paper}
@@ -1663,16 +1661,31 @@ The proposed system not only performed consistently during all the competition t
 \chapternoclear{Ionizing Radiation Detection and Localization by UAVs\label{chap:radiation}}
 \chaptermark{Ionizing Radiation Sources Localization}
 
+The first core publication related to the radiation mapping presents the results from the first year of operation of the VZLUSAT-1 nanosatellite.
+The satellite \cite{urban2017vzlusat} was launched in June, 2017 \cite{daniel2019inorbit}.
+It carried, among other scientific instruments, a miniaturized X-ray telescope with the Timepix particle detector \cite{baca2016miniaturized}.
+The author was responsible for the design, development and commissioning of the satellite payload and is responsible for the in-orbit data acquisition and data processing.
+This research represents the author's first step into the community of particle imaging and radiation dosimetry and represents an important milestone in his work.
+Without these contribution, the following work on radiation localization and mapping would probably has not been possible.
 \fullciteinbox{baca2018timepix}{}
+
+The second core publication in this field provides an overview of potential utilization of the Timepix particle imaging detector in the field of \aclp{UAV}.
+The article discusses the properties of the detector, various methods of obtaining a directional measurement to a radiation source, and proposes a method for classification of the particle tracks measured by sensor.
 \fullciteinbox{baca2019timepix}{}
+
+The next core publication in this field focuses on distributed localization of radiation sources using multiple \acp{UAV} equipped with the Timepix sensor.
+Furthermore, this work presents verification of real-world measurements onboard a \ac{UAV} against a developed real-time Monte-Carlo ray-tracing simulation model.
 \fullciteinbox{stibinger2020localization}{}
 
-Ongoing research realized in the scope of the Technology Agency of the Czech Republic project no. FW01010317 (2020 -- 2022) ``\textit{Localization of ionizing radiation soures using small unmanned helicopters equipped with a Compton camera detector}''.
-The project proposal was co-written by the thesis author and was motivated by the author's previous work on radiation measurement and mapping \cite{baca2016miniaturized, baca2018timepix, baca2018rospix, stibinger2020localization} and the work on remote sensing with \acp{UAV}.
+The aforementioned publications were motivation and a pre-cursor for project proposal for the Technology Agency of the Czech Republic.
+The project no. FW01010317 (2020 -- 2022) ``\textit{Localization of ionizing radiation soures using small unmanned helicopters equipped with a Compton camera detector}'', co-written by the thesis author, focuses on utilizing the unique properties of the Timepix3 event cameras for real-time localization and tracking of compact radiation sources.
+The last core publication presents an initial results of utilizing the Timepix3 event camera as a Compton camera sensor \cite{baca2019timepix}.
+\fullciteinbox{baca2020gamma}{}
 
 \includepaperwithimage{baca2018timepix}
 \includepaperwithimage{baca2019timepix}
 \includepaperwithimage{stibinger2020localization}
+\includepaperwithimage{baca2020gamma}
 
 %%}
 
@@ -1718,7 +1731,7 @@ The author has reached \textbf{h-index} 7 at the time of writing the thesis.
 \subsection*{Core articles in peer-reviewed journals}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={core},notkeyword={submitted},heading=none,title={}]
 
-\subsection*{Core conference proceedings}
+\subsection*{Core conference articles}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={conference},keyword={core},notkeyword={submitted},heading=none,title={}]
 
 \subsection*{Core articles --- submitted}
@@ -1736,7 +1749,7 @@ The author has reached \textbf{h-index} 7 at the time of writing the thesis.
 % \subsection*{Thesis-related articles in peer-reviewed journals only with CiteScore~(CS)}
 % \printbibliography[keyword={mine},keyword={phd_related},keyword={journal},keyword={cs},heading=none,title={}]
 
-\subsection*{Thesis-related conference proceedings}
+\subsection*{Thesis-related conference articles}
 \printbibliography[keyword={mine},keyword={phd_related},keyword={conference},notkeyword={core},notkeyword={submitted},heading=none,title={}]
 
 \subsection*{Thesis-related publications --- submitted}
@@ -1751,7 +1764,7 @@ The author has reached \textbf{h-index} 7 at the time of writing the thesis.
 \subsection*{Partially-related articles in peer-reviewed journals}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={journal},notkeyword={core},notkeyword={submitted},heading=none,title={}]
 
-\subsection*{Partially-related conference proceedings}
+\subsection*{Partially-related conference articles}
 \printbibliography[keyword={mine},keyword={phd_unrelated},keyword={conference},notkeyword={core},notkeyword={submitted},heading=none,title={}]
 
 \subsection*{Partially-related publications --- submitted}
