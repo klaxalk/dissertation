@@ -375,7 +375,7 @@ sources_locked:
   repo: git@github.com:rospix/utils
   sparse_paths:
   -
-  rev: 7cf740fdfea95428c468ac0ffffc9f02f2a6e9e0
+  rev: 119f0a1618ca86a2716ca15c72bef9fc53a4d748
   link: ros_packages/utils
   scripts:
   - git submodule update --init --recursive
