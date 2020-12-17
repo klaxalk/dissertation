@@ -1664,20 +1664,25 @@ The proposed system not only performed consistently during all the competition t
 The first core publication related to the radiation mapping presents the results from the first year of operation of the VZLUSAT-1 nanosatellite.
 The satellite \cite{urban2017vzlusat} was launched in June, 2017 \cite{daniel2019inorbit}.
 It carried, among other scientific instruments, a miniaturized X-ray telescope with the Timepix particle detector \cite{baca2016miniaturized}.
-The author was responsible for the design, development and commissioning of the satellite's payload and is responsible for the in-orbit data acquisition and data processing.
-This research represents the author's first step into the community of particle imaging and radiation dosimetry and represents an important milestone in his work.
-Without these contributions and gained know-how, the following work on radiation localization and mapping would probably has not been possible.
+The author was responsible for the design, development and commissioning of the satellite's payload and is to this day responsible for the data acquisition and processing.
+This research represents the author's first step into the community of particle imaging and radiation dosimetry.
+Without these contributions and gained know-how, the following work on radiation localization and mapping by \acp{UAV} would probably has not been possible.
+Furthermore, one of the tangents of this outer space research is the author's involvement in one of the NASA's sub-orbital rocket flights \cite{miles2017introduction, wages2019flight, daniel2017xray}.
+The thesis author designed a hardware readout interface and software, based on the \acl{ROS} \cite{baca2018rospix}, for two Timepix detectors onboard a sounding sub-orbital rocket \cite{urban2020rex}.
+The following article presents the results of 1-year of orbital radiation measurements onboard the VZLUSAT-1 nanosatellite using the Timepix sensor.
 \fullciteinbox{baca2018timepix}{}
 
 The second core publication in this field provides an overview of potential utilization of the Timepix particle imaging detector in the field of \aclp{UAV}.
-The article discusses the key properties of the detector and how they relate to various methods of obtaining a directional measurement to a radiation source, such as pinhole apertures, X-ray optics and collimators.
-To facilitate the use of the Timepix sensor, a method for classification of the measured particle track is proposed.
-The proposed classifier, as well as \ac{ROS} drivers 
+The article discusses the key properties of the detector and their relation to various methods of obtaining a directional measurement to a radiation source, such as pinhole apertures, X-ray optics and collimators.
+A method for real-time classification of the measured particle tracks is proposed.
+The proposed classifier, as well as \ac{ROS} drivers for the Timepix detector, are provided as open-source.
 Furthermore, it is concluded that the Compton camera principle shows promising properties and a real-time Monte-Carlo simulation model for the Compton camera is presented.
 \fullciteinbox{baca2019timepix}{}
 
-The next core publication in this field focuses on distributed localization of radiation sources using multiple \acp{UAV} equipped with the Timepix sensor.
+The next core publication in this field focuses on distributed localization of ionizing radiation sources using multiple \acp{UAV} equipped with the Timepix sensor.
 This work presents verification of real-world measurements onboard a \ac{UAV} against a developed real-time Monte-Carlo ray-tracing simulation model.
+Moreover, this work presents a real-time radiation source estimation and \ac{UAV} path planning approach, that exploits the asymmetrical intensity measurement response of the detector.
+Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasibility of the method.
 \fullciteinbox{stibinger2020localization}{}
 
 The aforementioned publications were motivation and a pre-cursor for project proposal for the Technology Agency of the Czech Republic.
