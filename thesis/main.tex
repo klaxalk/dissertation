@@ -1630,21 +1630,30 @@ The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic
 
 \chapternoclear{Advances in remote sensing by UAVs\label{chap:sensing}}
 
-The author of this thesis has contributed to various sub-fields of multi-\ac{UAV} research, inc. multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust}, and planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power}.
+The author of this thesis has contributed to various sub-fields of multi-\ac{UAV} research, inc. multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
+However, most the author's effort during his studies had been invested to the research scenarios proposed by the Khalifa University as the 2017 and 2020 \ac{MBZIRC} robotic challenges\footnote{\url{https://mbzirc.com}}.
 
-However, most of the effort has been invested to the research scenarios proposed by the Khalifa University as the first \ac{MBZIRC} robotic challenge.
-The following core publication in this thesis proposes a \ac{UAV} system for autonomous landing on a moving car.
-This complete system, was able to perform the fastest autonomous landing (\SI{25}{\second}) among all the teams competing in the challenge, using on onboard sensors and computational power.
-The system was evaluated extensively in simulations and various real-world conditions, and the final experiments were performed at the constrained environment of the competition venue.
+The following core publication \cite{baca2019autonomous} in this thesis proposes a \ac{UAV} system for autonomous landing on a moving car.
+This complete system was able to perform the fastest autonomous landing (\SI{25}{\second}) among all the teams competing in the challenge, using on onboard sensors and computational power.
+Onboard computer vision \cite{stepan2019vision} and nonlinear state were performed to predict the future motion of the car.
+The car was driving at the speed of \SI{15}{\kilo\meter\per\hour} in a designated area, following an 8-shaped path.
+The system was evaluated extensively in simulations and various real-world conditions, and the final experiments were successfully performed at the constrained environment of the competition venue.
 \fullciteinbox{baca2019autonomous}{}
 \noindent
 
-The second challenge in \ac{MBZIRC} 2017 competition focused on collaborative gathering of metal objects using a group of \acp{UAV}.
-The following two core publications focus on the autonomous \ac{UAV} system developed for autonomous localization \cite{stepan2019vision}, grasping and delivery of the metal objects.
-The first publication describes the complete system for estimation of the detected objects, distributed gathering, and delivery of the objects to a designated area.
+The second challenge in \ac{MBZIRC} 2017 competition focused on collaborative gathering of metal objects by a group of \acp{UAV}.
+A team of 3 \acp{UAV} was tasked with gathering colored metal discs that were both stationary and moving (attached to ground mobile robots).
+The challenge posed a multitude of subproblems including onboard computer vision \cite{stepan2019vision}, sensor fusion, state estimation, feedback control, motion planning, robot coordination and mechatronics.
+All the subproblems needed to be addressed competently and efficiently to have a chance of obtaining any score within the competition.
+The proposed system was tested extensively in simulations and in variety of outdoor conditions \cite{loianno2018localization}, after which it performed consistently as the best solution to the challenge during the competition trials in Abu Dhabi.
+The MRS team won the 1$^{\text{st}}$ place among prestigious university teams from all over the world.
+The following core publication presents the system, its core features and the experimental results.
 \fullciteinbox{spurny2019cooperative}{}
 
-\todo{}
+The third core publication (submitted to \emph{Robotics \& Autonomous Systems}) in this research stream is inspired by the MBZIRC 2020 challenge.
+The 2$^{\text{nd}}$ round of this competition focused again on \aclp{UAV} and extended the 2017 challenge.
+The following publication reports on multi-robotic brick wall construction by a team of \acp{UAV}.
+Although this task is similar to the 2017 object-gathering challenge, significant advances in \ac{UAV} control and state estimation needed to be done to successfully address the problem.
 \fullciteinbox{baca2020autonomous}{}
 
 \includepaperwithimage{baca2019autonomous}
@@ -1700,7 +1709,7 @@ Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasib
 \section{Ionizing Radiation Detection and Localization by UAVs}
 
 The aforementioned publications were motivation and a pre-cursor for project proposal for the Technology Agency of the Czech Republic.
-The project no. FW01010317 (2020 -- 2022, 8th of 384 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) ``\textit{Localization of ionizing radiation soures using small unmanned helicopters equipped with a Compton camera detector}'', co-written by the thesis author, focuses on utilizing the unique properties of the Timepix3 event cameras for real-time localization and tracking of compact radiation sources.
+The project no. FW01010317 (2020 -- 2022, 8th of 396 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) ``\textit{RADRON: Localization of ionizing radiation soures using small unmanned helicopters equipped with a Compton camera detector}'', co-written by the thesis author, focuses on utilizing the unique properties of the Timepix3 event cameras for real-time localization and tracking of compact radiation sources.
 The last core publication (submitted) presents initial project results of utilizing the Timepix3 event camera as a Compton camera sensor \cite{baca2019timepix} onboard a \ac{UAV}.
 \fullciteinbox{baca2020gamma}{}
 
