@@ -1707,8 +1707,8 @@ Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasib
 
 %%{ Results and Discussion
 
-\chapter{Results and Discussion\label{chap:results}}
-\chaptermark{Results and Discussion}
+\chapter{Discussion and Results\label{chap:results}}
+\chaptermark{Discussion and Results}
 
 In this chapter, we summarize the contributions presented in the core articles.
 Furthermore, we provide a discussion in context with the remainder of the author's work.
@@ -1720,10 +1720,32 @@ Finally, we suggest the future work in the context of the three research streams
 
 \section{Ionizing Radiation Detection and Localization by UAVs}
 
-We have come to the field of ionizing radiation detection from a different direction and using a different perspective than the rest of the community cite, specifically from the constrained environment of miniature space technologies \cite{baca2016miniaturized, baca2018timepix}.
-Where the rest of the community often attempts to mount as large radiation detectors as possibly to a \ac{UAV} (to maximize the information yield), we strife towards minimizing both the sensor and the \ac{UAV} to deploy the \ac{UAV} in tightly constraint environments.
+We have come to the field of ionizing radiation detection from a different direction and using a different perspective than the rest of the \ac{UAV} community, specifically from the constrained environment of miniature space technologies \cite{baca2016miniaturized, baca2018timepix}.
+Where the rest of the community often attempts to mount as large radiation detectors as possibly to a \ac{UAV} (to maximize measured counts-per-second), we strife towards minimizing both the sensor and the \ac{UAV} to deploy the \ac{UAV} in tightly constraint environments.
 By doing so, we can close the distance to the radiation source even in cluttered environment and, therefore, obtain even more information, thanks to the inverse square low of radiation intensity over distance.
-However, to achieve \todo{}
+The concept of obtaining as much information as possible by using large detectors is prominent throughout the state of the art.
+However, multiple factors should be considered when building an autonomous aerial system for radiation source localization.
+We identified the following four factors:
+\begin{itemize}
+  \item detector size,
+  \item aircraft size,
+  \item environmental constraints,
+  \item localization strategy.
+\end{itemize}
+As depicted in Figure~\ref{fig:radiation_cycle}, these four factors influence each other in a loop.
+With a larger sensor comes higher event count rate, which is understandably preferred by physicists.
+However, large and heavy sensors require larger aircraft with higher payload capacity.
+The aircraft size dictates the constraints on its motion through an environment; larger aircraft fly higher above the terrain and with larger safety distance from obstacles.
+Those constraints determined the search strategy that in turn typically favors sensors with higher sensitivity, therefore sensors with larger mass.
+The current state of the art does not break from this cycle in more than a couple factors.
+However, we conjecture that all four factors need to be adjusted simultaneously in order to show a breakthrough in the field.
+
+Making the sensor smaller will lower its weight as well as the raw count-per-second information yield.
+However, miniature sensors can be mounted on a miniature \ac{UAV} that can safely fly much closer to environmental obstacles.
+Flying close to obstacles requires more intelligent onboard autonomy, capable of sensing the obstacles and planning the \ac{UAV} motion with respect to the environment.
+Proximity to obstacles opens new possibilities for search strategies, which can utilize the increased abilities of today autonomous systems and the potential to close the distance to the radiation source.
+We aim to make such breakthrough with know-how in both research fields.
+Moreover, as discussed in the following paragraphs, our latest results \cite{baca2020gamma} allow to estimate the direction to the radiation source besides its intensity, even using a miniature radiation event camera.
 
 %%{ endless circle diagram
 
@@ -1778,11 +1800,11 @@ However, to achieve \todo{}
       % outer circle nodes
       \node[punkt] (sensor) {Sensor size};
 
-      \node[punkt, inner sep=5pt, below = of sensor, shift = {(-6.0, -0.8)}] (aircraft) {Aircraft\\size};
+      \node[punkt, inner sep=5pt, below = of sensor, shift = {(-6.0, -0.75)}] (aircraft) {Aircraft\\size};
 
       \node[punkt, inner sep=5pt, below = of sensor, shift = {(0.0, -4.0)}] (constraints) {Environment constraints};
 
-      \node[punkt, inner sep=5pt, below = of sensor, shift = {(6.0, -0.8)}] (strategy) {Localization strategy};
+      \node[punkt, inner sep=5pt, below = of sensor, shift = {(6.0, -0.75)}] (strategy) {Localization strategy};
 
       % inner circle nodes
       \node[small_punkt, inner sep=5pt, below = of sensor, shift = {(0.0, 0.5)}] (sensor2) {\scriptsize Sensor size};
@@ -1822,7 +1844,7 @@ However, to achieve \todo{}
       % outer inner arrows
       \draw [->] ($(sensor.south)+(0, 0)$) -- ($(sensor2.north)$) node [midway, shift = {(0.0, 0.0em)}] {smaller};
       \draw [->] ($(aircraft.east)+(0, 0)$) -- ($(aircraft2.west)+(0.0, 0.0)$) node [midway, shift = {(0.0, 0.0em)}] {smaller};
-      \draw [->] ($(constraints.north)+(0, 0)$) -- ($(constraints2.south)+(0.0, 0.0)$) node [midway, shift = {(0.0, 0.0em)}] {more constrained};
+      \draw [->] ($(constraints.north)+(0, 0)$) -- ($(constraints2.south)+(0.0, 0.0)$) node [midway, shift = {(0.0, 0.0em)}] {more complex};
       \draw [->] ($(strategy.west)+(0, 0)$) -- ($(strategy2.east)+(0.0, 0.0)$) node [midway, shift = {(0.0, 0.0em)}] {smarter};
 
       % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text1) {\huge 2 kg};
@@ -1840,7 +1862,7 @@ However, to achieve \todo{}
 
   \end{adjustbox}
 
-  \caption{\todo{}}
+  \caption{The four interconnected factors of an autonomous aircraft system for localization of ionizing radiation sources. All four factors need to be adjusted simultaneously in order to introduce a breakthrough in the field (the smaller red cycle).}
   \label{fig:radiation_cycle}
 
 \end{figure}
@@ -1848,10 +1870,10 @@ However, to achieve \todo{}
 %%}
 
 We have made contributions that allow us to employ the innovative Timepix sensors and Timepix3 event cameras onboard \acp{UAV}.
-We proposed the ROSpix\footnote{\url{https://github.com/rospix}} interface \cite{baca2018rospix} for the \acl{ROS} together with a particle classification pipeline \cite{baca2019timepix}.
-The software and tools available for the Timepix-family of detectors is dedicated solely for laboratory use and expects a human-in-the loop.
+We proposed the Rospix\footnote{\url{https://github.com/rospix}} interface \cite{baca2018rospix} for the \acl{ROS} together with a particle classification pipeline \cite{baca2019timepix}.
+The software and tools available for the Timepix family of detectors is dedicated solely for laboratory use and expects a human-in-the loop.
 Any specific application outside of the intended use requires a specific hardware and software to be developed in collaboration with the sensor interface manufacturer, as it was, e.g., for the VZLUSAT-1 nanosatellite \cite{baca2016embedded}.
-The \ac{ROS} tools provided through ROSpix allow full automation using standard tools within the robotics community.
+The \ac{ROS} tools provided through Rospix allow full automation using standard tools within the robotics community.
 Moreover, the particle classification pipeline is the first to be executable in real time during the data acquisition and is available as open source.
 The classification pipeline was trained using diverse radiation data gathered by the VZLUSAT-1 nanosatellite mission \cite{baca2018timepix}.
 
