@@ -1528,7 +1528,7 @@ However, Timepix detectors poses a special mechanism to produce images completel
 We add to the list an embedded and lite-weight design of a Timepix payload for the first Czech CubeSat satellite, the VZLUSAT-1 \cite{urban2017vzlusat, daniel2019inorbit}.
 The payload was dedicated to radiation mapping of Earth's \ac{LEO} \cite{baca2018timepix} and capturing images using the onboard X-Ray telescope \cite{baca2016miniaturized}.
 The satellite has been operational for more than 3 years.
-New radiation data are being processed on regular basis while being added to an open-source dataset\footnote{\url{https://github.com/klaxalk/vzlusat-timepix-data}} potentially useful for the community of future CubeSat designers.
+New radiation data are being processed on regular basis while being added to an open-source dataset\footnote{\url{https://github.com/klaxalk/vzlusat-radiation-data}} potentially useful for the community of future CubeSat designers.
 Further research let to a design of a one-time sub-orbital rocket experiment \cite{daniel2017xray, urban2020rex}.
 A dedicated payload with two Timepix sensors were designed and developed based upon the \acl{ROS} \cite{baca2018rospix}.
 Embedded hardware with \ac{ROS} automatically managed recording of the measured data in real time.
@@ -1710,12 +1710,28 @@ Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasib
 \chapter{Results and Discussion\label{chap:results}}
 \chaptermark{Results and Discussion}
 
+In this chapter, we summarize the contributions presented in the core articles.
+Furthermore, we provide a discussion in context with the remainder of the author's work.
+Finally, we suggest the future work in the context of the three research streams.
+
+\section{Research-focused UAV Platform}
+
+\section{Advances in remote sensing by UAVs}
+
 \section{Ionizing Radiation Detection and Localization by UAVs}
 
-The aforementioned publications were motivation and a pre-cursor for project proposal for the Technology Agency of the Czech Republic.
-The project no. FW01010317 (2020 -- 2022, 8th of 396 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) ``\textit{RADRON: Localization of ionizing radiation soures using small unmanned helicopters equipped with a Compton camera detector}'', co-written by the thesis author, focuses on utilizing the unique properties of the Timepix3 event cameras for real-time localization and tracking of compact radiation sources.
-The last core publication (submitted) presents initial project results of utilizing the Timepix3 event camera as a Compton camera sensor \cite{baca2019timepix} onboard a \ac{UAV}.
+
+
+The previously mentioned contributions were a motivation and a pre-cursor for project proposal for the Technology Agency of the Czech Republic.
+Such interdisciplinary task as the localization of ionizing radiation sources can hardly be accomplished by institution specializing on either of the two fields.
+Therefore, the thesis author co-wrote a project proposal, together with \emph{Advacam, s.r.o.}, and the \emph{Czech Metrology Institute}, that would allow us to focus on the topic and dedicate more resources to the research.
+The project no. FW01010317 (2020 -- 2022, 8$^{\text{th}}$ of 396 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) called ``\textit{RADRON: Localization of ionizing radiation sources using small unmanned helicopters equipped with a Compton camera detector}'', co-written by the thesis author, focuses on utilizing the unique properties of the Timepix3 event cameras for real-time localization and tracking of compact radiation sources.
+First project results, submitted to \emph{IEEE ICRA} \cite{baca2020gamma}, show the Timepix3 event camera used as a single-detector Compton camera onboard a \ac{UAV}.
+The system was able to localize a relatively weak gamma source using only onboard sensors.
 \fullciteinbox{baca2020gamma}{}
+The future work in this research field is co-aligned with the project goals.
+We focus on development of a miniature \ac{UAV} equipped with a Compton camera based on the Timepix3 technology.
+We aim at combining the Compton camera principle \cite{baca2020gamma} for localization of compact gamma sources, together with the count-based system \cite{stibinger2020localization} that can be utilized for ionizing charged particles.
 
 %%}
 
