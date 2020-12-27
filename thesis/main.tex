@@ -1720,9 +1720,146 @@ Finally, we suggest the future work in the context of the three research streams
 
 \section{Ionizing Radiation Detection and Localization by UAVs}
 
+We have come to the field of ionizing radiation detection from a different direction and using a different perspective than the rest of the community cite, specifically from the constrained environment of miniature space technologies \cite{baca2016miniaturized, baca2018timepix}.
+Where the rest of the community often attempts to mount as large radiation detectors as possibly to a \ac{UAV} (to maximize the information yield), we strife towards minimizing both the sensor and the \ac{UAV} to deploy the \ac{UAV} in tightly constraint environments.
+By doing so, we can close the distance to the radiation source even in cluttered environment and, therefore, obtain even more information, thanks to the inverse square low of radiation intensity over distance.
+However, to achieve \todo{}
 
+%%{ endless circle diagram
 
-The previously mentioned contributions were a motivation and a pre-cursor for project proposal for the Technology Agency of the Czech Republic.
+\begin{figure}
+  \begin{adjustbox}{max totalsize={1.0\textwidth}{0.90\textheight}, center}
+
+    %%{ tikzset
+
+    \tikzset{
+      >=stealth',
+      punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        text width=5.7em,
+        minimum height=2em,
+        text centered},
+      just_text/.style={
+        rectangle,
+        text width=10.0em,
+        minimum height=2em,
+        text centered},
+      small_punkt/.style={
+        rectangle,
+        rounded corners,
+        draw=black, very thick,
+        text width=4.0em,
+        text centered},
+      arrow/.style={
+        ->,
+        very thick,
+        shorten <=2pt,
+        shorten >=2pt,},
+      arrow_gray/.style={
+        ->,
+        color=gray, very thick,
+        shorten <=2pt,
+        shorten >=2pt,},
+      arrow_red/.style={
+        ->,
+        draw=red, very thick,
+        shorten <=2pt,
+        shorten >=2pt,}
+      }
+
+    %%}
+
+    %%{ tikzfigure
+
+    \begin{tikzpicture}[node distance=1cm, auto,]
+
+      % outer circle nodes
+      \node[punkt] (sensor) {Sensor size};
+
+      \node[punkt, inner sep=5pt, below = of sensor, shift = {(-6.0, -0.8)}] (aircraft) {Aircraft\\size};
+
+      \node[punkt, inner sep=5pt, below = of sensor, shift = {(0.0, -4.0)}] (constraints) {Environment constraints};
+
+      \node[punkt, inner sep=5pt, below = of sensor, shift = {(6.0, -0.8)}] (strategy) {Localization strategy};
+
+      % inner circle nodes
+      \node[small_punkt, inner sep=5pt, below = of sensor, shift = {(0.0, 0.5)}] (sensor2) {\scriptsize Sensor size};
+
+      \node[small_punkt, inner sep=5pt, right = of aircraft, shift = {(0.5, -0.0)}] (aircraft2) {\scriptsize Aircraft\\size};
+
+      \node[small_punkt, inner sep=5pt, above = of constraints, shift = {(0.0, -0.5)}] (constraints2) {\scriptsize Environment\\constraints};
+
+      \node[small_punkt, inner sep=5pt, left = of strategy, shift = {(-0.5, -0.0)}] (strategy2) {\scriptsize Localization\\strategy};
+
+      % We make a dummy figure to make everything look nice.
+      \path[->] ($(sensor.west)+(0, 0)$) edge [arrow,bend right=45] ($(aircraft.north)$);
+
+      % \path[->] ($(sensor2.west)+(0, 0)$) edge [arrow, bend right=45, dashed] ($(aircraft.north)+(0.5, 0.0)$);
+
+      \path[->] ($(aircraft.south)+(0, 0)$) edge [arrow,bend right=45] ($(constraints.west)$);
+
+      \path[->] ($(constraints.east)+(0, 0)$) edge [arrow,bend right=45] ($(strategy.south)$);
+
+      \path[->] ($(strategy.north)+(0, 0)$) edge [arrow,bend right=45] ($(sensor.east)$);
+
+      % inner circle paths
+      \path[->] ($(sensor2.west)+(0, 0)$) edge [arrow_red, bend right=45, dashed] ($(aircraft2.north)+(0.0, 0.0)$);
+
+      \path[->] ($(aircraft2.south)+(0, 0)$) edge [arrow_red, bend right=45, dashed] ($(constraints2.west)+(0.0, 0.0)$);
+
+      \path[->] ($(constraints2.east)+(0, 0)$) edge [arrow_red, bend right=45, dashed] ($(strategy2.south)+(0.0, 0.0)$);
+
+      \path[->] ($(strategy2.north)+(0, 0)$) edge [arrow_red, bend right=45, dashed] ($(sensor2.east)+(0.0, 0.0)$);
+
+      % % most outer arrows
+      % \path[->] ($(sensor.north)+(0, 0)$) edge [arrow] ($(sensor.north)+(0.0, 0.5)$);
+      % \path[->] ($(aircraft.west)+(0, 0)$) edge [arrow] ($(aircraft.west)+(-0.5, 0.0)$);
+      % \path[->] ($(constraints.south)+(0, 0)$) edge [arrow] ($(constraints.south)+(0.0, -0.5)$);
+      % \path[->] ($(strategy.east)+(0, 0)$) edge [arrow] ($(strategy.east)+(0.5, 0.0)$);
+
+      % outer inner arrows
+      \draw [->] ($(sensor.south)+(0, 0)$) -- ($(sensor2.north)$) node [midway, shift = {(0.0, 0.0em)}] {smaller};
+      \draw [->] ($(aircraft.east)+(0, 0)$) -- ($(aircraft2.west)+(0.0, 0.0)$) node [midway, shift = {(0.0, 0.0em)}] {smaller};
+      \draw [->] ($(constraints.north)+(0, 0)$) -- ($(constraints2.south)+(0.0, 0.0)$) node [midway, shift = {(0.0, 0.0em)}] {more constrained};
+      \draw [->] ($(strategy.west)+(0, 0)$) -- ($(strategy2.east)+(0.0, 0.0)$) node [midway, shift = {(0.0, 0.0em)}] {smarter};
+
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text1) {\huge 2 kg};
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text2) {\huge 10 kg};
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text3) {\huge 100 m clearance};
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text5) {\huge pre-planned scanning \& ex-post processing};
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text6) {\huge 100 g};
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text6) {\huge 1.5 kg};
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text6) {\huge 5 m\\clerance};
+      % \node[just_text, inner sep=5pt, below = of sensor, shift = {(0, -3.0)}] (text6) {\huge Onboard\\AI};
+
+    \end{tikzpicture}
+
+    %%}
+
+  \end{adjustbox}
+
+  \caption{\todo{}}
+  \label{fig:radiation_cycle}
+
+\end{figure}
+
+%%}
+
+We have made contributions that allow us to employ the innovative Timepix sensors and Timepix3 event cameras onboard \acp{UAV}.
+We proposed the ROSpix\footnote{\url{https://github.com/rospix}} interface \cite{baca2018rospix} for the \acl{ROS} together with a particle classification pipeline \cite{baca2019timepix}.
+The software and tools available for the Timepix-family of detectors is dedicated solely for laboratory use and expects a human-in-the loop.
+Any specific application outside of the intended use requires a specific hardware and software to be developed in collaboration with the sensor interface manufacturer, as it was, e.g., for the VZLUSAT-1 nanosatellite \cite{baca2016embedded}.
+The \ac{ROS} tools provided through ROSpix allow full automation using standard tools within the robotics community.
+Moreover, the particle classification pipeline is the first to be executable in real time during the data acquisition and is available as open source.
+The classification pipeline was trained using diverse radiation data gathered by the VZLUSAT-1 nanosatellite mission \cite{baca2018timepix}.
+
+Our first contributions related to the radiation dosimetry onboard \acp{UAV} consists of the review of radiation localization options for \acl{UAV}, the particle classification pipeline, and a real-time Monte Carlo ray-tracing model for a dual-sensor Compton camera \cite{baca2019timepix}.
+Furthermore, we investigate the use of the bare Timepix sensor for multi-robotic localization of compact radiation sources \cite{stibinger2020localization}.
+We show the potential of the approach using realistic robotic simulations together with a real-time Monte Carlo ray-tracing model of gamma radiation.
+
+The previously mentioned contributions were a motivation and a precursor for project proposal for the Technology Agency of the Czech Republic.
 Such interdisciplinary task as the localization of ionizing radiation sources can hardly be accomplished by institution specializing on either of the two fields.
 Therefore, the thesis author co-wrote a project proposal, together with \emph{Advacam, s.r.o.}, and the \emph{Czech Metrology Institute}, that would allow us to focus on the topic and dedicate more resources to the research.
 The project no. FW01010317 (2020 -- 2022, 8$^{\text{th}}$ of 396 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) called ``\textit{RADRON: Localization of ionizing radiation sources using small unmanned helicopters equipped with a Compton camera detector}'', co-written by the thesis author, focuses on utilizing the unique properties of the Timepix3 event cameras for real-time localization and tracking of compact radiation sources.
