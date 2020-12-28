@@ -1359,15 +1359,6 @@ By contrast, we have decided to publish and release our working system with all 
 We aim to provide a thoroughly-documented open-source system to allow researchers and students to shorten their initial learning curve and to focus on their research instead of developing yet another control pipeline.
 % In our case, the future continuity of our system is supported for use in the next 5+ years through our numerous activities in projects supported by European grants\footnote{\url{https://aerial-core.eu}, \url{http://rci.cvut.cz}} and by national grants\footnote{\url{http://mrs.felk.cvut.cz}}.
 
-The proposed platform is provided with two control designs --- extended \emph{SE(3) geometric tracking} \cite{lee2010geometric} for agile and aggressive flight, and the novel \emph{MPC controller} for stable flight using a potentially unreliable state estimate.
-However, we highlight the modularity of our platform, which can easily be extended with new control approaches as needed.
-The survey of UAV controllers provides a rich list of potentially useful control techniques \cite{nascimento2019position}.
-For example, a novel adaptive backstepping controller \cite{zhang2019robust, labbadi2019robust} may provide better performance during aggressive maneuvers, thanks to the included rotor drag compensation.
-The proposed extension to \emph{geometric tracking on SE(3)} \cite{lee2010geometric} can be further improved with remarks from \cite{lee2013nonlinear} to provide robust control to bounded uncertainties.
-Furthermore, nonlinear \ac{MPC} controllers are becoming popular \cite{nascimento2019nmpc, pereira2019nonlinear, kamel2017robust}, thanks to their inherent ability to deal with obstacle avoidance.
-However, when dealing not just with theoretical work but also with the deployment of \acp{UAV} in real-world conditions, we favor practicality over complexity.
-We therefore propose the use of relatively simple controllers \cite{baca2020mrs}, with well tractable inner mechanisms.
-
 %%{ Tab: embedded controllers
 
 \begin{table}
@@ -1412,22 +1403,6 @@ We therefore propose the use of relatively simple controllers \cite{baca2020mrs}
 \end{table*}
 
 %%}
-
-The proposed system goes beyond existing systems with
-\begin{itemize}
-  \item a novel bank-of-filters estimator design that overcomes challenges with diverse sensory equipment,
-  \item a heading-oriented control design, devoid of ambiguous use of Euler/Tait-Bryan angles,
-  \item a body/world disturbance estimation approach that does not rely on a specific state estimator design,
-  \item a reliable MPC-based controller with the benefits of the nonlinear SO(3) force feedback,
-  \item a system that can be employed with a variety of onboard localization systems and sensors,
-  \item an ability to supply references in coordinate frames, which differ from the feedback loop reference frame.
-\end{itemize}
-
-The system is not only innovative, but also provides practical contributions to the community.
-The open-source implementation\footnote{\url{http://github.com/ctu-mrs/mrs_uav_system}} of the proposed platform has been tested extensively in real-world settings and in conditions of outdoor fields, in a forest, indoors, in a factory, in mines, caves and tunnels, during object manipulation, during fast and aggressive flights, and in autonomous landing on a moving platform.
-The system includes a simulation environment based on the Gazebo 3D simulator with realistic sensors and models that can be run in real time.
-% The released platform is fully compatible with multiple releases of ROS (Melodic, Noetic), and is being actively used and maintained.
-The system is scalable for multiple \acp{UAV} and is well suited for research in swarming.
 
 %%}
 
@@ -1714,7 +1689,49 @@ In this chapter, we summarize the contributions presented in the core articles.
 Furthermore, we provide a discussion in context with the remainder of the author's work.
 Finally, we suggest the future work in the context of the three research streams.
 
-\section{Research-focused UAV Platform}
+\section{Research-focused UAV System}
+
+The proposed \ac{UAV} system \cite{baca2020mrs, baca2018model} provides students and researchers the means to develop and test new methods in the field of feedback control, tracking, estimation, and planning.
+The system is modular and allows anyone to add new modules, which can be safely tested in simulations and even during a real-world flight.
+Moreover, the system as a whole can be used without changes for testing of high-level methods of localization, mapping, planning and multi-robot coordination.
+
+The first of our contributions is the \acl{MPC} tracker \cite{baca2018model}.
+Even now, more than 4 years after it was first developed, we have not yet found a viable substitute for the tracking mechanism.
+The \ac{MPC Tracker} provides a mechanism for real-time generation of feasible and smooth feedforward control reference from any time-parametrized input trajectory.
+The tracker's output satisfies \ac{UAV} constraints even when the input trajectory is not feasible.
+Moreover, the integrated mutual collision avoidance mechanism allows safe deployment of multiple \acl{UAV} in outdoor conditions.
+
+The MRS \ac{UAV} system \cite{baca2020mrs} comes with two controller designs --- extended \emph{SE(3) geometric tracking} \cite{lee2010geometric} for agile and aggressive flight, and the novel \emph{MPC controller} for stable flight in case of potentially unreliable \ac{UAV} state estimate.
+However, the system can be easily extended with new control approaches as needed thanks to the system's modularity.
+The survey of UAV controllers provides a rich list of potentially useful control techniques \cite{nascimento2019position}.
+For example, a novel adaptive backstepping controller \cite{zhang2019robust, labbadi2019robust} may provide better performance during aggressive maneuvers, thanks to the included rotor drag compensation.
+The proposed extension to \emph{geometric tracking on SE(3)} \cite{lee2010geometric} can be further improved with remarks from \cite{lee2013nonlinear} to provide robust control to bounded uncertainties.
+Furthermore, nonlinear \ac{MPC} controllers are becoming popular \cite{nascimento2019nmpc, pereira2019nonlinear, kamel2017robust}, thanks to their inherent ability to cope with complex constraints.
+However, when dealing not just with theoretical work but also with experimental deployment in real-world conditions, we favor practicality over complexity.
+We therefore utilize relatively simple controllers \cite{baca2020mrs}, with tractable inner mechanisms.
+
+We summarize the novel properties of the proposed control system as
+\begin{itemize}
+  \item a novel bank-of-filters estimator design that overcomes challenges with diverse sensory equipment,
+  \item a heading-oriented control design, devoid of ambiguous use of Euler/Tait-Bryan angles,
+  \item the previously-publisher \ac{MPC} Tracker for control reference generation \cite{baca2018model},
+  \item a body/world disturbance estimation approach that does not rely on a specific state estimator design,
+  \item a reliable MPC-based controller with the benefits of the nonlinear SO(3) force feedback,
+  \item a system that can be employed with a variety of onboard localization systems and sensors,
+  \item an ability to supply references in coordinate frames, which differ from the feedback loop reference frame.
+\end{itemize}
+
+The system has been used no only for research testing and evaluation, but also for education and teaching.
+We utilized the system for practical exercises during the 2019 and 2020 IEEE RAS Summer School on Multi-Robot Systems\footnote{\url{http://mrs.felk.cvut.cz/summer-school-2020}}.
+Over a hundred students used the system while solving the tasks of multi-\ac{UAV} traveling salesman problem with neighborhoods (2019) and relatively-localized leader-follower flight with two \acp{UAV} (2020).
+
+The future work on the MRS UAV system is currently foreseen as mostly implementation improvements including the transition to \ac{ROS}2, and continuous improvement of the system's documentation.
+However, some research topics still remain.
+The heading-based control approach should be generalized to allow the user to specify a vector in the \ac{UAV}'s body frame that represents the \ac{UAV} \emph{front}, other than the currently-used principle x-axis.
+The azimuth of this vector should be considered as the heading.
+This would allow precise tracking and control of the heading with respect to, e.g., an arbitrary optical axis of a camera mounted on the \ac{UAV}.
+Without such mechanism, the heading control relative to other than the \ac{UAV} body's x-axis can be achieved only approximately and with notable errors especially during aggressive manoeuvres.
+However, this mechanism needs to be incorporated in both control and reference generation, and it must guarantee smooth control references and control actions at any time even when the definition of the \ac{UAV}'s \emph{front} changes.
 
 \section{Advances in remote sensing by UAVs}
 
