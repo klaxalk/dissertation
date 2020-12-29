@@ -1667,7 +1667,8 @@ Furthermore, it is concluded that the Compton camera principle shows promising p
 
 The next core publication in this field focuses on distributed localization of ionizing radiation sources using multiple \acp{UAV} equipped with the Timepix sensor.
 This work presents a real-time radiation source localization and estimation methods for \acp{UAV} equipped with the Timepix sensors.
-A path planning approach, that exploits the asymmetrical intensity measurement response of the detector, was designed to guide \todo{}.
+A path planning approach, that exploits the asymmetrical intensity measurement response of the Timepix detector, was proposed.
+The approach uses multiple \acp{UAV} and their ability to vary the orientation of the sensor in space to estimate the direction to the radiation source.
 Moreover, the work presents verification of real-world measurements onboard a \ac{UAV} against the proposed real-time Monte-Carlo ray-tracing simulation model of the Timepix sensor.
 Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasibility of the method.
 \fullciteinbox{stibinger2020localization}{}
@@ -1747,12 +1748,15 @@ Both systems were put to test during the MBZIRC 2017 and MBZIRC 2020 robotics co
 We also investigated the task of autonomous landing with a \ac{UAV} on top of a moving car \cite{baca2019autonomous} with the total second place in the competition and the fastest autonomous landing time among all the competing teams.
 This robotics problem might be in future a part of automatic remote sensing applications with \acp{UAV} being deployed and recovered by a car.
 Each one of the three problems brought us further in understanding the caveats of onboard state estimation, computer vision, control, and planning.
-\todo{brag about that the system as a whole needs to be competent and each part needs to work, but putting 100i\% into one part does solve it}
+The important lesson we learned about the field robotics from our endeavors is the danger of overly focusing on one or few specializations.
+\ac{UAV} autonomy is a complex cybernetics field that encompasses many interconnected sub-fields.
+We found that researchers often focus too narrowly on one of the sub-fields while ignoring the influence between other components of a whole autonomous system.
+This can make the results detached from reality and potentially not applicable for a real-world robotics system.
 
-Although, those particular problems are probably not going to be pursued in future by our team, we can find overlap with the rest of our activities.
-\todo{describe the overlap with out other projects, DARPA, aerial core}
-
-\todo{claim that i will fully transition to ionizing radiation ...}
+Although, the particular problems solved in \cite{baca2019autonomous, spurny2019cooperative, baca2020autonomous} are probably not going to be pursued in future by our team, the acquired know-how and knowledge are transferable to other applications.
+We also pursue the DARPA Subterranean competition on multi-robotic autonomous localization of objects and people in underground environments \cite{roucek2019darpa, kratky2020autonomous2, petrlik2020robust}.
+Furthermore, our basic research on relatively-localized multi-\ac{UAV} swarms \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe} benefits significantly from the systems and expertise we built in experimental field robotics.
+Finally, the following section discusses the current contributions and our future work in the remote sensing sub-field of ionizing radiation sources.
 
 %%}
 
