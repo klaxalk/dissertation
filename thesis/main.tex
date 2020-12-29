@@ -1947,10 +1947,20 @@ We aim at combining the Compton camera principle \cite{baca2020gamma} for locali
 
 \chapternoclear{Conclusion}
 
-This thesis addressed collaborative remove sensing by a group of \aclp{UAV}.
-First, we focused on development of a \ac{UAV} control system for experimental evaluation of new methods in realistic conditions.
+This thesis addressed collaborative remote sensing by a group of \aclp{UAV}.
+First, we focused on development of a \ac{UAV} control system for experimental evaluation of new methods in realistic real-world conditions.
 The proposed system utilizes an \ac{MPC} tracking approach for generating feedforward control reference provides a modular control pipeline.
-The control has been extensively tested throughout the years and provided the means for 
+A novel feedback controller design combining an \ac{MPC} with geometric tracking controller on SO(3) was proposed, together with a heading-based orientation system that is devout of the convention of Euler and Tait-Bryan angles.
+The control system had been extensively tested throughout the years and provided the means for other research to be conducted.
+One of the many uses of the system was during the 2017 and 2020 MBZIRC robotics competition.
+We tackled several problems on the edge of the state of the art in field robotics at the time.
+Our solutions to the problems of multi-\ac{UAV} object gathering and multi-\ac{UAV} brick wall construction showed the be the best in the world and our solution to the autonomous landing on a moving car with a \ac{UAV} performed the fastest landing among the competitors.
+The enclosed publications report on solving the complex cybernetics problems consisting of feedback control, estimation, sensor fusion, computer vision, planning, and mechatronics sub-fields of aerial robotics.
+Finally, we present contributions in the field of aerial localization of ionizing radiation sources.
+We made the first steps into adopting the Timepix family of CMOS hybrid semi-conductor sensors to be used onboard a mobile robot.
+We showed the properties of the sensors, provide essential tools for their use onboard a robot and suggested a methodology for their application.
+First experiments were conducted with the Timepix and Timepix3 sensors onboard a \ac{UAV}.
+Our latest results --- the first results of an ongoing project --- showed a successful use of the Timepix3 event camera in the form of Compton camera onboard a \ac{UAV} for localization of a compact gamma radiation source.
 
 %%}
 
