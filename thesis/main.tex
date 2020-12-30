@@ -77,8 +77,6 @@
 
 % \newcommand{\includepaperwithimage}[1]{\includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{plain}}]{./papers_to_include_pdf/#1}}
 
-% \newcommand{\includepaper}[1]{\fullciteinbox{#1}{This place will contain the full paper}}
-
 %%}
 
 %%{ fullcite box
@@ -370,10 +368,11 @@
 \newcommand{\Field}{Artificial Intelligence and Biocybernetics}
 \newcommand{\Title}{Cooperative Sensing by a Group\\[0.5em]of Unmanned Aerial Vehicles}
 \newcommand{\DocName}{Doctoral Thesis}
-\newcommand{\Keywords}{Unmanned Aerial Vehicles, Ionizing localization}
-\newcommand{\DOCVersion}{0.1}
-\newcommand{\Year}{2020}
-\newcommand{\Month}{September}
+\newcommand{\Keywords}{Unmanned Aerial Vehicles, Mobile Robotics, Remote Sensing, Ionizing Radiation, Dosimetry}
+\newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Mobilní Robotika, Dálkový Průzkum, Ionizující Radiace, Dozimetrie}
+\newcommand{\DOCVersion}{1.0}
+\newcommand{\Year}{2021}
+\newcommand{\Month}{January}
 \newcommand{\Date}{\Month~\Year}
 \newcommand{\Location}{Prague}
 
@@ -430,6 +429,8 @@
 
 \begin{document}
 
+\pagenumbering{roman}
+
 \input{src/title}
 
 \conditionalClearPage
@@ -439,12 +440,16 @@
 \input{src/copyright.tex}
 
 \conditionalClearPage
-\input{src/abstract.tex}
+\input{src/abstract_en.tex}
 
-\pagestyle{fancy}
+\conditionalClearPage
+\input{src/abstrakt_cz.tex}
 
 \conditionalClearPage
 \tableofcontents
+
+\pagestyle{fancy}
+\pagenumbering{arabic}
 
 %% | ------------------------ Chapter 1 ----------------------- |
 
