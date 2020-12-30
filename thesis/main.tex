@@ -1474,7 +1474,7 @@ Then, we cross over to mobile aerial robotics and present the state of the art a
 Ionizing radiation is commonly measured for two reasons in the constrained environment of space applications.
 The first one is to assess the radiation dose deposited to crew members on board and the onboard space electronics.
 Traditional dosimeters on NASA's \ac{ISS} are being lately replaced with \emph{smart} pixel detectors \cite{turecek2011small, stoffle2015timepix, pinsky2019timepix}, namely, the Timepix sensor.
-The Timepix sensor \cite{llopart2007timepix, poikela2014timepix3} is an innovative design of an \ac{ASIC} \ac{CMOS} chip that can be bonded to a variety of semiconductor detection materials (Silicon, CdTe).
+The Timepix sensor \cite{llopart2007timepix, poikela2014timepix3} is an hybrid \ac{ASIC} \ac{CMOS} chip that can be bonded to a variety of semiconductor detection materials (Silicon, CdTe, CZT).
 Despite it being initially developed for medical imaging \cite{ballabriga2018asic} and laboratory measurements, the Timepix has found applications even outside laboratory environments.
 Timepix pixel detectors are unique for their capability to measure traces of incoming ionizing particles with the detector.
 With those traces, machine learning algorithms can deduce the particle type, the energy of each particle \cite{granja2018resolving, baca2019timepix}.
@@ -1927,7 +1927,7 @@ Moreover, the particle classification pipeline is the first to be executable dur
 The classification pipeline was trained using diverse radiation data gathered by the VZLUSAT-1 nanosatellite mission \cite{baca2018timepix}.
 
 Our first contributions related to the radiation dosimetry onboard \acp{UAV} consists of the review of radiation localization options for \acl{UAV}, the particle classification pipeline, and a real-time Monte Carlo ray-tracing model for a dual-sensor Compton camera \cite{baca2019timepix}.
-Furthermore, we investigate the use of the bare Timepix sensor for multi-robotic localization of compact radiation sources \cite{stibinger2020localization}.
+Furthermore, we investigate the use of the bare Timepix sensor for multi-robotic localization of compact radiation sources \cite{stibinger2020localization} without a specialized mechanism to deduce a direction to the source.
 We show the approach's potential using realistic robotic simulations and a real-time Monte Carlo ray-tracing model of gamma radiation.
 
 The previously mentioned contributions were motivation and a precursor for the project proposal for the Technology Agency of the Czech Republic.
