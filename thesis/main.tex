@@ -87,7 +87,7 @@
 
 \newcommand{\includepaperwithimage}[1]{
   \ifdefined\includepdfs
-    \includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{fancy}},offset=0.5cm 0cm]{./papers_to_include_pdf/#1}
+    \includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{full}},offset=0.5cm 0cm]{./papers_to_include_pdf/#1}
   \else
     \clearpage
     \fullciteinboxwithimage{#1}{This place will contain the full paper}
@@ -206,8 +206,9 @@
 
 %%{ change spacing of the table of contents
 
-% \usepackage{tocloft}
-% \tocloftpagestyle{empty}
+\usepackage[subfigure]{tocloft}
+
+\tocloftpagestyle{plain}
 % \renewcommand\cftchapafterpnum{\vskip5pt}
 % \renewcommand\cftsecafterpnum{\vskip5pt}
 
@@ -359,7 +360,7 @@
 % foot line
 \renewcommand{\footrulewidth}{0.4pt}
 
-\fancypagestyle{plain}
+\fancypagestyle{full}{%
 
 % clear the default layout
 \fancyhead{}
@@ -375,63 +376,22 @@
 \fancyfoot[R]{Department of Cybernetics}
 \fancyfoot[C]{}
 
-%%}
+}
 
-\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+\fancypagestyle{plain}{%
 
-%%{ page numbering
+% clear the default layout
+\fancyhead{}
+\fancyfoot{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%% set my font to page numbers and contents begin %%%%%%%%%%
-%\fancypagestyle{plain}{%
-%\fancyhf{}
-%\ifdefined\printversion
-%  \fancyhead[LE]{\Font \thepage} %suda v pravo
-%  \fancyhead[RE]{\leftmark} %suda v pravo
-%  \fancyhead[RO]{\Font \thepage} %licha v pravo
-%  \fancyhead[LO]{\rightmark} %licha v levo
-%\else
-%  \rhead{\Font\thepage}
-%  \lhead{\leftmark}
-%\fi
+% page header
+\fancyhead[LE,RO]{\thepage}
 
-% \renewcommand{\headrulewidth}{0pt}
-% \renewcommand{\footrulewidth}{0pt}
-% }
-
-% \fancypagestyle{plainpageonly}{%
-% \fancyhf{}
-% \ifdefined\printversion
-%   \fancyhead[LE]{\Font \thepage} %suda v pravo
-%   \fancyhead[RE]{} %suda v pravo
-%   \fancyhead[RO]{\Font \thepage} %licha v pravo
-%   \fancyhead[LO]{} %licha v levo
-% \else
-%   \rhead{\Font\thepage}
-%   \lhead{\leftmark}
-% \fi
-
-% \renewcommand{\headrulewidth}{0pt}
-% \renewcommand{\footrulewidth}{0pt}
-% }
-
-\fancypagestyle{plainpageonly}{%
-\fancyhf{}
-\ifdefined\printversion
-  \fancyhead[LE]{\Font \thepage} %suda v pravo
-  \fancyhead[RE]{} %suda v pravo
-  \fancyhead[RO]{\Font \thepage} %licha v pravo
-  \fancyhead[LO]{} %licha v levo
-\else
-  \rhead{\Font\thepage}
-  \lhead{}
-\fi
-
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
 }
 
 %%}
+
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
 
 %%{ other parameters
 
@@ -447,9 +407,23 @@
 
 %%}
 
+%%{ fix the page style of the first page
+
+\makeatletter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                    \thispagestyle{full}% original style: plain
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\makeatother
+
+%%}
+
 \begin{document}
 
 \input{src/title}
+
+\pagestyle{plain}
 
 \conditionalClearPage
 
@@ -509,8 +483,8 @@
 
 %%}
 
+\conditionalClearPage
 \tableofcontents
-\thispagestyle{plainpageonly}
 
 \conditionalClearPage
 
@@ -518,9 +492,10 @@
 
 %%{ Introduction
 
+\pagestyle{full}
+
 \chapter{Introduction}
 
-\pagestyle{fancy}
 \pagenumbering{arabic}
 
 The emergence of small \acp{UAV} has created a new active field of mobile robotics.
