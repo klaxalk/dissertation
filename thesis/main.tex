@@ -10,6 +10,14 @@
   \documentclass[a4paper,11pt,oneside]{book}
 \fi
 
+\newcommand{\conditionalClearPage}{
+  \ifdefined\printversion
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+}
+
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
@@ -296,21 +304,6 @@
 \newcommand{\plus}{\scalebox{0.8}[0.8]{$+$}}
 \newcommand{\figvspace}{\vspace{-1em}} % this may eventually do something, so far just a placeholder
 
-% \newcommand{\chapter}[1]{
-%   \begingroup
-%   \let\cleardoublepage\clearpage
-%   \chapter{#1}
-%   \endgroup
-% }
-
-\newcommand{\conditionalClearPage}{
-  \ifdefined\printversion
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
-}
-
 \ifdefined\printversion
   \setlength{\oddsidemargin}{+0.5cm}
   \setlength{\evensidemargin}{-0.5cm}
@@ -387,7 +380,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% set my font to page numbers and contents begin %%%%%%%%%%
-\usepackage{tocloft}
+% \usepackage{tocloft}
 \fancypagestyle{plain}{%
 \fancyhf{}
 \ifdefined\printversion
@@ -430,7 +423,7 @@
 % without this it does not compile!
 \let\bibfont\small
 
-\setlength{\cftbeforesecskip}{6pt}
+% \setlength{\cftbeforesecskip}{6pt}
 
 %%}
 
