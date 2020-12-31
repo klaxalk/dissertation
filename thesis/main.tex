@@ -207,6 +207,7 @@
 %%{ change spacing of the table of contents
 
 % \usepackage{tocloft}
+% \tocloftpagestyle{empty}
 % \renewcommand\cftchapafterpnum{\vskip5pt}
 % \renewcommand\cftsecafterpnum{\vskip5pt}
 
@@ -376,37 +377,54 @@
 
 %%}
 
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+
 %%{ page numbering
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%% set my font to page numbers and contents begin %%%%%%%%%%
-% \usepackage{tocloft}
-\fancypagestyle{plain}{%
-\fancyhf{}
-\ifdefined\printversion
-  \fancyhead[LE]{\Font \thepage} %suda v pravo
-  \fancyhead[RE]{\leftmark} %suda v pravo
-  \fancyhead[RO]{\Font \thepage} %licha v pravo
-  \fancyhead[LO]{\rightmark} %licha v levo
-\else
-  \rhead{\Font\thepage}
-  \lhead{\leftmark}
-\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% set my font to page numbers and contents begin %%%%%%%%%%
+%\fancypagestyle{plain}{%
+%\fancyhf{}
+%\ifdefined\printversion
+%  \fancyhead[LE]{\Font \thepage} %suda v pravo
+%  \fancyhead[RE]{\leftmark} %suda v pravo
+%  \fancyhead[RO]{\Font \thepage} %licha v pravo
+%  \fancyhead[LO]{\rightmark} %licha v levo
+%\else
+%  \rhead{\Font\thepage}
+%  \lhead{\leftmark}
+%\fi
 
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-}
+% \renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+% }
+
+% \fancypagestyle{plainpageonly}{%
+% \fancyhf{}
+% \ifdefined\printversion
+%   \fancyhead[LE]{\Font \thepage} %suda v pravo
+%   \fancyhead[RE]{} %suda v pravo
+%   \fancyhead[RO]{\Font \thepage} %licha v pravo
+%   \fancyhead[LO]{} %licha v levo
+% \else
+%   \rhead{\Font\thepage}
+%   \lhead{\leftmark}
+% \fi
+
+% \renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+% }
 
 \fancypagestyle{plainpageonly}{%
 \fancyhf{}
 \ifdefined\printversion
-  \fancyhead[LE]{\Font \thepage} %suda v pravo
-  \fancyhead[RE]{} %suda v pravo
-  \fancyhead[RO]{\Font \thepage} %licha v pravo
-  \fancyhead[LO]{} %licha v levo
+	\fancyhead[LE]{\Font \thepage} %suda v pravo
+	\fancyhead[RE]{} %suda v pravo
+	\fancyhead[RO]{\Font \thepage} %licha v pravo
+	\fancyhead[LO]{} %licha v levo
 \else
-  \rhead{\Font\thepage}
-  \lhead{\leftmark}
+	\rhead{\Font\thepage}
+	\lhead{}
 \fi
 
 \renewcommand{\headrulewidth}{0pt}
@@ -490,10 +508,9 @@
 \end{changemargin}
 
 %%}
-\thispagestyle{plainpageonly}
 
-\conditionalClearPage
 \tableofcontents
+\thispagestyle{plainpageonly}
 
 \conditionalClearPage
 
