@@ -27,9 +27,6 @@ for file in $FILES; do
 
   echo Pre-processing $filename
 
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^booktitle/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^journal/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
-
   $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^unique-id/norm ct=keywords ^f{C{$INPUT_FILE, mine}," -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^doi/norm maf{%mbd'a" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^isbn/norm maf{%mbd'a" -c "wqa" -- "$filename"
@@ -45,6 +42,10 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^pages/norm :s/--/-/g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^pages/norm :s/-/--/g" -c "wqa" -- "$filename"
 
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^booktitle/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^journal/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "set ignorecase" -c "%g/^title/norm f{v%:s/\<\(\w\)\(\S*\)/\u\1\L\2/g" -c "wqa" -- "$filename"
+
   $VIM_BIN $HEADLESS -nEs -c "%s/ieee/IEEE/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/rsj/RSJ/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/case/CASE/gi" -c "wqa" -- "$filename"
@@ -59,12 +60,13 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/(irc/(IRC/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/ecmr/ECMR/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/spie/SPIE/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/ccdc/CCDC/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/ijcnn/IJCNN/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/icarcv/ICARCV/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/(ae)/(AE)/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/mbzirc/MBZIRC/gi" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "%s/mbz /MBZ/gi" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "%s/Cern@school/CERN school/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/mbz /MBZ /gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/Cern@school/CERN School/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/cern/CERN/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/vzlusat/VZLUSAT/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/euv/EUV/gi" -c "wqa" -- "$filename"
@@ -74,16 +76,38 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/med-hoc-net/Med-Hoc-Net/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/eth-mav/ETH-MAV/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/uav/UAV/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/mavs/MAVs/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/X-ray/X-Ray/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\<Uv\>/UV/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/Rtdp/RTDP/gi" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/Hierarchy of Ai/Hierarchy of AI/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/gnss/GNSS/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/gps/GPS/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/embe dded/Embedded/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/wf-iot/WF-IoT/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/cnn/CNN/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/\svr\s/ VR /gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/space vi/Space VI/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/dcad/DCAD/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/nmpc/NMPC/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/\<nips\>/NIPS/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/px4/PX4/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/icsse/ICSSE/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/2-dof/2-DOF/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/ofCFA(2)FBcontrol/of CFA2FB Control/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/a CASE study/A Case Study/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/auv/AUV/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/msalc/MSALC/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/icaaid/ICAAID/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/a-accelerators/Accelerators/gi" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/xvi/XVI/gi" -c "wqa" -- "$filename"
 
   $VIM_BIN $HEADLESS -nEs -c "%s/\sOf\s/ of /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sThe\s/ the /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sOn\s/ on /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sFor\s/ for /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sAnd\s/ and /g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/risepix-a/Risepix --- A/g" -c "wqa" -- "$filename"
 
   $VIM_BIN $HEADLESS -nEs -c "%g/\cmonth.*=/norm f=lC 1," -c "wqa" -- "$filename"
 
