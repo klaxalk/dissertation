@@ -332,7 +332,7 @@
 \newcommand{\Title}{Cooperative Sensing by a Group\\[0.5em]of Unmanned Aerial Vehicles}
 \newcommand{\DocName}{Doctoral Thesis}
 \newcommand{\Keywords}{Unmanned Aerial Vehicles, Mobile Robotics, Remote Sensing, Ionizing Radiation, Dosimetry}
-\newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Mobilní Robotika, Dálkový Průzkum, Ionizující Radiace, Dozimetrie}
+\newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Mobilní Robotika, Vzdálené Měření, Ionizující Radiace, Dozimetrie}
 \newcommand{\DOCVersion}{1.0}
 \newcommand{\Year}{2021}
 \newcommand{\Month}{January}
@@ -509,38 +509,38 @@ The rise of multirotor helicopters spawned revolutionary possibilities of remote
 Unlike traditional ground robots, multirotor helicopters combine a potentially fast and agile movement through a 3D environment with the ability to hover in place.
 Both traits require overcoming complex technical challenges as well as offer significant advantages over ground robots.
 The challenges arise from the inherently unstable dynamics of multirotor helicopters \cite{kumar2012opportunities, mueller2014stability}.
-Uninterrupted feedback control actions are required to maintain the machine in the desired state.
+Uninterrupted feedback control actions are required to maintain the machine in the desired state \cite{mahony2012multirotor}.
 Moreover, feedback control of agile \acp{UAV} is vitally dependent on a smooth and feasible state estimate.
-Both the \ac{UAV} state estimation \cite{merino2006vision, burri2015robust, grabe2015nonlinear} and feedback control \cite{lee2010geometric, goodarzi2015geometric, kamel2017robust} have been intensively studied during the past decade and are still a very active field of research.
+Both the \ac{UAV} state estimation \cite{merino2006vision, burri2015robust, grabe2015nonlinear, hentzen2019disturbnace} and feedback control \cite{lee2010geometric, goodarzi2015geometric, kamel2017robust} have been intensively studied during the past decade and are still a very active fields of research.
 Multirotor helicopters are a versatile platform for carrying out remote sensing \cite{colomina2014unmanned, pajares2015overview}, environmental sampling, and providing technical support and aid in natural disaster rescue operations \cite{yuan2015survey, perks2016advances}.
 
-Remote sensing can be traditionally performed by a stationary sensory system, a satellite, or a remotely controlled robot.
+Remote sensing, e.g., of an active volcano, can be traditionally performed by a stationary sensory system \cite{ditraglia2018effusive}, an airplane \cite{walter2020eruption}, a satellite \cite{ganci2020variety}, a remotely controlled robot \cite{parcheta2016robotic}, and of course, a \ac{UAV} \cite{nagatani2018micro, ericksen2020locus}.
 In recent years, autonomous robotic remote sensing became available with the emergence of autonomous systems.
 Onboard autonomy is used to control a robotics system when employing a human operator might not be possible, e.g., deep underground \cite{apachristos2019autonomous, losch2018design}, or in a vicinity of a damaged nuclear power plant \cite{sato2019radiation}.
 Multi-robotic distributed sensing is, however, still in its infancy.
 Although distributing the process offers robustness through redundancy and a potential increase in information yield, it also poses new challenges in multi-robotic coordination and sensor fusion.
-The same applies to the use of multiple multirotor \ac{UAV} with even more challenges.
+The same applies to the use of multiple multirotor \acp{UAV} with even more challenges.
 Just on its own, control of multi-\ac{UAV} swarms and formations is a challenging sub-field that has direct implications to the field of distributed remote sensing.
-
 One of the most iconic sub-fields of remote sensing is the remote sensing of ionizing radiation.
-Due to the unusual nature of ionizing radiation measured \cite{andreo2017fundamentals}, but also due to the inherent danger ionizing radiation poses to living organisms.
+Due to the unusual nature of how is the ionizing radiation measured \cite{andreo2017fundamentals}, but also due to the danger ionizing radiation poses to living organisms.
 Recent advances in semiconductor technologies allow the fabrication of small semiconductor radiation detectors, which opened up a possibility to measure ionizing radiation onboard small \acp{UAV}.
 Thanks to onboard autonomy, small \acp{UAV} can be deployed to map ionizing radiation and even localize radioactive sources autonomously.
 
-This thesis focuses on advances in replicable research with autonomous multi-rotor helicopters and their use for remote sensing and remote sensing of ionizing radiation.
+This thesis focuses on advances in replicable research with autonomous multi-rotor helicopters and their use for remote sensing and the remote sensing of ionizing radiation.
 The thesis's objectives were significantly shaped by the active participation of the \ac{MRS} research group in the 2017 and 2020 rounds of the \ac{MBZIRC}.
-MBZIRC proposed a set of robotics challenges that pushed the boundaries in \ac{UAV} autonomy.
-The challenges ranged from an autonomous landing on a moving car by an unmanned aircraft, collaborative gathering of small objects by a fleet of \acp{UAV}, up to an autonomous brick wall-building by a fleet of \acp{UAV}.
-Those tasks provided excellent opportunities and conditions to take state-of-the-art techniques outside of the lab and compare the advances directly to the best university teams from around the world.
+MBZIRC proposed a set of robotics challenges that pushed the boundaries of \ac{UAV} autonomy.
+The challenges ranged from an autonomous landing on a moving car by an unmanned helicopter, over collaborative gathering of small objects by a fleet of \acp{UAV}, up to an autonomous brick wall-building by a fleet of \acp{UAV}.
+Those tasks provided opportunities and conditions to take state-of-the-art techniques outside of a laboratory and compare the advances directly with the best university teams from around the world.
 
-Furthermore, interdisciplinary research is being pursued to localize ionizing radiation sources by \acp{UAV}.
-The research closely follows advances in the use of novel imaging pixel radiation detectors, initially developed for medical imaging, in the remote sensing application of space dosimetry and X-ray imaging.
-The thesis author has made his initial in the field by developing a remote sensing module with the Timepix~\cite{llopart2007timepix} detector for the first Czech CubeSat\footnote{CubeSat is a nanosatellite built from \SI{1}{\deci\meter\cubed} units.}, the \acs{VZLU}SAT-1.
+Furthermore, interdisciplinary research is being pursued on the localization of ionizing radiation sources by \acp{UAV}.
+The research closely follows advances in imaging pixel radiation detectors, initially developed for medical imaging, for remote sensing applications of space dosimetry and X-ray imaging.
+The thesis author has made his initial contributions in the field by developing a radiation remote sensing module for the first Czech CubeSat\footnote{CubeSat is a nanosatellite built from \SI{1}{\deci\meter\cubed} units.}, the \acs{VZLU}SAT-1.
+The module houses the Timepix\cite{llopart2007timepix} hybrid \acs{CMOS} detector developed at CERN in order to measure solar X-rays and background radiation in the \ac{LEO}.
 One of the thesis's goals is to transfer the know-how to the field of small \aclp{UAV}.
 
 Experimental verification of novel methods is crucial to provide objective evaluation and to support new publications.
-Although the accompanying sub-fields of cybernetics --- machine learning and computer vision --- benefit significantly from evaluating and comparing new methods on datasets, this does not apply much to mobile robotics and field robotics.
-Even realistic simulation do not fully substitute the testing and verification using a real \ac{UAV} equipped with real sensors, and most importantly, outside of laboratory conditions.
+Although the accompanying sub-fields of cybernetics --- machine learning and computer vision --- benefit significantly from evaluating and comparing new methods on datasets, the same approach can be rarely used in mobile robotics and field robotics.
+Even realistic simulation do not fully substitute the testing and verification using a real \ac{UAV} equipped with real sensors, and most importantly, outside of laboratory conditions (see \reffig{fig:collage}).
 However, conducting real-world experiments requires an onboard control platform that can satisfy the tested method's needs.
 Despite the plethora of existing solutions \cite{sanchez2016aerostack, xiao2020xtdrone, furrer2016rotors, schmittle2018openuav, abeywardena2015design, mellado2013mavwork}, none provides all the features needed to support the work presented in the thesis.
 Not all the platforms support experiments both indoors and outdoors.
@@ -608,11 +608,11 @@ Ionizing radiation has been traditionally measured onboard \acp{UAV} using dosim
 Often, the intensity is utilized only to estimate the scalar field of radiation intensity.
 Rarely, direction measurement can be obtained with an additional device, e.g., the optical collimator or a coded aperture.
 However, those solutions are not well-suited for small \acp{UAV} due to the heavyweight of the sensor equipment.
-This thesis aims to push the state-of-the-art by utilizing miniature semiconductor pixel detectors \cite{llopart2007timepix}, and novel event-based radiation detectors \cite{poikela2014timepix3} onboard \acp{MAV}.
+This work aims to push the state of the art by utilizing miniature semiconductor pixel detectors \cite{llopart2007timepix}, and novel event-based radiation detectors \cite{poikela2014timepix3} onboard \acp{MAV}.
 
 The rest of the thesis is organized as follows.
 This thesis is a compilation of 8 included core publications, referenced as 1c -- 8c.
-Furthermore, the thesis is supported by additional related authored publications, referenced as 9c -- 42c.
+Furthermore, the thesis is supported by additional authored publications, referenced as 9a -- 42a.
 Firstly, the state of the art is summarized in Chapter~\ref{chap:sota}.
 Chapter~\ref{chap:uav_platform} introduces the publications related to the developed \ac{UAV} platform.
 Chapter~\ref{chap:sensing} covers the publications related to the multi-\ac{UAV} sensing and deployment.
@@ -628,14 +628,14 @@ Finally, Chapter~\ref{chap:radiation} presents publications on radiation measure
 
 \section{Author's publications and contributions}
 
-Figure~\ref{fig:research_graph} shows a publication graph composed of accepted peer-review publications and publications that have been submitted in the time of writing this thesis.
+Figure~\ref{fig:research_graph} shows a publication graph composed of accepted peer-reviewed publications and publications that have been submitted in the time of writing this thesis.
 The publications are split into four main categories.
 The first category, a \emph{Pre-Ph.D. research}, consists of publications based upon the research done before the author started the pursue of Ph.D. ($\leq 2015$).
 Although, some of these were written and submitted during the author's Ph.D. studies.
-The second category is the research stream \ac{UAV} platform development for research validation and reliable deployment of novel methods in control, navigation, formation flying, and swarming.
-Thirdly, the largest group of the author's publications is from the field of multi-\ac{UAV} remote sensing, swarming, and deployment.
-Lastly, the fourth category is researching ionizing radiation detection, mapping, and localization.
-The author conducts an interdisciplinary transfer from the space-oriented physics field to unmanned vehicles such as multirotor helicopters.
+The second category is the research stream marked as \emph{\ac{UAV} platform for research} validation and reliable deployment of novel methods in control, navigation, formation flying, and swarming.
+Thirdly, the largest group of the author's work is from the field of \emph{multi-\ac{UAV} remote sensing}, swarming, and other deployment.
+Lastly, the fourth category is the research of \emph{ionizing radiation dosimetry, imaging}, localization and mapping.
+The author conducts an interdisciplinary transfer from the space-oriented physics field to the field of \aclp{UAV}.
 
 %%{ Fig: research graph
 
@@ -1369,7 +1369,7 @@ If so, then in a field where the \ac{UAV} is only considered a \emph{sensor carr
 Research-focused \acp{UAV} are most commonly equipped with a low-level embedded flight controller.
 Available flight controllers \cite{ebeid2018survey} range from feature-packed open-source systems, such as Pixhawk, to proprietary commercial units manufactured by DJI.
 Table~\ref{tab:embedded_flight_controllers} shows a comparison of often used solutions.
-Pixhawk is often used in research projects (including our project), typically running either of the two open-source firmware: PX4 \cite{meier2015px4} and ArduPilot\footnote{\url{http://ardupilot.org}}.
+Pixhawk is often used in research projects (including ours), typically running either of the two open-source firmware: PX4 \cite{meier2015px4} and ArduPilot\footnote{\url{http://ardupilot.org}}.
 Although all of these flight stacks provide sophisticated features up to waypoint tracking and mission execution, the features are rarely used within real-world applications.
 Instead, researchers use other onboard computers to execute a custom localization system, state estimators, and flight controllers, and only low-level control commands are provided for the embedded flight controller.
 
