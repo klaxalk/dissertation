@@ -107,7 +107,7 @@ for file in $FILES; do
   $VIM_BIN $HEADLESS -nEs -c "%s/\sOn\s/ on /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sFor\s/ for /g" -c "wqa" -- "$filename"
   $VIM_BIN $HEADLESS -nEs -c "%s/\sAnd\s/ and /g" -c "wqa" -- "$filename"
-  $VIM_BIN $HEADLESS -nEs -c "%s/risepix-a/Risepix --- A/g" -c "wqa" -- "$filename"
+  $VIM_BIN $HEADLESS -nEs -c "%s/Risepix-a/Risepix --- A/g" -c "wqa" -- "$filename"
 
   $VIM_BIN $HEADLESS -nEs -c "%g/\cmonth.*=/norm f=lC 1," -c "wqa" -- "$filename"
 
