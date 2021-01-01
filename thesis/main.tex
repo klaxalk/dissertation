@@ -1,7 +1,7 @@
 %%{ DOC HEAD
 
-\newcommand*{\printversion}{}%
-\newcommand*{\includepdfs}{}%
+% \newcommand*{\printversion}{}%
+% \newcommand*{\includepdfs}{}%
 
 \pdfoutput=1
 \ifdefined\printversion
@@ -1520,7 +1520,7 @@ Then, we cross over to mobile aerial robotics and present the state of the art a
 Ionizing radiation is commonly measured for two reasons in the constrained environment of space applications.
 The first one is to assess the radiation dose deposited to crew members on board and the onboard space electronics.
 Traditional dosimeters on NASA's \ac{ISS} are being lately replaced with \emph{smart} pixel detectors \cite{turecek2011small, stoffle2015timepix, pinsky2019timepix}, namely, the Timepix sensor.
-The Timepix sensor \cite{llopart2007timepix, poikela2014timepix3} is an hybrid \ac{ASIC} \ac{CMOS} chip that can be bonded to a variety of semiconductor detection materials (Silicon, \acs{CdTe}, \ac{CZT}).
+The Timepix sensor \cite{llopart2007timepix, poikela2014timepix3} is an hybrid \ac{ASIC} \ac{CMOS} chip that can be bonded to a variety of semiconductor detection materials (Silicon, \acs{CdTe}, \acs{CZT}).
 Despite it being initially developed for medical imaging \cite{ballabriga2018asic} and laboratory measurements, the Timepix has found applications even outside laboratory environments.
 Timepix pixel detectors are unique for their capability to measure traces of incoming ionizing particles with the detector.
 With those traces, machine learning algorithms can deduce the particle type, the energy of each particle \cite{granja2018resolving, baca2019timepix}.
@@ -1529,7 +1529,7 @@ Several satellites included the Timepix as their payloads: ESA's Proba-V \cite{g
 
 The second use of radiation detectors in space is dedicated to capturing X-ray/Gamma-ray photons through a telescope's focusing device.
 X-ray observatories can not be deployed on the Earth's surface due to the presence of the atmosphere.
-The state-of-the-art observatories such as Chandra \cite{weisskopf2000chandra}, Swift \cite{gehrels2004swift}, and Fermi \cite{atwood2009large} typically use scintillating detectors to measure the incoming light, or \ac{CCD} detectors for low-energy X-rays.
+The state-of-the-art observatories such as Chandra \cite{weisskopf2000chandra}, Swift \cite{gehrels2004swift}, and Fermi \cite{atwood2009large} typically use scintillating detectors to measure the incoming light, or \acs{CCD} detectors for low-energy X-rays.
 \ac{CMOS} detectors are rarely used in space applications, mainly due to undesired noise characteristics.
 However, Timepix detectors operate with an internal mechanism that filters out the dark current through the detector diodes, and therefore, the resulting images are free to the traditional image noise.
 
