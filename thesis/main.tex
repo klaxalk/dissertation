@@ -1787,7 +1787,7 @@ The proposed control system has the following key properties:
 The system has been used no only for research testing and evaluation but also for education and teaching.
 We utilized the system for practical exercises during the 2019 and 2020 \acs{IEEE} \acs{RAS} Summer School on Multi-Robot Systems\footnote{\url{http://mrs.felk.cvut.cz/summer-school-2020}}.
 Over a hundred students used the system while solving the tasks of multi-\ac{UAV} traveling salesman problem with neighborhoods (2019) and relatively-localized leader-follower flight with two \acp{UAV} (2020).
-Both tasks were finished with field experiments, where the student's code was tested.
+Both tasks were finished with field experiments, where the student's code was tested (see \reffig{fig:summer_school}).
 
 The future work on the MRS UAV system is currently foreseen as mostly implementation improvements, including the transition to \acs{ROS}2, and continuous improvement of the system's documentation.
 However, some research topics remain.
@@ -1806,7 +1806,7 @@ And the mechanism must guarantee smooth control references and control actions e
 
 The \ac{UAV} tasks tackled within the core publications in this thesis were on the edge of field robotics at their time.
 We successfully showed a multi-robotic system for autonomous object gathering \cite{spurny2019cooperative} and autonomous wall construction \cite{baca2020autonomous} by \acp{UAV}.
-Both systems were put to the test during the \ac{MBZIRC} 2017 and \ac{MBZIRC} 2020 robotics competition, and both achieved first place among respected university teams from all over the world.
+Both systems were put to the test during the \ac{MBZIRC} 2017 and \ac{MBZIRC} 2020 robotics competition, and both achieved first place among respected university teams from all over the world (see Figures~\ref{fig:mbzirc_2017_award}, and \ref{fig:mbzirc_2020_award}).
 We also investigated the task of autonomous landing with a \ac{UAV} on top of a moving car \cite{baca2019autonomous} with the total second place in the competition and the fastest autonomous landing time among all the competing teams.
 This robotics problem might be in the future a part of automatic remote sensing applications with \acp{UAV} being deployed and recovered by a car.
 Each of the three problems brought us further in understanding the caveats of onboard state estimation, computer vision, control, and planning.
@@ -1819,6 +1819,18 @@ Although the particular problems solved in \cite{baca2019autonomous, spurny2019c
 For example, we also pursue the \ac{DARPA} Subterranean competition on multi-robotic autonomous localization of objects and people in underground environments \cite{roucek2019darpa, kratky2020autonomous2, petrlik2020robust}.
 Furthermore, our primary research on relatively-localized multi-\ac{UAV} swarms \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe} benefits significantly from the systems and expertise we obtained in experimental field robotics.
 Finally, the following section discusses our current and future work in the remote sensing sub-field of ionizing radiation sources.
+
+\begin{figure}
+  \subfloat[2019 IEEE RAS summer school\label{fig:summer_school}] {
+    \includegraphics[width=0.47\textwidth]{./fig/photos/summer_school_outdoor.jpg} 
+  }
+  \subfloat[MBZIRC 2017 award ceremony.\label{fig:mbzirc_2017_award}] {
+    \includegraphics[width=0.47\textwidth]{./fig/photos/mbzirc_team_2017.jpg} 
+  }\\
+  \subfloat[Team members during the MBZIRC 2020 award ceremeny.\label{fig:mbzirc_2020_award}] {
+    \includegraphics[width=0.96\textwidth]{./fig/photos/mbzirc_team_2020.jpg} 
+  }
+\end{figure}
 
 %%}
 
