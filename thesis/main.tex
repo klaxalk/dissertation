@@ -506,43 +506,42 @@
 
 The emergence of small \acp{UAV} has created a new active field of mobile robotics.
 The rise of multirotor helicopters spawned revolutionary possibilities of remote sensing and data gathering.
-Unlike traditional ground robots, multirotor helicopters combine a potentially fast and agile movement through a 3D environment with the ability to hover in place.
-Both traits require overcoming complex technical challenges as well as offer significant advantages over ground robots.
+Unlike traditional ground robots, multirotor helicopters combine potentially fast and agile movement through a 3D environment with the ability to hover in place.
+Both traits require overcoming complex technical challenges as well as offering significant advantages over ground robots.
 The challenges arise from the inherently unstable dynamics of multirotor helicopters \cite{kumar2012opportunities, mueller2014stability}.
 Uninterrupted feedback control actions are required to maintain the machine in the desired state \cite{mahony2012multirotor}.
 Moreover, feedback control of agile \acp{UAV} is vitally dependent on a smooth and feasible state estimate.
-Both the \ac{UAV} state estimation \cite{merino2006vision, burri2015robust, grabe2015nonlinear, hentzen2019disturbnace} and feedback control \cite{lee2010geometric, goodarzi2015geometric, kamel2017robust} have been intensively studied during the past decade and are still a very active fields of research.
+Both the \ac{UAV} state estimation \cite{merino2006vision, burri2015robust, grabe2015nonlinear, hentzen2019disturbnace} and feedback control \cite{lee2010geometric, goodarzi2015geometric, kamel2017robust} have been intensively studied during the past decade and are still very active fields of research.
 Multirotor helicopters are a versatile platform for carrying out remote sensing \cite{colomina2014unmanned, pajares2015overview}, environmental sampling, and providing technical support and aid in natural disaster rescue operations \cite{yuan2015survey, perks2016advances}.
 
 Remote sensing, e.g., of an active volcano, can be traditionally performed by a stationary sensory system \cite{ditraglia2018effusive}, an airplane \cite{walter2020eruption}, a satellite \cite{ganci2020variety}, a remotely controlled robot \cite{parcheta2016robotic}, and of course, a \ac{UAV} \cite{nagatani2018micro, ericksen2020locus}.
 In recent years, autonomous robotic remote sensing became available with the emergence of autonomous systems.
-Onboard autonomy is used to control a robotics system when employing a human operator might not be possible, e.g., deep underground \cite{apachristos2019autonomous, losch2018design}, or in a vicinity of a damaged nuclear power plant \cite{sato2019radiation}.
-Multi-robotic distributed sensing is, however, still in its infancy.
+Onboard autonomy is used to control a robotics system when employing a human operator might not be possible, e.g., deep underground \cite{apachristos2019autonomous, losch2018design} or in a vicinity of a damaged nuclear power plant \cite{sato2019radiation}.
+However, multi-robotic distributed sensing is still in its infancy.
 Although distributing the process offers robustness through redundancy and a potential increase in information yield, it also poses new challenges in multi-robotic coordination and sensor fusion.
 The same applies to the use of multiple multirotor \acp{UAV} with even more challenges.
-Just on its own, control of multi-\ac{UAV} swarms and formations is a challenging sub-field that has direct implications to the field of distributed remote sensing.
-One of the most iconic sub-fields of remote sensing is the remote sensing of ionizing radiation.
-Due to the unusual nature of how is the ionizing radiation measured \cite{andreo2017fundamentals}, but also due to the danger ionizing radiation poses to living organisms.
-Recent advances in semiconductor technologies allow the fabrication of small semiconductor radiation detectors, which opened up a possibility to measure ionizing radiation onboard small \acp{UAV}.
+On its own, control of multi-\ac{UAV} swarms and formations is a challenging subfield that has direct implications to the field of distributed remote sensing.
+One of the most iconic subfields of remote sensing is the remote sensing of ionizing radiation due to the unusual nature of how it is measured \cite{andreo2017fundamentals}, but also due to the danger ionizing radiation poses to living organisms.
+Recent advances in semiconductor technologies allow the fabrication of small semiconductor radiation detectors, which opened up the possibility to measure ionizing radiation onboard small \acp{UAV}.
 Thanks to onboard autonomy, small \acp{UAV} can be deployed to map ionizing radiation and even localize radioactive sources autonomously.
 
-This thesis focuses on advances in replicable research with autonomous multi-rotor helicopters and their use for remote sensing and the remote sensing of ionizing radiation.
+This thesis focuses on advances in replicable research with autonomous multirotor helicopters and their use for remote sensing and the remote sensing of ionizing radiation.
 The thesis's objectives were significantly shaped by the active participation of the \ac{MRS} research group in the 2017 and 2020 rounds of the \ac{MBZIRC}.
 MBZIRC proposed a set of robotics challenges that pushed the boundaries of \ac{UAV} autonomy.
-The challenges ranged from an autonomous landing on a moving car by an unmanned helicopter, over collaborative gathering of small objects by a fleet of \acp{UAV}, up to an autonomous brick wall-building by a fleet of \acp{UAV}.
+The challenges ranged from an autonomous landing on a moving car by an unmanned helicopter, the collaborative gathering of small objects by a fleet of \acp{UAV}, and to the autonomous brick wall-building by a fleet of \acp{UAV}.
 Those tasks provided opportunities and conditions to take state-of-the-art techniques outside of a laboratory and compare the advances directly with the best university teams from around the world.
 
 Furthermore, interdisciplinary research is being pursued on the localization of ionizing radiation sources by \acp{UAV}.
-The research closely follows advances in imaging pixel radiation detectors, initially developed for medical imaging, for remote sensing applications of space dosimetry and X-ray imaging.
+The research closely follows advances in imaging pixel radiation detectors (initially developed for medical imaging) for remote sensing applications of space dosimetry and X-ray imaging.
 The thesis author has made his initial contributions in the field by developing a radiation remote sensing module for the first Czech CubeSat\footnote{CubeSat is a nanosatellite built from \SI{1}{\deci\meter\cubed} units.}, the \acs{VZLU}SAT-1.
 The module houses the Timepix\cite{llopart2007timepix} hybrid \acs{CMOS} detector developed at CERN in order to measure solar X-rays and background radiation in the \ac{LEO}.
-One of the thesis's goals is to transfer the know-how to the field of small \aclp{UAV}.
+One of the thesis's goals is to transfer this know-how to the field of small \aclp{UAV}.
 
 Experimental verification of novel methods is crucial to provide objective evaluation and to support new publications.
-Although the accompanying sub-fields of cybernetics --- machine learning and computer vision --- benefit significantly from evaluating and comparing new methods on datasets, the same approach can be rarely used in mobile robotics and field robotics.
-Even realistic simulation do not fully substitute the testing and verification using a real \ac{UAV} equipped with real sensors, and most importantly, outside of laboratory conditions (see \reffig{fig:collage}).
+Although the accompanying subfields of cybernetics --- machine learning and computer vision --- benefit significantly from evaluating and comparing new methods on datasets, the same approach can be rarely used in mobile robotics and field robotics.
+Even realistic simulation do not fully substitute the testing and verification using a real \ac{UAV} equipped with real sensors, most importantly, outside of laboratory conditions (see \reffig{fig:collage}).
 However, conducting real-world experiments requires an onboard control platform that can satisfy the tested method's needs.
-Despite the plethora of existing solutions \cite{sanchez2016aerostack, xiao2020xtdrone, furrer2016rotors, schmittle2018openuav, abeywardena2015design, mellado2013mavwork}, none provides all the features needed to support the work presented in the thesis.
+Despite the plethora of existing solutions \cite{sanchez2016aerostack, xiao2020xtdrone, furrer2016rotors, schmittle2018openuav, abeywardena2015design, mellado2013mavwork}, none provide all the features needed to support the work presented in the thesis.
 Not all the platforms support experiments both indoors and outdoors.
 The \ac{UAV} state estimation is often limited to a single localization approach.
 Mid-air switching of controllers and control reference generators is also not standard.
@@ -581,7 +580,7 @@ Finally, the low-level control output using a desired \ac{UAV} attitude rate is 
   \subfloat {
     \includegraphics[width=0.30\textwidth]{./fig/photos/rex_1_1-5.jpg}
   }
-  \caption{Illustration of outcomes of the thesis author's contributions: deployments of multi-rotor \acp{UAV} as well as radiation measurements for space applications.}
+  \caption{Illustration of outcomes of the thesis author's contributions: deployments of multirotor \acp{UAV} as well as radiation measurements for space applications.}
   \label{fig:collage}
 \end{figure}
 
@@ -590,7 +589,7 @@ Finally, the low-level control output using a desired \ac{UAV} attitude rate is 
 The objectives of the thesis are summarized as follows:
 
 \textbf{(1) Development of a control system for real-world deployment of \acp{UAV}}, verification of new methods for control, remote sensing, and deployment in indoor and outdoor environments.
-Despite many platforms for multirotor \acp{UAV} control and deployment are available, they lack features necessary for real-world testing and deployment of the methods within the focus of this thesis and the focus of the \acl{MRS} group at \ac{CTU} in Prague.
+Despite many platforms for multirotor \acp{UAV} control and deployment being available, they lack features necessary for real-world testing and deployment of the methods within the focus of this thesis and the focus of the \acl{MRS} group at \ac{CTU} in Prague.
 Therefore, the author's first objective and a long-term effort are to develop a modular \ac{UAV} control system.
 The control system should allow safe indoor and outdoor deployment of multirotor helicopters.
 The system should also allow verification of high-level methods for motion planning, multi-\ac{UAV} swarming, and formation flying.
@@ -607,7 +606,7 @@ The objective is to explore and push the field of collaborative remote sensing a
 Ionizing radiation has been traditionally measured onboard \acp{UAV} using dosimeters \cite{nagatani2013emergency, sanada2015aerial, towler2012radiation, jiang2016prototype} --- sensors measuring the intensity of incoming radiation.
 Often, the intensity is utilized only to estimate the scalar field of radiation intensity.
 Rarely, direction measurement can be obtained with an additional device, e.g., the optical collimator or a coded aperture.
-However, those solutions are not well-suited for small \acp{UAV} due to the heavyweight of the sensor equipment.
+However, those solutions are not well-suited for small \acp{UAV} due to the heavy weight of the sensor equipment.
 This work aims to push the state of the art by utilizing miniature semiconductor pixel detectors \cite{llopart2007timepix}, and novel event-based radiation detectors \cite{poikela2014timepix3} onboard \acp{MAV}.
 
 The rest of the thesis is organized as follows.
@@ -1472,9 +1471,9 @@ However, it is often conducted by a single \ac{UAV} dedicated to monitoring the 
 Distributing the remote sensing task provides measurements in different places at once.
 Multiple UAVs equipped with gimballed cameras can track a ground target more reliable than a single \ac{UAV} \cite{sun2014distributed}.
 The redundancy increases the robustness of the system.
-Missing information due to, e.g., image dropouts or target occlusions, can be substituted in real-time by communication with neighboring \acp{UAV} \cite{baek2020optimal, farmani2015tracking}.
-Moreover, distributed state estimation can be applied in real-time \cite{capitan2009delayed, merino2007multi, wan2000unscented}.
-When the states of an aerial target are estimated in real-time, a group of \acp{UAV} can pursue the target and intercept its path \cite{zhu2017distributed}.
+Missing information due to, e.g., image dropouts or target occlusions, can be substituted in real time by communication with neighboring \acp{UAV} \cite{baek2020optimal, farmani2015tracking}.
+Moreover, distributed state estimation can be applied in real time \cite{capitan2009delayed, merino2007multi, wan2000unscented}.
+When the states of an aerial target are estimated in real time, a group of \acp{UAV} can pursue the target and intercept its path \cite{zhu2017distributed}.
 
 A likely application of distributed sensing is during rescue operations and environmental monitoring of natural disasters \cite{manfreda2018use}.
 Distributed monitoring of wildfires can provide crucial real-time information to firefighters \cite{yuan2015survey, pham2020distributed}.
@@ -1486,7 +1485,7 @@ The coordinate principles are often split into two categories: \emph{formation} 
 \ac{UAV} formation control focuses on explicit coordination given either a centralized localization of all the agents or a mutual communication between the agents \cite{kamel2017model, kuriki2014avoidance, rezaee2013motion, wang2015efficient}.
 On the other hand, \ac{UAV} swarms is a bio-inspired decentralized technique that attempts to overcome the global localization or communication by applying behavioral rules \cite{mcguire2019minimal, burkle2011towards, saulnier2017flocking}.
 
-We aim at the specific sub-field of remote sensing related to autonomous experimental deployment of aerial robots.
+We aim at the specific subfield of remote sensing related to autonomous experimental deployment of aerial robots.
 In particular, two scenarios were studied in the context of the \ac{MBZIRC} 2017 challenge \cite{dias2019journal}.
 The first scenario focuses on autonomous localization, transportation, and delivery of objects by a team of \acp{UAV}.
 Furthermore, we investigate the task of autonomously landing a \ac{UAV} on a moving vehicle, potentially ending an automated sensing mission.
@@ -1501,7 +1500,7 @@ However, as was the case with the first \ac{MBZIRC} challenge, authors often rel
 Subproblems such as target detection and state estimation \cite{benini2016real, lin2017monocular}, simulation \cite{jung2015close, jung2016target, ghommam2017autonomous}, or use an external laboratory \ac{UAV} localization system \cite{ghamry2016real, lee2012autonomous, hui2013autonomous}.
 Those who attempted to solve the complete automatic landing with onboard detection, estimation, and control either conducted the maneuver at slow speed \cite{hoang2017vision} or flying along a straight line \cite{borowczyk2017autonomous}.
 
-Since the 2017 \ac{MBZIRC} competition, state of the art in the automatic grasping has further improved \cite{ruggiero2018aerial, feng2020packages}.
+Since the 2017 \ac{MBZIRC} competition, the state of the art in the automatic grasping has further improved \cite{ruggiero2018aerial, feng2020packages}.
 Moreover, the subsequent \ac{MBZIRC} 2020 challenge proposed a new problem with even higher requirements.
 In the 2020 challenge, a group of \acp{UAV} was tasked to automatically building a wall from bricks, again, using only onboard sensors and computation resources.
 The task can be seen as an extension of the 2017 object-gathering challenges with higher requirements on grasping precision, the object delivery, and overall system robustness.
@@ -1537,7 +1536,7 @@ The second use of radiation detectors in space is dedicated to capturing X-ray/G
 X-ray observatories can not be deployed on the Earth's surface due to the presence of the atmosphere.
 The state-of-the-art observatories such as Chandra \cite{weisskopf2000chandra}, Swift \cite{gehrels2004swift}, and Fermi \cite{atwood2009large} typically use scintillating detectors to measure the incoming light, or \acs{CCD} detectors for low-energy X-rays.
 \ac{CMOS} detectors are rarely used in space applications, mainly due to undesired noise characteristics.
-However, Timepix detectors operate with an internal mechanism that filters out the dark current through the detector diodes, and therefore, the resulting images are free to the traditional image noise.
+However, Timepix detectors operate with an internal mechanism that filters out the dark current through the detector diodes, and therefore the resulting images are free to the traditional image noise.
 
 %%{ Fig: vzlusat example
 
@@ -1558,11 +1557,11 @@ However, Timepix detectors operate with an internal mechanism that filters out t
 We add to the list an embedded and lite-weight design of a Timepix payload for the first Czech CubeSat satellite, the VZLUSAT-1 \cite{urban2017vzlusat, daniel2019inorbit}.
 The payload was dedicated to radiation mapping of Earth's \ac{LEO} \cite{baca2018timepix} and capturing images using the onboard X-Ray telescope \cite{baca2016miniaturized}.
 The satellite has been operational for more than 3 years.
-New radiation data are being processed on regular basis while being added to an open-source dataset\footnote{\url{https://github.com/vzlusat}} potentially useful for the community of future CubeSat designers.
-Further research let to a design of a one-time sub-orbital rocket experiment \cite{daniel2017xray, urban2020rex}.
+New radiation data are being processed on a regular basis while being added to an open-source dataset\footnote{\url{https://github.com/vzlusat}} that is potentially useful for the community of future CubeSat designers.
+Further research led to a design of a one-time sub-orbital rocket experiment \cite{daniel2017xray, urban2020rex}.
 A dedicated payload with two Timepix sensors were designed and developed based upon the \acl{ROS} \cite{baca2018rospix}.
-Embedded hardware with \ac{ROS} automatically managed recording of the measured data in real time.
-This crossover of technologies later allowed to continue on the development of \ac{ROS}-based Timepix technologies for the use onboard \aclp{UAV}.
+Embedded hardware with \ac{ROS} automatically managed the recording of measured data in real time.
+This crossover of technologies later allowed continuation on the development of \ac{ROS}-based Timepix technologies for the use onboard \aclp{UAV}.
 
 %%}
 
@@ -1581,24 +1580,24 @@ On the other hand, these robots tend to be relatively bulky, struggle to navigat
 
 \acp{UAV} have been utilized to map the spread of the radioactive material outside the power plant.
 These range from large aircraft weighing more than \SI{90}{\kilogram} equipped with heavy scintillation detectors \cite{sanada2015aerial, towler2012radiation, jiang2016prototype}
-to compact multi-rotors suitable for flying along a pre-defined trajectory close to the ground \cite{macfarlane2014lightweight, christie2017radiation, martin20163d}.
+to compact multirotors suitable for flying along a pre-defined trajectory close to the ground \cite{macfarlane2014lightweight, christie2017radiation, martin20163d}.
 Outside of Japan, several projects have employed \acp{UAV} for radiation intensity mapping around uranium ore mines \cite{salek2018mapping, keatley2018source, martin2015use}.
 
 In \cite{han2013lowcost}, multiple fixed-wing \acp{UAV} equipped with miniature scintillators are used for contour analysis of an irradiated area.
-Trajectory planning and data processing are performed offline, contrary to our approach, which estimates the source's position in real-time during the flight.
+Trajectory planning and data processing are performed offline, contrary to our approach, which estimates the source's position in real time during the flight.
 In \cite{newaz2016uav}, the contour analysis is tackled using a single multirotor \ac{UAV}. The contour analysis uses a Gaussian mixture model to estimate multiple radiation sources' positions with overlapping intensity fields.
 The projects mentioned above utilize unmanned vehicles to deliver a radiation sensor into a hazardous environment.
-However, the approaches do not respond to measured data in real-time and thus do not exploit the mobility of \acp{UAV} to improve the measurement.
+However, the approaches do not respond to measured data in real time and thus do not exploit the mobility of \acp{UAV} to improve the measurement.
 
 Active path-planning driven by the onboard measurements has been shown in \cite{towler2012radiation} for an outdoor environment and in \cite{mascarich2018radiation} for a GPS-denied indoor environment.
-Both of these works rely on a scintillator sensor to estimate the radiation intensity in the \ac{UAV}'s current position.
+Both works rely on a scintillator sensor to estimate the radiation intensity in the \ac{UAV}'s current position.
 As a result, the employed aerial platforms have to be large with a payload capacity exceeding \SI{2}{\kilogram}.
 As in \cite{towler2012radiation}, the aerial platform is a \SI{90}{\kilogram} unmanned aerial helicopter, which significantly limits its deployment conditions due to personal safety and considerable minimum distance to obstacles in the environment.
 
 The lack of lightweight radiation detectors with immediate readout capability severely limits the application potential of aerial dosimetry.
 However, the Timepix pixel detectors are ideal for the use onboard micro \acp{UAV} thanks to their low weight, small size, and the absence of any active cooling mechanism.
 We propose a \ac{UAV} system for outdoor and indoor environments while utilizing the know-how obtained with the embedded space applications' work.
-The \ac{ROS} \acs{API} for Timepix \cite{baca2018rospix}, initially developed for a suborbital rocket experiment \cite{urban2020rex}, allows the technology transfer to the robotics field.
+The \ac{ROS} \acs{API} for Timepix \cite{baca2018rospix}, initially developed for a suborbital rocket experiment \cite{urban2020rex}, allows the technology to transfer to the robotics field.
 However, a new robotic methodology for motion planning and exploration needed to be developed to accommodate and utilize the proposed measurement system's specifics \cite{stibinger2020localization}.
 Moreover, the Compton camera mechanism \cite{turecek2018compton}, is being utilized to provide the smallest real-time single-sensor Compton camera ever used on a \acp{UAV} \cite{baca2020gamma}.
 
@@ -1642,7 +1641,7 @@ Obtaining a feasible control reference that satisfies state constraints of the \
 Moreover, the presented approach utilizes the \SI{8}{s} \ac{MPC} prediction horizon for a mutual \ac{UAV} collision avoidance, which is especially useful for the verification of new multi-\ac{UAV} methods.
 The presented control technique was partially responsible for our success in the \ac{MBZIRC} 2017 robotic competition \cite{baca2019autonomous, loianno2018localization, spurny2019cooperative}.
 
-The \emph{MPC Tracker} \cite{baca2018model}, is however just a small part of complex system for multirotor \ac{UAV} experimental evaluation and deployment.
+The \emph{MPC Tracker} \cite{baca2018model} is, however, just a small part of complex system for multirotor \ac{UAV} experimental evaluation and deployment.
 With the second core publication in this thesis, we propose a modular control system for \ac{UAV} state estimation, trajectory tracking, feedback control, and flight management.
 This open-source control system sets up novel paradigms, such as the multi-frame \ac{UAV} state estimation, and the heading-based control pipeline, devoid of Euler and Tait-Bryan angles.
 Testing new feedback controllers, reference generators, state estimators, and other parts of the control pipeline are possible thanks to the modular design and the extensive simulation environment.
@@ -1658,9 +1657,9 @@ The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic
 
 %%{ Advances in remote sensing by UAVs
 
-\chapter{Advances in remote sensing by UAVs\label{chap:sensing}}
+\chapter{Advances in Remote Sensing by UAVs\label{chap:sensing}}
 
-The author of this thesis has contributed to various sub-fields of multi-\ac{UAV} research, inc. multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
+The author of this thesis has contributed to various subfields of multi-\ac{UAV} research, including multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
 However, most of the author's effort during his studies had been invested in the research scenarios proposed by the Khalifa University as the 2017 and 2020 \ac{MBZIRC} robotic challenges\footnote{\url{https://mbzirc.com}}.
 
 The following core publication \cite{baca2019autonomous} in this thesis proposes a \ac{UAV} system for autonomous landing on a moving car.
@@ -1671,10 +1670,10 @@ The system was evaluated extensively in simulations and various real-world condi
 \fullciteinbox{baca2019autonomous}{}
 
 The second challenge in \ac{MBZIRC} 2017 competition focused on the collaborative gathering of metal objects by a group of \acp{UAV}.
-A team of 3 \acp{UAV} was tasked with gathering colored metal discs that were stationary and moving (attached to ground mobile robots).
+A team of 3 \acp{UAV} was tasked with gathering colored metal discs that were either stationary and moving (attached to ground mobile robots).
 The challenge posed many subproblems, including onboard computer vision \cite{stepan2019vision}, sensor fusion, state estimation, feedback control, motion planning, robot coordination, and mechatronics.
 All the subproblems needed to be addressed competently and efficiently to obtain any score within the competition.
-The proposed system was tested extensively in simulations, and various outdoor conditions \cite{loianno2018localization}.
+The proposed system was tested extensively in simulations and various outdoor conditions \cite{loianno2018localization}.
 It performed consistently as the best solution to the challenge during the competition trials in Abu Dhabi.
 The MRS team won the 1$^{\text{st}}$ place among prestigious university teams from all over the world.
 The following core publication presents the system, its core features, and the experimental results.
@@ -1684,9 +1683,9 @@ The \ac{MBZIRC} 2020 challenge inspired the third core publication in this resea
 The 2$^{\text{nd}}$ round of this competition focused again on \aclp{UAV} and extended the 1$^{\text{st}}$ 2017 challenge.
 The article reports on the system for multi-robotic brick wall construction by a team of \acp{UAV}.
 Although this task is similar to the 2017 object-gathering challenge, significant advances in \ac{UAV} control and state estimation were required to address the problem successfully.
-Moreover, a novel multi-frame state estimation framework was proposed for seamless switching between globally-localized flight and an egomotion visual servoing \cite{baca2020mrs}.
+Moreover, a novel multi-frame state estimation framework was proposed for seamless switching between globally-localized flight and egomotion visual servoing \cite{baca2020mrs}.
 This system allowed the use of true visual servoing to achieve pinpoint accuracy during the autonomous grasping maneuver.
-The \acs{MRS} team won again the 1$^{\text{st}}$ place in the competition and showed again, by a significant margin, the best approach for solving the multi-robotic task.
+The \acs{MRS} team again won the 1$^{\text{st}}$ place in the competition and showed, by a significant margin, the best approach for solving the multi-robotic task.
 \fullciteinbox{baca2020autonomous}{}
 
 \includepaperwithimage{baca2019autonomous}
@@ -1703,23 +1702,23 @@ The \acs{MRS} team won again the 1$^{\text{st}}$ place in the competition and sh
 \chaptermark{Ionizing Radiation Sources Localization}
 
 The first core publication related to ionizing radiation dosimetry presents the results from the first year of the VZLUSAT-1 nanosatellite operation.
-The satellite \cite{urban2017vzlusat} was launched in June, 2017 \cite{daniel2019inorbit}.
+The satellite \cite{urban2017vzlusat} was launched in June 2017 \cite{daniel2019inorbit}.
 It carried, among other scientific instruments, a miniaturized X-ray telescope with the Timepix particle detector \cite{baca2016miniaturized}.
 The author carried out the design, development, and commissioning of the satellite's payload and manages ongoing data acquisition and processing.
 This research represents the author's first step into the particle imaging and radiation dosimetry community.
-Without these contributions and gained know-how, the following work on radiation localization and mapping by \acp{UAV} would probably have not been possible.
+Without these contributions and gained know-how, the following work on radiation localization and mapping by \acp{UAV} would have likely not been possible.
 Furthermore, one of the tangents of this outer space research is the author's involvement in one of NASA's suborbital sounding rocket flights \cite{miles2017introduction, wages2019flight, daniel2017xray}.
 The thesis author designed a hardware readout interface and software, based on the \acl{ROS} \cite{baca2018rospix}, for two Timepix detectors onboard a sub-orbital rocket \cite{urban2020rex}.
-The following article shows results of 1-year of orbital measurements onboard the VZLUSAT-1 satellite using the Timepix sensor.
+The following article shows results of one year of orbital measurements onboard the VZLUSAT-1 satellite using the Timepix sensor.
 \fullciteinbox{baca2018timepix}{}
 
 The second core publication in this field provides an overview of the potential use of Timepix particle imaging detectors onboard \acp{UAV}.
 The article discusses the detector's critical properties and their relation to various methods of obtaining a directional measurement of a radiation source, such as pinhole apertures, X-ray optics, and collimators.
 A method for real-time classification of the measured particle tracks is proposed and developed.
-Existing particle track classifiers are either not available (NASA \cite{vilalta2011development}, ESA \cite{granja2014directional, granja2016satram}), built-into laboratory software \cite{turecek2011pixelman, holy2006data, turecek2015pixet}, or not suited for real-time applications \cite{furnell2018first}.
-Therefore, we propose an open-source classifier and \ac{ROS} drivers for the Timepix detector.
-We also provided labeled datasets\footnote{\url{https://github.com/vzlusat}} that can be used for training of new classifiers.
-Furthermore, it is concluded that the Compton camera principle shows promising properties, and a real-time Monte-Carlo simulation model for the Compton camera is presented.
+Existing particle track classifiers are either not available (NASA \cite{vilalta2011development}, ESA \cite{granja2014directional, granja2016satram}), built into laboratory software \cite{turecek2011pixelman, holy2006data, turecek2015pixet}, or not suited for real-time applications \cite{furnell2018first}.
+Therefore, an open-source classifier and \ac{ROS} drivers for the Timepix detector is proposed.
+Labeled datasets\footnote{\url{https://github.com/vzlusat}} are also provided that can be used for training of new classifiers.
+Furthermore, it is concluded that the Compton camera principle shows promising properties and presents a real-time Monte-Carlo simulation model for the Compton camera.
 \fullciteinbox{baca2019timepix}{}
 
 The next core publication in this field focuses on distributed localization of ionizing radiation sources using multiple \acp{UAV} equipped with the Timepix sensor.
@@ -1743,34 +1742,34 @@ Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasib
 \chapter{Discussion and Results\label{chap:results}}
 \chaptermark{Discussion and Results}
 
-In this chapter, we summarize the contributions presented in the core articles.
-Furthermore, we provide a discussion in context with the remainder of the author's work.
-Finally, we suggest future work in the context of the three research streams.
+In this chapter, the contributions presented in the core articles are summarized.
+Furthermore, a discussion in context with the remainder of the author's work is provided.
+Lastly, future work in the context of the three research streams is suggested.
 
 %%{ Research-focused UAV System
 
 \section{Research-focused UAV System}
 
 The proposed \ac{UAV} system \cite{baca2020mrs, baca2018model} provides students and researchers the means to develop and test new methods in the field of feedback control, tracking, estimation, and planning.
-The system is modular and allows its users to add new components, that can be safely tested in simulations and even during a real-world flight.
+The system is modular and allows its users to add new components that can be safely tested in simulations, and even during a real-world flight.
 Moreover, the system can be used without changes for testing of high-level localization methods, mapping, planning, and multi-robot coordination.
 
-The first of our contributions is the \acl{MPC} tracker \cite{baca2018model}.
-Even now, more than four years after it was first developed, we have not yet found a viable substitute for the tracking mechanism.
+The first of these contributions is the \acl{MPC} tracker \cite{baca2018model}.
+Even now, more than four years after it was first developed, a viable substitute for the tracking mechanism has not yet been found.
 The \ac{MPC} tracker provides a mechanism for real-time generation of feasible and smooth feedforward control reference from any time-parametrized input trajectory.
 The tracker's output satisfies \ac{UAV} constraints even when the input trajectory is not feasible.
-The real-time tracking shows near-optimal results of minimizing the square error from the input trajectory, thanks to the linear \ac{MPC} problem formulation.
+The real-time tracking shows near-optimal results of minimizing the square error from the input trajectory due to the linear \ac{MPC} problem formulation.
 Moreover, the integrated mutual collision avoidance mechanism allows the safe deployment of multiple \acl{UAV} in outdoor conditions.
 
-The MRS \ac{UAV} system \cite{baca2020mrs} comes with two controller designs --- extended \emph{SE(3) geometric tracking} \cite{lee2010geometric} for agile and aggressive flight, and the novel \emph{MPC controller} for stable flight in case of potentially unreliable \ac{UAV} state estimate.
-However, the system can be easily extended with new control approaches as needed, thanks to its modularity.
+The MRS \ac{UAV} system \cite{baca2020mrs} comes with two controller designs --- extended \emph{SE(3) geometric tracking} \cite{lee2010geometric} for agile and aggressive flight and the novel \emph{MPC controller} for stable flight in case of potentially unreliable \ac{UAV} state estimate.
+However, the system can be easily extended with new control approaches as needed thanks to its modularity.
 UAV controllers' survey provides a rich list of potentially useful control techniques \cite{nascimento2019position}.
-For example, a novel adaptive backstepping controller \cite{zhang2019robust, labbadi2019robust} may provide better performance during aggressive maneuvers, thanks to the included rotor drag compensation.
+For example, a novel adaptive backstepping controller \cite{zhang2019robust, labbadi2019robust} may provide better performance during aggressive maneuvers due to the included rotor drag compensation.
 The proposed extension to \emph{geometric tracking on SE(3)} \cite{lee2010geometric} can be further improved with remarks from \cite{lee2013nonlinear} to provide robust control to bounded uncertainties.
-Furthermore, nonlinear \ac{MPC} controllers are becoming popular \cite{nascimento2019nmpc, pereira2019nonlinear, kamel2017robust}, thanks to their inherent ability to cope with complex constraints.
-However, when dealing with theoretical work and experimental deployment in real-world conditions, we favor practicality over complexity.
-We, therefore, utilize relatively simple controllers \cite{baca2020mrs}, with well-tractable inner mechanisms.
-Moreover, we still find even the relatively old concepts \cite{lee2010geometric} to be worth improving by incremental and implementation ways, as described in \cite{baca2020mrs}.
+Furthermore, nonlinear \ac{MPC} controllers are becoming popular \cite{nascimento2019nmpc, pereira2019nonlinear, kamel2017robust} thanks to their inherent ability to cope with complex constraints.
+However, when dealing with theoretical work and experimental deployment in real-world conditions, practicality over complexity is favored.
+Therefore, relatively simple controllers \cite{baca2020mrs} with well-tractable inner mechanisms are utilized.
+Moreover, we still find even relatively old concepts \cite{lee2010geometric} to be worth improving by incremental and implementation ways, as described in \cite{baca2020mrs}.
 
 \noindent
 The proposed control system has the following key properties:
@@ -1780,23 +1779,23 @@ The proposed control system has the following key properties:
   \item body/world disturbance estimation that does not rely on specific state estimator design,
   \item reliable MPC-based controller with the benefits of the nonlinear \emph{SO(3)} force feedback,
   \item system for utilizing a variety of onboard localization systems and sensors,
-  \item input in any coordinate frame, which may differ from the feedback loop reference frame.
-  \item built upon the \ac{MPC} tracker for control reference generation \cite{baca2018model},
+  \item input in any coordinate frame, which may differ from the feedback loop reference frame,
+  \item built upon the \ac{MPC} tracker for control reference generation \cite{baca2018model}.
 \end{itemize}
 
-The system has been used no only for research testing and evaluation but also for education and teaching.
-We utilized the system for practical exercises during the 2019 and 2020 \acs{IEEE} \acs{RAS} Summer School on Multi-Robot Systems\footnote{\url{http://mrs.felk.cvut.cz/summer-school-2020}}.
-Over a hundred students used the system while solving the tasks of multi-\ac{UAV} traveling salesman problem with neighborhoods (2019) and relatively-localized leader-follower flight with two \acp{UAV} (2020).
-Both tasks were finished with field experiments, where the student's code was tested (see \reffig{fig:summer_school}).
+The system has been used not only for research testing and evaluation, but also for education and teaching.
+The system was utilized for practical exercises during the 2019 and 2020 \acs{IEEE} \acs{RAS} Summer School on Multi-Robot Systems\footnote{\url{http://mrs.felk.cvut.cz/summer-school-2020}}.
+Over a hundred students used the system while solving the tasks of the multi-\ac{UAV} traveling salesman problem with neighborhoods (2019) and relatively-localized leader-follower flight with two \acp{UAV} (2020).
+Both tasks were finished with field experiments where the student's code was tested (see \reffig{fig:summer_school}).
 
-The future work on the MRS UAV system is currently foreseen as mostly implementation improvements, including the transition to \acs{ROS}2, and continuous improvement of the system's documentation.
+The future work on the MRS UAV system is currently foreseen as mostly implementation improvements, including the transition to \acs{ROS}2 and continuous improvement of the system's documentation.
 However, some research topics remain.
 The heading-based control approach should be generalized to allow the user to specify a vector in the \ac{UAV}'s body frame that represents the \ac{UAV} \emph{front}, other than the currently-used principle x-axis.
 The azimuth of this vector should be considered as the heading.
 This would allow precise tracking and control of the heading with respect to, e.g., an arbitrary optical axis of a camera mounted on the \ac{UAV}.
 Without such a mechanism, the heading control relative to other than the \ac{UAV} body's x-axis can be achieved only approximately and with notable errors, especially during aggressive maneuvers.
 However, this mechanism needs to be incorporated in both control and reference generation.
-And the mechanism must guarantee smooth control references and control actions even when the definition of the \ac{UAV}'s \emph{front} changes in mid flight.
+The mechanism must also guarantee smooth control references and control actions even when the definition of the \ac{UAV}'s \emph{front} changes in mid-flight.
 
 %%}
 
@@ -1806,28 +1805,28 @@ And the mechanism must guarantee smooth control references and control actions e
 
 The \ac{UAV} tasks tackled within the core publications in this thesis were on the edge of field robotics at their time.
 We successfully showed a multi-robotic system for autonomous object gathering \cite{spurny2019cooperative} and autonomous wall construction \cite{baca2020autonomous} by \acp{UAV}.
-Both systems were put to the test during the \ac{MBZIRC} 2017 and \ac{MBZIRC} 2020 robotics competition, and both achieved first place among respected university teams from all over the world (see Figures~\ref{fig:mbzirc_2017_award}, and \ref{fig:mbzirc_2020_award}).
-We also investigated the task of autonomous landing with a \ac{UAV} on top of a moving car \cite{baca2019autonomous} with the total second place in the competition and the fastest autonomous landing time among all the competing teams.
-This robotics problem might be in the future a part of automatic remote sensing applications with \acp{UAV} being deployed and recovered by a car.
+Both systems were put to the test during the \ac{MBZIRC} 2017 and \ac{MBZIRC} 2020 robotics competitions where both achieved first place among respected university teams from all over the world (see Figures~\ref{fig:mbzirc_2017_award}, and \ref{fig:mbzirc_2020_award}).
+The task of autonomous landing with a \ac{UAV} on top of a moving car \cite{baca2019autonomous} was also investigated, with a total of second place in the competition and the fastest autonomous landing time among all the competing teams.
+In the future, this robotics problem may be part of automatic remote sensing applications with \acp{UAV} being deployed and recovered by a car.
 Each of the three problems brought us further in understanding the caveats of onboard state estimation, computer vision, control, and planning.
-The important lesson we learned about robotics from our endeavors is the danger of overly focusing on one or a few specializations.
-\ac{UAV} autonomy is a complex cybernetics field that encompasses many interconnected sub-fields.
-We found that researchers often focus too narrowly on one of the sub-fields while ignoring the influence between other components of autonomous systems.
+The important lesson learned about robotics from these endeavors is the danger of overly focusing on one or a few specializations.
+\ac{UAV} autonomy is a complex cybernetics field that encompasses many interconnected subfields.
+We found that researchers often focus too narrowly on one of the subfields while ignoring the influence between other components of autonomous systems.
 This can make the approaches narrow-minded, detached from reality, and potentially not applicable to a real-world robotics system.
 
 Although the particular problems solved in \cite{baca2019autonomous, spurny2019cooperative, baca2020autonomous} are probably not going to be pursued in the future by our team, the acquired know-how and knowledge are transferable to other applications.
 For example, we also pursue the \ac{DARPA} Subterranean competition on multi-robotic autonomous localization of objects and people in underground environments \cite{roucek2019darpa, kratky2020autonomous2, petrlik2020robust}.
-Furthermore, our primary research on relatively-localized multi-\ac{UAV} swarms \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe} benefits significantly from the systems and expertise we obtained in experimental field robotics.
-Finally, the following section discusses our current and future work in the remote sensing sub-field of ionizing radiation sources.
+Furthermore, the primary research on relatively-localized multi-\ac{UAV} swarms \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe} benefits significantly from the systems and expertise we obtained in experimental field robotics.
+Finally, the following section discusses our current and future work in the remote sensing subfield of ionizing radiation sources.
 
 \begin{figure}
-  \subfloat[2019 IEEE RAS summer school\label{fig:summer_school}] {
+  \subfloat[2019 IEEE RAS Summer School\label{fig:summer_school}] {
     \includegraphics[width=0.47\textwidth]{./fig/photos/summer_school_outdoor.jpg}
   }
-  \subfloat[MBZIRC 2017 award ceremony.\label{fig:mbzirc_2017_award}] {
+  \subfloat[MBZIRC 2017 Award Ceremony.\label{fig:mbzirc_2017_award}] {
     \includegraphics[width=0.47\textwidth]{./fig/photos/mbzirc_team_2017.jpg}
   }\\
-  \subfloat[Team members during the MBZIRC 2020 award ceremeny.\label{fig:mbzirc_2020_award}] {
+  \subfloat[Team members during the MBZIRC 2020 Award Ceremony.\label{fig:mbzirc_2020_award}] {
     \includegraphics[width=0.96\textwidth]{./fig/photos/mbzirc_team_2020.jpg}
   }
 \end{figure}
@@ -1839,9 +1838,9 @@ Finally, the following section discusses our current and future work in the remo
 \section{Ionizing Radiation Sources Localization}
 
 We have come to the field of ionizing radiation detection from a different direction and using a different perspective than the rest of the \ac{UAV} community, specifically from the constrained environment of miniature space technologies \cite{baca2016miniaturized, baca2018timepix}.
-Where the rest of the community often attempts to mount as large radiation detectors as possibly to a \ac{UAV} (to maximize measured counts-per-second), we strive towards miniaturizing both the sensor and the \ac{UAV} to deploy the \ac{UAV} in tightly constraint environments.
-We can close the distance to the radiation source even in a cluttered environment and, therefore, obtain even more information, thanks to the inverse square law of radiation intensity over distance.
-The concept of obtaining as much information as possible using large detectors is prominent throughout state of the art.
+Where the rest of the community often attempts to mount as large radiation detectors as possible to a \ac{UAV} (to maximize measured counts-per-second), we strive towards miniaturizing both the sensor and the \ac{UAV} to deploy the \ac{UAV} in tightly constraint environments.
+The distance to the radiation source even in a cluttered environment can be closed, and therefore obtain even more information due to the inverse square law of radiation intensity over distance.
+The concept of obtaining as much information as possible using large detectors is prominent throughout the state of the art.
 However, multiple factors should be considered when building an autonomous aerial system for radiation source localization.
 We identified the following four factors:
 \begin{itemize}
@@ -1854,16 +1853,16 @@ As depicted in Figure~\ref{fig:radiation_cycle}, these four factors influence ea
 With a larger sensor comes a higher event count rate, which is understandably preferred by physicists.
 However, large and heavy sensors require larger aircraft with higher payload capacity.
 The aircraft size dictates its motion constraints through an environment; larger aircraft fly higher above the terrain and need increased safety distance from obstacles.
-Those constraints determine the search strategy that, in turn, typically favors sensors with higher sensitivity; therefore, sensors with a larger mass.
+Those constraints determine the search strategy that, in turn, typically favors sensors with higher sensitivity, and therefore sensors with a larger mass.
 The current state of the art does not break from this cycle in more than a couple of factors.
-On the contrary, state of the art mostly utilizes \acp{UAV} just as a sensor carrier and there is a little incentive for real-time onboard autonomy.
+On the contrary, the state of the art mostly utilizes \acp{UAV} just as a sensor carrier and there is little incentive for real-time onboard autonomy.
 However, we conjecture that all four factors need to be adjusted simultaneously to show a breakthrough in the field.
 In other words, the system needs to be developed while focusing on the specifics of sensors and the \acp{UAV} autonomy simultaneously.
 
 Making the sensor smaller will lower its weight as well as the raw count-per-second information yield.
 However, miniature sensors can be mounted on an \ac{MAV} that can safely fly much closer to environmental obstacles.
-Flying close to obstacles requires more intelligent onboard autonomy, sensing the obstacles and planning the \ac{UAV} motion with respect to the environment.
-Proximity to obstacles opens new possibilities for search strategies, which can utilize the abilities of today autonomous systems and the potential to close the distance to the radiation source autonomously.
+Flying close to obstacles requires more intelligent onboard autonomy, sensing the obstacles, and planning the \ac{UAV} motion with respect to the environment.
+Proximity to obstacles opens new possibilities for search strategies which can utilize the abilities of today's autonomous systems and the potential to close the distance to the radiation sources autonomously.
 We aim to make such a breakthrough with know-how in both research fields.
 
 %%{ endless circle diagram
@@ -1988,30 +1987,28 @@ We aim to make such a breakthrough with know-how in both research fields.
 
 %%}
 
-We have made contributions that allow us to employ the innovative Timepix sensors and Timepix3 event cameras onboard \acp{UAV}.
-We proposed the Rospix\footnote{\url{https://github.com/rospix}} interface \cite{baca2018rospix} for the \acl{ROS} together with a particle classification pipeline \cite{baca2019timepix}.
+We have made contributions that allow us to employ the innovative Timepix sensors and Timepix3 event cameras onboard \acp{UAV}, and proposed the Rospix\footnote{\url{https://github.com/rospix}} interface \cite{baca2018rospix} for the \acl{ROS} together with a particle classification pipeline \cite{baca2019timepix}.
 The traditional software and tools available for the Timepix family of detectors are dedicated solely for laboratory use and expect a human in the loop.
 Also, the data processing is commonly done only after all the data were measured.
 Any specific application outside of the intended use requires specific hardware and software to be developed in collaboration with the sensor interface manufacturer, as it was, e.g., for the VZLUSAT-1 nanosatellite \cite{baca2016embedded}.
 The \ac{ROS} tools provided through Rospix allow full automation using standard tools within the robotics community.
-Moreover, the particle classification pipeline is the first available to be executable during the data acquisition and is available as open-source.
+Moreover, the particle classification pipeline is the first available to be executable during the data acquisition and is available as open source.
 The classification pipeline was trained using diverse radiation data\footnote{\url{https://github.com/vzlusat}} gathered by the VZLUSAT-1 nanosatellite mission \cite{baca2018timepix}.
 
-Our first contributions related to the radiation dosimetry onboard \acp{UAV} consists of the review of radiation localization options for \acl{UAV}, the particle classification pipeline, and a real-time Monte Carlo ray-tracing model for a dual-sensor Compton camera \cite{baca2019timepix}.
-Furthermore, we investigate the use of the bare Timepix sensor for multi-robotic localization of compact radiation sources \cite{stibinger2020localization} without a specialized mechanism to deduce a direction to the source.
+Our first contributions related to the radiation dosimetry onboard \acp{UAV} consist of the review of radiation localization options for \acl{UAV}, the particle classification pipeline, and a real-time Monte Carlo ray-tracing model for a dual-sensor Compton camera \cite{baca2019timepix}.
+Furthermore, the use of the bare Timepix sensor for multi-robotic localization of compact radiation sources \cite{stibinger2020localization} without a specialized mechanism to deduce a direction to the source is investigated.
 We show the approach's potential using realistic robotic simulations and a real-time Monte Carlo ray-tracing model of gamma radiation.
 The previously mentioned contributions were motivation and a precursor for the project proposal for the Technology Agency of the Czech Republic.
 Such interdisciplinary tasks as the localization of ionizing radiation sources can be challenging to accomplish by an institution specializing in either field.
-Therefore, the thesis author co-wrote a project proposal, together with \emph{Advacam, s.r.o.}, and the \emph{Czech Metrology Institute} would allow us to focus on the topic and dedicate more resources to the research.
-Project no. FW01010317 (2020 -- 2022, 8$^{\text{th}}$ of 396 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) called ``\textit{RADRON: Localization of ionizing radiation sources using small unmanned helicopters equipped with a Compton camera detector}''.
+Therefore, the thesis author co-wrote a project proposal, together with \emph{Advacam, s.r.o.} and the \emph{Czech Metrology Institute}, that would allow focusing on the topic and dedicate more resources to the research.
+Project no. FW01010317 (2020 -- 2022, 8$^{\text{th}}$ of 396 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) is called ``\textit{RADRON: Localization of ionizing radiation sources using small unmanned helicopters equipped with a Compton camera detector}''.
 The project focuses on utilizing the unique properties of the Timepix3\cite{poikela2014timepix3} event cameras for real-time localization and tracking of compact radiation sources.
 The first project results, submitted to \emph{IEEE ICRA} \cite{baca2020gamma}, show the Timepix3 event camera used as a single-detector Compton camera onboard a \ac{UAV}.
-We show first experiments using an autonomous \ac{UAV} being localized by \acs{LiDAR} \acs{SLAM}.
+Experiments using an autonomous \ac{UAV} being localized by \acs{LiDAR} \acs{SLAM} are showed first.
 The system was able to localize a relatively weak gamma source using only onboard sensors.
 \fullciteinbox{baca2020gamma}{}
 The future work in this research field is co-aligned with the project goals.
-We focus on developing an \ac{MAV} equipped with a Compton camera based on the Timepix3 technology.
-We aim at combining the Compton camera principle \cite{baca2020gamma} for localization of compact gamma sources, together with the count-based system \cite{stibinger2020localization} that can be utilized for ionizing charged particles.
+We focus on developing an \ac{MAV} equipped with a Compton camera based on the Timepix3 technology and aim to combine the Compton camera principle \cite{baca2020gamma} for localization of compact gamma sources, together with the count-based system \cite{stibinger2020localization} that can be utilized for ionizing charged particles.
 
 %%}
 
@@ -2027,16 +2024,16 @@ This thesis addressed collaborative remote sensing by a group of \aclp{UAV}.
 First, we focused on developing a \ac{UAV} control system for experimental evaluation of new methods in realistic real-world conditions.
 The proposed system utilizes an \ac{MPC} tracking approach for generating feedforward control reference provides a modular control pipeline.
 A novel feedback controller design combining an \ac{MPC} with geometric tracking controller on \emph{SO(3)} was proposed, together with a heading-based orientation system that is devoid of the convention of Euler and Tait-Bryan angles.
-The control system had been extensively tested throughout the years and provided the means for other research to be conducted.
-One of the many uses of the system was during the 2017 and 2020 \ac{MBZIRC} robotics competition.
-We tackled several problems on the edge of state of the art in field robotics at the time.
-Our solutions to the problems of multi-\ac{UAV} object gathering and multi-\ac{UAV} brick wall construction showed the be the best in the world, and our solution to the autonomous landing on a moving car with a \ac{UAV} performed the fastest landing among the competitors.
-This thesis's collection of core publications reports on complex cybernetics problems of feedback control, estimation, sensor fusion, computer vision, planning, and mechatronics sub-fields of aerial robotics.
-Finally, we present contributions in the field of aerial localization of ionizing radiation sources.
-We made the first steps into adopting the Timepix family of \ac{CMOS} hybrid semiconductor sensors to be used onboard a mobile robot.
-We showed the sensors' properties, provide essential tools for their use onboard a robot, and suggested a methodology for their application.
+The control system has been extensively tested throughout the years and provided the means for other research to be conducted.
+One of the many uses of the system was during the 2017 and 2020 \ac{MBZIRC} robotics competitions.
+We tackled several problems on the edge of the state of the art in field robotics at the time.
+Our solutions to the problems of multi-\ac{UAV} object gathering and multi-\ac{UAV} brick wall construction proved to be the best in the world, with our solution to the autonomous landing of a \ac{UAV} on a moving car performing the fastest landing among the competitors.
+This thesis's collection of core publications reports on complex cybernetics problems of feedback control, estimation, sensor fusion, computer vision, planning, and mechatronics subfields of aerial robotics.
+Finally, contributions in the field of aerial localization of ionizing radiation sources were presented.
+We have made the first steps into adopting the Timepix family of \ac{CMOS} hybrid semiconductor sensors to be used onboard a mobile robot.
+The sensors' properties have been shown, providing essential tools for their use onboard a robot, and a methodology for their application has been suggested.
 First experiments were conducted with the Timepix and Timepix3 sensors onboard a \ac{UAV}.
-Our latest results --- the first results of an ongoing project --- showed a successful use of the Timepix3 event camera in the form of Compton camera onboard a \ac{UAV} for localization of a compact gamma radiation source.
+Our latest results --- the first results of an ongoing project --- showed successful use of the Timepix3 event camera in the form of Compton camera onboard a \ac{UAV} for localization of a compact gamma radiation source.
 
 %%}
 
@@ -2124,9 +2121,9 @@ The citation counts were gathered on January 1$^{\text{st}}$, 2021.
 %%{ Apendices
 
 \appendix
-\renewcommand\chaptername{Citations of author's publications}
+\renewcommand\chaptername{Citations of Author's Publications}
 
-\chapter{Citations of author's publications}
+\chapter{Citations of Author's Publications}
 
 Citations of the author's work were extracted from the Web~of~Science.
 First- and second-order self-citations are excluded.
