@@ -1670,7 +1670,7 @@ The system was evaluated extensively in simulations and various real-world condi
 \fullciteinbox{baca2019autonomous}{}
 
 The second challenge in \ac{MBZIRC} 2017 competition focused on the collaborative gathering of metal objects by a group of \acp{UAV}.
-A team of 3 \acp{UAV} was tasked with gathering colored metal discs that were either stationary and moving (attached to ground mobile robots).
+A team of 3 \acp{UAV} was tasked with gathering colored metal discs that were both stationary and moving (attached to ground mobile robots).
 The challenge posed many subproblems, including onboard computer vision \cite{stepan2019vision}, sensor fusion, state estimation, feedback control, motion planning, robot coordination, and mechatronics.
 All the subproblems needed to be addressed competently and efficiently to obtain any score within the competition.
 The proposed system was tested extensively in simulations and various outdoor conditions \cite{loianno2018localization}.
@@ -1718,7 +1718,7 @@ A method for real-time classification of the measured particle tracks is propose
 Existing particle track classifiers are either not available (NASA \cite{vilalta2011development}, ESA \cite{granja2014directional, granja2016satram}), built into laboratory software \cite{turecek2011pixelman, holy2006data, turecek2015pixet}, or not suited for real-time applications \cite{furnell2018first}.
 Therefore, an open-source classifier and \ac{ROS} drivers for the Timepix detector is proposed.
 Labeled datasets\footnote{\url{https://github.com/vzlusat}} are also provided that can be used for training of new classifiers.
-Furthermore, it is concluded that the Compton camera principle shows promising properties and presents a real-time Monte-Carlo simulation model for the Compton camera.
+Furthermore, it presents a real-time Monte-Carlo simulation model for the Compton camera and concludes that the Compton camera principle shows promising properties.
 \fullciteinbox{baca2019timepix}{}
 
 The next core publication in this field focuses on distributed localization of ionizing radiation sources using multiple \acp{UAV} equipped with the Timepix sensor.
@@ -1806,7 +1806,7 @@ The mechanism must also guarantee smooth control references and control actions 
 The \ac{UAV} tasks tackled within the core publications in this thesis were on the edge of field robotics at their time.
 We successfully showed a multi-robotic system for autonomous object gathering \cite{spurny2019cooperative} and autonomous wall construction \cite{baca2020autonomous} by \acp{UAV}.
 Both systems were put to the test during the \ac{MBZIRC} 2017 and \ac{MBZIRC} 2020 robotics competitions where both achieved first place among respected university teams from all over the world (see Figures~\ref{fig:mbzirc_2017_award}, and \ref{fig:mbzirc_2020_award}).
-The task of autonomous landing with a \ac{UAV} on top of a moving car \cite{baca2019autonomous} was also investigated, with a total of second place in the competition and the fastest autonomous landing time among all the competing teams.
+The task of autonomous landing with a \ac{UAV} on top of a moving car \cite{baca2019autonomous} was also investigated, contributing to the second place in the competition and the fastest autonomous landing time among all the competing teams.
 In the future, this robotics problem may be part of automatic remote sensing applications with \acp{UAV} being deployed and recovered by a car.
 Each of the three problems brought us further in understanding the caveats of onboard state estimation, computer vision, control, and planning.
 The important lesson learned about robotics from these endeavors is the danger of overly focusing on one or a few specializations.
@@ -1835,7 +1835,7 @@ Finally, the following section discusses our current and future work in the remo
 
 %%{ Ionizing Radiation Sources Localization
 
-\section{Ionizing Radiation Sources Localization}
+\section{Ionizing radiation sources localization}
 
 We have come to the field of ionizing radiation detection from a different direction and using a different perspective than the rest of the \ac{UAV} community, specifically from the constrained environment of miniature space technologies \cite{baca2016miniaturized, baca2018timepix}.
 Where the rest of the community often attempts to mount as large radiation detectors as possible to a \ac{UAV} (to maximize measured counts-per-second), we strive towards miniaturizing both the sensor and the \ac{UAV} to deploy the \ac{UAV} in tightly constraint environments.
@@ -1861,9 +1861,9 @@ In other words, the system needs to be developed while focusing on the specifics
 
 Making the sensor smaller will lower its weight as well as the raw count-per-second information yield.
 However, miniature sensors can be mounted on an \ac{MAV} that can safely fly much closer to environmental obstacles.
-Flying close to obstacles requires more intelligent onboard autonomy, sensing the obstacles, and planning the \ac{UAV} motion with respect to the environment.
+Flying close to obstacles requires more intelligent onboard autonomy, that can sense the obstacles and plan the \ac{UAV} motion with respect to the environment.
 Proximity to obstacles opens new possibilities for search strategies which can utilize the abilities of today's autonomous systems and the potential to close the distance to the radiation sources autonomously.
-We aim to make such a breakthrough with know-how in both research fields.
+We aim to make such a breakthrough in both research fields.
 
 %%{ endless circle diagram
 
@@ -1988,7 +1988,7 @@ We aim to make such a breakthrough with know-how in both research fields.
 %%}
 
 We have made contributions that allow us to employ the innovative Timepix sensors and Timepix3 event cameras onboard \acp{UAV}, and proposed the Rospix\footnote{\url{https://github.com/rospix}} interface \cite{baca2018rospix} for the \acl{ROS} together with a particle classification pipeline \cite{baca2019timepix}.
-The traditional software and tools available for the Timepix family of detectors are dedicated solely for laboratory use and expect a human in the loop.
+The traditional software and tools available for the Timepix family of detectors are dedicated solely for laboratory use and often expect a human input while conducting measurements.
 Also, the data processing is commonly done only after all the data were measured.
 Any specific application outside of the intended use requires specific hardware and software to be developed in collaboration with the sensor interface manufacturer, as it was, e.g., for the VZLUSAT-1 nanosatellite \cite{baca2016embedded}.
 The \ac{ROS} tools provided through Rospix allow full automation using standard tools within the robotics community.
