@@ -144,13 +144,13 @@ sources:
   link: ros_packages/rad_msgs
   scripts:
   - git submodule update --init --recursive
-- name: radiation_utils
+- name: rad_utils
   type: git
-  repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
+  repo: git@github.com:rospix/rad_utils.git
   sparse_paths:
   -
   rev: master
-  link: ros_packages/radiation_utils
+  link: ros_packages/rad_utils
   scripts:
   - git submodule update --init --recursive
 - name: roberts_thesis
@@ -334,13 +334,13 @@ sources_locked:
   link: ros_packages/rad_msgs
   scripts:
   - git submodule update --init --recursive
-- name: radiation_utils
+- name: rad_utils
   type: git
-  repo: git@mrs.felk.cvut.cz:radiation/radiation_utils.git
+  repo: git@github.com:rospix/rad_utils.git
   sparse_paths:
   -
   rev: 8bab1caf779e38e1972f0a323622628751fea01e
-  link: ros_packages/radiation_utils
+  link: ros_packages/rad_utils
   scripts:
   - git submodule update --init --recursive
 - name: roberts_thesis
