@@ -1,7 +1,7 @@
 %%{ DOC HEAD
 
-% \newcommand*{\printversion}{}%
-% \newcommand*{\includepdfs}{}%
+\newcommand*{\printversion}{}%
+\newcommand*{\includepdfs}{}%
 
 \pdfoutput=1
 \ifdefined\printversion
@@ -87,7 +87,7 @@
 
 \newcommand{\includepaperwithimage}[1]{
   \ifdefined\includepdfs
-    \includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{full}},offset=0.5cm 0cm]{./papers_to_include_pdf/#1}
+    \includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{full}},offset=0.30cm 0cm]{./papers_to_include_pdf/#1}
   \else
     \clearpage
     \fullciteinboxwithimage{#1}{This place will contain the full paper}
@@ -307,8 +307,8 @@
 \newcommand{\figvspace}{\vspace{-1em}} % this may eventually do something, so far just a placeholder
 
 \ifdefined\printversion
-  \setlength{\oddsidemargin}{+0.5cm}
-  \setlength{\evensidemargin}{-0.5cm}
+  \setlength{\oddsidemargin}{+0.7cm}
+  \setlength{\evensidemargin}{-0.7cm}
 \fi
 
 %%}
@@ -1655,9 +1655,9 @@ The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic
 
 %% | ------------------------ Chapter 4 ----------------------- |
 
-%%{ Advances in remote sensing by UAVs
+%%{ Remote sensing by UAVs
 
-\chapter{Advances in Remote Sensing by UAVs\label{chap:sensing}}
+\chapter{Remote Sensing by UAVs\label{chap:sensing}}
 
 The author of this thesis has contributed to various subfields of multi-\ac{UAV} research, including multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
 However, most of the author's effort during his studies had been invested in the research scenarios proposed by the Khalifa University as the 2017 and 2020 \ac{MBZIRC} robotic challenges\footnote{\url{https://mbzirc.com}}.
@@ -2002,7 +2002,7 @@ The previously mentioned contributions were motivation and a precursor for the p
 Such interdisciplinary tasks as the localization of ionizing radiation sources can be challenging to accomplish by an institution specializing in either field.
 Therefore, the thesis author co-wrote a project proposal, together with \emph{Advacam, s.r.o.} and the \emph{Czech Metrology Institute}, that would allow focusing on the topic and dedicate more resources to the research.
 Project no. FW01010317 (2020 -- 2022, 8$^{\text{th}}$ of 396 submitted for the call\footnote{\url{https://www.tacr.cz/soutez/program-trend/prvni-verejna-soutez-trend}}) is called ``\textit{RADRON: Localization of ionizing radiation sources using small unmanned helicopters equipped with a Compton camera detector}''.
-The project focuses on utilizing the unique properties of the Timepix3\cite{poikela2014timepix3} event cameras for real-time localization and tracking of compact radiation sources.
+The project focuses on utilizing the unique properties of the Timepix3 \cite{poikela2014timepix3} event cameras for real-time localization and tracking of compact radiation sources.
 The first project results, submitted to \emph{IEEE ICRA} \cite{baca2020gamma}, show the Timepix3 event camera used as a single-detector Compton camera onboard a \ac{UAV}.
 Experiments using an autonomous \ac{UAV} being localized by \acs{LiDAR} \acs{SLAM} are showed first.
 The system was able to localize a relatively weak gamma source using only onboard sensors.
