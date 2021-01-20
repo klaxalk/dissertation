@@ -393,8 +393,6 @@
 % page header
 \fancyhead[LE,RO]{\thepage}
 
-\newcommand{\resetHeadWidth}{\f@nch@setoffs}
-
 }
 
 %%}
@@ -428,8 +426,6 @@
 %%}
 
 \begin{document}
-
-\resetHeadWidth
 
 \input{src/title}
 
@@ -1094,24 +1090,34 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
     \subarticle{right=of roucek2019darpa,shift={(0.0em, 0.0em)}}{kratky2020autonomous2}{\tabcite{kratky2020autonomous2}}{
       \begin{tabular}{l}
         DARPA SubT\\
-        Urban exploration\\
-        \emph{JFR 2020}
+        UAV Urban\\
+        exploration\\
+        \emph{JFR}
       \end{tabular}
     }
 
-    \article{below=of roucek2019darpa,shift={(0em, 0em)}}{saikin2020wildfire}{\tabcite{saikin2020wildfire}}{
+    \subarticle{below=of kratky2020autonomous2,shift={(0.0em, 0.0em)}}{roucek2021system}{\tabcite{roucek2021system}}{
       \begin{tabular}{l}
-        Wildlife firefighting\\
-        with UAVs\\
-        \emph{RA-L 2020}
+        DARPA SubT\\
+        Multi-robot\\
+        exploration system\\
+        \emph{Field Robotics}
       \end{tabular}
     }
 
-    \subarticle{right=of saikin2020wildfire,shift={(0em, 0em)}}{silano2020power}{\tabcite{silano2020power}}{
+    \subarticle{below=of roucek2021system,shift={(0em, 0em)}}{silano2020power}{\tabcite{silano2020power}}{
       \begin{tabular}{l}
         Powerline inspection\\
         with UAVs using\\
         STL\\
+        \emph{RA-L 2020}
+      \end{tabular}
+    }
+
+    \article{left=of silano2020power,shift={(0em, 0em)}}{saikin2020wildfire}{\tabcite{saikin2020wildfire}}{
+      \begin{tabular}{l}
+        Wildlife firefighting\\
+        with UAVs\\
         \emph{RA-L 2020}
       \end{tabular}
     }
@@ -1219,7 +1225,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
         Autonomous\\
         target elimination\\
         by UAVs\\
-        \emph{ICRA, 2021}
+        \emph{Field Robotics}
       \end{tabular}
     }
 
@@ -1232,12 +1238,12 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       \end{tabular}
     }
 
-    \subarticle{right=of stasinchuk2020multiuav,shift={(0.0em, -0em)}}{spurny2020autonomous}{\tabcite{spurny2020autonomous}}{
+    \article{right=of stasinchuk2020multiuav,shift={(0.0em, -0em)}}{spurny2020autonomous}{\tabcite{spurny2020autonomous}}{
       \begin{tabular}{l}
         Autonomous UAV\\
         firefighting inside\\
         a building\\
-        \emph{IEEE Access, 2020}
+        \emph{IEEE Access, 2021}
       \end{tabular}
     }
 
@@ -1245,7 +1251,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       \begin{tabular}{l}
         Autonomous target\\
         capturing by a UAV\\
-        \emph{SMCA 2020}
+        \emph{SMCA}
       \end{tabular}
     }
 
@@ -1254,7 +1260,16 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
         Autonomous wall\\
         building by a group\\
         of UAVs\\
-        \emph{RAS 2020}
+        \emph{RAS}
+      \end{tabular}
+    }
+
+    \subarticle{below=of spurny2020autonomous,shift={(0.0em, -0em)}}{walter2021extinguishing}{\tabcite{walter2021extinguishing}}{
+      \begin{tabular}{l}
+        Extinguishing of\\
+        real fires\\
+        by UAVs\\
+        \emph{Field robotics}
       \end{tabular}
     }
 
@@ -1338,6 +1353,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
     \path[-] (baca2019timepix) edge [->] (stibinger2020localization);
     \path[-] (mrs_uav_system_technology.east) edge [<->] ($(faigl2017onsolution.west |- mrs_uav_system_technology.east)$);
     \path[-] (roucek2019darpa) edge [->] (kratky2020autonomous2);
+    \draw[-] ($(roucek2019darpa.south)$) -- ($(roucek2019darpa.south |- roucek2021system.west)$) edge [->] (roucek2021system.west);
     \path[-] (petrlik2020robust.east) edge [<->] (roucek2019darpa.west);
 
     \draw[-] ($(rospix_technology.east) + (0.0em, 0.0em)$) -- ($(rospix_technology.east) + (0.5em, 0.0em)$) -- ($(rospix_technology.east |- baca2020gamma.west) + (0.5em, 0.0em)$) edge [->] (baca2020gamma.east);
@@ -1669,7 +1685,7 @@ The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic
 
 \chapter{Remote Sensing by UAVs\label{chap:sensing}}
 
-The author of this thesis has contributed to various subfields of multi-\ac{UAV} research, including multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
+The author of this thesis has contributed to various subfields of multi-\ac{UAV} research, including multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2, roucek2021system}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
 However, most of the author's effort during his studies had been invested in the research scenarios proposed by the Khalifa University as the 2017 and 2020 \ac{MBZIRC} robotic challenges\footnote{\url{https://mbzirc.com}}.
 
 The following core publication \cite{baca2019autonomous} in this thesis proposes a \ac{UAV} system for autonomous landing on a moving car.
