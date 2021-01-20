@@ -32,7 +32,7 @@
 \usepackage{color}
 \usepackage{indentfirst}
 \usepackage{graphicx}       %%% graphics for dvips
-\usepackage[a4paper,margin=3.2cm,inner=3.2cm,outer=2.2cm]{geometry}
+\usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
 \usepackage{fancyhdr,lastpage}
 \usepackage{longtable}
 \usepackage{pifont}
@@ -90,7 +90,7 @@
 \newcommand{\includepaperwithimage}[2]{
   \ifdefined\includepdfs
     \ifdefined\printversion
-      \includepdf[pages={-},offset=0.5cm 0cm,#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
+      \includepdf[pages={-},offset=0.7cm 0cm,#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
     \else
       \includepdf[pages={-},#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
     \fi
@@ -1755,7 +1755,7 @@ Moreover, the work presents verification of real-world measurements onboard a \a
 Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasibility of the method.
 \fullciteinbox{stibinger2020localization}{}
 
-\includepaperwithimage{baca2018timepix}{trim={25mm 20mm 25mm 20mm}}
+\includepaperwithimage{baca2018timepix}{trim={20mm 20mm 20mm 20mm}}
 \includepaperwithimage{baca2019timepix}{trim={17mm 10mm 17mm 8mm}}
 \includepaperwithimage{stibinger2020localization}{trim={15mm 10mm 15mm 8mm}}
 
