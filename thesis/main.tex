@@ -32,6 +32,7 @@
 \usepackage{color}
 \usepackage{indentfirst}
 \usepackage{graphicx}       %%% graphics for dvips
+\usepackage[a4paper,margin=3.2cm,inner=3.2cm,outer=2.2cm]{geometry}
 \usepackage{fancyhdr,lastpage}
 \usepackage{longtable}
 \usepackage{pifont}
@@ -50,6 +51,7 @@
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
 
 \usepackage{subfig} % subfloat
 \usepackage[export]{adjustbox}
@@ -85,9 +87,13 @@
 
 %%{ include paper box
 
-\newcommand{\includepaperwithimage}[1]{
+\newcommand{\includepaperwithimage}[2]{
   \ifdefined\includepdfs
-    \includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{full}},offset=0.30cm 0cm]{./papers_to_include_pdf/#1}
+    \ifdefined\printversion
+      \includepdf[pages={-},offset=0.5cm 0cm,#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
+    \else
+      \includepdf[pages={-},#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
+    \fi
   \else
     \clearpage
     \fullciteinboxwithimage{#1}{This place will contain the full paper}
@@ -307,8 +313,8 @@
 \newcommand{\figvspace}{\vspace{-1em}} % this may eventually do something, so far just a placeholder
 
 \ifdefined\printversion
-  \setlength{\oddsidemargin}{+0.7cm}
-  \setlength{\evensidemargin}{-0.7cm}
+  % \setlength{\oddsidemargin}{+0.7cm}
+  % \setlength{\evensidemargin}{-0.7cm}
 \fi
 
 %%}
@@ -387,6 +393,8 @@
 % page header
 \fancyhead[LE,RO]{\thepage}
 
+\newcommand{\resetHeadWidth}{\f@nch@setoffs}
+
 }
 
 %%}
@@ -420,6 +428,8 @@
 %%}
 
 \begin{document}
+
+\resetHeadWidth
 
 \input{src/title}
 
@@ -549,7 +559,7 @@ Finally, the low-level control output using a desired \ac{UAV} attitude rate is 
 
 %%{ Fig: intro collage
 
-\begin{figure}[!hb]
+\begin{figure}[!h]
   \centering
   \subfloat {
     \includegraphics[width=0.30\textwidth]{./fig/photos/control_2_1-5.jpg}
@@ -1412,7 +1422,7 @@ We aim to provide a thoroughly-documented open-source system to allow researcher
 
 %%{ Tab: embedded controllers
 
-\begin{table}
+\begin{table}[!h]
   \centering
   \def\arraystretch{0.8}% 1 is the default, change whatever you need
   \setlength\tabcolsep{1.5pt} % default value: 6pt
@@ -1433,7 +1443,7 @@ We aim to provide a thoroughly-documented open-source system to allow researcher
 
 %%{ Tab: UAV systems
 
-\begin{table*}
+\begin{table*}[!h]
   \centering
   \def\arraystretch{0.8}%  1 is the default, change whatever you need
   \setlength\tabcolsep{4.0pt} % default value: 6pt
@@ -1648,8 +1658,8 @@ Testing new feedback controllers, reference generators, state estimators, and ot
 The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic Systems and has been made available as open source\footnote{\url{https://github.com/ctu-mrs/mrs_uav_system}}.
 \fullciteinbox{baca2020mrs}{}
 
-\includepaperwithimage{baca2018model}
-\includepaperwithimage{baca2020mrs}
+\includepaperwithimage{baca2018model}{trim={18mm 10mm 18mm 7.5mm}}
+\includepaperwithimage{baca2020mrs}{trim={14mm 20mm 20mm 15mm}}
 
 %%}
 
@@ -1688,9 +1698,9 @@ This system allowed the use of true visual servoing to achieve pinpoint accuracy
 The \acs{MRS} team again won the 1$^{\text{st}}$ place in the competition and showed, by a significant margin, the best approach for solving the multi-robotic task.
 \fullciteinbox{baca2020autonomous}{}
 
-\includepaperwithimage{baca2019autonomous}
-\includepaperwithimage{spurny2019cooperative}
-\includepaperwithimage{baca2020autonomous}
+\includepaperwithimage{baca2019autonomous}{trim={15mm 5mm 15mm 5mm}}
+\includepaperwithimage{spurny2019cooperative}{trim={15mm 5mm 15mm 5mm}}
+\includepaperwithimage{baca2020autonomous}{trim={12mm 20mm 12mm 20mm}}
 
 %%}
 
@@ -1729,9 +1739,9 @@ Moreover, the work presents verification of real-world measurements onboard a \a
 Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasibility of the method.
 \fullciteinbox{stibinger2020localization}{}
 
-\includepaperwithimage{baca2018timepix}
-\includepaperwithimage{baca2019timepix}
-\includepaperwithimage{stibinger2020localization}
+\includepaperwithimage{baca2018timepix}{trim={25mm 20mm 25mm 20mm}}
+\includepaperwithimage{baca2019timepix}{trim={17mm 10mm 17mm 8mm}}
+\includepaperwithimage{stibinger2020localization}{trim={15mm 10mm 15mm 8mm}}
 
 %%}
 
@@ -2030,6 +2040,8 @@ The contributions and achievements of the submitted doctoral thesis and the rela
 
 %%}
 
+%%}
+
 %% | ------------------------ Chapter 7 ----------------------- |
 
 %%{ Conclusion
@@ -2126,7 +2138,10 @@ The citation counts were gathered on January 1$^{\text{st}}$, 2021.
 %%{ Cited references
 
 \section{Cited references}
+% \begin{multicols}{2}[\section*{Cited references}]
+% \AtNextBibliography{\scriptsize}
 \printbibliography[notkeyword=mine,heading=none,title={}]
+% \end{multicols}
 
 %%}
 
@@ -2136,7 +2151,8 @@ The citation counts were gathered on January 1$^{\text{st}}$, 2021.
 
 %%{ Apendices
 
-\appendix
+% \appendix
+\renewcommand{\thechapter}{B}
 \renewcommand\chaptername{Citations of Author's Publications}
 
 \chapter{Citations of Author's Publications}
