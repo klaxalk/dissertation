@@ -1,7 +1,7 @@
-%%{ DOC HEAD
-
 \newcommand*{\printversion}{}%
 \newcommand*{\includepdfs}{}%
+
+%%{ DOC HEAD
 
 \pdfoutput=1
 \ifdefined\printversion
@@ -32,6 +32,7 @@
 \usepackage{color}
 \usepackage{indentfirst}
 \usepackage{graphicx}       %%% graphics for dvips
+\usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
 \usepackage{fancyhdr,lastpage}
 \usepackage{longtable}
 \usepackage{pifont}
@@ -50,6 +51,7 @@
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
 
 \usepackage{subfig} % subfloat
 \usepackage[export]{adjustbox}
@@ -85,9 +87,13 @@
 
 %%{ include paper box
 
-\newcommand{\includepaperwithimage}[1]{
+\newcommand{\includepaperwithimage}[2]{
   \ifdefined\includepdfs
-    \includepdf[scale=0.85,pages=-,pagecommand={\thispagestyle{full}},offset=0.30cm 0cm]{./papers_to_include_pdf/#1}
+    \ifdefined\printversion
+      \includepdf[pages={-},offset=0.7cm 0cm,#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
+    \else
+      \includepdf[pages={-},#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
+    \fi
   \else
     \clearpage
     \fullciteinboxwithimage{#1}{This place will contain the full paper}
@@ -307,8 +313,8 @@
 \newcommand{\figvspace}{\vspace{-1em}} % this may eventually do something, so far just a placeholder
 
 \ifdefined\printversion
-  \setlength{\oddsidemargin}{+0.7cm}
-  \setlength{\evensidemargin}{-0.7cm}
+  % \setlength{\oddsidemargin}{+0.7cm}
+  % \setlength{\evensidemargin}{-0.7cm}
 \fi
 
 %%}
@@ -533,7 +539,7 @@ Those tasks provided opportunities and conditions to take state-of-the-art techn
 
 Furthermore, interdisciplinary research is being pursued on the localization of ionizing radiation sources by \acp{UAV}.
 The research closely follows advances in imaging pixel radiation detectors (initially developed for medical imaging) for remote sensing applications of space dosimetry and X-ray imaging.
-The thesis author has made his initial contributions in the field by developing a radiation remote sensing module for the first Czech CubeSat\footnote{CubeSat is a nanosatellite built from \SI{1}{\deci\meter\cubed} units.}, the \acs{VZLU}SAT-1.
+The thesis author has made his initial contributions in the field by developing a radiation remote sensing module for the first Czech CubeSat\footnote{CubeSat is a nanosatellite made up of \SI{1}{\deci\meter\cubed} cubic modules.}, the \acs{VZLU}SAT-1.
 The module houses the Timepix \cite{llopart2007timepix} hybrid \acs{CMOS} detector developed at CERN in order to measure solar X-rays and background radiation in the \ac{LEO}.
 One of the thesis's goals is to transfer this know-how to the field of small \aclp{UAV}.
 
@@ -549,7 +555,7 @@ Finally, the low-level control output using a desired \ac{UAV} attitude rate is 
 
 %%{ Fig: intro collage
 
-\begin{figure}[!hb]
+\begin{figure}[!h]
   \centering
   \subfloat {
     \includegraphics[width=0.30\textwidth]{./fig/photos/control_2_1-5.jpg}
@@ -611,7 +617,7 @@ This work aims to push the state of the art by utilizing miniature semiconductor
 
 The rest of the thesis is organized as follows.
 This thesis is a compilation of 8 included core publications, referenced as 1c -- 8c.
-Furthermore, the thesis is supported by additional authored publications, referenced as 9a -- 42a.
+Furthermore, the thesis is supported by additional authored publications, referenced as 9a -- 44a.
 Firstly, the state of the art is summarized in Chapter~\ref{chap:sota}.
 Chapter~\ref{chap:uav_platform} introduces the publications related to the developed \ac{UAV} platform.
 Chapter~\ref{chap:sensing} covers the publications related to the multi-\ac{UAV} sensing and deployment.
@@ -927,7 +933,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       \hspace{5em}
       \begin{tabular}{l}
         UAVs in remote sensing,\\
-        data gathering and swarming
+        data gathering, and swarming
       \end{tabular}
       \hspace{5em}
     }
@@ -1084,24 +1090,34 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
     \subarticle{right=of roucek2019darpa,shift={(0.0em, 0.0em)}}{kratky2020autonomous2}{\tabcite{kratky2020autonomous2}}{
       \begin{tabular}{l}
         DARPA SubT\\
-        Urban exploration\\
-        \emph{JFR 2020}
+        UAV Urban\\
+        exploration\\
+        \emph{JFR}
       \end{tabular}
     }
 
-    \article{below=of roucek2019darpa,shift={(0em, 0em)}}{saikin2020wildfire}{\tabcite{saikin2020wildfire}}{
+    \subarticle{below=of kratky2020autonomous2,shift={(0.0em, 0.0em)}}{roucek2021system}{\tabcite{roucek2021system}}{
       \begin{tabular}{l}
-        Wildlife firefighting\\
-        with UAVs\\
-        \emph{RA-L 2020}
+        DARPA SubT\\
+        Multi-robot\\
+        exploration system\\
+        \emph{Field Robotics}
       \end{tabular}
     }
 
-    \subarticle{right=of saikin2020wildfire,shift={(0em, 0em)}}{silano2020power}{\tabcite{silano2020power}}{
+    \subarticle{below=of roucek2021system,shift={(0em, 0em)}}{silano2020power}{\tabcite{silano2020power}}{
       \begin{tabular}{l}
         Powerline inspection\\
         with UAVs using\\
         STL\\
+        \emph{RA-L 2020}
+      \end{tabular}
+    }
+
+    \article{left=of silano2020power,shift={(0em, 0em)}}{saikin2020wildfire}{\tabcite{saikin2020wildfire}}{
+      \begin{tabular}{l}
+        Wildlife firefighting\\
+        with UAVs\\
         \emph{RA-L 2020}
       \end{tabular}
     }
@@ -1209,7 +1225,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
         Autonomous\\
         target elimination\\
         by UAVs\\
-        \emph{ICRA, 2021}
+        \emph{Field Robotics}
       \end{tabular}
     }
 
@@ -1222,12 +1238,12 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       \end{tabular}
     }
 
-    \subarticle{right=of stasinchuk2020multiuav,shift={(0.0em, -0em)}}{spurny2020autonomous}{\tabcite{spurny2020autonomous}}{
+    \article{right=of stasinchuk2020multiuav,shift={(0.0em, -0em)}}{spurny2020autonomous}{\tabcite{spurny2020autonomous}}{
       \begin{tabular}{l}
         Autonomous UAV\\
         firefighting inside\\
         a building\\
-        \emph{IEEE Access, 2020}
+        \emph{IEEE Access, 2021}
       \end{tabular}
     }
 
@@ -1235,7 +1251,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       \begin{tabular}{l}
         Autonomous target\\
         capturing by a UAV\\
-        \emph{SMCA 2020}
+        \emph{SMCA}
       \end{tabular}
     }
 
@@ -1244,7 +1260,16 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
         Autonomous wall\\
         building by a group\\
         of UAVs\\
-        \emph{RAS 2020}
+        \emph{RAS}
+      \end{tabular}
+    }
+
+    \subarticle{below=of spurny2020autonomous,shift={(0.0em, -0em)}}{walter2021extinguishing}{\tabcite{walter2021extinguishing}}{
+      \begin{tabular}{l}
+        Extinguishing of\\
+        real fires\\
+        by UAVs\\
+        \emph{Field robotics}
       \end{tabular}
     }
 
@@ -1328,6 +1353,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
     \path[-] (baca2019timepix) edge [->] (stibinger2020localization);
     \path[-] (mrs_uav_system_technology.east) edge [<->] ($(faigl2017onsolution.west |- mrs_uav_system_technology.east)$);
     \path[-] (roucek2019darpa) edge [->] (kratky2020autonomous2);
+    \draw[-] ($(roucek2019darpa.south)$) -- ($(roucek2019darpa.south |- roucek2021system.west)$) edge [->] (roucek2021system.west);
     \path[-] (petrlik2020robust.east) edge [<->] (roucek2019darpa.west);
 
     \draw[-] ($(rospix_technology.east) + (0.0em, 0.0em)$) -- ($(rospix_technology.east) + (0.5em, 0.0em)$) -- ($(rospix_technology.east |- baca2020gamma.west) + (0.5em, 0.0em)$) edge [->] (baca2020gamma.east);
@@ -1399,7 +1425,7 @@ Thus, the use of XTDrone outside laboratory conditions is mostly limited to \ac{
 
 The full-stack Aerostack system\footnote{Aerostack, \url{http://github.com/Vision4UAV/Aerostack}} \cite{sanchez2016aerostack, sanchez2016reliable} was designed for deployment of multirotor \acp{UAV}.
 The system is continuously being updated, and it offers an option to transfer to a real-world platform.
-According to the preprint\cite{suarez2020skyeye} where the authors used Aerostack during the MBZIRC 2020 competition, the system's real-world deployment is possible.
+According to the preprint \cite{suarez2020skyeye} where the authors used Aerostack during the MBZIRC 2020 competition, the system's real-world deployment is possible.
 However, with the used DJI-based flight controller, the control command supplied to the underlying embedded control layer are limited to desired orientation and thrust.
 This level of control limits the potential precision and control authority comparing to our system.
 Furthermore, the system lacks the feature of switching between multiple frames of reference, which is one of our system's contributions.
@@ -1412,7 +1438,7 @@ We aim to provide a thoroughly-documented open-source system to allow researcher
 
 %%{ Tab: embedded controllers
 
-\begin{table}
+\begin{table}[!h]
   \centering
   \def\arraystretch{0.8}% 1 is the default, change whatever you need
   \setlength\tabcolsep{1.5pt} % default value: 6pt
@@ -1433,7 +1459,7 @@ We aim to provide a thoroughly-documented open-source system to allow researcher
 
 %%{ Tab: UAV systems
 
-\begin{table*}
+\begin{table*}[!h]
   \centering
   \def\arraystretch{0.8}%  1 is the default, change whatever you need
   \setlength\tabcolsep{4.0pt} % default value: 6pt
@@ -1648,8 +1674,8 @@ Testing new feedback controllers, reference generators, state estimators, and ot
 The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic Systems and has been made available as open source\footnote{\url{https://github.com/ctu-mrs/mrs_uav_system}}.
 \fullciteinbox{baca2020mrs}{}
 
-\includepaperwithimage{baca2018model}
-\includepaperwithimage{baca2020mrs}
+\includepaperwithimage{baca2018model}{trim={18mm 10mm 18mm 7.5mm}}
+\includepaperwithimage{baca2020mrs}{trim={14mm 20mm 20mm 15mm}}
 
 %%}
 
@@ -1659,7 +1685,7 @@ The \emph{MRS UAV System} was submitted to the Journal of Intelligent \& Robotic
 
 \chapter{Remote Sensing by UAVs\label{chap:sensing}}
 
-The author of this thesis has contributed to various subfields of multi-\ac{UAV} research, including multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
+The author of this thesis has contributed to various subfields of multi-\ac{UAV} research, including multi-\ac{UAV} swarming \cite{petracek2020bioinspired, saska2020formation, ahmad2020autonomous, dmytruk2020safe}, search and rescue \cite{roucek2019darpa, petrlik2020robust, kratky2020autonomous2, roucek2021system}, planning and control \cite{penicka2017dubins, giernacki2019realtime, saikin2020wildfire, silano2020power, spurny2016complex}, and sensing \cite{stibinger2020localization, baca2018rospix, kratky2020autonomous2}.
 However, most of the author's effort during his studies had been invested in the research scenarios proposed by the Khalifa University as the 2017 and 2020 \ac{MBZIRC} robotic challenges\footnote{\url{https://mbzirc.com}}.
 
 The following core publication \cite{baca2019autonomous} in this thesis proposes a \ac{UAV} system for autonomous landing on a moving car.
@@ -1688,9 +1714,9 @@ This system allowed the use of true visual servoing to achieve pinpoint accuracy
 The \acs{MRS} team again won the 1$^{\text{st}}$ place in the competition and showed, by a significant margin, the best approach for solving the multi-robotic task.
 \fullciteinbox{baca2020autonomous}{}
 
-\includepaperwithimage{baca2019autonomous}
-\includepaperwithimage{spurny2019cooperative}
-\includepaperwithimage{baca2020autonomous}
+\includepaperwithimage{baca2019autonomous}{trim={15mm 5mm 15mm 5mm}}
+\includepaperwithimage{spurny2019cooperative}{trim={15mm 5mm 15mm 5mm}}
+\includepaperwithimage{baca2020autonomous}{trim={12mm 20mm 12mm 20mm}}
 
 %%}
 
@@ -1729,9 +1755,9 @@ Moreover, the work presents verification of real-world measurements onboard a \a
 Realistic simulations in the Gazebo/ROS robotic simulator demonstrate the feasibility of the method.
 \fullciteinbox{stibinger2020localization}{}
 
-\includepaperwithimage{baca2018timepix}
-\includepaperwithimage{baca2019timepix}
-\includepaperwithimage{stibinger2020localization}
+\includepaperwithimage{baca2018timepix}{trim={20mm 20mm 20mm 20mm}}
+\includepaperwithimage{baca2019timepix}{trim={17mm 10mm 17mm 8mm}}
+\includepaperwithimage{stibinger2020localization}{trim={15mm 10mm 15mm 8mm}}
 
 %%}
 
@@ -2030,6 +2056,8 @@ The contributions and achievements of the submitted doctoral thesis and the rela
 
 %%}
 
+%%}
+
 %% | ------------------------ Chapter 7 ----------------------- |
 
 %%{ Conclusion
@@ -2126,7 +2154,10 @@ The citation counts were gathered on January 1$^{\text{st}}$, 2021.
 %%{ Cited references
 
 \section{Cited references}
+% \begin{multicols}{2}[\section*{Cited references}]
+% \AtNextBibliography{\scriptsize}
 \printbibliography[notkeyword=mine,heading=none,title={}]
+% \end{multicols}
 
 %%}
 
@@ -2136,7 +2167,8 @@ The citation counts were gathered on January 1$^{\text{st}}$, 2021.
 
 %%{ Apendices
 
-\appendix
+% \appendix
+\renewcommand{\thechapter}{B}
 \renewcommand\chaptername{Citations of Author's Publications}
 
 \chapter{Citations of Author's Publications}
