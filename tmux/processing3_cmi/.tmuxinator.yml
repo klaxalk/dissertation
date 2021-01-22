@@ -12,14 +12,13 @@ windows:
       layout: tiled
       panes:
 
-        - waitForRos; rosbag play ./bags/15_2020_12_04_11_09_18/_2020-12-04-11-10-16.bag --clock -r 1.0
-        - waitForRos; rosbag play ./bags/15_2020_12_04_11_09_18/_2020-12-04-11-10-16.bag -r 1.0 -u 1 -l --topics /tf_static
+        - waitForRos; rosbag play ./bags/processed_rosbags/15_2020_12_04_11_09_18/_2020-12-04-11-10-16.bag --clock -r 1.0
+        - waitForRos; rosbag play ./bags/processed_rosbags/15_2020_12_04_11_09_18/_2020-12-04-11-10-16.bag -r 1.0 -u 1 -l --topics /tf_static
         # - waitForRos; roslaunch compton_camera ground_truth_visualizer.launch x:=-14.7 y:=1.8 z:=0.3 frame:=uav68/aloam_origin
-
-  # - tfs:
-  #     layout: tiled
-  #     panes:
-  #       - waitForControl; rosrun tf2_ros static_transform_publisher 0.09 0.025 -0.01 -1.57005 0.0 -1.25 uav68/fcu uav68/bluefox
+  - camera_republisher:
+      layout: tiled
+      panes:
+        - waitForControl; roslaunch camera_republisher camera_republisher.launch
   - map_generator:
       layout: tiled
       panes:
