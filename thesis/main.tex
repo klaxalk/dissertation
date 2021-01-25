@@ -1,5 +1,5 @@
-\newcommand*{\printversion}{}%
-\newcommand*{\includepdfs}{}%
+% \newcommand*{\printversion}{}%
+% \newcommand*{\includepdfs}{}%
 
 %%{ DOC HEAD
 
@@ -32,7 +32,11 @@
 \usepackage{color}
 \usepackage{indentfirst}
 \usepackage{graphicx}       %%% graphics for dvips
-\usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
+\ifdefined\printversion
+  \usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
+\else
+  \usepackage[a4paper,margin=3.2cm,inner=2.7cm,outer=2.7cm]{geometry}
+\fi
 \usepackage{fancyhdr,lastpage}
 \usepackage{longtable}
 \usepackage{pifont}
@@ -96,7 +100,7 @@
     \fi
   \else
     \clearpage
-    \fullciteinboxwithimage{#1}{This place will contain the full paper}
+    \fullciteinboxwithimage{#1}{This place shall contain the full paper}
   \fi
 }
 
