@@ -1,0 +1,62 @@
+The study of autonomous Unmanned Aerial Vehicles (UAVs) has become a prominent
+sub-field of mobile robotics. Multirotor unmanned helicopters are systems useful
+on many levels of research. Multicopters in research serve as a plant for testing new
+techniques for feedback control of dynamical systems, as sensor carriers for remote
+sensing applications, and as units of multi-robot systems. A considerable amount
+of work is also being invested into research of principal sub-systems of multirotor UAVs.
+Real-time localization, state estimation, modeling, feedback control, planning, and
+navigation are well-established and active research fields, each contributing
+to making UAVs autonomous, robust, and safe. This thesis focuses on remote sensing with
+UAV systems. The first part of the thesis is dedicated to development of a novel
+UAV control system, designed for real-world testing and evaluation of new methods.
+The control and estimation system supports replicable research by allowing realistic
+simulations and real-world experiments. The second part of the thesis is motivated
+by the challenges of the MBZIRC 2017 and 2020 robotic competitions. Specifically,
+we study the applications of groups of UAVs to fulfill the autonomous mission
+of collaborative localization and gathering of objects and their delivery to desired
+locations. Initially, only small metal disc-shaped objects are gathered by the UAVs into
+a large box. Later, the challenge was elevated into a task of autonomous brick wall
+construction by a group of UAVs. Furthermore, we study the problem of concluding
+a UAV mission by autonomously landing a UAV on a moving ground vehicle. All
+the challenges were tackled by developing a complete UAV system and successfully
+performing an extensive experimental evaluation, that was finished by winning
+the international competitions. The third part of the thesis focuses on a specific remote
+sensing field, the localization and mapping of ionizing radiation by UAVs. The ongoing
+research investigates the use of hybrid pixel radiation sensors from the Timepix
+family onboard UAVs for directional and spatial localization of compact radiation sources.
+
+Keywords: Unmanned Aerial Vehicles, Mobile Robotics, Remote Sensing, Ionizing
+Radiation, Dosimetry
+  
+Výzkum na poli autonomnı́ch bezpilotnı́ch prostředků (UAV) se stal významným
+oborem mobilnı́ robotiky. Vı́cerotorové bezpilotnı́ helikoptéry jsou užitečné v mnoha
+úrovnı́ch výzkumu. Vı́cerotorové UAV sloužı́ jako systémy pro testovánı́ nových
+technik v oboru zpětnovazebnı́ho řı́zenı́ dynamických systémů, jako nosiče senzorů pro
+vzdálené měřenı́ a také jako součásti výzkumu multi-robotických systémů. Značné
+úsilı́ věnujeme výzkumu klı́čových sub-systémů fungovánı́ vı́cerotorových UAV.
+Systémy lokalizace, estimace stavu, modelovánı́, zpětnovazebnı́ řı́zenı́, plánovánı́
+pohybu, a autonomnı́ navigace jsou již zavedené a aktivnı́mi poli výzkumu. Každé
+z nich přispı́vá k bezpečné a robustnı́ autonomii bezpilotnı́ch prostředků. Tato
+práce se zabývá vzdáleným měřenı́m pomocı́ autonomnı́ch bezpilotnı́ch systémů.
+Prvnı́ část práce je věnovaná vývoji nové řı́dicı́ platformy pro vı́cerotorové UAV,
+která byla navržena za účelem testovánı́ a vyhodnocovánı́ nových metod pro UAV
+v reálném prostředı́. Tento systém pro řı́zenı́ a odhadovánı́ stavů UAV umožňuje
+replikovatelný výzkum a poskytuje možnost realistických simulacı́ a testovánı́ na
+UAV v reálném prostředı́ mimo laboratoř. Druhá část této práce je motivována
+výzvami mezinárodnı́ch robotických soutěžı́ MBZIRC 2017 a 2020. Konkrétně zde
+představujeme aplikaci skupin autonomnı́ch UAV misı́ pro kolaborativnı́ sběr objektů
+a jejich dopravenı́ na zadaná mı́sta. Nejprve jsme se zabývali sběrem malých
+kovových disků, které byly pomocı́ UAV autonomně dopraveny do sběrného boxu.
+Poté byl tento úkol rozšı́řen na automatické stavěnı́ cihlové zdi pomocı́ skupiny
+UAV. Dále jsme se zabývali problémem zakončovánı́ autonomnı́ch misı́, konkrétně
+autonomnı́m přistánı́m UAV na jedoucı́m vozidle. Všechny tyto výzvy byly vyřešeny
+spolu s vývojem kompletnı́ch bezpilotnı́ch systémů a jejich experimentálnı́ evaluace,
+která byla završena výhrami v obou mezinárodnı́ch soutěžı́ch. Třetı́ část této práce
+se zaměřuje na specifický podobor vzdáleného měřenı́, a to na lokalizaci a mapovánı́
+zdrojů ionizujı́cı́ho zářenı́ pomocı́ UAV. Probı́hajı́cı́ výzkum se zabývá využitı́m
+hybridnı́ch pixelových senzorů radiace z rodiny detektorů Timepix. V této práci
+zkoumáme využitı́ detektorů Timepix pro určovánı́ směrové a prostorové informace o
+kompaktnı́ch zdrojı́ch ionizujı́cı́ radiace.
+
+Klı́čová slova: Bezpilotnı́ Prostředky, Mobilnı́ Robotika, Vzdálené Měřenı́, Ionizujı́cı́
+Radiace, Dozimetrie
