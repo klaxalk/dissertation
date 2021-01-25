@@ -1,0 +1,422 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000526677900001}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CM}{%
+         family={Coppola},
+         familyi={C\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MKN}{%
+         family={Mcguire},
+         familyi={M\bibinitperiod},
+         given={Kimberly\bibnamedelima N.},
+         giveni={K\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=DWC}{%
+         family={De\bibnamedelima Wagter},
+         familyi={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+         given={Christophe},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=DCGCHE}{%
+         family={De\bibnamedelima Croon},
+         familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+         given={Guido C. H.\bibnamedelima E.},
+         giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim
+  H\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{CMMKNDWC+1}
+    \strng{fullhash}{CMMKNDWCDCGCHE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{A Survey on Swarming With Micro Air Vehicles: Fundamental
+  Challenges And Constraints}}
+    \field{volume}{{7}}
+    \field{journaltitle}{{Frontiers In Robotics and Ai}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000520954200018}{article}{}
+    \name{author}{5}{}{%
+      {{hash=JBE}{%
+         family={Jackson},
+         familyi={J\bibinitperiod},
+         given={Brian\bibnamedelima E.},
+         giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=HTA}{%
+         family={Howell},
+         familyi={H\bibinitperiod},
+         given={Taylor\bibnamedelima A.},
+         giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Shah},
+         familyi={S\bibinitperiod},
+         given={Kunal},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Schwager},
+         familyi={S\bibinitperiod},
+         given={Mac},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MZ}{%
+         family={Manchester},
+         familyi={M\bibinitperiod},
+         given={Zachary},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{JBEHTASK+1}
+    \strng{fullhash}{JBEHTASKSMMZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{3368\bibrangedash 3374}}
+    \field{title}{{Scalable Cooperative Transport of Cable-suspended Loads With
+  UAVs Using Distributed Trajectory Optimization}}
+    \field{volume}{{5}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000577066500023}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LGM}{%
+         family={Lopez\bibnamedelima Garcia},
+         familyi={L\bibinitperiod\bibinitdelim G\bibinitperiod},
+         given={Manuel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MCJ}{%
+         family={Martinez\bibnamedelima Carranza},
+         familyi={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+         given={Jose},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{LGMMCJ1}
+    \strng{fullhash}{LGMMCJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3}}
+    \field{pages}{{1219\bibrangedash 1228}}
+    \field{title}{{A First CNN-based Approach Towards Autonomous Flight for
+  Object Lifting}}
+    \field{volume}{{24}}
+    \field{journaltitle}{{Computacion Y Sistemas}}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{ISI:000534593100033}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MG}{%
+         family={Michieletto},
+         familyi={M\bibinitperiod},
+         given={Giulia},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Cenedese},
+         familyi={C\bibinitperiod},
+         given={Angelo},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zaccarian},
+         familyi={Z\bibinitperiod},
+         given={Luca},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Franchi},
+         familyi={F\bibinitperiod},
+         given={Antonio},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{MGCAZL+1}
+    \strng{fullhash}{MGCAZLFA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{Hierarchical Nonlinear Control for Multi-rotor Asymptotic
+  Stabilization Based on Zero-moment Direction}}
+    \field{volume}{{117}}
+    \field{journaltitle}{{Automatica}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000528275000003}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MA}{%
+         family={Mohiuddin},
+         familyi={M\bibinitperiod},
+         given={Abdullah},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TT}{%
+         family={Tarek},
+         familyi={T\bibinitperiod},
+         given={Taha},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zweiri},
+         familyi={Z\bibinitperiod},
+         given={Yahya},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=GD}{%
+         family={Gan},
+         familyi={G\bibinitperiod},
+         given={Dongming},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{MATTZY+2}
+    \strng{fullhash}{MATTZYGD2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{119\bibrangedash 147}}
+    \field{title}{{A Survey of Single and Multi-UAV Aerial Manipulation}}
+    \field{volume}{{8}}
+    \field{journaltitle}{{Unmanned Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000526572000012}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SD}{%
+         family={Sanalitro},
+         familyi={S\bibinitperiod},
+         given={Dario},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=SHJ}{%
+         family={Savino},
+         familyi={S\bibinitperiod},
+         given={Heitor\bibnamedelima J.},
+         giveni={H\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=TM}{%
+         family={Tognon},
+         familyi={T\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Cortes},
+         familyi={C\bibinitperiod},
+         given={Juan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Franchi},
+         familyi={F\bibinitperiod},
+         given={Antonio},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{SDSHJTM+1}
+    \strng{fullhash}{SDSHJTMCJFA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{2185\bibrangedash 2191}}
+    \field{title}{{Full-pose Manipulation Control of A Cable-suspended Load
+  With Multiple UAVs Under Uncertainties}}
+    \field{volume}{{5}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000569550300220}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=GF}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Fan},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=WM}{%
+         family={Wei},
+         familyi={W\bibinitperiod},
+         given={Mingzhu},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=YM}{%
+         family={Ye},
+         familyi={Y\bibinitperiod},
+         given={Mingfei},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Jiajun},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MO}{%
+         family={Mechali},
+         familyi={M\bibinitperiod},
+         given={Omar},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Cao},
+         familyi={C\bibinitperiod},
+         given={Yong},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{GFWMYM+1}
+    \strng{fullhash}{GFWMYMLJMOCY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 9th IEEE Annual International Conference on Cyber
+  Technology In Automation, Control, and Intelligent Systems (IEEE-cyber
+  2019)}}
+    \field{pages}{{1262\bibrangedash 1266}}
+    \field{title}{{An Unmanned Aerial Vehicles Collaborative Searching and
+  Tracking Scheme In Three-dimension Space}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000484454000012}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MA}{%
+         family={Mohiuddin},
+         familyi={M\bibinitperiod},
+         given={Abdullah},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TT}{%
+         family={Taha},
+         familyi={T\bibinitperiod},
+         given={Tarek},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zweiri},
+         familyi={Z\bibinitperiod},
+         given={Yahya},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=GD}{%
+         family={Gan},
+         familyi={G\bibinitperiod},
+         given={Dongming},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2019cooperative, Mine}
+    \strng{namehash}{MATTZY+1}
+    \strng{fullhash}{MATTZYGD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{16}}
+    \field{title}{{UAV Payload Transportation Via RTDP Based Optimized Velocity
+  Profiles}}
+    \field{volume}{{12}}
+    \field{journaltitle}{{Energies}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000534838300001}{article}{}
+    \name{author}{5}{}{%
+      {{hash=CmL}{%
+         family={Campos-macias},
+         familyi={C\bibinithyphendelim m\bibinitperiod},
+         given={Leobardo},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=AlR}{%
+         family={Aldana-lopez},
+         familyi={A\bibinithyphendelim l\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=DLGR}{%
+         family={De\bibnamedelima La\bibnamedelima Guardia},
+         familyi={D\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  G\bibinitperiod},
+         given={Rafael},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PvJI}{%
+         family={Parra-vilchis},
+         familyi={P\bibinithyphendelim v\bibinitperiod},
+         given={Jose\bibnamedelima I.},
+         giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+      {{hash=GgD}{%
+         family={Gomez-gutierrez},
+         familyi={G\bibinithyphendelim g\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CmLAlRDLGR+1}
+    \strng{fullhash}{CmLAlRDLGRPvJIGgD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{9}
+    \field{sortinithash}{9}
+    \field{title}{{Autonomous Navigation of MAVs In Unknown Cluttered
+  Environments}}
+    \field{journaltitle}{{Journal of Field Robotics}}
+  \endentry
+\enddatalist
+\endinput

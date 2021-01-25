@@ -1,0 +1,400 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{ISI:000567367300001}{article}{}
+    \name{author}{5}{}{%
+      {{hash=CD}{%
+         family={Cazzato},
+         familyi={C\bibinitperiod},
+         given={Dario},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=CC}{%
+         family={Cimarelli},
+         familyi={C\bibinitperiod},
+         given={Claudio},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=SLJL}{%
+         family={Sanchez-Lopez},
+         familyi={S\bibinithyphendelim L\bibinitperiod},
+         given={Jose\bibnamedelima Luis},
+         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=VH}{%
+         family={Voos},
+         familyi={V\bibinitperiod},
+         given={Holger},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Leo},
+         familyi={L\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2017autonomous, Mine}
+    \strng{namehash}{CDCCSLJL+1}
+    \strng{fullhash}{CDCCSLJLVHLM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{8}}
+    \field{title}{{A Survey of Computer Vision Methods for 2d Object Detection
+  From Unmanned Aerial Vehicles}}
+    \field{volume}{{6}}
+    \field{journaltitle}{{Journal of Imaging}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000553196000001}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GM}{%
+         family={Galimov},
+         familyi={G\bibinitperiod},
+         given={Musa},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FR}{%
+         family={Fedorenko},
+         familyi={F\bibinitperiod},
+         given={Roman},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Klimchik},
+         familyi={K\bibinitperiod},
+         given={Alexander},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2017autonomous, Mine}
+    \strng{namehash}{GMFRKA1}
+    \strng{fullhash}{GMFRKA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{13}}
+    \field{title}{{UAV Positioning Mechanisms In Landing Stations:
+  Classification And Engineering Design Review}}
+    \field{volume}{{20}}
+    \field{journaltitle}{{Sensors}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000525118900013}{article}{}
+    \name{author}{4}{}{%
+      {{hash=PR}{%
+         family={Polvara},
+         familyi={P\bibinitperiod},
+         given={Riccardo},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Patacchiola},
+         familyi={P\bibinitperiod},
+         given={Massimiliano},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Hanheide},
+         familyi={H\bibinitperiod},
+         given={Marc},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NG}{%
+         family={Neumann},
+         familyi={N\bibinitperiod},
+         given={Gerhard},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2017autonomous, Mine}
+    \strng{namehash}{PRPMHM+1}
+    \strng{fullhash}{PRPMHMNG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1}}
+    \field{title}{{Sim-to-real Quadrotor Landing Via Sequential Deep Q-networks
+  and Domain Randomization}}
+    \field{volume}{{9}}
+    \field{journaltitle}{{Robotics}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000455132600006}{article}{}
+    \name{author}{10}{}{%
+      {{hash=BR}{%
+         family={Baehnemann},
+         familyi={B\bibinitperiod},
+         given={Rik},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Pantie},
+         familyi={P\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Popovic},
+         familyi={P\bibinitperiod},
+         given={Marija},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Schindler},
+         familyi={S\bibinitperiod},
+         given={Dominik},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TM}{%
+         family={Tranzatto},
+         familyi={T\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kamel},
+         familyi={K\bibinitperiod},
+         given={Mina},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Grimm},
+         familyi={G\bibinitperiod},
+         given={Marius},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Widauer},
+         familyi={W\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Siegwart},
+         familyi={S\bibinitperiod},
+         given={Roland},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=NJ}{%
+         family={Nieto},
+         familyi={N\bibinitperiod},
+         given={Juan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2017autonomous, Mine}
+    \strng{namehash}{BRPMPM+1}
+    \strng{fullhash}{BRPMPMSDTMKMGMWJSRNJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1, Si}}
+    \field{pages}{{78\bibrangedash 103}}
+    \field{title}{{The ETH-MAV Team In the MBZ International Robotics
+  Challenge}}
+    \field{volume}{{36}}
+    \field{journaltitle}{{Journal of Field Robotics}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000455132600012}{article}{}
+    \name{author}{8}{}{%
+      {{hash=BM}{%
+         family={Beul},
+         familyi={B\bibinitperiod},
+         given={Marius},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NM}{%
+         family={Nieuwenhuisen},
+         familyi={N\bibinitperiod},
+         given={Matthias},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=QJ}{%
+         family={Quenzel},
+         familyi={Q\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RRA}{%
+         family={Rosu},
+         familyi={R\bibinitperiod},
+         given={Radu\bibnamedelima Alexandru},
+         giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Horn},
+         familyi={H\bibinitperiod},
+         given={Jannis},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Pavlichenko},
+         familyi={P\bibinitperiod},
+         given={Dmytro},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=HS}{%
+         family={Houben},
+         familyi={H\bibinitperiod},
+         given={Sebastian},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Behnke},
+         familyi={B\bibinitperiod},
+         given={Sven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2017autonomous, Mine}
+    \strng{namehash}{BMNMQJ+1}
+    \strng{fullhash}{BMNMQJRRAHJPDHSBS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1, Si}}
+    \field{pages}{{204\bibrangedash 229}}
+    \field{title}{{Team Nimbro At MBZIRC 2017: Fast Landing on A Moving Target
+  and Treasure Hunting With A Team of Micro Aerial Vehicles}}
+    \field{volume}{{36}}
+    \field{journaltitle}{{Journal of Field Robotics}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000477785800010}{article}{}
+    \name{author}{5}{}{%
+      {{hash=BM}{%
+         family={Bhargavapuri},
+         familyi={B\bibinitperiod},
+         given={Mahathi},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SAK}{%
+         family={Shastry},
+         familyi={S\bibinitperiod},
+         given={Animesh\bibnamedelima Kumar},
+         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Sinha},
+         familyi={S\bibinitperiod},
+         given={Harsh},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SSR}{%
+         family={Sahoo},
+         familyi={S\bibinitperiod},
+         given={Soumya\bibnamedelima Ranjan},
+         giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kothari},
+         familyi={K\bibinitperiod},
+         given={Mangal},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2017autonomous, Mine}
+    \strng{namehash}{BMSAKSH+1}
+    \strng{fullhash}{BMSAKSHSSRKM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{113\bibrangedash 129}}
+    \field{title}{{Vision-based Autonomous Tracking and Landing of A
+  Fully-actuated Rotorcraft}}
+    \field{volume}{{89}}
+    \field{journaltitle}{{Control Engineering Practice}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000454860700015}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=LS}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Seongheon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Shim},
+         familyi={S\bibinitperiod},
+         given={Taemin},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=KS}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={Sungjoong},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Park},
+         familyi={P\bibinitperiod},
+         given={Junwoo},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=HK}{%
+         family={Hong},
+         familyi={H\bibinitperiod},
+         given={Kyungwoo},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=BH}{%
+         family={Bang},
+         familyi={B\bibinitperiod},
+         given={Hyochoong},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2017autonomous, Mine}
+    \strng{namehash}{LSSTKS+1}
+    \strng{fullhash}{LSSTKSPJHKBH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2018 International Conference on Unmanned Aircraft
+  Systems (ICUAS)}}
+    \field{pages}{{108\bibrangedash 114}}
+    \field{title}{{Vision-based Autonomous Landing of A Multi-copter Unmanned
+  Aerial Vehicle Using Reinforcement Learning}}
+    \field{year}{{2018}}
+  \endentry
+\enddatalist
+\endinput

@@ -1,0 +1,81 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000558705200001}{article}{}
+    \name{author}{7}{}{%
+      {{hash=BWT}{%
+         family={Botelho},
+         familyi={B\bibinitperiod},
+         given={Wagner\bibnamedelima Tanaka},
+         giveni={W\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=BMMDG}{%
+         family={Bruno\bibnamedelima Marietto},
+         familyi={B\bibinitperiod\bibinitdelim M\bibinitperiod},
+         given={Maria Das\bibnamedelima Gracas},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim
+  G\bibinitperiod},
+      }}%
+      {{hash=MEDL}{%
+         family={Mendes},
+         familyi={M\bibinitperiod},
+         given={Eduardo De\bibnamedelima Lima},
+         giveni={E\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim
+  L\bibinitperiod},
+      }}%
+      {{hash=DSDR}{%
+         family={De\bibnamedelima Sousa},
+         familyi={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Daniel\bibnamedelima Rodrigues},
+         giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=PEP}{%
+         family={Pimentel},
+         familyi={P\bibinitperiod},
+         given={Edson\bibnamedelima Pinheiro},
+         giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=DSVL}{%
+         family={Da\bibnamedelima Silva},
+         familyi={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Vera\bibnamedelima Lucia},
+         giveni={V\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=DST}{%
+         family={Dos\bibnamedelima Santos},
+         familyi={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Tamires},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \keyw{Spurny2016complex, Mine}
+    \strng{namehash}{BWTBMMDGMEDL+1}
+    \strng{fullhash}{BWTBMMDGMEDLDSDRPEPDSVLDST1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{Toward An Interdisciplinary Integration Between Multi-agents
+  Systems And Multi-robots Systems: A Case Study}}
+    \field{volume}{{35}}
+    \field{journaltitle}{{Knowledge Engineering Review}}
+    \field{year}{{2020}}
+  \endentry
+\enddatalist
+\endinput

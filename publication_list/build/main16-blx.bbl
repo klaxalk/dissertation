@@ -1,0 +1,92 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{ISI:000584776900001}{article}{}
+    \name{author}{9}{}{%
+      {{hash=QJP}{%
+         family={Queralta},
+         familyi={Q\bibinitperiod},
+         given={Jorge\bibnamedelima Pena},
+         giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Taipalmaa},
+         familyi={T\bibinitperiod},
+         given={Jussi},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PBC}{%
+         family={Pullinen},
+         familyi={P\bibinitperiod},
+         given={Bilge\bibnamedelima Can},
+         giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=SVK}{%
+         family={Sarker},
+         familyi={S\bibinitperiod},
+         given={Victor\bibnamedelima Kathan},
+         giveni={V\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=GTN}{%
+         family={Gia},
+         familyi={G\bibinitperiod},
+         given={Tuan\bibnamedelima Nguyen},
+         giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=TH}{%
+         family={Tenhunen},
+         familyi={T\bibinitperiod},
+         given={Hannu},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Gabbouj},
+         familyi={G\bibinitperiod},
+         given={Moncef},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RJ}{%
+         family={Raitoharju},
+         familyi={R\bibinitperiod},
+         given={Jenni},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WT}{%
+         family={Westerlund},
+         familyi={W\bibinitperiod},
+         given={Tomi},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \keyw{Petrlik2020robust, Mine}
+    \strng{namehash}{QJPTJPBC+1}
+    \strng{fullhash}{QJPTJPBCSVKGTNTHGMRJWT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{191617\bibrangedash 191643}}
+    \field{title}{{Collaborative Multi-robot Search and Rescue: Planning,
+  Coordination, Perception, and Active Vision}}
+    \field{volume}{{8}}
+    \field{journaltitle}{{IEEE Access}}
+    \field{year}{{2020}}
+  \endentry
+\enddatalist
+\endinput

@@ -1,0 +1,64 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{ISI:000564977200001}{article}{}
+    \name{author}{5}{}{%
+      {{hash=GJ}{%
+         family={Gimenez},
+         familyi={G\bibinitperiod},
+         given={Javier},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SLR}{%
+         family={Salinas},
+         familyi={S\bibinitperiod},
+         given={Lucio\bibnamedelima R.},
+         giveni={L\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=GDC}{%
+         family={Gandolfo},
+         familyi={G\bibinitperiod},
+         given={Daniel\bibnamedelima C.},
+         giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=RCD}{%
+         family={Rosales},
+         familyi={R\bibinitperiod},
+         given={Claudio\bibnamedelima D.},
+         giveni={C\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=CR}{%
+         family={Carelli},
+         familyi={C\bibinitperiod},
+         given={Ricardo},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GJSLRGDC+1}
+    \strng{fullhash}{GJSLRGDCRCDCR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{9}
+    \field{sortinithash}{9}
+    \field{title}{{Control for Cooperative Transport of A Bar-shaped Payload
+  With Rotorcraft UAVs Including A Landing Stage on Mobile Robots}}
+    \field{journaltitle}{{International Journal of Systems Science}}
+  \endentry
+\enddatalist
+\endinput

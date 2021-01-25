@@ -1,0 +1,321 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000565181200008}{article}{}
+    \name{author}{5}{}{%
+      {{hash=AB}{%
+         family={Alzahrani},
+         familyi={A\bibinitperiod},
+         given={Bander},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=OOS}{%
+         family={Oubbati},
+         familyi={O\bibinitperiod},
+         given={Omar\bibnamedelima Sami},
+         giveni={O\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=BA}{%
+         family={Barnawi},
+         familyi={B\bibinitperiod},
+         given={Ahmed},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Atiquzzaman},
+         familyi={A\bibinitperiod},
+         given={Mohammed},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=AD}{%
+         family={Alghazzawi},
+         familyi={A\bibinitperiod},
+         given={Daniyal},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2018model, Mine}
+    \strng{namehash}{ABOOSBA+1}
+    \strng{fullhash}{ABOOSBAAMAD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{UAV Assistance Paradigm: State-of-the-art In Applications
+  and Challenges}}
+    \field{volume}{{166}}
+    \field{journaltitle}{{Journal of Network and Computer Applications}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000510753400001}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ASH}{%
+         family={Arul},
+         familyi={A\bibinitperiod},
+         given={Senthil\bibnamedelima Hariharan},
+         giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=MD}{%
+         family={Manocha},
+         familyi={M\bibinitperiod},
+         given={Dinesh},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2018model, Mine}
+    \strng{namehash}{ASHMD1}
+    \strng{fullhash}{ASHMD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{1191\bibrangedash 1198}}
+    \field{title}{{DCAD: Decentralized Collision Avoidance With Dynamics
+  Constraints For Agile Quadrotor Swarms}}
+    \field{volume}{{5}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{ISI:000597148700012}{article}{}
+    \name{author}{6}{}{%
+      {{hash=HJ}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Jinwen},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Houxin},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LL}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Lu},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Xiaoping},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=ZC}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Chunhui},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=PQ}{%
+         family={Pan},
+         familyi={P\bibinitperiod},
+         given={Quan},
+         giveni={Q\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2018model, Mine}
+    \strng{namehash}{HJZHLL+1}
+    \strng{fullhash}{HJZHLLZXZCPQ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{6}}
+    \field{pages}{{1805\bibrangedash 1818}}
+    \field{title}{{Convergent Multiagent Formation Control With Collision
+  Avoidance}}
+    \field{volume}{{36}}
+    \field{journaltitle}{{IEEE Transactions on Robotics}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000554891100016}{article}{}
+    \name{author}{7}{}{%
+      {{hash=MSS}{%
+         family={Mansouri},
+         familyi={M\bibinitperiod},
+         given={Sina\bibnamedelima Sharif},
+         giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=KC}{%
+         family={Kanellakis},
+         familyi={K\bibinitperiod},
+         given={Christoforos},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LB}{%
+         family={Lindqvist},
+         familyi={L\bibinitperiod},
+         given={Bjorn},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=PaF}{%
+         family={Pourkamali-anaraki},
+         familyi={P\bibinithyphendelim a\bibinitperiod},
+         given={Farhad},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=AmAa}{%
+         family={Agha-mohammadi},
+         familyi={A\bibinithyphendelim m\bibinitperiod},
+         given={Ali-akbar},
+         giveni={A\bibinithyphendelim a\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={Burdick},
+         familyi={B\bibinitperiod},
+         given={Joel},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=NG}{%
+         family={Nikolakopoulos},
+         familyi={N\bibinitperiod},
+         given={George},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2018model, Mine}
+    \strng{namehash}{MSSKCLB+1}
+    \strng{fullhash}{MSSKCLBPaFAmAaBJNG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{4}}
+    \field{pages}{{5740\bibrangedash 5747}}
+    \field{title}{{A Unified NMPC Scheme for MAVs Navigation With 3d Collision
+  Avoidance Under Position Uncertainty}}
+    \field{volume}{{5}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000554861000020}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=BJ}{%
+         family={Bayer},
+         familyi={B\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=FJ}{%
+         family={Faigl},
+         familyi={F\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2018model, Mine}
+    \strng{namehash}{BJFJ1}
+    \strng{fullhash}{BJFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{Modelling and Simulation for Autonomous Systems (MESAS
+  2018)}}
+    \field{pages}{{251\bibrangedash 262}}
+    \field{title}{{Localization Fusion for Aerial Vehicles In Partially GNSS
+  Denied Environments}}
+    \field{volume}{{11472}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000494942302035}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=FJ}{%
+         family={Faigl},
+         familyi={F\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Vana},
+         familyi={V\bibinitperiod},
+         given={Petr},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=PR}{%
+         family={Penicka},
+         familyi={P\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2018model, Mine}
+    \strng{namehash}{FJVPPR1}
+    \strng{fullhash}{FJVPPR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 International Conference on Robotics and Automation
+  (ICRA)}}
+    \field{pages}{{3039\bibrangedash 3044}}
+    \field{title}{{Multi-vehicle Close Enough Orienteering Problem With Bezier
+  Curves For Multi-rotor Aerial Vehicles}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000535866906053}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Yingying},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CX}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=LN}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Na},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2018model, Mine}
+    \strng{namehash}{LYCXLN1}
+    \strng{fullhash}{LYCXLN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{Advances In Neural Information Processing Systems 32
+  (NIPS 2019)}}
+    \field{title}{{Online Optimal Control With Linear Dynamics and Predictions:
+  Algorithms and Regret Analysis}}
+    \field{volume}{{32}}
+    \field{year}{{2019}}
+  \endentry
+\enddatalist
+\endinput

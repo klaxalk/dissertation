@@ -1,0 +1,283 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000472661800006}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AA}{%
+         family={Alanazi},
+         familyi={A\bibinitperiod},
+         given={Abdulaziz},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Straub},
+         familyi={S\bibinitperiod},
+         given={Jeremy},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{AASJ1}
+    \strng{fullhash}{AASJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{5}}
+    \field{title}{{Engineering Methodology for Student-driven Cubesats}}
+    \field{volume}{{6}}
+    \field{journaltitle}{{Aerospace}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000459643100003}{article}{}
+    \name{author}{4}{}{%
+      {{hash=FW}{%
+         family={Furnell},
+         familyi={F\bibinitperiod},
+         given={Will},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Shenoy},
+         familyi={S\bibinitperiod},
+         given={Abhishek},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FE}{%
+         family={Fox},
+         familyi={F\bibinitperiod},
+         given={Elliot},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=HP}{%
+         family={Hatfield},
+         familyi={H\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{FWSAFE+1}
+    \strng{fullhash}{FWSAFEHP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{5}}
+    \field{pages}{{1523\bibrangedash 1540}}
+    \field{title}{{First Results From the Lucid-timepix Spacecraft Payload
+  Onboard The Techdemosat-1 Satellite In Low Earth Orbit}}
+    \field{volume}{{63}}
+    \field{journaltitle}{{Advances In Space Research}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000535354700002}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=HR}{%
+         family={Hudec},
+         familyi={H\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{HR1}
+    \strng{fullhash}{HR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{EUV and X-Ray Optics: Synergy Between Laboratory and
+  Space VI}}
+    \field{title}{{X/EUV and UV Optics for Miniature Cube Satellites Payloads}}
+    \field{volume}{{11032}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000448512600001}{article}{}
+    \name{author}{6}{}{%
+      {{hash=HP}{%
+         family={Hatfield},
+         familyi={H\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=FW}{%
+         family={Furnell},
+         familyi={F\bibinitperiod},
+         given={W.},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Shenoy},
+         familyi={S\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FE}{%
+         family={Fox},
+         familyi={F\bibinitperiod},
+         given={E.},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=PR}{%
+         family={Parker},
+         familyi={P\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=TL}{%
+         family={Thomas},
+         familyi={T\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{HPFWSA+1}
+    \strng{fullhash}{HPFWSAFEPRTL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{The Lucid-timepix Spacecraft Payload and the CERN School
+  Educational Programme}}
+    \field{volume}{{13}}
+    \field{journaltitle}{{Journal of Instrumentation}}
+    \field{month}{01}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000432795000001}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HR}{%
+         family={Hudec},
+         familyi={H\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{HR1}
+    \strng{fullhash}{HR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3}}
+    \field{pages}{{396\bibrangedash 404}}
+    \field{title}{{Axro Introduction and Historical Background}}
+    \field{volume}{{48}}
+    \field{journaltitle}{{Contributions of the Astronomical Observatory
+  Skalnate Pleso}}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000410733700011}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HR}{%
+         family={Hudec},
+         familyi={H\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{HR1}
+    \strng{fullhash}{HR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{143\bibrangedash 150}}
+    \field{title}{{Astrophysical Payloads for Picosatellites}}
+    \field{volume}{{47}}
+    \field{journaltitle}{{Contributions of the Astronomical Observatory
+  Skalnate Pleso}}
+    \field{year}{{2017}}
+  \endentry
+
+  \entry{Isi:000410733700004}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HR}{%
+         family={Hudec},
+         familyi={H\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Michalova},
+         familyi={M\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{HRMS1}
+    \strng{fullhash}{HRMS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{94\bibrangedash 99}}
+    \field{title}{{Fish Eye Optics}}
+    \field{volume}{{47}}
+    \field{journaltitle}{{Contributions of the Astronomical Observatory
+  Skalnate Pleso}}
+    \field{year}{{2017}}
+  \endentry
+
+  \entry{Isi:000410733700001}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HR}{%
+         family={Hudec},
+         familyi={H\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=RK}{%
+         family={Remisova},
+         familyi={R\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \keyw{Daniel2016terrestrial, Mine}
+    \strng{namehash}{HRRK1}
+    \strng{fullhash}{HRRK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{67\bibrangedash 75}}
+    \field{title}{{Biomimetics and Astronomical X-Ray Optics}}
+    \field{volume}{{47}}
+    \field{journaltitle}{{Contributions of the Astronomical Observatory
+  Skalnate Pleso}}
+    \field{year}{{2017}}
+  \endentry
+\enddatalist
+\endinput

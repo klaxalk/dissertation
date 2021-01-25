@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main5-blx.aux
+The style file: biblatex.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: main-blx.bib
+Database file #2: citations/no_autocit/daniel2016terrestrial.bib
+Biblatex version: 3.13
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 9 entries,
+            6365 wiz_defined-function locations,
+            1246 strings with 10257 characters,
+and the built_in function-call counts, 53241 in all, are:
+= -- 2706
+> -- 3038
+< -- 295
++ -- 3113
+- -- 2357
+* -- 3313
+:= -- 6881
+add.period$ -- 0
+call.type$ -- 9
+change.case$ -- 80
+chr.to.int$ -- 153
+cite$ -- 16
+duplicate$ -- 5090
+empty$ -- 3993
+format.name$ -- 588
+if$ -- 9355
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 0
+newline$ -- 276
+num.names$ -- 340
+pop$ -- 2820
+preamble$ -- 1
+purify$ -- 133
+quote$ -- 0
+skip$ -- 1577
+stack$ -- 0
+substring$ -- 4127
+swap$ -- 1298
+text.length$ -- 282
+text.prefix$ -- 8
+top$ -- 1
+type$ -- 294
+warning$ -- 0
+while$ -- 801
+width$ -- 0
+write$ -- 268

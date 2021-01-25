@@ -1,0 +1,142 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000520438000007}{article}{}
+    \name{author}{3}{}{%
+      {{hash=WA}{%
+         family={Wasik},
+         familyi={W\bibinitperiod},
+         given={Alicja},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LPU}{%
+         family={Lima},
+         familyi={L\bibinitperiod},
+         given={Pedro\bibnamedelima U.},
+         giveni={P\bibinitperiod\bibinitdelim U\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Martinoli},
+         familyi={M\bibinitperiod},
+         given={Alcherio},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017documentation, Mine}
+    \strng{namehash}{WALPUMA1}
+    \strng{fullhash}{WALPUMA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3-4, Si}}
+    \field{pages}{{395\bibrangedash 414}}
+    \field{title}{{A Robust Localization System for Multi-robot Formations
+  Based on An Extension of A Gaussian Mixture Probability Hypothesis Density
+  Filter}}
+    \field{volume}{{44}}
+    \field{journaltitle}{{Autonomous Robots}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000558081900046}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=SB}{%
+         family={Sabetghadam},
+         familyi={S\bibinitperiod},
+         given={Bahareh},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Alcantara},
+         familyi={A\bibinitperiod},
+         given={Alfonso},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Capitan},
+         familyi={C\bibinitperiod},
+         given={Jesus},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CR}{%
+         family={Cunha},
+         familyi={C\bibinitperiod},
+         given={Rita},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=OA}{%
+         family={Ollero},
+         familyi={O\bibinitperiod},
+         given={Anibal},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Pascoal},
+         familyi={P\bibinitperiod},
+         given={Antonio},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017documentation, Mine}
+    \strng{namehash}{SBAACJ+1}
+    \strng{fullhash}{SBAACJCROAPA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 European Conference on Mobile Robots (ECMR)}}
+    \field{title}{{Optimal Trajectory Planning for Autonomous Drone
+  Cinematography}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000469766800112}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SAV}{%
+         family={Savkin},
+         familyi={S\bibinitperiod},
+         given={Andrey\bibnamedelima V.},
+         giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Hailong},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017documentation, Mine}
+    \strng{namehash}{SAVHH1}
+    \strng{fullhash}{SAVHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{9}}
+    \field{title}{{Asymptotically Optimal Deployment of Drones for Surveillance
+  And Monitoring}}
+    \field{volume}{{19}}
+    \field{journaltitle}{{Sensors}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+\enddatalist
+\endinput

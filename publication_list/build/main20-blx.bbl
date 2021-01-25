@@ -1,0 +1,58 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{ISI:000573730700001}{article}{}
+    \name{author}{4}{}{%
+      {{hash=WA}{%
+         family={Wolek},
+         familyi={W\bibinitperiod},
+         given={Artur},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={McMahon},
+         familyi={M\bibinitperiod},
+         given={James},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DBR}{%
+         family={Dzikowicz},
+         familyi={D\bibinitperiod},
+         given={Benjamin\bibnamedelima R.},
+         giveni={B\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=HBH}{%
+         family={Houston},
+         familyi={H\bibinitperiod},
+         given={Brian\bibnamedelima H.},
+         giveni={B\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WAMJDBR+1}
+    \strng{fullhash}{WAMJDBRHBH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{9}
+    \field{sortinithash}{9}
+    \field{title}{{The Orbiting Dubins Traveling Salesman Problem: Planning
+  Inspection Tours for A Minehunting AUV}}
+    \field{journaltitle}{{Autonomous Robots}}
+  \endentry
+\enddatalist
+\endinput

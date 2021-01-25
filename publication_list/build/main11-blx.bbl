@@ -1,0 +1,269 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000515747100011}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LsJJ}{%
+         family={Lopez-salamanca},
+         familyi={L\bibinithyphendelim s\bibinitperiod},
+         given={Julian\bibnamedelima J.},
+         giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=SLO}{%
+         family={Seman},
+         familyi={S\bibinitperiod},
+         given={Laio\bibnamedelima Oriel},
+         giveni={L\bibinitperiod\bibinitdelim O\bibinitperiod},
+      }}%
+      {{hash=BMD}{%
+         family={Berejuck},
+         familyi={B\bibinitperiod},
+         given={Marcelo\bibnamedelima D.},
+         giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=BEA}{%
+         family={Bezerra},
+         familyi={B\bibinitperiod},
+         given={Eduardo\bibnamedelima A.},
+         giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \keyw{Urban2017VZLUSAT, Mine}
+    \strng{namehash}{LsJJSLOBMD+1}
+    \strng{fullhash}{LsJJSLOBMDBEA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1}}
+    \field{pages}{{142\bibrangedash 154}}
+    \field{title}{{Finite-state Markov Chains Channel Model for Cubesats
+  Communication Uplink}}
+    \field{volume}{{56}}
+    \field{journaltitle}{{IEEE Transactions on Aerospace and Electronic
+  Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000493339600019}{article}{}
+    \name{author}{10}{}{%
+      {{hash=FR}{%
+         family={Filgas},
+         familyi={F\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Malich},
+         familyi={M\bibinitperiod},
+         given={Milan},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KT}{%
+         family={Kuwahara},
+         familyi={K\bibinitperiod},
+         given={Toshinori},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={Broulim},
+         familyi={B\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Holik},
+         familyi={H\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Sakal},
+         familyi={S\bibinitperiod},
+         given={Morokot},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MY}{%
+         family={Murata},
+         familyi={M\bibinitperiod},
+         given={Yu},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=TH}{%
+         family={Tomio},
+         familyi={T\bibinitperiod},
+         given={Hannah},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Gohl},
+         familyi={G\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=PJMT}{%
+         family={Pineda},
+         familyi={P\bibinitperiod},
+         given={Johan M.\bibnamedelima T.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim
+  T\bibinitperiod},
+      }}%
+    }
+    \keyw{Urban2017VZLUSAT, Mine}
+    \strng{namehash}{FRMMKT+1}
+    \strng{fullhash}{FRMMKTBJHMSMMYTHGSPJMT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{7, Si}}
+    \field{pages}{{674\bibrangedash 680}}
+    \field{title}{{Risepix --- A Timepix-based Radiation Monitor Telescope
+  Onboard the Risesat Satellite}}
+    \field{volume}{{340}}
+    \field{journaltitle}{{Astronomische Nachrichten}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000459643100003}{article}{}
+    \name{author}{4}{}{%
+      {{hash=FW}{%
+         family={Furnell},
+         familyi={F\bibinitperiod},
+         given={Will},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Shenoy},
+         familyi={S\bibinitperiod},
+         given={Abhishek},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FE}{%
+         family={Fox},
+         familyi={F\bibinitperiod},
+         given={Elliot},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=HP}{%
+         family={Hatfield},
+         familyi={H\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Urban2017VZLUSAT, Mine}
+    \strng{namehash}{FWSAFE+1}
+    \strng{fullhash}{FWSAFEHP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{5}}
+    \field{pages}{{1523\bibrangedash 1540}}
+    \field{title}{{First Results From the Lucid-timepix Spacecraft Payload
+  Onboard The Techdemosat-1 Satellite In Low Earth Orbit}}
+    \field{volume}{{63}}
+    \field{journaltitle}{{Advances In Space Research}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000444072500014}{article}{}
+    \name{author}{1}{}{%
+      {{hash=FR}{%
+         family={Filgas},
+         familyi={F\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Urban2017VZLUSAT, Mine}
+    \strng{namehash}{FR1}
+    \strng{fullhash}{FR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{5, Si}}
+    \field{pages}{{386\bibrangedash 390}}
+    \field{title}{{Space Radiation Monitoring With Timepix}}
+    \field{volume}{{339}}
+    \field{journaltitle}{{Astronomische Nachrichten}}
+    \field{month}{01}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000448512600001}{article}{}
+    \name{author}{6}{}{%
+      {{hash=HP}{%
+         family={Hatfield},
+         familyi={H\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=FW}{%
+         family={Furnell},
+         familyi={F\bibinitperiod},
+         given={W.},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Shenoy},
+         familyi={S\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FE}{%
+         family={Fox},
+         familyi={F\bibinitperiod},
+         given={E.},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=PR}{%
+         family={Parker},
+         familyi={P\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=TL}{%
+         family={Thomas},
+         familyi={T\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \keyw{Urban2017VZLUSAT, Mine}
+    \strng{namehash}{HPFWSA+1}
+    \strng{fullhash}{HPFWSAFEPRTL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{The Lucid-timepix Spacecraft Payload and the CERN School
+  Educational Programme}}
+    \field{volume}{{13}}
+    \field{journaltitle}{{Journal of Instrumentation}}
+    \field{month}{01}
+    \field{year}{{2018}}
+  \endentry
+\enddatalist
+\endinput

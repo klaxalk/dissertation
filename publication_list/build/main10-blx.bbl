@@ -1,0 +1,232 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{ISI:000572876100001}{article}{}
+    \name{author}{5}{}{%
+      {{hash=BD}{%
+         family={Bicego},
+         familyi={B\bibinitperiod},
+         given={Davide},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Mazzetto},
+         familyi={M\bibinitperiod},
+         given={Jacopo},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CR}{%
+         family={Carli},
+         familyi={C\bibinitperiod},
+         given={Ruggero},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=FM}{%
+         family={Farina},
+         familyi={F\bibinitperiod},
+         given={Marcello},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Franchi},
+         familyi={F\bibinitperiod},
+         given={Antonio},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BDMJCR+1}
+    \strng{fullhash}{BDMJCRFMFA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3-4}}
+    \field{pages}{{1213\bibrangedash 1247}}
+    \field{title}{{Nonlinear Model Predictive Control With Enhanced Actuator
+  Model For Multi-rotor Aerial Vehicles With Generic Designs}}
+    \field{volume}{{100}}
+    \field{journaltitle}{{Journal of Intelligent \& Robotic Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000495059300002}{article}{}
+    \name{author}{3}{}{%
+      {{hash=RB}{%
+         family={Rubi},
+         familyi={R\bibinitperiod},
+         given={Bartomeu},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=PR}{%
+         family={Perez},
+         familyi={P\bibinitperiod},
+         given={Ramon},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MB}{%
+         family={Morcego},
+         familyi={M\bibinitperiod},
+         given={Bernardo},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RBPRMB1}
+    \strng{fullhash}{RBPRMB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{241\bibrangedash 265}}
+    \field{title}{{A Survey of Path Following Control Strategies for UAVs
+  Focused On Quadrotors}}
+    \field{volume}{{98}}
+    \field{journaltitle}{{Journal of Intelligent \& Robotic Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000502013800002}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DL}{%
+         family={Ding},
+         familyi={D\bibinitperiod},
+         given={Li},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=WH}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Hongtao},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2016embedded, Mine}
+    \strng{namehash}{DLWH1}
+    \strng{fullhash}{DLWH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{Dynamical Modelling and Robust Control for An Unmanned
+  Aerial Robot Using Hexarotor With 2-DOF Manipulator}}
+    \field{volume}{{2019}}
+    \field{journaltitle}{{International Journal of Aerospace Engineering}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000527444900024}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SA}{%
+         family={Swief},
+         familyi={S\bibinitperiod},
+         given={Asmaa},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=EzA}{%
+         family={El-zawawi},
+         familyi={E\bibinithyphendelim z\bibinitperiod},
+         given={Amr},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=EhM}{%
+         family={El-habrouk},
+         familyi={E\bibinithyphendelim h\bibinitperiod},
+         given={Mohamed},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2016embedded, Mine}
+    \strng{namehash}{SAEzAEhM1}
+    \strng{fullhash}{SAEzAEhM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 3rd International Conference on Applied Automation
+  and Industrial Diagnostics (ICAAID 2019)}}
+    \field{title}{{A Survey of Model Predictive Control Development In
+  Automotive Industries}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000423534000008}{article}{}
+    \name{author}{2}{}{%
+      {{hash=FJ}{%
+         family={Faigl},
+         familyi={F\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Vana},
+         familyi={V\bibinitperiod},
+         given={Petr},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2016embedded, Mine}
+    \strng{namehash}{FJVP1}
+    \strng{fullhash}{FJVP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{750\bibrangedash 757}}
+    \field{title}{{Surveillance Planning With Bezier Curves}}
+    \field{volume}{{3}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000426968704078}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=FJ}{%
+         family={Faigl},
+         familyi={F\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Vana},
+         familyi={V\bibinitperiod},
+         given={Petr},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2016embedded, Mine}
+    \strng{namehash}{FJVP1}
+    \strng{fullhash}{FJVP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2017 International Joint Conference on Neural Networks
+  (IJCNN)}}
+    \field{pages}{{4340\bibrangedash 4347}}
+    \field{title}{{Unsupervised Learning for Surveillance Planning With Team of
+  Aerial Vehicles}}
+    \field{year}{{2017}}
+  \endentry
+\enddatalist
+\endinput

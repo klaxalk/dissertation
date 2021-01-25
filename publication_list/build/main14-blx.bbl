@@ -1,0 +1,106 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{ISI:000452326500044}{article}{}
+    \name{author}{5}{}{%
+      {{hash=RM}{%
+         family={Rabah},
+         familyi={R\bibinitperiod},
+         given={Mohammed},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={Rohan},
+         familyi={R\bibinitperiod},
+         given={Ali},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TM}{%
+         family={Talha},
+         familyi={T\bibinitperiod},
+         given={Muhammad},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NKH}{%
+         family={Nam},
+         familyi={N\bibinitperiod},
+         given={Kang-Hyun},
+         giveni={K\bibinithyphendelim H\bibinitperiod},
+      }}%
+      {{hash=KSH}{%
+         family={Kim},
+         familyi={K\bibinitperiod},
+         given={Sung\bibnamedelima Ho},
+         giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+    }
+    \keyw{Chudoba2014localization, Mine}
+    \strng{namehash}{RMRATM+1}
+    \strng{fullhash}{RMRATMNKHKSH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{6}}
+    \field{pages}{{3013\bibrangedash 3025}}
+    \field{title}{{Autonomous Vision-based Target Detection and Safe Landing
+  for UAV}}
+    \field{volume}{{16}}
+    \field{journaltitle}{{International Journal of Control Automation and
+  Systems}}
+    \field{month}{01}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000385097200001}{article}{}
+    \name{author}{3}{}{%
+      {{hash=JHj}{%
+         family={Jeong},
+         familyi={J\bibinitperiod},
+         given={Hyeok-june},
+         giveni={H\bibinithyphendelim j\bibinitperiod},
+      }}%
+      {{hash=CJD}{%
+         family={Choi},
+         familyi={C\bibinitperiod},
+         given={Jeong\bibnamedelima Dan},
+         giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=HYg}{%
+         family={Ha},
+         familyi={H\bibinitperiod},
+         given={Young-guk},
+         giveni={Y\bibinithyphendelim g\bibinitperiod},
+      }}%
+    }
+    \keyw{Chudoba2014localization, Mine}
+    \strng{namehash}{JHjCJDHYg1}
+    \strng{fullhash}{JHjCJDHYg1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{Vision Based Displacement Detection for Stabilized UAV
+  Control on Cloud Server}}
+    \field{volume}{{2016}}
+    \field{journaltitle}{{Mobile Information Systems}}
+    \field{year}{{2016}}
+  \endentry
+\enddatalist
+\endinput

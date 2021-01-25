@@ -1,0 +1,706 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000545428400018}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LS}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Sensen},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=DW}{%
+         family={Dong},
+         familyi={D\bibinitperiod},
+         given={Wei},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=MZ}{%
+         family={Ma},
+         familyi={M\bibinitperiod},
+         given={Zhao},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=SX}{%
+         family={Sheng},
+         familyi={S\bibinitperiod},
+         given={Xinjun},
+         giveni={X\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{LSDWMZ+1}
+    \strng{fullhash}{LSDWMZSX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3}}
+    \field{pages}{{4766\bibrangedash 4773}}
+    \field{title}{{Adaptive Aerial Grasping and Perching With Dual Elasticity
+  Combined Suction Cup}}
+    \field{volume}{{5}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000577066500023}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LGM}{%
+         family={Lopez\bibnamedelima Garcia},
+         familyi={L\bibinitperiod\bibinitdelim G\bibinitperiod},
+         given={Manuel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MCJ}{%
+         family={Martinez\bibnamedelima Carranza},
+         familyi={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+         given={Jose},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{LGMMCJ1}
+    \strng{fullhash}{LGMMCJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3}}
+    \field{pages}{{1219\bibrangedash 1228}}
+    \field{title}{{A First CNN-based Approach Towards Autonomous Flight for
+  Object Lifting}}
+    \field{volume}{{24}}
+    \field{journaltitle}{{Computacion Y Sistemas}}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000534593100033}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MG}{%
+         family={Michieletto},
+         familyi={M\bibinitperiod},
+         given={Giulia},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Cenedese},
+         familyi={C\bibinitperiod},
+         given={Angelo},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zaccarian},
+         familyi={Z\bibinitperiod},
+         given={Luca},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Franchi},
+         familyi={F\bibinitperiod},
+         given={Antonio},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{MGCAZL+1}
+    \strng{fullhash}{MGCAZLFA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{Hierarchical Nonlinear Control for Multi-rotor Asymptotic
+  Stabilization Based on Zero-moment Direction}}
+    \field{volume}{{117}}
+    \field{journaltitle}{{Automatica}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000512017700009}{article}{}
+    \name{author}{4}{}{%
+      {{hash=PS}{%
+         family={Patel},
+         familyi={P\bibinitperiod},
+         given={Siddharth},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Sarabakha},
+         familyi={S\bibinitperiod},
+         given={Andriy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kircali},
+         familyi={K\bibinitperiod},
+         given={Dogan},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=KE}{%
+         family={Kayacan},
+         familyi={K\bibinitperiod},
+         given={Erdal},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{PSSAKD+1}
+    \strng{fullhash}{PSSAKDKE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{387\bibrangedash 398}}
+    \field{title}{{An Intelligent Hybrid Artificial Neural Network-based
+  Approach For Control of Aerial Robots}}
+    \field{volume}{{97}}
+    \field{journaltitle}{{Journal of Intelligent \& Robotic Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{ISI:000575724000009}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SRC}{%
+         family={Shit},
+         familyi={S\bibinitperiod},
+         given={Rathin\bibnamedelima Chandra},
+         giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{SRC1}
+    \strng{fullhash}{SRC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{351\bibrangedash 374}}
+    \field{title}{{Precise Localization for Achieving Next-generation
+  Autonomous Navigation: State-of-the-art, Taxonomy and Future Prospects}}
+    \field{volume}{{160}}
+    \field{journaltitle}{{Computer Communications}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000489924700001}{article}{}
+    \name{author}{3}{}{%
+      {{hash=VDKD}{%
+         family={Villa},
+         familyi={V\bibinitperiod},
+         given={Daniel K.\bibnamedelima D.},
+         giveni={D\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim
+  D\bibinitperiod},
+      }}%
+      {{hash=BAS}{%
+         family={Brandao},
+         familyi={B\bibinitperiod},
+         given={Alexandre\bibnamedelima S.},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SfM}{%
+         family={Sarcinelli-filho},
+         familyi={S\bibinithyphendelim f\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VDKDBASSfM1}
+    \strng{fullhash}{VDKDBASSfM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{pages}{{267\bibrangedash 296}}
+    \field{title}{{A Survey on Load Transportation Using Multirotor UAVs}}
+    \field{volume}{{98}}
+    \field{journaltitle}{{Journal of Intelligent \& Robotic Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000455132600006}{article}{}
+    \name{author}{10}{}{%
+      {{hash=BR}{%
+         family={Baehnemann},
+         familyi={B\bibinitperiod},
+         given={Rik},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Pantie},
+         familyi={P\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Popovic},
+         familyi={P\bibinitperiod},
+         given={Marija},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Schindler},
+         familyi={S\bibinitperiod},
+         given={Dominik},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TM}{%
+         family={Tranzatto},
+         familyi={T\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kamel},
+         familyi={K\bibinitperiod},
+         given={Mina},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=GM}{%
+         family={Grimm},
+         familyi={G\bibinitperiod},
+         given={Marius},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Widauer},
+         familyi={W\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Siegwart},
+         familyi={S\bibinitperiod},
+         given={Roland},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=NJ}{%
+         family={Nieto},
+         familyi={N\bibinitperiod},
+         given={Juan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{BRPMPM+1}
+    \strng{fullhash}{BRPMPMSDTMKMGMWJSRNJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1, Si}}
+    \field{pages}{{78\bibrangedash 103}}
+    \field{title}{{The ETH-MAV Team In the MBZ International Robotics
+  Challenge}}
+    \field{volume}{{36}}
+    \field{journaltitle}{{Journal of Field Robotics}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000485854900023}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BPIH}{%
+         family={Beloti\bibnamedelima Pizetta},
+         familyi={B\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={Igor\bibnamedelima Henrique},
+         giveni={I\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=BAS}{%
+         family={Brandao},
+         familyi={B\bibinitperiod},
+         given={Alexandre\bibnamedelima Santos},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SfM}{%
+         family={Sarcinelli-filho},
+         familyi={S\bibinithyphendelim f\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{BPIHBASSfM1}
+    \strng{fullhash}{BPIHBASSfM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{253\bibrangedash 261}}
+    \field{title}{{Avoiding Obstacles In Cooperative Load Transportation}}
+    \field{volume}{{91}}
+    \field{journaltitle}{{Isa Transactions}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000503382900081}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=BPIH}{%
+         family={Beloti\bibnamedelima Pizetta},
+         familyi={B\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={Igor\bibnamedelima Henrique},
+         giveni={I\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=SBA}{%
+         family={Santos\bibnamedelima Brandao},
+         familyi={S\bibinitperiod\bibinitdelim B\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SfM}{%
+         family={Sarcinelli-filho},
+         familyi={S\bibinithyphendelim f\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{BPIHSBASfM1}
+    \strng{fullhash}{BPIHSBASfM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 International Conference on Unmanned Aircraft
+  Systems (ICUAS' 19)}}
+    \field{pages}{{644\bibrangedash 650}}
+    \field{title}{{Cooperative Load Transportation Using Three Quadrotors}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000455132600012}{article}{}
+    \name{author}{8}{}{%
+      {{hash=BM}{%
+         family={Beul},
+         familyi={B\bibinitperiod},
+         given={Marius},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NM}{%
+         family={Nieuwenhuisen},
+         familyi={N\bibinitperiod},
+         given={Matthias},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=QJ}{%
+         family={Quenzel},
+         familyi={Q\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RRA}{%
+         family={Rosu},
+         familyi={R\bibinitperiod},
+         given={Radu\bibnamedelima Alexandru},
+         giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Horn},
+         familyi={H\bibinitperiod},
+         given={Jannis},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Pavlichenko},
+         familyi={P\bibinitperiod},
+         given={Dmytro},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=HS}{%
+         family={Houben},
+         familyi={H\bibinitperiod},
+         given={Sebastian},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Behnke},
+         familyi={B\bibinitperiod},
+         given={Sven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{BMNMQJ+1}
+    \strng{fullhash}{BMNMQJRRAHJPDHSBS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1, Si}}
+    \field{pages}{{204\bibrangedash 229}}
+    \field{title}{{Team Nimbro At MBZIRC 2017: Fast Landing on A Moving Target
+  and Treasure Hunting With A Team of Micro Aerial Vehicles}}
+    \field{volume}{{36}}
+    \field{journaltitle}{{Journal of Field Robotics}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000471707300001}{article}{}
+    \name{author}{7}{}{%
+      {{hash=HS}{%
+         family={Hamaza},
+         familyi={H\bibinitperiod},
+         given={Salua},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=GI}{%
+         family={Georgilas},
+         familyi={G\bibinitperiod},
+         given={Ioannis},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=FM}{%
+         family={Fernandez},
+         familyi={F\bibinitperiod},
+         given={Manuel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Sanchez},
+         familyi={S\bibinitperiod},
+         given={Pedro},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=RT}{%
+         family={Richardson},
+         familyi={R\bibinitperiod},
+         given={Thomas},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=HG}{%
+         family={Heredia},
+         familyi={H\bibinitperiod},
+         given={Guillermo},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=OA}{%
+         family={Ollero},
+         familyi={O\bibinitperiod},
+         given={Anibal},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{HSGIFM+1}
+    \strng{fullhash}{HSGIFMSPRTHGOA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3}}
+    \field{pages}{{2793\bibrangedash 2800}}
+    \field{title}{{Sensor Installation and Retrieval Operations Using An
+  Unmanned Aerial Manipulator}}
+    \field{volume}{{4}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000494942305091}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=SA}{%
+         family={Sarabakha},
+         familyi={S\bibinitperiod},
+         given={Andriy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KE}{%
+         family={Kayacan},
+         familyi={K\bibinitperiod},
+         given={Erdal},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{SAKE1}
+    \strng{fullhash}{SAKE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 International Conference on Robotics and Automation
+  (ICRA)}}
+    \field{pages}{{7727\bibrangedash 7733}}
+    \field{title}{{Online Deep Learning for Improved Trajectory Tracking of
+  Unmanned Aerial Vehicles Using Expert Knowledge}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000500870500015}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SD}{%
+         family={Sartori},
+         familyi={S\bibinitperiod},
+         given={Daniele},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=YW}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Wenxian},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{SDYW1}
+    \strng{fullhash}{SDYW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3-4}}
+    \field{pages}{{529\bibrangedash 540}}
+    \field{title}{{Experimental Characterization of A Propulsion System for
+  Multi-rotor UAVs}}
+    \field{volume}{{96}}
+    \field{journaltitle}{{Journal of Intelligent \& Robotic Systems}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000483016400003}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=ZH}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lynch},
+         familyi={L\bibinitperiod},
+         given={Jerome},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZD}{%
+         family={Zekkos},
+         familyi={Z\bibinitperiod},
+         given={Dimitrios},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{ZHLJZD1}
+    \strng{fullhash}{ZHLJZD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{Sensors and Smart Structures Technologies for Civil,
+  Mechanical, And Aerospace Systems 2019}}
+    \field{title}{{Vision-based Precision Localization of UAVs for Sensor
+  Payload Placement and Pickup for Field Monitoring Applications}}
+    \field{volume}{{10970}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000454860700012}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=VDKD}{%
+         family={Villa},
+         familyi={V\bibinitperiod},
+         given={Daniel K.\bibnamedelima D.},
+         giveni={D\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim
+  D\bibinitperiod},
+      }}%
+      {{hash=BAS}{%
+         family={Brandao},
+         familyi={B\bibinitperiod},
+         given={Alexandre\bibnamedelima S.},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=SfM}{%
+         family={Sarcinelli-filho},
+         familyi={S\bibinithyphendelim f\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{VDKDBASSfM1}
+    \strng{fullhash}{VDKDBASSfM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2018 International Conference on Unmanned Aircraft
+  Systems (ICUAS)}}
+    \field{pages}{{84\bibrangedash 93}}
+    \field{title}{{Load Transportation Using Quadrotors: A Survey of
+  Experimental Results}}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000459211400095}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=WY}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={Yaqi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Jin},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={Jiabi},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZF}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Fenfang},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=CH}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Haoyao},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{Loianno2018localization, Mine}
+    \strng{namehash}{WYSJSJ+1}
+    \strng{fullhash}{WYSJSJZFCH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{Proceedings of 2018 IEEE International Conference on
+  Real-time Computing and Robotics (IEEE RCAR)}}
+    \field{pages}{{556\bibrangedash 562}}
+    \field{title}{{Aerial Grasping Based on VR Perception and Haptic Control}}
+    \field{year}{{2018}}
+  \endentry
+\enddatalist
+\endinput

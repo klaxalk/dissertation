@@ -1,0 +1,604 @@
+% \newcommand*{\printversion}{}%
+% \newcommand*{\includepdfs}{}%
+
+%%{ DOC HEAD
+
+\pdfoutput=1
+\ifdefined\printversion
+  \documentclass[a4paper,11pt,twoside,openright]{book}
+\else
+  \documentclass[a4paper,11pt,oneside]{book}
+\fi
+
+\newcommand{\conditionalClearPage}{
+  \ifdefined\printversion
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+\usepackage{amsmath,amsfonts,amssymb,bm}
+\usepackage{nicefrac}
+
+\usepackage{algorithm,algpseudocode}
+\usepackage[title,titletoc]{appendix}
+\usepackage{latexsym}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{indentfirst}
+\usepackage{graphicx}       %%% graphics for dvips
+% \usepackage[a4paper,margin=3.2cm,inner=3.4cm,outer=2.0cm]{geometry}
+\usepackage[a4paper,margin=3.0cm]{geometry}
+\usepackage{fancyhdr,lastpage}
+\usepackage{longtable}
+\usepackage{pifont}
+\usepackage{makeidx}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{epstopdf}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{relsize}
+\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage{isotope}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+
+\usepackage{subfig} % subfloat
+\usepackage[export]{adjustbox}
+
+\hyphenation{}
+
+%%{ include paper box
+
+\newcommand{\includepaperwithimage}[2]{
+  \ifdefined\includepdfs
+    \ifdefined\printversion
+      \includepdf[pages={-},offset=0.7cm 0cm,#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
+    \else
+      \includepdf[pages={-},#2,clip=true,pagecommand={\thispagestyle{full}},width=1.0\textwidth]{./papers_to_include_pdf/#1}
+    \fi
+  \else
+    \clearpage
+    \fullciteinboxwithimage{#1}{This place will contain the full paper}
+  \fi
+}
+
+%%}
+
+%%{ fullcite box
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinbox}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%\vspace{3em}%
+%\raisebox{3em}[3em][3em]{%
+% \vspace{-0.2em}
+\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{1.00\linewidth}%
+\fullcite{#1}%
+\end{minipage}%
+\end{tcolorbox}%
+%}%
+\vspace{-0.3em}
+}%
+
+%%}
+
+%%{ fullcite box with image
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinboxwithimage}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%\vspace{3em}%
+%\raisebox{3em}[3em][3em]{%
+% \vspace{-0.2em}
+\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{0.07\linewidth}%
+\raggedright%
+\cite{#1}%
+\end{minipage}%
+\begin{minipage}[t]{0.93\linewidth}%
+\fullcite{#1}
+\end{minipage}%
+\end{tcolorbox}
+\begin{center}
+  \tikzfading[name=fade down,
+    top color=transparent!100, bottom color=transparent!0]
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (a) at (0,0) {\includegraphics[height=0.8\textheight]{./papers_to_include_pdf/#1.png}};
+    \begin{scope}[x={(a.south east)},y={(a.north west)}]
+      \fill[white, path fading=fade down] (0.0, 0.0) rectangle (1.0, 0.33);
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+%}%
+% \vspace{-0.5em}
+}%
+
+%%}
+
+\usepackage[printonlyused]{acronym}
+
+%%{ change formatting of lists
+
+\usepackage{enumitem}
+\setlist{nosep}
+% \setlist{noitemsep}
+% how to format particular lists?
+% \begin{itemize}[topsep=8pt,itemsep=4pt,partopsep=4pt, parsep=4pt]
+
+%%}
+
+%%{ change formatting of a chapter
+
+\usepackage{titlesec}
+\titleformat{\chapter}[block]
+{\normalfont\huge\bfseries}{Chapter \thechapter\\\vspace{0.1em}\\}{1em}{\Huge}
+% {?}{before}{after}
+\titlespacing*{\chapter}{0pt}{-1em}{2em}
+
+%%}
+
+%%{ biblatex
+
+\usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=ydnt]{biblatex}
+
+\renewcommand*{\bibfont}{\Font}
+
+% \newcounter{mycounter}
+% \setcounter{mycounter}{0}
+% \newcounter{unrelatedcount}
+% \setcounter{unrelatedcount}{0}
+% \newcounter{totalcounter}
+% \setcounter{totalcounter}{0}
+
+% % Print labelnumbers with suffixes, adjust secondary labelnumber 1/2 (start new numbering of my publications)
+% \makeatletter
+% \AtDataInput{%
+%   \ifkeyword{mine}
+%   {
+%     \addtocounter{mycounter}{1}
+%   }
+%   {}
+%   \addtocounter{totalcounter}{1}
+% }
+% \makeatother
+
+% Print labelnumbers with suffixes, adjust secondary labelnumber 2/2
+
+\DeclareFieldFormat{labelnumber}{%
+  \ifkeyword{mine}
+    {\ifkeyword{core}
+      {{\number\numexpr#1}c}%
+      {{\number\numexpr#1}a}%
+    }%
+    {#1}%
+}
+
+\DeclareCiteCommand{\tabcite}%[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+
+% {{\number\numexpr#1-\value{bbx:primcount}}a}
+
+\addbibresource{main.bib}
+
+\defbibenvironment{favoritebib}
+{\itemize}
+{\enditemize}
+{\item}
+
+%%}
+
+%%{ custom macros
+
+%%%%%%%%%%%%%%% changemargin environment begin %%%%%%%%%%%%%%%%%%%%%%%%%
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+%%%%%%%%%%%%%%% changemargin environment end %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\strong}[1]{\textbf{#1}}
+\newcommand{\coord}[1]{\textbf{#1}}
+\newcommand{\norm}[1]{\left\lvert#1\right\rvert}
+\newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\corrected}[1]{{\color{black} {#1}}}
+% \newcommand{\comment}[1]{{\color{blue} {#1}}}
+\newcommand{\add}[1]{{\color{green} {#1}}}
+\newcommand{\todo}[1]{{\color{red} TODO {#1}}}
+\newcommand{\updated}[1]{{\color{blue} {#1}}}
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\refalg}[1]{Alg.~\ref{#1}}
+\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}
+\newcommand{\plus}{\scalebox{0.8}[0.8]{$+$}}
+\newcommand{\figvspace}{\vspace{-1em}} % this may eventually do something, so far just a placeholder
+
+\ifdefined\printversion
+  % \setlength{\oddsidemargin}{+0.7cm}
+  % \setlength{\evensidemargin}{-0.7cm}
+\fi
+
+%%}
+
+%%{ listings
+
+\lstset{breaklines=true,captionpos=b,frame=single,language=sh,float=h}
+\lstloadlanguages{sh,c}
+\def\lstlistingname{Listing}
+\def\lstlistlistingname{Listings}
+
+%%}
+
+%%{ title page parameters
+
+\newcommand{\Author}{Ing. Tomáš Báča}
+\newcommand{\Supervisor}{Ing. Martin Saska, Dr. rer. nat.}
+\newcommand{\SupervisorSpecialist}{Ing. Michal Platkevic, Ph.D.}
+\newcommand{\Programme}{Electrical Engineering and Information Technology}
+\newcommand{\Field}{Artificial Intelligence and Biocybernetics}
+\newcommand{\Title}{Cooperative Sensing by a Group\\[0.5em]of Unmanned Aerial Vehicles}
+\newcommand{\DocName}{Doctoral Thesis}
+\newcommand{\Keywords}{Unmanned Aerial Vehicles, Mobile Robotics, Remote Sensing, Ionizing Radiation, Dosimetry}
+\newcommand{\KlicovaSlova}{Bezpilotní Prostředky, Mobilní Robotika, Vzdálené Měření, Ionizující Radiace, Dozimetrie}
+\newcommand{\DOCVersion}{1.0}
+\newcommand{\Year}{2021}
+\newcommand{\Month}{January}
+\newcommand{\Date}{\Month~\Year}
+\newcommand{\Location}{Prague}
+
+%%}
+
+%%{ layout parameters
+
+% % altering margins
+% \setlength{\oddsidemargin}{+0.5cm}
+% \setlength{\evensidemargin}{-0.5cm}
+
+% ??
+\def\clinks{false}
+
+% no indent, free space between paragraphs
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+% offsets the head down
+\setlength{\headheight}{18pt}
+
+% foot line
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{full}{%
+
+% clear the default layout
+\fancyhead{}
+\fancyfoot{}
+
+% page header
+\fancyhead[LO]{\leftmark Ing. Tomáš Báča}
+\fancyhead[RE]{\rightmark}
+\fancyhead[LE,RO]{\thepage/\pageref{LastPage}}
+
+% page footer
+\fancyfoot[L]{CTU in Prague}
+\fancyfoot[R]{Department of Cybernetics}
+\fancyfoot[C]{}
+
+}
+
+\fancypagestyle{plain}{%
+
+% clear the default layout
+\fancyhead{}
+\fancyfoot{}
+
+% page header
+\fancyhead[LE,RO]{\thepage}
+
+}
+
+%%}
+
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+
+%%{ other parameters
+
+% European layout (no extra space after `.')
+\frenchspacing
+
+% without this it does not compile!
+\let\bibfont\small
+
+% \setlength{\cftbeforesecskip}{6pt}
+
+%%}
+
+%%}
+
+%%{ fix the page style of the first page
+
+\makeatletter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                    \thispagestyle{full}% original style: plain
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\makeatother
+
+%%}
+
+\begin{document}
+
+\pagestyle{full}
+
+\chapter*{Author's publications}
+
+References to the author's work are listed first, followed by other references cited within this work.
+The authored references contain his contribution and the number of citations based on Web~of~Science~(WoS), Scopus, and Google Scholar~(GS).
+The author has reached h-index~7 in WoS with the first- and second-order self-citations being excluded.
+The citation counts were gathered on January 1$^{\text{st}}$, 2021.
+
+\section*{Thesis-related publications}
+
+\subsection*{Impacted WoS SCI-Expanded Q1, Q2 and Q3 journals}
+
+\nocite{*}
+\printbibliography[keyword={mine},keyword={phd_related},keyword={journal},notkeyword={submitted},heading=none,title={},env=favoritebib]
+\printbibliography[keyword={mine},keyword={phd_unrelated},keyword={journal},notkeyword={submitted},heading=none,title={},env=favoritebib]
+
+\subsection*{Conference proceedings CORE A*, CORE A}
+
+\nocite{*}
+\printbibliography[keyword={mine},keyword={core_a},keyword={phd_related},heading=none,title={},env=favoritebib]
+\printbibliography[keyword={mine},keyword={core_a},keyword={phd_unrelated},heading=none,title={},env=favoritebib]
+
+\subsection*{Other proceedings in WoS}
+
+\nocite{*}
+\printbibliography[keyword={mine},notkeyword={core_a},keyword={phd_related},notkeyword={journal},notkeyword={submitted},heading=none,title={},env=favoritebib]
+\printbibliography[keyword={mine},notkeyword={core_a},keyword={phd_unrelated},notkeyword={journal},notkeyword={submitted},heading=none,title={},env=favoritebib]
+
+\clearpage
+
+\section*{Unrelated publications}
+
+\subsection*{Conference proceedings CORE A*, CORE A}
+
+\nocite{*}
+\printbibliography[keyword={mine},notkeyword={phd_unrelated},notkeyword={phd_related},keyword={core_a},heading=none,title={},env=favoritebib]
+
+\subsection*{Other proceedings in WoS}
+
+\nocite{*}
+\printbibliography[keyword={mine},notkeyword={phd_unrelated},notkeyword={phd_related},notkeyword={core_a},heading=none,title={},env=favoritebib]
+
+\chapter*{Author's Projects}
+
+\noindent
+Following project proposals were co-written by the thesis author and have been accepted.
+
+\subsection*{TAČR FW01010317}
+
+\begin{minipage}[t]{1.00\linewidth}%
+\noindent
+\textbf{Call}: TAČR TREND, 1$^{\text{st}}$ call\\
+\textbf{CZ}: Lokalizace zdrojů ionizující radiace pomocí malých bezpilotních helikoptér s detektorem na principu Comptonovy kamery\\
+\textbf{EN}: Localization of ionizing radiation sources using small unmanned helicopters equipped with a Compton camera detector\\
+\textbf{Accepted}: 2020, 8$^{\text{th}}$ of 396 submitted for the call\\
+\textbf{Principal Investigator}: Advacam, s.r.o.
+\end{minipage}
+
+\subsection*{TAČR FW03010020}
+
+\begin{minipage}[t]{1.00\linewidth}%
+\noindent
+\textbf{Call}: TAČR TREND, 3$^{\text{rd}}$ call\\
+\textbf{CZ}: Systém navigace, lokalizace, řízení a plánování pro flotilu autonomních mobilních robotů\\
+\textbf{EN}: Navigation, localization, control and planning for a fleet of autonomous mobile robots\\
+\textbf{Accepted}: 2021, 13$^{\text{th}}$ of 458 submitted for the call\\
+\textbf{Principal Investigator}: DataVision, s.r.o.
+\end{minipage}
+
+\chapter*{Citations of Author's Publications}
+
+Citations of the author's work were extracted from the Web~of~Science.
+First- and second-order self-citations are excluded.
+The data were gathered on January 1$^{\text{st}}$, 2021.
+\\
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\fullciteinbox{saska2017system}{}
+\begin{refsection}[citations/no_autocit/saska2017system.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{loianno2018localization}{}
+\begin{refsection}[citations/no_autocit/loianno2018localization.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{baca2016miniaturized}{}
+\begin{refsection}[citations/no_autocit/baca2016miniaturized.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{spurny2019cooperative}{}
+\begin{refsection}[citations/no_autocit/spurny2019cooperative.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{daniel2016terrestrial}{}
+\begin{refsection}[citations/no_autocit/daniel2016terrestrial.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{baca2018model}{}
+\begin{refsection}[citations/no_autocit/baca2018model.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{baca2017autonomous}{}
+\begin{refsection}[citations/no_autocit/baca2017autonomous.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{baca2019autonomous}{}
+\begin{refsection}[citations/no_autocit/baca2019autonomous.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{daniel2017xray}{}
+\begin{refsection}[citations/no_autocit/daniel2017xray.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{baca2016embedded}{}
+\begin{refsection}[citations/no_autocit/baca2016embedded.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{urban2017vzlusat}{}
+\begin{refsection}[citations/no_autocit/urban2017vzlusat.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{giernacki2019realtime}{}
+\begin{refsection}[citations/no_autocit/giernacki2019realtime.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{saska2017documentation}{}
+\begin{refsection}[citations/no_autocit/saska2017documentation.bib]
+\nocite{*}
+\printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{chudoba2014localization}{}
+\begin{refsection}[citations/no_autocit/chudoba2014localization.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{saikin2020wildfire}{}
+\begin{refsection}[citations/no_autocit/saikin2020wildfire.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{petrlik2020robust}{}
+\begin{refsection}[citations/no_autocit/petrlik2020robust.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{daniel2019inorbit}{}
+\begin{refsection}[citations/no_autocit/daniel2019inorbit.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{baca2018timepix}{}
+\begin{refsection}[citations/no_autocit/baca2018timepix.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{baca2018rospix}{}
+\begin{refsection}[citations/no_autocit/baca2018rospix.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{faigl2017onsolution}{}
+\begin{refsection}[citations/no_autocit/faigl2017onsolution.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{spurny2016complex}{}
+\begin{refsection}[citations/no_autocit/spurny2016complex.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+\fullciteinbox{chudoba2016exploration}{}
+\begin{refsection}[citations/no_autocit/chudoba2016exploration.bib]
+  \nocite{*}
+  \printbibliography[heading=none,title={},env=favoritebib]
+\end{refsection}
+
+% \fullciteinbox{saska2016formations}{}
+% \begin{refsection}[citations/no_autocit/saska2016formations.bib]
+%   \nocite{*}
+%   \printbibliography[heading=none,title={},env=favoritebib]
+% \end{refsection}
+
+\end{document}

@@ -1,0 +1,265 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{Isi:000538041800205}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HD}{%
+         family={Horla},
+         familyi={H\bibinitperiod},
+         given={Dariusz},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Cieslak},
+         familyi={C\bibinitperiod},
+         given={Jacek},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2019autonomous, Mine}
+    \strng{namehash}{HDCJ1}
+    \strng{fullhash}{HDCJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{8}}
+    \field{title}{{On Obtaining Energy-optimal Trajectories for Landing of
+  UAVs}}
+    \field{volume}{{13}}
+    \field{journaltitle}{{Energies}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{ISI:000587193000001}{article}{}
+    \name{author}{5}{}{%
+      {{hash=XJ}{%
+         family={Xie},
+         familyi={X\bibinitperiod},
+         given={Jingyi},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PX}{%
+         family={Peng},
+         familyi={P\bibinitperiod},
+         given={Xiaodong},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=WH}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Haijiao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=NW}{%
+         family={Niu},
+         familyi={N\bibinitperiod},
+         given={Wenlong},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zheng},
+         familyi={Z\bibinitperiod},
+         given={Xiao},
+         giveni={X\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2019autonomous, Mine}
+    \strng{namehash}{XJPXWH+1}
+    \strng{fullhash}{XJPXWHNWZX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{19}}
+    \field{title}{{UAV Autonomous Tracking and Landing Based on Deep
+  Reinforcement Learning Strategy}}
+    \field{volume}{{20}}
+    \field{journaltitle}{{Sensors}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000478758000020}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GJ}{%
+         family={Goslinski},
+         familyi={G\bibinitperiod},
+         given={Jaroslaw},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=GW}{%
+         family={Giernacki},
+         familyi={G\bibinitperiod},
+         given={Wojciech},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Krolikowski},
+         familyi={K\bibinitperiod},
+         given={Andrzej},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2019autonomous, Mine}
+    \strng{namehash}{GJGWKA1}
+    \strng{fullhash}{GJGWKA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3-4}}
+    \field{pages}{{1079\bibrangedash 1095}}
+    \field{title}{{A Nonlinear Filter for Efficient Attitude Estimation of
+  Unmanned Aerial Vehicle (UAV)}}
+    \field{volume}{{95}}
+    \field{journaltitle}{{Journal of Intelligent \& Robotic Systems}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000591787500079}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=NKD}{%
+         family={Nguyen},
+         familyi={N\bibinitperiod},
+         given={Khoa\bibnamedelima Dang},
+         giveni={K\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=tNT}{%
+         prefix={thang},
+         prefixi={t\bibinitperiod},
+         family={Nguyen},
+         familyi={N\bibinitperiod},
+         given={Trong},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2019autonomous, Mine}
+    \strng{namehash}{NKDNTt1}
+    \strng{fullhash}{NKDNTt1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{Proceedings of 2019 International Conference on System
+  Science And Engineering (ICSSE)}}
+    \field{pages}{{429\bibrangedash 432}}
+    \field{title}{{Vision-based Software-in-the-loop-simulation for Unmanned
+  Aerial Vehicles Using Gazebo and PX4 Open Source}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000558081900040}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=PC}{%
+         family={Potena},
+         familyi={P\bibinitperiod},
+         given={Ciro},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=ND}{%
+         family={Nardi},
+         familyi={N\bibinitperiod},
+         given={Daniele},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Pretto},
+         familyi={P\bibinitperiod},
+         given={Alberto},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2019autonomous, Mine}
+    \strng{namehash}{PCNDPA1}
+    \strng{fullhash}{PCNDPA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 European Conference on Mobile Robots (ECMR)}}
+    \field{title}{{Joint Vision-based Navigation, Control and Obstacle
+  Avoidance for UAVs In Dynamic Environments}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000506678200158}{article}{}
+    \name{author}{7}{}{%
+      {{hash=WJ}{%
+         family={Wubben},
+         familyi={W\bibinitperiod},
+         given={Jamie},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=FF}{%
+         family={Fabra},
+         familyi={F\bibinitperiod},
+         given={Francisco},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=CCT}{%
+         family={Calafate},
+         familyi={C\bibinitperiod},
+         given={Carlos\bibnamedelima T.},
+         giveni={C\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+      {{hash=KT}{%
+         family={Krzeszowski},
+         familyi={K\bibinitperiod},
+         given={Tomasz},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MbJM}{%
+         family={Marquez-barja},
+         familyi={M\bibinithyphendelim b\bibinitperiod},
+         given={Johann\bibnamedelima M.},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=CJc}{%
+         family={Cano},
+         familyi={C\bibinitperiod},
+         given={Juan-carlos},
+         giveni={J\bibinithyphendelim c\bibinitperiod},
+      }}%
+      {{hash=MP}{%
+         family={Manzoni},
+         familyi={M\bibinitperiod},
+         given={Pietro},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Baca2019autonomous, Mine}
+    \strng{namehash}{WJFFCCT+1}
+    \strng{fullhash}{WJFFCCTKTMbJMCJcMP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{12}}
+    \field{title}{{Accurate Landing of Unmanned Aerial Vehicles Using Ground
+  Pattern Recognition}}
+    \field{volume}{{8}}
+    \field{journaltitle}{{Electronics}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+\enddatalist
+\endinput

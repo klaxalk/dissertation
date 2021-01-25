@@ -1,0 +1,1352 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{ydnt/global//global/global}
+  \entry{ISI:000579336300001}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DJ}{%
+         family={Dunn},
+         familyi={D\bibinitperiod},
+         given={James},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=TR}{%
+         family={Tron},
+         familyi={T\bibinitperiod},
+         given={Roberto},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{DJTR1}
+    \strng{fullhash}{DJTR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1}}
+    \field{pages}{{32\bibrangedash 39}}
+    \field{title}{{Temporal Siamese Networks for Clutter Mitigation Applied To
+  Vision-based Quadcopter Formation Control}}
+    \field{volume}{{6}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2021}}
+  \endentry
+
+  \entry{Isi:000570976900017}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=AM}{%
+         family={Amir},
+         familyi={A\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BAM}{%
+         family={Bruckstein},
+         familyi={B\bibinitperiod},
+         given={Alfred\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{AMBAM1}
+    \strng{fullhash}{AMBAM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{Robotics: Science and Systems XVI}}
+    \field{title}{{Fast Uniform Dispersion of A Crash-prone Swarm}}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000533346400083}{article}{}
+    \name{author}{7}{}{%
+      {{hash=CC}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Chengbin},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=TY}{%
+         family={Tian},
+         familyi={T\bibinitperiod},
+         given={Yaoyuan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LL}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Liang},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Sifan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Hanwen},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Yuxin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Su},
+         familyi={S\bibinitperiod},
+         given={Kaixiong},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{CCTYLL+1}
+    \strng{fullhash}{CCTYLLCSLHWYSK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{8}}
+    \field{title}{{Obtaining World Coordinate Information of UAV In GNSS Denied
+  Environments}}
+    \field{volume}{{20}}
+    \field{journaltitle}{{Sensors}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000544694700001}{article}{}
+    \name{author}{5}{}{%
+      {{hash=CM}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Mingxing},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=XZ}{%
+         family={Xiong},
+         familyi={X\bibinitperiod},
+         given={Zhi},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Jianye},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WR}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Rong},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=XJ}{%
+         family={Xiong},
+         familyi={X\bibinitperiod},
+         given={Jun},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{CMXZLJ+1}
+    \strng{fullhash}{CMXZLJWRXJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{3}}
+    \field{title}{{Cooperative Navigation of Unmanned Aerial Vehicle Swarm
+  Based On Cooperative Dilution of Precision}}
+    \field{volume}{{17}}
+    \field{journaltitle}{{International Journal of Advanced Robotic Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000526677900001}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CM}{%
+         family={Coppola},
+         familyi={C\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MKN}{%
+         family={Mcguire},
+         familyi={M\bibinitperiod},
+         given={Kimberly\bibnamedelima N.},
+         giveni={K\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=DWC}{%
+         family={De\bibnamedelima Wagter},
+         familyi={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+         given={Christophe},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=DCGCHE}{%
+         family={De\bibnamedelima Croon},
+         familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+         given={Guido C. H.\bibnamedelima E.},
+         giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim
+  H\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{CMMKNDWC+1}
+    \strng{fullhash}{CMMKNDWCDCGCHE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{A Survey on Swarming With Micro Air Vehicles: Fundamental
+  Challenges And Constraints}}
+    \field{volume}{{7}}
+    \field{journaltitle}{{Frontiers In Robotics and Ai}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000536299200023}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GK}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Kexin},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=LX}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Xiuxian},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=XL}{%
+         family={Xie},
+         familyi={X\bibinitperiod},
+         given={Lihua},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{GKLXXL1}
+    \strng{fullhash}{GKLXXL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{6}}
+    \field{pages}{{2590\bibrangedash 2603}}
+    \field{title}{{Ultra-wideband and Odometry-based Cooperative Relative
+  Localization With Application To Multi-UAV Formation Control}}
+    \field{volume}{{50}}
+    \field{journaltitle}{{IEEE Transactions on Cybernetics}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000521175700001}{article}{}
+    \name{author}{4}{}{%
+      {{hash=IH}{%
+         family={Isakhani},
+         familyi={I\bibinitperiod},
+         given={Hamid},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=AN}{%
+         family={Aouf},
+         familyi={A\bibinitperiod},
+         given={Nabil},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=KsO}{%
+         family={Kechagias-stamatis},
+         familyi={K\bibinithyphendelim s\bibinitperiod},
+         given={Odysseas},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=WJF}{%
+         family={Whidborne},
+         familyi={W\bibinitperiod},
+         given={James\bibnamedelima F.},
+         giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{IHANKsO+1}
+    \strng{fullhash}{IHANKsOWJF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1}}
+    \field{pages}{{1\bibrangedash 11}}
+    \field{title}{{A Furcated Visual Collision Avoidance System for An
+  Autonomous Microrobot}}
+    \field{volume}{{12}}
+    \field{journaltitle}{{IEEE Transactions on Cognitive and Developmental
+  Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000547458600012}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Yiping},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{LY1}
+    \strng{fullhash}{LY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1, Si}}
+    \field{pages}{{101\bibrangedash 108}}
+    \field{title}{{Design of Path Tracking Control System for UAV Based on
+  Adaptive Preview Method}}
+    \field{volume}{{14}}
+    \field{journaltitle}{{Jordan Journal of Mechanical and Industrial
+  Engineering}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000575121500003}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MP}{%
+         family={Moreno},
+         familyi={M\bibinitperiod},
+         given={Patricio},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=ES}{%
+         family={Esteva},
+         familyi={E\bibinitperiod},
+         given={Santiago},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=MI}{%
+         family={Mas},
+         familyi={M\bibinitperiod},
+         given={Ignacio},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=GJI}{%
+         family={Giribet},
+         familyi={G\bibinitperiod},
+         suffix={I},
+         suffixi={I},
+         given={Juan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{MPESMI+1}
+    \strng{fullhash}{MPESMIGIJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{4, Si}}
+    \field{pages}{{269\bibrangedash 277}}
+    \field{title}{{Multi-UAV Specification and Control With A Single
+  Pilot-in-the-loop}}
+    \field{volume}{{8}}
+    \field{journaltitle}{{Unmanned Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000535859600021}{article}{}
+    \name{author}{4}{}{%
+      {{hash=NX}{%
+         family={Niu},
+         familyi={N\bibinitperiod},
+         given={Xi},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=YX}{%
+         family={Yuan},
+         familyi={Y\bibinitperiod},
+         given={Xiaodong},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Yongwei},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=FH}{%
+         family={Fan},
+         familyi={F\bibinitperiod},
+         given={Hehua},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{NXYXZY+1}
+    \strng{fullhash}{NXYXZYFH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{{UAV Track Planning Based on Evolution Algorithm In Embedded
+  System}}
+    \field{volume}{{75}}
+    \field{journaltitle}{{Microprocessors and Microsystems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000562101600001}{article}{}
+    \name{author}{6}{}{%
+      {{hash=SF}{%
+         family={She},
+         familyi={S\bibinitperiod},
+         given={Fujiang},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yongjun},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Shi},
+         familyi={S\bibinitperiod},
+         given={Dianxi},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=RX}{%
+         family={Ren},
+         familyi={R\bibinitperiod},
+         given={Xiaoguang},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=XT}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Tianqi},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{SFZYSD+1}
+    \strng{fullhash}{SFZYSDZHRXXT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{148136\bibrangedash 148148}}
+    \field{title}{{Enhanced Relative Localization Based on Persistent
+  Excitation For Multi-UAVs In GPS-denied Environments}}
+    \field{volume}{{8}}
+    \field{journaltitle}{{IEEE Access}}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000547458600008}{article}{}
+    \name{author}{3}{}{%
+      {{hash=TJ}{%
+         family={Tao},
+         familyi={T\bibinitperiod},
+         given={Jia},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=JY}{%
+         family={Jia},
+         familyi={J\bibinitperiod},
+         given={Yuchen},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=GY}{%
+         family={Gao},
+         familyi={G\bibinitperiod},
+         given={Yuan},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{TJJYGY1}
+    \strng{fullhash}{TJJYGY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1, Si}}
+    \field{pages}{{61\bibrangedash 70}}
+    \field{title}{{Intelligent Remote Monitoring System for Minor Faults of
+  Intelligent Unmanned Vehicle}}
+    \field{volume}{{14}}
+    \field{journaltitle}{{Jordan Journal of Mechanical and Industrial
+  Engineering}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000541450300009}{article}{}
+    \name{author}{4}{}{%
+      {{hash=TX}{%
+         family={Tian},
+         familyi={T\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=WG}{%
+         family={Wei},
+         familyi={W\bibinitperiod},
+         given={Guoliang},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=WL}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Licheng},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=ZJ}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Jun},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{TXWGWL+1}
+    \strng{fullhash}{TXWGWLZJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{229\bibrangedash 238}}
+    \field{title}{{Wireless -Sensor -Network -Based Target Localization: A
+  Semidefinite Relaxation Approach With Adaptive Threshold Correction}}
+    \field{volume}{{405}}
+    \field{journaltitle}{{Neurocomputing}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000506330700001}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ZAH}{%
+         family={Zaini},
+         familyi={Z\bibinitperiod},
+         given={Abdul\bibnamedelima Hanif},
+         giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=XL}{%
+         family={Xie},
+         familyi={X\bibinitperiod},
+         given={Lihua},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{ZAHXL1}
+    \strng{fullhash}{ZAHXL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1}}
+    \field{pages}{{1\bibrangedash 20}}
+    \field{title}{{Distributed Drone Traffic Coordination Using Triggered
+  Communication}}
+    \field{volume}{{8}}
+    \field{journaltitle}{{Unmanned Systems}}
+    \field{month}{01}
+    \field{year}{{2020}}
+  \endentry
+
+  \entry{Isi:000474345000017}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=AM}{%
+         family={Amir},
+         familyi={A\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BAM}{%
+         family={Bruckstein},
+         familyi={B\bibinitperiod},
+         given={Alfred\bibnamedelima M.},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{AMBAM1}
+    \strng{fullhash}{AMBAM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{AAMAS `19: Proceedings of the 18th International
+  Conference On Autonomous Agents and Multiagent Systems}}
+    \field{pages}{{113\bibrangedash 121}}
+    \field{title}{{Minimizing Travel In the Uniform Dispersal Problem for
+  Robotic Sensors}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000455132600012}{article}{}
+    \name{author}{8}{}{%
+      {{hash=BM}{%
+         family={Beul},
+         familyi={B\bibinitperiod},
+         given={Marius},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NM}{%
+         family={Nieuwenhuisen},
+         familyi={N\bibinitperiod},
+         given={Matthias},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=QJ}{%
+         family={Quenzel},
+         familyi={Q\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RRA}{%
+         family={Rosu},
+         familyi={R\bibinitperiod},
+         given={Radu\bibnamedelima Alexandru},
+         giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Horn},
+         familyi={H\bibinitperiod},
+         given={Jannis},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Pavlichenko},
+         familyi={P\bibinitperiod},
+         given={Dmytro},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=HS}{%
+         family={Houben},
+         familyi={H\bibinitperiod},
+         given={Sebastian},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BS}{%
+         family={Behnke},
+         familyi={B\bibinitperiod},
+         given={Sven},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{BMNMQJ+1}
+    \strng{fullhash}{BMNMQJRRAHJPDHSBS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{1, Si}}
+    \field{pages}{{204\bibrangedash 229}}
+    \field{title}{{Team Nimbro At MBZIRC 2017: Fast Landing on A Moving Target
+  and Treasure Hunting With A Team of Micro Aerial Vehicles}}
+    \field{volume}{{36}}
+    \field{journaltitle}{{Journal of Field Robotics}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000555859005134}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=CZ}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Zhuo},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=JC}{%
+         family={Jiang},
+         familyi={J\bibinitperiod},
+         given={Chao},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=GY}{%
+         family={Guo},
+         familyi={G\bibinitperiod},
+         given={Yi},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{CZJCGY1}
+    \strng{fullhash}{CZJCGY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{Proceedings of the 2019 31st Chinese Control and
+  Decision Conference (CCDC 2019)}}
+    \field{pages}{{5501\bibrangedash 5507}}
+    \field{title}{{Distance-based Formation Control of A Three-robot System}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000510255100019}{article}{}
+    \name{author}{3}{}{%
+      {{hash=ED}{%
+         family={Erez},
+         familyi={E\bibinitperiod},
+         given={Dana},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=AS}{%
+         family={Arogeti},
+         familyi={A\bibinitperiod},
+         given={Shai},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=ZD}{%
+         family={Zarrouk},
+         familyi={Z\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{EDASZD1}
+    \strng{fullhash}{EDASZD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{154044\bibrangedash 154055}}
+    \field{title}{{A Novel Simple Two-robot Precise Self-localization Method}}
+    \field{volume}{{7}}
+    \field{journaltitle}{{IEEE Access}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000447819300009}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LC}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Chang},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=HW}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Weiduo},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{LCHW1}
+    \strng{fullhash}{LCHW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{90\bibrangedash 108}}
+    \field{title}{{Real-time Geometric Fitting and Pose Estimation for Surface
+  Of Revolution}}
+    \field{volume}{{85}}
+    \field{journaltitle}{{Pattern Recognition}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000463843400022}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LmA}{%
+         family={Lopez-martinez},
+         familyi={L\bibinithyphendelim m\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CFJ}{%
+         family={Cuevas},
+         familyi={C\bibinitperiod},
+         given={F.\bibnamedelima J.},
+         giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{LmACFJ1}
+    \strng{fullhash}{LmACFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{5}}
+    \field{pages}{{2001\bibrangedash 2016}}
+    \field{title}{{Automatic Circle Detection on Images Using the Teaching
+  Learning Based Optimization Algorithm and Gradient Analysis}}
+    \field{volume}{{49}}
+    \field{journaltitle}{{Applied Intelligence}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000500962800002}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MP}{%
+         family={Martinez},
+         familyi={M\bibinitperiod},
+         given={Pablo},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Barczyk},
+         familyi={B\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{MPBM1}
+    \strng{fullhash}{MPBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{4}}
+    \field{pages}{{296\bibrangedash 311}}
+    \field{title}{{Implementation and Optimization of the Cascade Classifier
+  Algorithm For UAV Detection and Tracking}}
+    \field{volume}{{7}}
+    \field{journaltitle}{{Journal of Unmanned Vehicle Systems}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000475300300005}{article}{}
+    \name{author}{4}{}{%
+      {{hash=NS}{%
+         family={Nilwong},
+         familyi={N\bibinitperiod},
+         given={Sivapong},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HD}{%
+         family={Hossain},
+         familyi={H\bibinitperiod},
+         given={Delowar},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=KSi}{%
+         family={Kaneko},
+         familyi={K\bibinitperiod},
+         given={Shin-ichiro},
+         giveni={S\bibinithyphendelim i\bibinitperiod},
+      }}%
+      {{hash=CG}{%
+         family={Capi},
+         familyi={C\bibinitperiod},
+         given={Genci},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{NSHDKSi+1}
+    \strng{fullhash}{NSHDKSiCG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{2}}
+    \field{title}{{Deep Learning-based Landmark Detection for Mobile Robot
+  Outdoor Localization}}
+    \field{volume}{{7}}
+    \field{journaltitle}{{Machines}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000494827600016}{article}{}
+    \name{author}{4}{}{%
+      {{hash=SF}{%
+         family={Schilling},
+         familyi={S\bibinitperiod},
+         given={Fabian},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lecoeur},
+         familyi={L\bibinitperiod},
+         given={Julien},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SF}{%
+         family={Schiano},
+         familyi={S\bibinitperiod},
+         given={Fabrizio},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=FD}{%
+         family={Floreano},
+         familyi={F\bibinitperiod},
+         given={Dario},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{SFLJSF+1}
+    \strng{fullhash}{SFLJSFFD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{4}}
+    \field{pages}{{4523\bibrangedash 4530}}
+    \field{title}{{Learning Vision-based Flight In Drone Swarms By Imitation}}
+    \field{volume}{{4}}
+    \field{journaltitle}{{IEEE Robotics and Automation Letters}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000498616600001}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SD}{%
+         family={Shen},
+         familyi={S\bibinitperiod},
+         given={Dawei},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=LQ}{%
+         family={Lu},
+         familyi={L\bibinitperiod},
+         given={Qiang},
+         giveni={Q\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{SDLQ1}
+    \strng{fullhash}{SDLQ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{130599\bibrangedash 130609}}
+    \field{title}{{Hierarchical Formation Control With Applications To
+  Multi-quadrotor Systems}}
+    \field{volume}{{7}}
+    \field{journaltitle}{{IEEE Access}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000465234300019}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SE}{%
+         family={Soria},
+         familyi={S\bibinitperiod},
+         given={Enrica},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=SF}{%
+         family={Schiano},
+         familyi={S\bibinitperiod},
+         given={Fabrizio},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=FD}{%
+         family={Floreano},
+         familyi={F\bibinitperiod},
+         given={Dario},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{SESFFD1}
+    \strng{fullhash}{SESFFD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2019 Third IEEE International Conference on Robotic
+  Computing (IRC 2019)}}
+    \field{pages}{{138\bibrangedash 145}}
+    \field{title}{{The Influence of Limited Visual Sensing on the Reynolds
+  Flocking Algorithm}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000497864700086}{article}{}
+    \name{author}{4}{}{%
+      {{hash=TX}{%
+         family={Tian},
+         familyi={T\bibinitperiod},
+         given={Xin},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=WG}{%
+         family={Wei},
+         familyi={W\bibinitperiod},
+         given={Guoliang},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Jianhua},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZD}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Dianchen},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{TXWGWJ+1}
+    \strng{fullhash}{TXWGWJZD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{20}}
+    \field{title}{{A Localization and Tracking Approach In Nlos Environment
+  Based On Distance and Angle Probability Model}}
+    \field{volume}{{19}}
+    \field{journaltitle}{{Sensors}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000500280200020}{article}{}
+    \name{author}{2}{}{%
+      {{hash=WZ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Zhanxiu},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LT}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Tengfei},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{WZLT1}
+    \strng{fullhash}{WZLT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{18}}
+    \field{pages}{{3164\bibrangedash 3173}}
+    \field{title}{{Coordinated Formation Control of Wheeled Mobile Robots With
+  Switching Communication Topologies}}
+    \field{volume}{{13}}
+    \field{journaltitle}{{Iet Control Theory and Applications}}
+    \field{month}{01}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000456364700001}{article}{}
+    \name{author}{4}{}{%
+      {{hash=ZA}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={An},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=ZD}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Ding},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=YM}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Mi},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=YP}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Pan},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{ZAZDYM+1}
+    \strng{fullhash}{ZAZDYMYP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{pages}{{5853\bibrangedash 5864}}
+    \field{title}{{Finite-time Formation Control for Unmanned Aerial Vehicle
+  Swarm System With Time-delay and Input Saturation}}
+    \field{volume}{{7}}
+    \field{journaltitle}{{IEEE Access}}
+    \field{year}{{2019}}
+  \endentry
+
+  \entry{Isi:000454860700008}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=GJI}{%
+         family={Giribet},
+         familyi={G\bibinitperiod},
+         given={Juan\bibnamedelima I.},
+         giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+      {{hash=MI}{%
+         family={Mas},
+         familyi={M\bibinitperiod},
+         given={Ignacio},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=MP}{%
+         family={Moreno},
+         familyi={M\bibinitperiod},
+         given={Patricio},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{GJIMIMP1}
+    \strng{fullhash}{GJIMIMP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2018 International Conference on Unmanned Aircraft
+  Systems (ICUAS)}}
+    \field{pages}{{52\bibrangedash 61}}
+    \field{title}{{Vision-based Integrated Navigation System and Optimal
+  Allocation In Formation Flying}}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000492762400123}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=KA}{%
+         family={Kohlbacher},
+         familyi={K\bibinitperiod},
+         given={Anton},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=EJ}{%
+         family={Eliasson},
+         familyi={E\bibinitperiod},
+         given={Jens},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=AK}{%
+         family={Acres},
+         familyi={A\bibinitperiod},
+         given={Kevin},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CH}{%
+         family={Chung},
+         familyi={C\bibinitperiod},
+         given={Hoam},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=BJC}{%
+         family={Barca},
+         familyi={B\bibinitperiod},
+         given={Jan\bibnamedelima Carlo},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{KAEJAK+1}
+    \strng{fullhash}{KAEJAKCHBJC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2018 IEEE 4th World Forum on Internet of Things
+  (WF-IoT)}}
+    \field{pages}{{694\bibrangedash 699}}
+    \field{title}{{A Low Cost Omnidirectional Relative Localization Sensor for
+  Swarm Applications}}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000505811102080}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=MK}{%
+         family={Maeda},
+         familyi={M\bibinitperiod},
+         given={Keigo},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=FY}{%
+         family={Funabora},
+         familyi={F\bibinitperiod},
+         given={Yuki},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Doki},
+         familyi={D\bibinitperiod},
+         given={Shinji},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=DK}{%
+         family={Doki},
+         familyi={D\bibinitperiod},
+         given={Kae},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{MKFYDS+1}
+    \strng{fullhash}{MKFYDSDK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{IECON 2018 - 44th Annual Conference of the IEEE
+  Industrial Electronics Society}}
+    \field{pages}{{2522\bibrangedash 2527}}
+    \field{title}{{Flight Path Planning of Multiple UAVs for Robust
+  Localization Near Infrastructure Facilities}}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000458872700019}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=PF}{%
+         family={Poiesi},
+         familyi={P\bibinitperiod},
+         given={Fabio},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Cavallaro},
+         familyi={C\bibinitperiod},
+         given={Andrea},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{PFCA1}
+    \strng{fullhash}{PFCA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2018 IEEE/RSJ International Conference on Intelligent
+  Robots and Systems (IROS)}}
+    \field{pages}{{169\bibrangedash 176}}
+    \field{title}{{A Distributed Vision-based Consensus Model for
+  Aerial-robotic Teams}}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000448463200002}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SS}{%
+         family={Suzuki},
+         familyi={S\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{SS1}
+    \strng{fullhash}{SS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{{19, Si}}
+    \field{pages}{{1008\bibrangedash 1022}}
+    \field{title}{{Recent Researches on Innovative Drone Technologies In
+  Robotics Field}}
+    \field{volume}{{32}}
+    \field{journaltitle}{{Advanced Robotics}}
+    \field{month}{01}
+    \field{year}{{2018}}
+  \endentry
+
+  \entry{Isi:000426957800009}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=SO}{%
+         family={Shrit},
+         familyi={S\bibinitperiod},
+         given={Omar},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Martin},
+         familyi={M\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=AK}{%
+         family={Alagha},
+         familyi={A\bibinitperiod},
+         given={Khaldoun},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=PG}{%
+         family={Pujolle},
+         familyi={P\bibinitperiod},
+         given={Guy},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \keyw{Saska2017system, Mine}
+    \strng{namehash}{SOMSAK+1}
+    \strng{fullhash}{SOMSAKPG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{{2017 16th Annual Mediterranean Ad Hoc Networking
+  Workshop (Med-Hoc-Net)}}
+    \field{title}{{A New Approach To Realize Drone Swarm Using Ad-hoc Network}}
+    \field{year}{{2017}}
+  \endentry
+\enddatalist
+\endinput

@@ -1,0 +1,100 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: biblatex.bst
+Multiple inclusions of entire database
+---line 31 of file main.aux
+ : \citation{*
+ :            }
+I'm skipping whatever remains of this command
+Multiple inclusions of entire database
+---line 32 of file main.aux
+ : \citation{*
+ :            }
+I'm skipping whatever remains of this command
+Multiple inclusions of entire database
+---line 33 of file main.aux
+ : \citation{*
+ :            }
+I'm skipping whatever remains of this command
+Multiple inclusions of entire database
+---line 34 of file main.aux
+ : \citation{*
+ :            }
+I'm skipping whatever remains of this command
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: main-blx.bib
+Database file #2: main.bib
+Reallocated field_info (elt_size=4) to 10004 items from 5000.
+Reallocated field_info (elt_size=4) to 15008 items from 10004.
+Reallocated field_info (elt_size=4) to 20012 items from 15008.
+Reallocated field_info (elt_size=4) to 25016 items from 20012.
+Reallocated field_info (elt_size=4) to 30020 items from 25016.
+Reallocated field_info (elt_size=4) to 35024 items from 30020.
+Reallocated str_pool (elt_size=1) to 130000 items from 65000.
+Repeated entry---line 2818 of file main.bib
+ : @article{granja2018directional
+ :                               ,
+I'm skipping whatever remains of this entry
+Reallocated field_info (elt_size=4) to 40028 items from 35024.
+Reallocated field_info (elt_size=4) to 45032 items from 40028.
+Reallocated field_info (elt_size=4) to 50036 items from 45032.
+Biblatex version: 3.13
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 336 entries,
+            6365 wiz_defined-function locations,
+            2930 strings with 91679 characters,
+and the built_in function-call counts, 3583772 in all, are:
+= -- 240418
+> -- 141969
+< -- 18554
++ -- 172909
+- -- 106031
+* -- 269021
+:= -- 457559
+add.period$ -- 0
+call.type$ -- 336
+change.case$ -- 6604
+chr.to.int$ -- 4165
+cite$ -- 670
+duplicate$ -- 340464
+empty$ -- 263676
+format.name$ -- 38732
+if$ -- 658021
+int.to.chr$ -- 0
+int.to.str$ -- 1274
+missing$ -- 0
+newline$ -- 16548
+num.names$ -- 17661
+pop$ -- 129404
+preamble$ -- 1
+purify$ -- 10838
+quote$ -- 0
+skip$ -- 82135
+stack$ -- 0
+substring$ -- 436600
+swap$ -- 74268
+text.length$ -- 15139
+text.prefix$ -- 449
+top$ -- 1
+type$ -- 10068
+warning$ -- 0
+while$ -- 54044
+width$ -- 0
+write$ -- 16213
+(There were 5 error messages)
