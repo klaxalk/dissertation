@@ -1,4 +1,0 @@
-So3Controller:
-  address: "mrs_uav_controllers/So3Controller"
-  eland_threshold: 3.0
-  failsafe_threshold: 5.0
