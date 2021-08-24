@@ -684,6 +684,16 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       minimum width=6.7em,
       text width=6.7em,
     },
+    accarticle/.style={
+      rectangle,
+      inner sep=0pt,
+      draw=black,
+      text=black,
+      fill=green!30,
+      minimum height=3.5em,
+      minimum width=6.7em,
+      text width=6.7em,
+    },
     subkeyarticle/.style={
       rectangle,
       inner sep=0pt,
@@ -691,6 +701,17 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       line width=0.75mm,
       text=black,
       fill=black!15,
+      minimum height=3.5em,
+      minimum width=6.7em,
+      text width=6.7em,
+    },
+    acckeyarticle/.style={
+      rectangle,
+      inner sep=0pt,
+      draw=black,
+      line width=0.75mm,
+      text=black,
+      fill=green!30,
       minimum height=3.5em,
       minimum width=6.7em,
       text width=6.7em,
@@ -781,6 +802,16 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
 
   \newcommand{\subkeyarticle}[4]{
     \node[subkeyarticle, #1] (#2) {\scalebox{0.9}{\tiny #4}\vspace{0.1em}};
+    \node[keycite] at (#2.south east) {\tiny #3};
+  }
+
+  \newcommand{\accarticle}[4]{
+    \node[accarticle, #1] (#2) {\scalebox{0.9}{\tiny #4}\vspace{0.1em}};
+    \node[cite] at (#2.south east) {\tiny #3};
+  }
+
+  \newcommand{\acckeyarticle}[4]{
+    \node[acckeyarticle, #1] (#2) {\scalebox{0.9}{\tiny #4}\vspace{0.1em}};
     \node[keycite] at (#2.south east) {\tiny #3};
   }
 
@@ -1091,7 +1122,7 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       \end{tabular}
     }
 
-    \subarticle{right=of roucek2019darpa,shift={(0.0em, 0.0em)}}{kratky2020autonomous2}{\tabcite{kratky2020autonomous2}}{
+    \accarticle{right=of roucek2019darpa,shift={(0.0em, 0.0em)}}{kratky2020autonomous2}{\tabcite{kratky2020autonomous2}}{
       \begin{tabular}{l}
         DARPA SubT\\
         UAV Urban\\
