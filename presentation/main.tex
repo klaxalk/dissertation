@@ -62,7 +62,15 @@
   % \setbeamertemplate{footline} % remove the footer line
   % \setbeamertemplate{footline}[page number] % replace the footer line with simple numbers
 
-  \setbeamertemplate{navigation symbols}{} % removing the navigation symbols
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{bibliography item}{\insertbiblabel} % removing the navigation symbols
+
+  % \setbeamerfont{bibliography item}{size=\tiny}
+  % \setbeamerfont{bibliography entry author}{size=\tiny}
+  % \setbeamerfont{bibliography entry title}{size=\tiny}
+  % \setbeamerfont{bibliography entry location}{size=\tiny}
+  % \setbeamerfont{bibliography entry note}{size=\tiny}
+
 }
 
 %%{ Docu HEAD
@@ -85,27 +93,9 @@
 
 \usepackage{amsmath,amsfonts,amssymb,bm}
 
-\usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=ydnt,sortcites=true]{biblatex}
-\renewcommand*{\bibfont}{\Font}
+\usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=none,sortcites=false]{biblatex}
 
-% \newcounter{mycounter}
-% \setcounter{mycounter}{0}
-% \newcounter{unrelatedcount}
-% \setcounter{unrelatedcount}{0}
-% \newcounter{totalcounter}
-% \setcounter{totalcounter}{0}
-
-% % Print labelnumbers with suffixes, adjust secondary labelnumber 1/2 (start new numbering of my publications)
-% \makeatletter
-% \AtDataInput{%
-%   \ifkeyword{mine}
-%   {
-%     \addtocounter{mycounter}{1}
-%   }
-%   {}
-%   \addtocounter{totalcounter}{1}
-% }
-% \makeatother
+\renewcommand*{\bibfont}{\normalfont\tiny}
 
 % Print labelnumbers with suffixes, adjust secondary labelnumber 2/2
 \DeclareFieldFormat{labelnumber}{%
@@ -348,22 +338,21 @@
 
 
 \title[Cooperative Sensing by a Group of UAVs]{Cooperative Sensing by a Group of Unmanned Aerial Vehicles}
+\subtitle{Doctoral Thesis}
+\author[Tomas Baca]{{Ing. Tomas Baca} \\
+{\and} \\
+{Supervisor: Ing. Martin Saska, Dr. rer. nat.} \\
+{Supervisor-Specialist: Ing. Michal Platkevic, Ph.D.} \\
+{\and} \\
+{Ph.D. programme: Electrical Engineering and Information Technology} \\
+{Branch of study: Artificial Intelligence and Biocybernetics}}
 
-\author[Tomas Baca]{Tomas Baca$^{1}$, Petr Stibinger$^{1}$, Daniela Doubravova$^{2}$, Daniel Turecek$^{2}$, Jaroslav Solc$^{3}$, Jan Rusnak$^{3}$, Martin Saska$^{1}$ and Jan Jakubek$^{2}$}
-\institute[CTU in Prague]
-{
-  \vspace{1em}
-  \begin{tiny}
-    $^1$Multi-Robot Systems group, Faculty of Electrical Engineering, Czech Technical University in Prague\\
-  \end{tiny}
-  \begin{tiny}
-    $^2$Advacam, s.r.o., Prague\\
-  \end{tiny}
-  \vspace{1em}
-  \begin{tiny}
-    $^3$Czech Metrology Institute, Prague\\
-  \end{tiny}
-}
+\institute[CTU in Prague] {
+  \begin{small}
+  Multi-Robot Systems group, Faculty of Electrical Engineering\\
+  Czech Technical University in Prague
+  \end{small}}
+
 \date[September 26th, 2017]{}
 
 \titlegraphic{\includegraphics[width=5cm]{fig/logo_ctu_fee_mrs_blue.png}}
@@ -371,7 +360,57 @@
 \begin{document}
 
 \begin{frame}
+
   \titlepage % Print the title page as the first slide
+
+\vphantom{\cite{stibinger2020localization}
+          \cite{spurny2019cooperative}
+          \cite{baca2019autonomous}
+          \cite{baca2018timepix}
+          \cite{baca2019timepix}
+          \cite{baca2018model}
+          \cite{baca2020autonomous}
+          \cite{baca2021mrs}}%
+\vphantom{\cite{petracek2020bioinspired}
+          \cite{petrlik2020robust}
+          \cite{saikin2020wildfire}
+          \cite{saska2020formation}
+          \cite{giernacki2019realtime}
+          \cite{loianno2018localization}
+          \cite{baca2018rospix}
+          \cite{saska2017system}
+          \cite{chudoba2016exploration}}%
+\vphantom{\cite{roucek2019darpa}
+          \cite{faigl2017onsolution}
+          \cite{saska2017documentation}
+          \cite{baca2017autonomous}
+          \cite{saska2016formations}
+          \cite{spurny2016complex}
+          \cite{baca2016embedded}}%
+\vphantom{\cite{roucek2021system}
+          \cite{walter2021extinguishing}
+          \cite{ahmad2021autonomous}
+          \cite{dmytruk2021safe}
+          \cite{kratky2021autonomous2}
+          \cite{silano2021powerline}
+          \cite{smrcka2021admittance}
+          \cite{spurny2021autonomous}
+          \cite{stasinchuk2021multiuav}
+          \cite{baca2021gamma}
+          \cite{vrba2020autonomous}
+          \cite{walter2020extinguishing}}%
+\vphantom{\cite{daniel2019inorbit}
+          \cite{urban2017vzlusat}
+          \cite{baca2016miniaturized}}%
+\vphantom{\cite{daniel2017xray}
+          \cite{daniel2016terrestrial}}%
+\vphantom{\cite{urban2021rex}}%
+\vphantom{\cite{chudoba2014localization}
+          \cite{saska2013adhoc}}%
+\vphantom{\cite{horla2021altune}
+          \cite{horyna2021autonomous}}%
+
+
 \end{frame}
 
 % \nologo
@@ -395,17 +434,6 @@
 %   \tableofcontents[currentsection]
 % \end{frame}
 
-%%{ Test
-
-\begin{frame}
-\frametitle{Test}
-
-Pes steka: \cite{baca2018model}
-
-\end{frame}
-
-%%}
-
 %%{ References
 
 \DeclareCiteCommand{\fullcite}
@@ -425,10 +453,10 @@ Pes steka: \cite{baca2018model}
   }
 \end{frame}
 
-\begin{frame}
+\begin{frame}[allowframebreaks]
   \frametitle{Other authored publications}
   \tiny{
-    \printbibliography[keyword={mine},keyword={phd_related},notkeyword={core},heading=none,title={}]
+    \printbibliography[keyword={mine},notkeyword={core},heading=none,title={}]
   }
 \end{frame}
 
