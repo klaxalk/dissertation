@@ -1,0 +1,452 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[aspectratio=169]{beamer}
+
+\mode<presentation> {
+
+  %%{ Themes
+
+  % \usetheme{default}
+  % \usetheme{AnnArbor}
+  % \usetheme{Antibes}
+  % \usetheme{Bergen}
+  % \usetheme{Berkeley}
+  % \usetheme{Berlin}
+  \usetheme{Boadilla}
+  % \usetheme{CambridgeUS}
+  % \usetheme{Copenhagen}
+  % \usetheme{Darmstadt}
+  % \usetheme{Dresden}
+  % \usetheme{Frankfurt}
+  % \usetheme{Goettingen}
+  % \usetheme{Hannover}
+  % \usetheme{Ilmenau}
+  % \usetheme{JuanLesPins}
+  % \usetheme{Luebeck}
+  % \usetheme{Madrid}
+  % \usetheme{Malmoe}
+  % \usetheme{Marburg}
+  % \usetheme{Montpellier}
+  % \usetheme{PaloAlto}
+  % \usetheme{Pittsburgh}
+  % \usetheme{Rochester}
+  % \usetheme{Singapore}
+  % \usetheme{Szeged}
+  % \usetheme{Warsaw}
+
+  %%}
+
+  %%{ Color themes
+
+  % \usecolortheme{albatross}
+  % \usecolortheme{beaver}
+  % \usecolortheme{beetle}
+  % \usecolortheme{crane}
+  % \usecolortheme{dolphin}
+  % \usecolortheme{dove}
+  % \usecolortheme{fly}
+  % \usecolortheme{lily}
+  % \usecolortheme{orchid}
+  % \usecolortheme{rose}
+  % \usecolortheme{seagull}
+  \usecolortheme{seahorse}
+  % \usecolortheme{whale}
+  % \usecolortheme{wolverine}
+
+  %%}
+
+  \input{./cvut_colors.tex}
+
+  % \setbeamertemplate{footline} % remove the footer line
+  % \setbeamertemplate{footline}[page number] % replace the footer line with simple numbers
+
+  \setbeamertemplate{navigation symbols}{} % removing the navigation symbols
+}
+
+%%{ Docu HEAD
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{multimedia}
+\newcommand{\superfill}{\vskip0pt plus 1filll}
+
+\usepackage{isotope}
+\usepackage{animate}
+
+\usepackage[export]{adjustbox}
+
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{multirow,tabularx,makecell}
+
+\usepackage{amsmath,amsfonts,amssymb,bm}
+
+\usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=ydnt,sortcites=true]{biblatex}
+\renewcommand*{\bibfont}{\Font}
+
+% \newcounter{mycounter}
+% \setcounter{mycounter}{0}
+% \newcounter{unrelatedcount}
+% \setcounter{unrelatedcount}{0}
+% \newcounter{totalcounter}
+% \setcounter{totalcounter}{0}
+
+% % Print labelnumbers with suffixes, adjust secondary labelnumber 1/2 (start new numbering of my publications)
+% \makeatletter
+% \AtDataInput{%
+%   \ifkeyword{mine}
+%   {
+%     \addtocounter{mycounter}{1}
+%   }
+%   {}
+%   \addtocounter{totalcounter}{1}
+% }
+% \makeatother
+
+% Print labelnumbers with suffixes, adjust secondary labelnumber 2/2
+\DeclareFieldFormat{labelnumber}{%
+  \ifkeyword{mine}
+    {\ifkeyword{core}
+      {{\number\numexpr#1}c}%
+      {{\number\numexpr#1}a}%
+    }%
+    {#1}%
+}
+
+\DeclareCiteCommand{\tabcite}%[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+
+% {{\number\numexpr#1-\value{bbx:primcount}}a}
+
+\addbibresource{main.bib}
+
+\defbibenvironment{favoritebib}
+{\itemize}
+{\enditemize}
+{\item}
+\usepackage{siunitx}
+\DeclareSIUnit \parsec {pc}
+\DeclareSIUnit \electronvolt {eV}
+\DeclareSIUnit \pixel {px}
+\DeclareSIUnit \arcmin {arcmin}
+\DeclareSIUnit \erg {erg}
+\DeclareSIUnit \joul {J}
+
+\usepackage{enumitem} % To enable enumerate with letters (a, b, c...)
+\newlist{alphalist}{enumerate}{1}
+\setlist[alphalist]{label=\alph*)}
+\setlist[itemize]{label=\textbullet}
+
+\usepackage{cellspace}
+\newcolumntype{D}{>{\hfill}N{3}{2}<{\hfill}}
+\newcommand*\cellspacelimit[2]{\setlength{\cellspacetoplimit}{#1}\setlength{\cellspacebottomlimit}{#2}}
+
+% figures
+\usepackage{wrapfig}
+% \usepackage[font={footnotesize}]{caption}
+\usepackage[font={small}]{caption}
+% \usepackage{subcaption}
+
+% subfloat
+\usepackage{subfig}
+% \usepackage[export]{adjustbox}
+
+\usepackage{color}
+\usepackage{url}
+
+%%{ TIKZ
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+%%{ \tikzset{
+
+\tikzset{
+  state/.style={
+    rectangle,
+    draw=black, very thick,
+    minimum height=1.0em,
+    text centered,
+  },
+  final_state/.style={
+    rectangle,
+    rounded corners,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  initial_state/.style={
+    rectangle,
+    double=white,
+    double distance=1pt,
+    inner sep=2pt,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  point/.style={
+    circle,
+    inner sep=0pt,
+    minimum size=3pt,
+    fill=red
+  },
+  adder/.style={
+    circle,
+    inner sep=2pt,
+    minimum size=0.3in,
+    draw=black, very thick,
+    text centered
+  },
+  >=stealth',
+  punkt/.style={
+    rectangle,
+    rounded corners,
+    draw=black, very thick,
+    text width=5.0em,
+    minimum height=2em,
+  text centered},
+  just_text/.style={
+    rectangle,
+    text width=10.0em,
+    minimum height=2em,
+  text centered},
+  small_punkt/.style={
+    rectangle,
+    rounded corners,
+    draw=black, very thick,
+    text width=4.0em,
+  text centered},
+  arrow/.style={
+    ->,
+    very thick,
+    shorten <=2pt,
+  shorten >=2pt,},
+  arrow_gray/.style={
+    ->,
+    color=gray, very thick,
+    shorten <=2pt,
+  shorten >=2pt,},
+  arrow_red/.style={
+    ->,
+    draw=red, very thick,
+    shorten <=2pt,
+  shorten >=2pt,},
+  imgletter/.style={
+    rectangle,
+    inner sep=2pt,
+    text=black,
+    minimum height=1em,
+    text centered,
+    fill=white,
+    fill opacity=0.7,
+    text opacity=1,
+    anchor=south west,
+  },
+  double arrow/.style args={#1 colored by #2 and #3}{
+    -stealth,line width=#1,#2, % first arrow
+    postaction={draw,-stealth,#3,line width=(#1)/3,
+    shorten <=(#1)/3,shorten >=2*(#1)/3}, % second arrow
+  }
+}
+%%}
+
+%%}
+
+\usepackage{pdfpc-movie}
+\newcommand{\mymovie}[3][]{\pdfpcmovie[#1]{#2}{#3}}
+% \newcommand{\mymovie}[3][]{\movie[#1]{#2}{#3}}
+
+%%{ ARROWS IN TIKZ
+
+\tikzset{
+  myarrow/.style={
+    draw,
+    fill=orange,
+    single arrow,
+    minimum height=3.5ex,
+    single arrow head extend=1ex
+  }
+}
+
+\newcommand{\arrowup}{%
+  \vspace{-0.8em}
+  \tikz [baseline=-0.5ex]{\node [myarrow,rotate=90] {};}
+  \vspace{-1.4em}
+}
+
+\newcommand{\arrowdown}{%
+  \vspace{-0.8em}
+  \tikz [baseline=-1ex]{\node [myarrow,rotate=-90] {};}
+  \vspace{-1.5em}
+}
+
+\newcommand{\arrowright}{%
+  \tikz [baseline=-1ex]{\node [myarrow,rotate=0] {};}
+}
+
+\newcommand{\arrowleft}{%
+  \tikz [baseline=-1ex]{\node [myarrow,rotate=180] {};}
+}
+
+%%}
+
+%%{ CHECKMARK IN TIKZ
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+%%}
+
+\newcommand{\strong}[1]{\textbf{#1}}
+\newcommand{\coord}[1]{\textbf{#1}}
+\newcommand{\norm}[1]{\left\lvert#1\right\rvert}
+\newcommand{\m}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\corrected}[1]{{\color{black} {#1}}}
+% \newcommand{\comment}[1]{{\color{blue} {#1}}}
+\newcommand{\add}[1]{{\color{green} {#1}}}
+\newcommand{\todo}[1]{{\color{red} TODO {#1}}}
+\newcommand{\updated}[1]{{\color{blue} {#1}}}
+\newcommand{\reffig}[1]{Fig.~\ref{#1}}
+\newcommand{\refalg}[1]{Alg.~\ref{#1}}
+\newcommand{\refsec}[1]{Sec.~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}
+\newcommand{\plus}{\scalebox{0.8}[0.8]{$+$}}
+\newcommand{\figvspace}{\vspace{-1em}} % this may eventually do something, so far just a placeholder
+
+% \usepackage{pgf}
+% \logo{\pgfputat{\pgfxy(0,5)}{\pgfbox[right,base]{\includegraphics[height=0.8cm]{}}}}
+% \newcommand{\nologo}{\setbeamertemplate{logo}{}}
+
+% \usepackage{eso-pic}
+% \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{\put(\LenToUnit{0.66\paperwidth},\LenToUnit{0.904\paperheight}){#1}}}
+% \AddToShipoutPictureFG{
+%   \AtPagemyUpperLeft{{\includegraphics[height=0.85cm,keepaspectratio]{fig/logo_ctu_fee_mrs_blue.png}}}
+% }
+% \newcommand{\AddToShipoutPictureFG}{\setbeamertemplate{logo}{}}
+
+%%}
+
+%%{ TITLE PAGE
+
+
+\title[Cooperative Sensing by a Group of UAVs]{Cooperative Sensing by a Group of Unmanned Aerial Vehicles}
+
+\author[Tomas Baca]{Tomas Baca$^{1}$, Petr Stibinger$^{1}$, Daniela Doubravova$^{2}$, Daniel Turecek$^{2}$, Jaroslav Solc$^{3}$, Jan Rusnak$^{3}$, Martin Saska$^{1}$ and Jan Jakubek$^{2}$}
+\institute[CTU in Prague]
+{
+  \vspace{1em}
+  \begin{tiny}
+    $^1$Multi-Robot Systems group, Faculty of Electrical Engineering, Czech Technical University in Prague\\
+  \end{tiny}
+  \begin{tiny}
+    $^2$Advacam, s.r.o., Prague\\
+  \end{tiny}
+  \vspace{1em}
+  \begin{tiny}
+    $^3$Czech Metrology Institute, Prague\\
+  \end{tiny}
+}
+\date[September 26th, 2017]{}
+
+\titlegraphic{\includegraphics[width=5cm]{fig/logo_ctu_fee_mrs_blue.png}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage % Print the title page as the first slide
+\end{frame}
+
+% \nologo
+
+%%}
+
+%{ TABLE OF CONTENTS
+% % is created automatically of \section{} and \subsection{} commands
+
+%}
+
+\section{Introduction}
+
+% \begin{frame}
+%   \frametitle{Outline}
+%   \tableofcontents
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Outline}
+%   \tableofcontents[currentsection]
+% \end{frame}
+
+%%{ Test
+
+\begin{frame}
+\frametitle{Test}
+
+Pes steka: \cite{baca2018model}
+
+\end{frame}
+
+%%}
+
+%%{ References
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\begin{frame}
+  \frametitle{Core publications}
+  \tiny{
+    \printbibliography[keyword={mine},keyword={phd_related},keyword={core},heading=none,title={}]
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other authored publications}
+  \tiny{
+    \printbibliography[keyword={mine},keyword={phd_related},notkeyword={core},heading=none,title={}]
+  }
+\end{frame}
+
+%%}
+
+%%{ Conclusion
+
+\begin{frame}
+  \frametitle{Conclusion}
+
+  \begin{center}
+    \huge Thanks for your attention\\
+    \vspace{1em}
+    \large \url{http://mrs.felk.cvut.cz/people/tomas-baca}
+  \end{center}
+
+\end{frame}
+
+%%}
+
+\end{document}
