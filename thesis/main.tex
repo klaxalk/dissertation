@@ -1131,6 +1131,15 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
       \end{tabular}
     }
 
+    \accarticle{below=of roucek2019darpa,shift={(0em, 0em)}}{petracek2021large}{\tabcite{petracek2021large}}{
+      \begin{tabular}{l}
+        DARPA SubT\\
+        Large-scale\\
+        exploration\\
+        \emph{RA-L 2021}
+      \end{tabular}
+    }
+
     \accarticle{below=of kratky2021autonomous2,shift={(0.0em, 0.0em)}}{roucek2021system}{\tabcite{roucek2021system}}{
       \begin{tabular}{l}
         DARPA SubT\\
@@ -1318,8 +1327,8 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
 
     \accarticle{right=of walter2021extinguishing,shift={(0.0em, -0em)}}{horyna2021autonomous}{\tabcite{horyna2021autonomous}}{
       \begin{tabular}{l}
-          Collaborative object\\
-          transportation
+        Collaborative object\\
+        transportation\\
         \emph{ICUAS}
       \end{tabular}
     }
@@ -1413,7 +1422,8 @@ The author conducts an interdisciplinary transfer from the space-oriented physic
     \path[-] (baca2019timepix) edge [->] (stibinger2020localization);
     \path[-] (mrs_uav_system_technology.east) edge [<->] ($(faigl2017onsolution.west |- mrs_uav_system_technology.east)$);
     \path[-] (roucek2019darpa) edge [->] (kratky2021autonomous2);
-    \draw[-] ($(roucek2019darpa.south)$) -- ($(roucek2019darpa.south |- roucek2021system.west)$) edge [->] (roucek2021system.west);
+    \draw[-] ($(roucek2019darpa.south) + (1.0em, 0.0em)$) -- ($(roucek2019darpa.south) + (1.0em, -0.5em)$) -- ($(roucek2021system.north) + (0.0em, 0.5em)$) edge [->] (roucek2021system.north);
+    \draw[-] ($(roucek2019darpa.south)$) edge [->] (petracek2021large.north);
     \path[-] (petrlik2020robust.east) edge [<->] (roucek2019darpa.west);
 
     \draw[-] ($(rospix_technology.east) + (0.0em, 0.0em)$) -- ($(rospix_technology.east) + (0.5em, 0.0em)$) -- ($(rospix_technology.east |- baca2021gamma.west) + (0.5em, 0.0em)$) edge [->] (baca2021gamma.east);
