@@ -118,6 +118,45 @@
 
 % {{\number\numexpr#1-\value{bbx:primcount}}a}
 
+%%{ fullcite box
+
+\usepackage{tcolorbox}
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\fullciteinbox}[2]{%
+
+\DeclareCiteCommand{\fullcite}
+{\usebibmacro{prenote}}
+{\clearfield{addendum}%
+  \usedriver
+  {\defcounter{minnames}{6}%
+  \defcounter{maxnames}{6}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%\vspace{3em}%
+%\raisebox{3em}[3em][3em]{%
+% \vspace{-0.2em}
+\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\ifx&#2&
+\else
+  \textbf{#2}:\\\\
+\fi
+\begin{minipage}[t]{0.07\linewidth}%
+\raggedright%
+\scriptsize \cite{#1}%
+\end{minipage}%
+\begin{minipage}[t]{0.93\linewidth}%
+\scriptsize \fullcite{#1}%
+\end{minipage}%
+\end{tcolorbox}%
+%}%
+\vspace{-0.3em}
+}%
+
+%%}
+
 \addbibresource{main.bib}
 
 \defbibenvironment{favoritebib}
@@ -154,106 +193,30 @@
 \usepackage{color}
 \usepackage{url}
 
-%%{ TIKZ
+%%{ tikz
 
 \usepackage{tikz}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.16}
-\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through}
+\pgfplotsset{compat=1.14}
+\usetikzlibrary{backgrounds,arrows,automata,shapes,positioning,calc,through,spy,shapes,shapes.geometric,shapes.multipart,fit,patterns,fadings}
 \pgfdeclarelayer{background}
 \pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
 
-%%{ \tikzset{
-
 \tikzset{
-  state/.style={
-    rectangle,
-    draw=black, very thick,
-    minimum height=1.0em,
-    text centered,
+    imgletter/.style={
+      rectangle,
+      inner sep=2pt,
+      rounded corners=.1em,
+      text=black,
+      minimum height=1em,
+      text centered,
+      fill=white,
+      fill opacity=1.0,
+      text opacity=1,
+      anchor=south west,
   },
-  final_state/.style={
-    rectangle,
-    rounded corners,
-    draw=black, very thick,
-    minimum height=2em,
-    text centered,
-  },
-  initial_state/.style={
-    rectangle,
-    double=white,
-    double distance=1pt,
-    inner sep=2pt,
-    draw=black, very thick,
-    minimum height=2em,
-    text centered,
-  },
-  point/.style={
-    circle,
-    inner sep=0pt,
-    minimum size=3pt,
-    fill=red
-  },
-  adder/.style={
-    circle,
-    inner sep=2pt,
-    minimum size=0.3in,
-    draw=black, very thick,
-    text centered
-  },
-  >=stealth',
-  punkt/.style={
-    rectangle,
-    rounded corners,
-    draw=black, very thick,
-    text width=5.0em,
-    minimum height=2em,
-  text centered},
-  just_text/.style={
-    rectangle,
-    text width=10.0em,
-    minimum height=2em,
-  text centered},
-  small_punkt/.style={
-    rectangle,
-    rounded corners,
-    draw=black, very thick,
-    text width=4.0em,
-  text centered},
-  arrow/.style={
-    ->,
-    very thick,
-    shorten <=2pt,
-  shorten >=2pt,},
-  arrow_gray/.style={
-    ->,
-    color=gray, very thick,
-    shorten <=2pt,
-  shorten >=2pt,},
-  arrow_red/.style={
-    ->,
-    draw=red, very thick,
-    shorten <=2pt,
-  shorten >=2pt,},
-  imgletter/.style={
-    rectangle,
-    inner sep=2pt,
-    text=black,
-    minimum height=1em,
-    text centered,
-    fill=white,
-    fill opacity=0.7,
-    text opacity=1,
-    anchor=south west,
-  },
-  double arrow/.style args={#1 colored by #2 and #3}{
-    -stealth,line width=#1,#2, % first arrow
-    postaction={draw,-stealth,#3,line width=(#1)/3,
-    shorten <=(#1)/3,shorten >=2*(#1)/3}, % second arrow
-  }
 }
-%%}
 
 %%}
 
@@ -418,22 +381,162 @@
 
 %%}
 
-%{ TABLE OF CONTENTS
-% % is created automatically of \section{} and \subsection{} commands
-
-%}
-
 \section{Introduction}
 
-% \begin{frame}
-%   \frametitle{Outline}
-%   \tableofcontents
-% \end{frame}
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
 
-% \begin{frame}
-%   \frametitle{Outline}
-%   \tableofcontents[currentsection]
-% \end{frame}
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\subsection{Research streams}
+
+%%{ Research streams
+
+\begin{frame}
+\frametitle{Research streams}
+
+\begin{columns}[c]
+
+\column{0.31\textwidth}
+
+\begin{block}{UAV systems}
+
+\end{block}
+
+\column{0.31\textwidth}
+
+\begin{block}{Remote sensing}
+
+\end{block}
+
+\column{0.31\textwidth}
+
+\begin{block}{Radiation dosimetry}
+
+\end{block}
+
+\end{columns}
+
+\end{frame}
+
+%%}
+
+\section{Research stream 1: Multirotor-UAV system for research and real-world deployment}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%{ Multirotor UAV system for research
+
+\begin{frame}
+\frametitle{Multirotor UAV system for research}
+
+\fullciteinbox{baca2018model}{}
+\fullciteinbox{baca2021mrs}{}
+
+\end{frame}
+
+%%}
+
+\section{Research stream 2: UAV in remote sensing, data gathering, swarming}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%{ UAV in remote sensing, data gathering and swarming
+
+\begin{frame}
+\frametitle{UAV in remote sensing, data gathering, swarming}
+
+\fullciteinbox{spurny2019cooperative}{}
+\fullciteinbox{baca2019autonomous}{}
+\fullciteinbox{baca2020autonomous}{}
+
+\end{frame}
+
+%%}
+
+\section{Research stream 3: Ionizing radiation dosimetry and imaging}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%{ Ionizing radiation dosimetry and imaging
+
+\begin{frame}
+\frametitle{Ionizing radiation dosimetry and imaging}
+
+\fullciteinbox{baca2018timepix}{}
+\fullciteinbox{baca2019timepix}{}
+\fullciteinbox{stibinger2020localization}{}
+
+\end{frame}
+
+%%}
+
+%%{ Publication graph
+
+\begin{frame}
+\frametitle{Research streams}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\centering
+
+\includegraphics[width=0.9\textwidth,trim={2.0cm 5.0cm 2.5cm 5.2cm},clip]{./fig/pubgraph_january.pdf}
+
+\centering
+
+\column{0.48\textwidth} % Right column and width
+
+\includegraphics[width=0.9\textwidth,trim={2.0cm 5.0cm 2.5cm 5.2cm},clip]{./fig/pubgraph.pdf}
+
+\end{columns}
+
+\end{frame}
+
+%%}
+
+\section{Discussion and results}
+
+%%{ Discussion 
+
+\begin{frame}
+\frametitle{Discussion and results}
+
+
+
+\end{frame}
+
+%%}
+
+%%{ Conclusion
+
+\begin{frame}
+  \frametitle{Conclusion}
+
+  \begin{center}
+    \huge Thanks for your attention\\
+    \vspace{1em}
+    \large \url{http://mrs.felk.cvut.cz/people/tomas-baca}
+  \end{center}
+
+\end{frame}
+
+%%}
 
 %%{ References
 
@@ -463,16 +566,26 @@
 
 %%}
 
-%%{ Conclusion
+%% | ---------------------- BACKUP SLIDES --------------------- |
 
-\begin{frame}
-  \frametitle{Conclusion}
+%%{ Research visits and stays
 
-  \begin{center}
-    \huge Thanks for your attention\\
-    \vspace{1em}
-    \large \url{http://mrs.felk.cvut.cz/people/tomas-baca}
-  \end{center}
+\begin{frame}[noframenumbering]
+\frametitle{Research visits and stays abroad}
+
+  \begin{itemize}
+    \item 2015 University of Iowa, USA, 2 weeks, \emph{X-Ray testing of VZLUSAT-1 payload}
+    \item 2016 University of Pennsylvania, USA, 2 months, \emph{kick-off for MBZIRC 2017}
+    \item 2017 United Arab Emirates, 3 weeks, \emph{MBZIRC 2017}
+    \item 2017 Pennsylvania state Univ., USA, 2 weeks, \emph{REX X-Ray testing}
+    \item 2018 University of Pennsylvania, USA, 1 month, \emph{kick-off for MBZIRC 2020}
+    \item 2018 Pennsylvania state Univ., USA, 2 weeks, \emph{REX assembly}
+    \item 2019 Colorado, USA, 2 weeks, \emph{DARPA SubT STIX}
+    \item 2019 Pennsylvania state Univ., USA, 1 week, \emph{REX dissassembly}
+    \item 2020 United Arab Emirates, 5 weeks, \emph{MBZIRC 2020}
+    \item 2021 United Arab Emirates, 1 month, \emph{TII collaboration}
+    \item 2021 Kentucky, USA, 3 weeks, \emph{DARPA SubT Finals}
+  \end{itemize}
 
 \end{frame}
 
