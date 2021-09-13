@@ -1,0 +1,172 @@
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzset{radiation/.style={{decorate,decoration={expanding waves,angle=90,segment length=4pt}}}}
+
+\begin{tikzpicture}[->,>=stealth', node distance=3.0cm,scale=1.0, every node/.style={scale=1.0}]
+
+  %%{ nodes
+
+  \node[state, shift = {(0.0, 0.0)}] (navigation) {
+      \begin{tabular}{c}
+        \footnotesize Mission \&\\
+        \footnotesize navigation
+      \end{tabular}
+    };
+
+  % \node[state, left of = navigation, shift = {(0.5, 0.0)}] (nimbro) {
+  %     \begin{tabular}{c}
+  %       \footnotesize Nimbro \\
+  %       \footnotesize Network
+  %     \end{tabular}
+  %   };
+
+  \node[state, right of = navigation, shift = {(0.7, 0)}] (tracker) {
+      \begin{tabular}{c}
+        \footnotesize Reference \\
+        \footnotesize tracker
+      \end{tabular}
+    };
+
+  \node[state, right of = tracker, shift = {(0.1, 0)}] (controller) {
+      \begin{tabular}{c}
+        \footnotesize Reference \\
+        \footnotesize controller
+      \end{tabular}
+    };
+
+  \node[state, right of = controller, shift = {(0.8, -0)}] (attitude) {
+      \begin{tabular}{c}
+        \footnotesize Attitude rate\\
+        \footnotesize controller
+      \end{tabular}
+    };
+
+  \node[smallstate, below of = attitude, shift = {(-0.6, 2.1)}] (imu) {
+      \footnotesize IMU
+    };
+
+  \node[state, right of = attitude, shift = {(0.7, -0)}] (actuators) {
+      \begin{tabular}{c}
+        \footnotesize UAV \\
+        \footnotesize actuators
+      \end{tabular}
+    };
+
+  \node[state, right of = actuators, shift = {(-0.8, -0)}] (sensors) {
+      \begin{tabular}{c}
+        \footnotesize Onboard \\
+        \footnotesize sensors
+      \end{tabular}
+    };
+
+  \node[state, below of = attitude, shift = {(0, 0.9)}] (estimator) {
+      \begin{tabular}{c}
+        \footnotesize State \\
+        \footnotesize estimator
+      \end{tabular}
+    };
+
+  \node[state, right of = estimator, shift = {(0.8, 0.0)}] (localization) {
+      \begin{tabular}{c}
+        \footnotesize Odometry \& \\
+        \footnotesize localization
+      \end{tabular}
+    };
+
+  %%}
+
+  %%{ paths
+
+  \path[->] ($(navigation.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+      \begin{tabular}{c}
+        \footnotesize desired reference\\
+        \footnotesize $\mathbf{r}_d, \eta_d$\\
+        \footnotesize \textit{on demand}
+    \end{tabular}} ($(tracker.west) + (0.0, 0.00)$);
+
+  % \path[->] ($(nimbro.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+  %     \begin{tabular}{c}
+  %   \end{tabular}} ($(navigation.west) + (0.0, 0.00)$);
+
+  \path[->] ($(tracker.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+      \begin{tabular}{c}
+        \footnotesize full-state reference\\
+        \footnotesize $\bm{\chi}_d$\\
+        \footnotesize \SI{100}{\hertz}
+    \end{tabular}} ($(controller.west) + (0.0, 0.00)$);
+
+  \path[->] ($(tracker.south |- estimator.west) + (0.0, 0.0)$) edge [dotted] node[left, midway, shift = {(0.2, 0.00)}] {
+      \begin{tabular}{r}
+        \scriptsize initialization\\[-0.5em]
+        \scriptsize only
+    \end{tabular}} ($(tracker.south) + (0.0, 0.00)$);
+
+  \path[->] ($(controller.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(-0.2, 0.05)}] {
+      \begin{tabular}{c}
+        \footnotesize $\bm{\omega}_d$\\
+        \footnotesize $T_d$ \\
+        \footnotesize \SI{100}{\hertz}
+    \end{tabular}} ($(attitude.west) + (0.0, 0.00)$);
+
+  \draw[-] ($(controller.south)+(0.25,0)$) -- ($(controller.south |- estimator.west) + (0.25, 0.25)$) edge [->] node[above, near start, shift = {(-0.2, 0.05)}] {
+      \begin{tabular}{c}
+        \footnotesize $\mathbf{a}_d$
+    \end{tabular}} ($(estimator.west) + (0, 0.25)$);
+
+  \path[->] ($(attitude.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.1, 0.05)}] {
+      \begin{tabular}{c}
+        \footnotesize $\bm{\tau}_d$ \\
+        \footnotesize $\approx$\SI{1}{\kilo\hertz}
+    \end{tabular}} ($(actuators.west) + (0.0, 0.00)$);
+
+  \path[-] ($(estimator.west)+(0, 0)$) edge [] node[above, near start, shift = {(-1.0, 0.0)}] {
+      \begin{tabular}{c}
+        \footnotesize $\mathbf{x}$, $\mathbf{R}$, $\bm{\omega}$\\
+        \footnotesize \SI{100}{\hertz}
+    \end{tabular}} ($(navigation.south |- estimator.west)$) -- ($(navigation.south |- estimator.west)$) edge [->,] ($(navigation.south)+(0, 0)$);
+
+  % \path[-] ($(estimator.west)+(0, 0)$) edge [] node[above, near start, shift = {(-1.0, 0.0)}] {
+  %     \begin{tabular}{c}
+  %   \end{tabular}} ($(nimbro.south |- estimator.west)$) -- ($(nimbro.south |- estimator.west)$) edge [->,] ($(nimbro.south)+(0, 0)$);
+
+  \path[->] ($(controller.south |- estimator.west)+(0, 0)$) edge [] ($(controller.south)$);
+
+  \draw[-] ($(imu.east) + (0.0, 0.0)$) -- ($(estimator.north |- imu.east) + (0.3, 0)$) edge [->] node[right, midway, shift = {(-0.2, 0.3)}] {
+      \begin{tabular}{c}
+        \footnotesize $\mathbf{R}$, $\bm{\omega}$
+    \end{tabular}} ($(estimator.north) + (0.3, 0.0)$);
+
+  \draw[-] ($(sensors.south)+(0, 0)$) -- ($(sensors.south |- localization.east)$) edge [->] ($(localization.east)$);
+  \draw[-] ($(sensors.south)+(0.1, 0)$) -- ($(sensors.south |- localization.east) + (0.1, -0.1)$) edge [->] ($(localization.east) + (0.0, -0.1)$);
+  \draw[-] ($(sensors.south)+(-0.1, 0)$) -- ($(sensors.south |- localization.east) + (-0.1, 0.1)$) edge [->]  ($(localization.east) + (0.0, 0.1)$);
+
+  \draw[->] ($(localization.west)+(0, 0)$) -- ($(estimator.east)$);
+  \draw[->] ($(localization.west)+(0, 0.1)$) -- ($(estimator.east) + (0, 0.1)$);
+  \draw[->] ($(localization.west)+(0, -0.1)$) -- ($(estimator.east) + (0, -0.1)$);
+
+  %%}
+
+    % \draw[-, radiation, decoration={angle=45}] ($(nimbro.west) + (0.0, -0.0)$) -- +(0:-0.5);
+
+  %%{ backgrounds
+
+  \begin{pgfonlayer}{background}
+    \path (attitude.west |- attitude.north)+(-0.45,0.8) node (a) {};
+    \path (imu.south -| sensors.east)+(+0.25,-0.20) node (b) {};
+    \path[fill=gray!3,rounded corners, draw=black!70, densely dotted]
+      (a) rectangle (b);
+  \end{pgfonlayer}
+  \node [rectangle, above of=actuators, shift={(-0.6,0.55)}, node distance=1.7em] (autopilot) {\footnotesize UAV plant};
+
+  \begin{pgfonlayer}{background}
+    \path (attitude.west |- attitude.north)+(-0.25,0.47) node (a) {};
+    \path (imu.south -| attitude.east)+(+0.25,-0.10) node (b) {};
+    \path[fill=gray!3,rounded corners, draw=black!70, densely dotted]
+      (a) rectangle (b);
+  \end{pgfonlayer}
+  \node [rectangle, above of=attitude, shift={(0,0.2)}, node distance=1.7em] (autopilot) {\footnotesize Embedded autopilot};
+
+  %%}
+
+\end{tikzpicture}

@@ -203,6 +203,8 @@
 \pgfdeclarelayer{foreground}
 \pgfsetlayers{background,main,foreground}
 
+\input{./fig/tikz/tikz.tex}
+
 \tikzset{
     imgletter/.style={
       rectangle,
@@ -458,8 +460,52 @@
 \begin{frame}
 \frametitle{Multirotor UAV system for research}
 
+  \begin{block}{Motivation (2013 -- 2016)}
+  \begin{itemize}
+    \item research validation in real-world experiments \cite{spurny2016complex, saska2016formations, chudoba2016exploration, saska2017system, saska2017documentation, saska2013adhoc, chudoba2014localization}
+    \item experimenting outside of laboratory conditions (desired)
+  \end{itemize}
+\end{block}
+
+\begin{columns}[c]
+
+\column{0.385\textwidth} % Left column and width
+
+\begin{block}{Embedded MPC \cite{baca2016embedded}}
+  \centering
+  \includegraphics[width=1.0\textwidth]{./fig/photos/multirotor_control_board.jpg}
+\end{block}
+
+\column{0.57\textwidth} % Right column and width
+
+\begin{block}{Multi-UAV formations \cite{spurny2016complex}}
+  \centering
+  \includegraphics[width=0.9\textwidth]{./fig/photos/mav_rfid.jpg}
+\end{block}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Predictive Tracker}
+
 \fullciteinbox{baca2018model}{}
-\fullciteinbox{baca2021mrs}{}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{The MRS UAV System}
+
+  \begin{block}{Block title}
+    \begin{figure}
+      \begin{adjustbox}{max totalsize={1.0\textwidth}{.65\textheight}, center}
+        \input{./fig/tikz/pipeline_diagram.tex}
+      \end{adjustbox}
+    \end{figure}
+  \end{block}
+
+  \fullciteinbox{baca2021mrs}{}
 
 \end{frame}
 
