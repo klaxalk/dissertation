@@ -139,16 +139,17 @@
 %\raisebox{3em}[3em][3em]{%
 % \vspace{-0.2em}
 \begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
-\ifx&#2&
-\else
-  \textbf{#2}:\\\\
-\fi
 \begin{minipage}[t]{0.07\linewidth}%
 \raggedright%
 \scriptsize \cite{#1}%
 \end{minipage}%
 \begin{minipage}[t]{0.93\linewidth}%
 \scriptsize \fullcite{#1}%
+\ifx&#2&
+\else
+  \\
+  \url{#2}
+\fi
 \end{minipage}%
 \end{tcolorbox}%
 %}%
@@ -424,7 +425,7 @@
     \item Object estimation
     \item Object manipulation
     \item Precise landing
-    \item 
+    \item Swarming and flocking
   \end{itemize}
 \end{block}
 
@@ -487,12 +488,47 @@
 
 \end{frame}
 
+%%{ MPC Tracker
+
 \begin{frame}
-\frametitle{Model Predictive Tracker}
+\frametitle{Model Predictive Control Tracker}
+
+\includegraphics[width=1.0\textwidth]{./fig/photos/tracker.jpg}
+
+% \fullciteinbox{baca2018model}{http://github.com/ctu-mrs/mrs_uav_trackers}
+\fullciteinbox{baca2018model}{}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Predictive Control Tracker}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\begin{block}{Problem}
+  \begin{itemize}
+    \item real-time reference generation
+    \item \SI{100}{Hz} full state reference for controllers
+    \item dynamic constraints satisfaction 
+    \item user input: trajectory of poses
+  \end{itemize}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{Solution}
+  
+\end{block}
+
+\end{columns}
 
 \fullciteinbox{baca2018model}{}
 
 \end{frame}
+
+%%}
 
 \begin{frame}
 \frametitle{The MRS UAV System}
@@ -511,17 +547,17 @@
 
 %%}
 
-\section{Research stream 2: UAV in remote sensing, data gathering, swarming}
+\section{Research stream 2: UAVs in remote sensing, data gathering, swarming}
 
 \begin{frame}
   \frametitle{Outline}
   \tableofcontents[currentsection]
 \end{frame}
 
-%%{ UAV in remote sensing, data gathering and swarming
+%%{ UAVs in remote sensing, data gathering and swarming
 
 \begin{frame}
-\frametitle{UAV in remote sensing, data gathering, swarming}
+\frametitle{UAVs in remote sensing, data gathering, swarming}
 
 \fullciteinbox{spurny2019cooperative}{}
 \fullciteinbox{baca2019autonomous}{}
@@ -543,7 +579,72 @@
 \begin{frame}
 \frametitle{Ionizing radiation dosimetry and imaging}
 
+  \begin{columns}[c]
+  
+  \column{0.48\textwidth} % Left column and width
+  \begin{block}{Radiation pixel detectors -- Timepix}
+    \includegraphics[width=1.0\textwidth]{./fig/timepix.jpg}
+  \end{block} 
+  
+  \column{0.48\textwidth} % Right column and width
+  \begin{block}{Timepix}
+    \begin{itemize}
+      \item 256$\times$256 px resolution
+      \item frame-based acquisition
+      \item event counting mode
+      \item energy measurement mode
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Timepix3}
+    \begin{itemize}
+      \item 256$\times$256 px resolution
+      \item event-based acquisition
+      \item event \& energy simultaneously
+    \end{itemize}
+  \end{block}
+
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Timepix - ...}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{itemize}
+  \item recording of the interaction of an incoming particle and the sensor
+\end{itemize}
+
+\begin{block}{Example in Figure}
+\begin{enumerate}[label=(\alph*)]
+  \item photons (gamma)
+  \item electrons (beta)
+  \item Helium nuclei (alpha)
+  \item protons (heavy ions)
+\end{enumerate}
+\end{block}
+
+\column{0.48\textwidth} % Left column and width
+\includegraphics[width=1.0\textwidth]{./fig/particle_types_inverted.png}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{VZLUSAT-1}
+
 \fullciteinbox{baca2018timepix}{}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ionizing radiation dosimetry and imaging}
+
 \fullciteinbox{baca2019timepix}{}
 \fullciteinbox{stibinger2020localization}{}
 
