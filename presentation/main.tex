@@ -897,16 +897,18 @@
 
 %%{ Ionizing radiation dosimetry and imaging
 
+%%{ Timepix
+
 \begin{frame}
 \frametitle{Ionizing radiation dosimetry and imaging}
 
   \begin{columns}[c]
-  
+
   \column{0.48\textwidth} % Left column and width
   \begin{block}{Radiation pixel detectors -- Timepix}
     \includegraphics[width=1.0\textwidth]{./fig/timepix.jpg}
   \end{block} 
-  
+
   \column{0.48\textwidth} % Right column and width
   \begin{block}{Timepix}
     \begin{itemize}
@@ -927,6 +929,10 @@
 
   \end{columns}
 
+  \begin{block}{2013--2015}
+    Work for IEAP (CTU in Prague) and Rigaku Innovative Technologies 
+  \end{block}
+
 \end{frame}
 
 \begin{frame}
@@ -937,12 +943,12 @@
 \column{0.48\textwidth} % Right column and width
 
 \begin{itemize}
-  \item recording of the interaction of an incoming particle and the sensor
-  \item pattern recognition can be applied to distinguish particle types
+  \item real-time recording of the interaction of an incoming particle and the sensor
+  \item pattern recognition can be applied to distinguish particle types \cite{baca2018timepix}
   \item no dark-current noise
 \end{itemize}
 
-\begin{block}{Example in Figure}
+\begin{block}{Examples in the Figure}
 \begin{enumerate}[label=(\alph*)]
   \item photons (gamma)
   \item electrons (beta)
@@ -958,6 +964,10 @@
 
 \end{frame}
 
+%%}
+
+%%{ VZLUSAT
+
 \begin{frame}
 \frametitle{VZLUSAT-1}
 
@@ -965,12 +975,11 @@
 
 \column{0.65\textwidth} % Left column and width
 
-\begin{block}{VZLUSAT-1 --- The first Czech CubeSat}
+\begin{block}{VZLUSAT-1 --- The first Czech CubeSat \cite{urban2017vzlusat, baca2016miniaturized}}
   \begin{itemize}
-    \item 1 
-    \item 2
-    \item 3
-    \item 4
+    \item \small Custom-designed embedded Timepix board and software \cite{baca2016miniaturized}
+    \item \small Onboard image processing, filtering, automated acquisition
+    \item \small The longest-operating Czech(-oslovakian) sat. (2017--now)
   \end{itemize}
 \end{block}
 
@@ -985,24 +994,69 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{VZLUSAT-1}
+\frametitle{VZLUSAT-1 --- Space weather dosimetry (2018--2021)}
+
+\vspace{-0.5em}
 
 \begin{columns}[c]
 
 \column{0.48\textwidth} % Left column and width
-\includegraphics[width=1.0\textwidth,trim={1cm 2.5cm 0cm 2.5cm},clip]{./fig/plots/vzlusat_map.eps}
+\includegraphics[width=1.0\textwidth,trim={1cm 3.0cm 0cm 3.5cm},clip]{./fig/plots/vzlusat_map.eps}
 
 \column{0.48\textwidth} % Right column and width
-\includegraphics[width=1.0\textwidth]{./fig/plots/iss_map_2.png}
+\includegraphics[width=1.0\textwidth,trim={0cm 1.0cm 0cm 0.0cm},clip]{./fig/plots/iss_map_2.png}
 
 \end{columns}
 
-\centering
-Ionizing radiation dose measured by the Timepix sensor onboard (a) VZLUSAT-1 ($\approx 500$\,km Sun-synchronous orbit), and (b) the ISS ($\approx 350$\,km orbit).
+\vspace{-1em}
+
+\begin{center}
+  Ionizing radiation dose measured by the Timepix sensor onboard (left) VZLUSAT-1 ($\approx 500$\,km Sun-synchronous orbit), and (right) the ISS ($\approx 350$\,km orbit).
+\end{center}
+
+\vspace{-0.5em}
+
+\begin{block}{Data publicly available}
+  \centering
+  \url{https://github.com/vzlusat/vzlusat1-timepix-data}
+\end{block}
+
+\vspace{-0.5em}
 
 \fullciteinbox{baca2018timepix}{}
 
 \end{frame}
+
+%%}
+
+%%{ REX
+
+\begin{frame}
+\frametitle{REX --- Rocket Experiment}
+
+\begin{columns}[c]
+
+\column{0.65\textwidth} % Left column and width
+
+\begin{block}{NASA's Sounding Rocket launch}
+  \begin{itemize}
+    \item \small 
+    \item \small 
+    \item \small 
+  \end{itemize}
+\end{block}
+
+\includegraphics[width=0.9\textwidth]{./fig/photos/rocket_tomas.jpg}
+
+\column{0.3\textwidth} % Right column and width
+
+\includegraphics[height=0.85\textheight]{./fig/photos/rocket.jpg}
+
+\end{columns}
+
+\end{frame}
+
+%%}
 
 \begin{frame}
 \frametitle{Ionizing radiation dosimetry and imaging}
