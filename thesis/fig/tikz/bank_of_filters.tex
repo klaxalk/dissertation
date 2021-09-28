@@ -1,0 +1,232 @@
+\usetikzlibrary{shapes.geometric,backgrounds,calc,arrows}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzset{radiation/.style={{decorate,decoration={expanding waves,angle=90,segment length=4pt}}}}
+
+\begin{tikzpicture}[->,>=stealth', node distance=3.0cm]
+
+  %%{ filters
+
+  \def\filtx{10pt}
+  \def\dotoff{1.5}
+  % \node[state, shift = {(0.0, 0.0)}] (preprocess) {
+  %     \begin{tabular}{c}
+  %       \small Preprocess
+  %     \end{tabular}
+  %   };
+
+  \node[state, shift = {(0, -0)}] (k1) {
+      \begin{tabular}{c}
+        \small $K_1$
+      \end{tabular}
+    };
+
+  \node[state, right of = k1, shift = {(-\filtx, -0)}] (k2) {
+      \begin{tabular}{c}
+        \small $K_2$
+      \end{tabular}
+    };
+
+  \node[right of = k2, shift = {(-\dotoff, -0)}] (kdots) {
+      \begin{tabular}{c}
+        \small $\cdots$
+      \end{tabular}
+    };
+
+  \node[state, right of = kdots, shift = {(-\dotoff, -0)}] (kn) {
+      \begin{tabular}{c}
+        \small $K_n$
+      \end{tabular}
+    };
+
+  %%}
+
+  %%{ predictions, corrections
+
+  \def\eloffx{1.5}
+  \def\eloffy{1.2}
+  \def\ellx{20pt}
+  \def\elly{22pt}
+  \node[ellipse, minimum height=\elly, minimum width=\ellx, draw, above left of = k1, shift = {(\eloffx, -\eloffy)}] (pred1) {
+      \small pred
+    };
+
+  \path[->] (k1.west) [bend left]  edge node {} (pred1);
+  \path[->] (pred1) [bend left]  edge node {} ([xshift=-5pt]k1.north);
+
+  \node[ellipse, minimum height=\elly, minimum width=\ellx,  draw, above right of = k1, shift = {(-\eloffx, -\eloffy)}] (corr1) {
+    \small corr
+  };
+
+  \path[->] (k1.east) [bend right]  edge node {} (corr1);
+  \path[->] (corr1) [bend right]  edge node {} ([xshift=5pt]k1.north);
+
+  \node[ellipse, minimum height=\elly, minimum width=\ellx,  draw, above left of = k2, shift = {(\eloffx, -\eloffy)}] (pred2) {
+    \small pred
+  };
+
+  \path[->] (k2.west) [bend left]  edge node {} (pred2);
+  \path[->] (pred2) [bend left]  edge node {} ([xshift=-5pt]k2.north);
+
+  \node[ellipse, minimum height=\elly, minimum width=\ellx,  draw, above right of = k2, shift = {(-\eloffx, -\eloffy)}] (corr2) {
+    \small corr
+  };
+
+  \path[->] (k2.east) [bend right]  edge node {} (corr2);
+  \path[->] (corr2) [bend right]  edge node {} ([xshift=5pt]k2.north);
+
+  \node[ellipse, minimum height=\elly, minimum width=\ellx,  draw, above left of = kn, shift = {(\eloffx, -\eloffy)}] (predn) {
+    \small pred
+  };
+
+  \path[->] (kn.west) [bend left]  edge node {} (predn);
+  \path[->] (predn) [bend left]  edge node {} ([xshift=-5pt]kn.north);
+
+  \node[ellipse, minimum height=\elly, minimum width=\ellx,  draw, above right of = kn, shift = {(-\eloffx, -\eloffy)}] (corrn) {
+    \small corr
+  };
+
+  \path[->] (kn.east) [bend right]  edge node {} (corrn);
+  \path[->] (corrn) [bend right]  edge node {} ([xshift=5pt]kn.north);
+
+  %%}
+
+  %%{ input
+  
+    \def\apredy{-2}
+  
+    \node[above of = pred1, shift = {(0, \apredy)}] (apred1) {
+    };
+  
+    \node[above of = pred2, shift = {(0, \apredy)}] (apred2) {
+    };
+  
+    \node[above of = predn, shift = {(0, \apredy)}] (apredn) {
+    };
+  
+    \node[left of = apred1, shift = {(2, 0)}] (input) {
+    };
+  
+  % node[above] {$\mathbf{T}_{total}$}
+    \path[-] (input.center) edge node [above, shift = {(-0.3,0)}] {$\mathbf{u}$} (apred1.center);
+    \path[-] (apred1.center) edge node {} (apred2.center);
+    \path[-] (apred2.center) edge node {} (apredn.center);
+  
+    \path[->] (apred1.center) edge node {} (pred1.north);
+    \path[->] (apred2.center) edge node {} (pred2.north);
+    \path[->] (apredn.center) edge node {} (predn.north);
+  
+  %%}
+
+  %%{ measurement
+  
+    \def\apredy{-2.2}
+  
+    \node[above of = corr1, shift = {(0, \apredy)}] (acorr1) {
+    };
+  
+    \node[above of = corr2, shift = {(0, \apredy)}] (acorr2) {
+    };
+  
+    \node[above of = corrn, shift = {(0, \apredy)}] (acorrn) {
+    };
+  
+    \node[left of = acorr1, shift = {(1, 0)}] (measurement) {
+    };
+  
+  % node[above] {$\mathbf{T}_{total}$}
+    \path[-] (measurement.center) edge node [below, shift = {(-0.8,0)}] {$\mathbf{z}$} (acorr1.center);
+    \path[-] (acorr1.center) edge node {} (acorr2.center);
+    \path[-] (acorr2.center) edge node {} (acorrn.center);
+  
+    \path[->] (acorr1.center) edge node {} (corr1.north);
+    \path[->] (acorr2.center) edge node {} (corr2.north);
+    \path[->] (acorrn.center) edge node {} (corrn.north);
+  
+  %%}
+
+  %%{ arbiter
+
+  \def\mararb{5pt}
+  \def\cs{5pt}
+  \def\offcx{2}
+  \def\offcy{1.5}
+
+  \node[circle, inner sep=0pt, minimum size=\cs,  draw, below of = k2, shift = {(0,\offcy)}] (contact2) {
+  };
+
+  \node[circle, inner sep=0pt, minimum size=\cs,  draw, right of = contact2, shift = {(-\offcx, 0)}] (contactn) {
+  };
+
+  \node[circle, fill, inner sep=0pt, minimum size=\cs,  draw, left of = contact2, shift = {(\offcx, 0)}] (contact1) {
+  };
+
+  \def\pbky{10pt}
+  \node[below of = k1, shift = {(0, 1.5*\offcy)}] (pbk1) {
+  };
+
+
+  \node[below of = kn, shift = {(0, 1.5*\offcy)}] (pbkn) {
+  };
+
+  \node[above of = contact1, shift = {(0, -1.5*\offcy)}] (pacontact1) {
+  };
+
+  \node[above of = contactn, shift = {(0, -1.5*\offcy)}] (pacontactn) {
+  };
+
+  % \node[circle, inner sep=0pt, minimum size=\cs,  draw, below of = contact2, shift = {(0,2.5)}] (contactb) {
+  % };
+
+  \node[below of = contact2, shift = {(0, 2.5)}] (contactb) {
+  };
+
+  \node[below of = contactb, shift = {(0, 2.5)}] (barbiter) {
+  };
+
+  \node[right of = barbiter, shift = {(0, 0)}] (estimate) {
+  };
+
+  \path[-] (k1.south) edge node {} (pbk1.center);
+  \path[-] (pbk1.center) edge node {} (pacontact1.center);
+\path[-] (pacontact1.center) edge node [below left, shift ={(-0.5,0.4)}] {$\mathbf{x}_1, \mathbf{\Sigma}_1$} (contact1.north);
+
+\path[-] (k2.south) edge node [right, shift = {(0,0.34)}] {$\mathbf{x}_2, \mathbf{\Sigma}_2$} (contact2.north);
+
+  \path[-] (kn.south) edge node {} (pbkn.center);
+  \path[-] (pbkn.center) edge node {} (pacontactn.center);
+\path[-] (pacontactn.center) edge node [below right, shift = {(0.5,0.4)}] {$\mathbf{x}_n, \mathbf{\Sigma}_n$} (contactn.north);
+
+  \path[-] (contact1.south) edge node {} (contactb.center);
+  \path[-,dotted] (contact2.south) edge node {} (contactb.center);
+  \path[-,dotted] (contactn.south) edge node {} (contactb.center);
+
+  \path[-] (contactb.center) edge node {} (barbiter.center);
+
+  % \path[-] (kn.south) edge node {} (pbkn.center);
+  % \path[-] (pbkn.center) edge node {} (pakn.center);
+  % \path[-] (pakn.center) edge node {} (contactno.north);
+
+  \node[state, inner sep = 0cm, minimum width=2.8cm, minimum height = 1cm, below of = k2, shift = {(-0, \offcy-0.25)}] (arbiter) {
+    \begin{tabular}{ccccr}
+      \\
+      & & & & \small Arbiter
+    \end{tabular}
+  };
+
+  %%}
+
+  %%{ output
+  
+    \node[right of = barbiter, shift = {(0, 0)}] (output) {
+    };
+  
+  % node[above] {$\mathbf{T}_{total}$}
+    \path[->] (barbiter.center) edge node [above, shift = {(1,0)}] {$\mathbf{x}_{\ast }$} (output.center);
+  
+  
+  %%}
+
+\end{tikzpicture}

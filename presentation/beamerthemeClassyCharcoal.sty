@@ -1,0 +1,55 @@
+% Copyright 2008 by Thibauld Nion
+%
+% Adapted from themes by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+%
+% $Id: beamerthemeClassyCharcoal.sty 699 2008-03-07 23:06:44Z nion $
+
+
+\ProvidesPackage{beamerthemeClassyCharcoal}
+
+%------- Theme design ------------------------------
+
+% Remove the navigation buttons
+\beamertemplatenavigationsymbolsempty
+
+\mode<presentation>
+
+% Nearly all the colors inherits from the 'structure' color
+%\usecolortheme[RGB={174,0,61}]{structure}
+%\setbeamercolor{structure}{fg=red!75!.}
+
+% 'Outer Color theme': 
+% Change the aspect of sidebars, footers and headers
+\usecolortheme{blackbird}
+
+% 'Inner color theme': 
+% Change the aspects of blocks for instance.
+\usecolortheme{rose}
+
+% Themes for boxes, lists' bullets...:
+\useinnertheme[shadow]{rounded}
+% Use the default way to display the title (more sober)
+\setbeamertemplate{title page}[default]
+% Change the way the number of the section is displayed
+\setbeamertemplate{sections/subsections in toc}[default]
+
+% Themes for footer, header or sidebars
+% Set the background:
+\def\backgroundContent{%
+   \includegraphics[height=10.0cm,width=16.0cm]{charcoal_bkg_1610.jpg} % 16:10
+   % \includegraphics[height=9.6cm,width=12.8cm]{charcoal_bkg.jpg} % 4:3
+}
+\useoutertheme[totalpagenumber=false]{pagenumberandbackground}
+
+
+\mode
+<all>
+
+

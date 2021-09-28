@@ -8,52 +8,17 @@
 
   %%{ Themes
 
-  % \usetheme{default}
-  % \usetheme{AnnArbor}
-  % \usetheme{Antibes}
-  % \usetheme{Bergen}
-  % \usetheme{Berkeley}
-  % \usetheme{Berlin}
-  \usetheme{Boadilla}
-  % \usetheme{CambridgeUS}
-  % \usetheme{Copenhagen}
-  % \usetheme{Darmstadt}
-  % \usetheme{Dresden}
-  % \usetheme{Frankfurt}
-  % \usetheme{Goettingen}
-  % \usetheme{Hannover}
-  % \usetheme{Ilmenau}
-  % \usetheme{JuanLesPins}
-  % \usetheme{Luebeck}
-  % \usetheme{Madrid}
-  % \usetheme{Malmoe}
-  % \usetheme{Marburg}
-  % \usetheme{Montpellier}
-  % \usetheme{PaloAlto}
-  % \usetheme{Pittsburgh}
-  % \usetheme{Rochester}
-  % \usetheme{Singapore}
-  % \usetheme{Szeged}
-  % \usetheme{Warsaw}
+  \usetheme{Boadilla} % light
+  % \usetheme{ClassyCharcoal}
+  % \usetheme{rose}
 
   %%}
 
   %%{ Color themes
 
-  % \usecolortheme{albatross}
-  % \usecolortheme{beaver}
-  % \usecolortheme{beetle}
-  % \usecolortheme{crane}
-  % \usecolortheme{dolphin}
-  % \usecolortheme{dove}
-  % \usecolortheme{fly}
-  % \usecolortheme{lily}
-  % \usecolortheme{orchid}
+  \usecolortheme{seahorse} % light
+  % \usecolortheme{blackbird}
   % \usecolortheme{rose}
-  % \usecolortheme{seagull}
-  \usecolortheme{seahorse}
-  % \usecolortheme{whale}
-  % \usecolortheme{wolverine}
 
   %%}
 
@@ -138,7 +103,8 @@
 %\vspace{3em}%
 %\raisebox{3em}[3em][3em]{%
 % \vspace{-0.2em}
-\begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+% \begin{tcolorbox}[width=\textwidth,colback={light-gray},title={}]%
+\begin{block}{}
 \begin{minipage}[t]{0.07\linewidth}%
 \raggedright%
 \scriptsize \cite{#1}%
@@ -151,7 +117,8 @@
   \url{#2}
 \fi
 \end{minipage}%
-\end{tcolorbox}%
+% \end{tcolorbox}%
+\end{block}
 %}%
 \vspace{-0.3em}
 }%
@@ -319,7 +286,7 @@
   Czech Technical University in Prague
   \end{small}}
 
-\date[September 26th, 2017]{}
+\date[September 30th, 2021]{}
 
 \titlegraphic{\includegraphics[width=5cm]{fig/logo_ctu_fee_mrs_blue.png}}
 
@@ -391,10 +358,10 @@
   \tableofcontents
 \end{frame}
 
-\begin{frame}
-  \frametitle{Outline}
-  \tableofcontents[currentsection]
-\end{frame}
+% \begin{frame}
+%   \frametitle{Outline}
+%   \tableofcontents[currentsection]
+% \end{frame}
 
 \subsection{Research streams}
 
@@ -425,7 +392,7 @@
     \item Object estimation
     \item Object manipulation
     \item Precise landing
-    \item Swarming and flocking
+    \item UAV Swarming
   \end{itemize}
 \end{block}
 
@@ -458,85 +425,51 @@
 
 %%{ Multirotor UAV system for research
 
+%%{ Motivation
+
 \begin{frame}
 \frametitle{Multirotor UAV system for research}
 
   \begin{block}{Motivation (2013 -- 2016)}
-  \begin{itemize}
-    \item research validation in real-world experiments \cite{spurny2016complex, saska2016formations, chudoba2016exploration, saska2017system, saska2017documentation, saska2013adhoc, chudoba2014localization}
-    \item experimenting outside of laboratory conditions (desired)
-  \end{itemize}
-\end{block}
+    \begin{itemize}
+      \item research validation in real-world experiments \cite{spurny2016complex, saska2016formations, chudoba2016exploration, saska2017system, saska2017documentation, saska2013adhoc, chudoba2014localization}
+      \item Desired: experimenting outside of laboratory conditions, without a MoCap system
+    \end{itemize}
+  \end{block}
 
-\begin{columns}[c]
+  \begin{columns}[c]
 
-\column{0.385\textwidth} % Left column and width
+  \column{0.385\textwidth} % Left column and width
 
-\begin{block}{Embedded MPC \cite{baca2016embedded}}
-  \centering
-  \includegraphics[width=1.0\textwidth]{./fig/photos/multirotor_control_board.jpg}
-\end{block}
+  \begin{block}{Embedded MPC \cite{baca2016embedded}}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./fig/photos/multirotor_control_board.jpg}
+  \end{block}
 
-\column{0.57\textwidth} % Right column and width
+  \column{0.57\textwidth} % Right column and width
 
-\begin{block}{Multi-UAV formations \cite{spurny2016complex}}
-  \centering
-  \includegraphics[width=0.9\textwidth]{./fig/photos/mav_rfid.jpg}
-\end{block}
+  \begin{block}{Multi-UAV formations \cite{spurny2016complex}}
+    \centering
+    \includegraphics[width=0.9\textwidth]{./fig/photos/mav_rfid.jpg}
+  \end{block}
 
-\end{columns}
-
-\end{frame}
-
-%%{ MPC Tracker
-
-\begin{frame}
-\frametitle{Model Predictive Control Tracker}
-
-\includegraphics[width=1.0\textwidth]{./fig/photos/tracker.jpg}
-
-% \fullciteinbox{baca2018model}{http://github.com/ctu-mrs/mrs_uav_trackers}
-\fullciteinbox{baca2018model}{}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Model Predictive Control Tracker}
-
-\begin{columns}[c]
-
-\column{0.48\textwidth} % Left column and width
-
-\begin{block}{Problem}
-  \begin{itemize}
-    \item real-time reference generation
-    \item \SI{100}{Hz} full state reference for controllers
-    \item dynamic constraints satisfaction 
-    \item user input: trajectory of poses
-  \end{itemize}
-\end{block}
-
-\column{0.48\textwidth} % Right column and width
-
-\begin{block}{Solution}
-  
-\end{block}
-
-\end{columns}
-
-\fullciteinbox{baca2018model}{}
+  \end{columns}
 
 \end{frame}
 
 %%}
 
+%%{ System diagram
+
 \begin{frame}
+
 \frametitle{The MRS UAV System}
 
-  \begin{block}{Block title}
+  \begin{block}{MRS UAV System block diagram}
     \begin{figure}
       \begin{adjustbox}{max totalsize={1.0\textwidth}{.65\textheight}, center}
-        \input{./fig/tikz/pipeline_diagram.tex}
+        \only<1>{\input{./fig/tikz/pipeline_diagram.tex}}
+        \only<2>{\input{./fig/tikz/pipeline_diagram_controller.tex}}
       \end{adjustbox}
     \end{figure}
   \end{block}
@@ -547,6 +480,163 @@
 
 %%}
 
+%%{ Controller
+
+\begin{frame}
+\frametitle{Reference controller}
+
+
+
+\end{frame}
+
+%%}
+
+%%{ Estimator
+
+\begin{frame}
+
+\frametitle{The MRS UAV System}
+
+  \begin{block}{MRS UAV System block diagram}
+    \begin{figure}
+      \begin{adjustbox}{max totalsize={1.0\textwidth}{.65\textheight}, center}
+        \input{./fig/tikz/pipeline_diagram_estimator.tex}
+      \end{adjustbox}
+    \end{figure}
+  \end{block}
+
+  \fullciteinbox{baca2021mrs}{}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{The MRS UAV System}
+
+  \begin{columns}[c]
+
+  \column{0.55\textwidth} % Left column and width
+
+  \begin{block}{Bank of filters}
+
+    \begin{figure}
+      \begin{adjustbox}{max totalsize={1.0\textwidth}{.65\textheight}, center}
+        \input{./fig/tikz/bank_of_filters.tex}
+      \end{adjustbox}
+    \end{figure}
+
+  \end{block}
+
+  \column{0.40\textwidth} % Right column and width
+
+  \begin{itemize}
+    \item simultaneous estimation of UAV state in multiple frames of reference
+    \item automatic \& manual switching of the main estimator
+    \item automatic detection of estimator failures
+    \item switching of an estimator is synchronizes throughout the control pipeline
+  \end{itemize}
+
+  \end{columns}
+
+  \fullciteinbox{petrlik2020robust}{}
+
+\end{frame}
+
+%%}
+
+%%{ MPC Tracker
+
+%% | ----------------------- MPC Tracker ---------------------- |
+
+\begin{frame}
+\frametitle{The MRS UAV System}
+
+  \begin{block}{MRS UAV System block diagram}
+    \begin{figure}
+      \begin{adjustbox}{max totalsize={1.0\textwidth}{.65\textheight}, center}
+        \input{./fig/tikz/pipeline_diagram_tracker.tex}
+      \end{adjustbox}
+    \end{figure}
+  \end{block}
+
+  \fullciteinbox{baca2021mrs}{}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Predictive Control Tracker}
+
+\textbf{Feedback and Feed-forward multicopter controllers benefit from a smooth and feasible control reference. A step in desired position or velocity is not a feasible reference.}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\begin{block}{Problem}
+  \begin{itemize}
+    \item real-time reference generation
+    \item \SI{100}{Hz} full state reference for controllers: $\dot{\textbf{x}}, \ddot{\textbf{x}}, \dot{\ddot{\textbf{x}}}$, $\ddot{\ddot{\textbf{x}}}$, where $\textbf{x} = \begin{pmatrix}
+    r_x, r_y, r_z, \theta
+    \end{pmatrix}^\intercal$ (pose and heading)
+    \item UAV dynamics constraints satisfaction
+    \item user input: trajectory consisting of poses sampled at regular intervals
+  \end{itemize}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{Solution}
+  \begin{itemize}
+    \item onboard real-time simulation of the linear translational UAV dynamics
+    \item linear MPC (LCQP) solved at 100 Hz
+    \item states of the simulated model sampled and taken as control reference
+    \item \SI{8}{s} prediction horizon used for inter-UAV collision avoidance
+  \end{itemize} 
+\end{block}
+
+\end{columns}
+
+\fullciteinbox{baca2018model}{}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Model Predictive Control Tracker}
+
+\includegraphics[width=1.0\textwidth,trim={0 0.5cm 0 1.0cm},clip]{./fig/photos/tracker.jpg}
+
+\begin{block}{Properties}
+
+  \vspace{-1em}
+
+  \begin{columns}[c]
+
+  \column{0.48\textwidth} % Left column and width
+
+  \begin{itemize}
+    \item Linear MPC is solved in real time
+    \item Mutual collision avoidance prevent damage during experimentation
+  \end{itemize}
+  
+  \column{0.48\textwidth} % Right column and width
+  \begin{itemize}
+    \item The LCQP can be solved reliably
+    \item The tracker can handle unfeasible trajectory references from a user
+  \end{itemize}
+  
+  \end{columns}
+
+\end{block}
+
+% \fullciteinbox{baca2018model}{http://github.com/ctu-mrs/mrs_uav_trackers}
+\fullciteinbox{baca2018model}{}
+
+\end{frame}
+
+%%}
+
+%%}
+
 \section{Research stream 2: UAVs in remote sensing, data gathering, swarming}
 
 \begin{frame}
@@ -554,16 +644,185 @@
   \tableofcontents[currentsection]
 \end{frame}
 
-%%{ UAVs in remote sensing, data gathering and swarming
+%%{ UAVs in remote sensing, data gathering, and swarming
+
+%%{ MBZIRC 2017 objects
 
 \begin{frame}
-\frametitle{UAVs in remote sensing, data gathering, swarming}
+\frametitle{Cooperative autonomous grasping and delivery of objects}
+
+\begin{columns}[c]
+
+\column{0.60\textwidth} % Left column and width
+
+\begin{block}{Autonomous gathering of objects}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.95\textwidth]{./videos/mbzirc_grasping_short_thumbnail.jpg}
+    }{./videos/mbzirc_grasping_short.mp4}\\
+  \end{center}
+\end{block}
+
+\column{0.35\textwidth} % Right column and width
+
+\begin{itemize}
+  \item pes
+  \item kocka
+  \item slon
+\end{itemize}
+
+\end{columns}
 
 \fullciteinbox{spurny2019cooperative}{}
+
+\end{frame}
+
+%%}
+
+%%{ MBZIRC 2017 landing
+
+\begin{frame}
+\frametitle{Autonomous landing on a moving car}
+
+\begin{columns}[c]
+
+\column{0.65\textwidth} % Left column and width
+
+\begin{block}{Autonomous landing}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.95\textwidth]{./videos/mbzirc_landing_short_thumbnail.jpg}
+    }{./videos/mbzirc_landing_short.mp4}\\
+  \end{center}
+\end{block}
+
+\column{0.32\textwidth} % Right column and width
+
+\begin{itemize}
+  \item pes
+  \item kocka
+  \item slon
+\end{itemize}
+
+\end{columns}
+
 \fullciteinbox{baca2019autonomous}{}
+
+\end{frame}
+
+%%}
+
+%%{ MBZIRC 2020 bricks
+
+\begin{frame}
+\frametitle{Autonomous wall-building by a group of UAVs}
+
+\begin{columns}[c]
+
+\column{0.60\textwidth} % Left column and width
+
+\begin{block}{Autonomous wall-building}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.95\textwidth]{./videos/mbzirc_2020_bricks_short_thumbnail.jpg}
+    }{./videos/mbzirc_2020_bricks_short.mp4}\\
+  \end{center}
+\end{block}
+
+\column{0.35\textwidth} % Right column and width
+
+\begin{itemize}
+  \item pes
+  \item kocka
+  \item slon
+\end{itemize}
+
+\end{columns}
 \fullciteinbox{baca2020autonomous}{}
 
 \end{frame}
+
+%%}
+
+%%{ MBZIRC 2020 others
+
+\begin{frame}
+\frametitle{MBZIRC 2020 --- other achievements}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\vspace{-1em}
+
+\begin{block}{\small Aerial firefighting (outdoors) \cite{walter2020extinguishing, walter2021extinguishing}}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.75\textwidth]{./videos/mbzirc_2020_outdoor_fires_short_thumbnail.jpg}
+    }{./videos/mbzirc_2020_outdoor_fires_short.mp4}\\
+  \end{center}
+\end{block}
+
+\vspace{-1em}
+
+\begin{block}{\small Aerial static target elimination \cite{stasinchuk2021multiuav}}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.75\textwidth]{./videos/mbzirc_2020_balloons_short_thumbnail.jpg}
+    }{./videos/mbzirc_2020_balloons_short.mp4}\\
+  \end{center}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\vspace{-1em}
+
+\begin{block}{\small Aerial firefighting (indoors) \cite{spurny2021autonomous}}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.75\textwidth]{./videos/mbzirc_2020_indoor_fires_short_thumbnail.jpg}
+    }{./videos/mbzirc_2020_indoor_fires_short.mp4}\\
+  \end{center}
+\end{block}
+
+\vspace{-1em}
+
+\begin{block}{\small Aerial moving target elimination \cite{vrba2020autonomous}}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.75\textwidth]{./videos/mbzirc_2020_ball_short_thumbnail.jpg}
+    }{./videos/mbzirc_2020_ball_short.mp4}\\
+  \end{center}
+
+\end{block}
+
+\end{columns}
+
+\end{frame}
+
+%%}
+
+%%{ SWARMING
+
+\begin{frame}
+\frametitle{Aerial swarming}
+
+\cite{petracek2020bioinspired, saska2020formation, ahmad2021autonomous, dmytruk2021safe}
+
+\end{frame}
+
+%%}
+
+%%{ DARPA SubT
+
+\begin{frame}
+\frametitle{Aerial Search and Rescue}
+
+\cite{petracek2021large, kratky2021autonomous2, roucek2021system, roucek2019darpa, petrlik2020robust}
+
+\end{frame}
+
+%%}
 
 %%}
 
@@ -609,7 +868,7 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Timepix - ...}
+\frametitle{Timepix - Ionizing radiation dosimetry and imaging}
 
 \begin{columns}[c]
 
@@ -617,6 +876,8 @@
 
 \begin{itemize}
   \item recording of the interaction of an incoming particle and the sensor
+  \item pattern recognition can be applied to distinguish particle types
+  \item no dark-current noise
 \end{itemize}
 
 \begin{block}{Example in Figure}
@@ -638,6 +899,45 @@
 \begin{frame}
 \frametitle{VZLUSAT-1}
 
+\begin{columns}[c]
+
+\column{0.65\textwidth} % Left column and width
+
+\begin{block}{VZLUSAT-1 --- The first Czech CubeSat}
+  \begin{itemize}
+    \item 1 
+    \item 2
+    \item 3
+    \item 4
+  \end{itemize}
+\end{block}
+
+\includegraphics[width=1.0\textwidth]{./fig/photos/boards.jpg}
+
+\column{0.3\textwidth} % Right column and width
+
+\includegraphics[height=0.9\textheight]{./fig/photos/vzlusat_whole2.jpg}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{VZLUSAT-1}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+\includegraphics[width=1.0\textwidth,trim={1cm 2.5cm 0cm 2.5cm},clip]{./fig/plots/vzlusat_map.eps}
+
+\column{0.48\textwidth} % Right column and width
+\includegraphics[width=1.0\textwidth]{./fig/plots/iss_map_2.png}
+
+\end{columns}
+
+\centering
+Ionizing radiation dose measured by the Timepix sensor onboard (a) VZLUSAT-1 ($\approx 500$\,km Sun-synchronous orbit), and (b) the ISS ($\approx 350$\,km orbit).
+
 \fullciteinbox{baca2018timepix}{}
 
 \end{frame}
@@ -647,6 +947,59 @@
 
 \fullciteinbox{baca2019timepix}{}
 \fullciteinbox{stibinger2020localization}{}
+
+\end{frame}
+
+%%}
+
+%%{ Publication record
+
+\begin{frame}
+\frametitle{Publication record}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\begin{block}{Publications during Ph.D}
+  \begin{itemize}
+    \item \makebox[2.2cm]{Total:\hfill} 45
+    \item \makebox[2.2cm]{Imp. Journal:\hfill} 28
+    \item \makebox[2.2cm]{Conference:\hfill} 17
+    \item \makebox[2.2cm]{First author:\hfill} 11
+  \end{itemize}
+\end{block}
+
+  \begin{block}{Top-cited publications ($1^{\text{st}}$ author)}
+  \begin{itemize}
+    \item \makebox[2.2cm]{\cite{baca2016miniaturized}:\hfill} 16
+    \item \makebox[2.2cm]{\cite{baca2018model}:\hfill} 7
+    \item \makebox[2.2cm]{\cite{baca2017autonomous}:\hfill} 7
+    \item \makebox[2.2cm]{\cite{baca2019autonomous}:\hfill} 6
+  \end{itemize}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{Citations}
+  \begin{itemize}
+    \item \makebox[2.7cm]{WoS no autocit:\hfill} 194
+    \item \makebox[2.7cm]{WoS all:\hfill} 319
+    \item \makebox[2.7cm]{Scopus:\hfill} 517
+    \item \makebox[2.7cm]{Google scholar:\hfill} 1198
+  \end{itemize}
+\end{block}
+
+\begin{block}{H-index}
+  \begin{itemize}
+    \item \makebox[2.7cm]{WoS no autocit:\hfill} 8
+    \item \makebox[2.7cm]{WoS all:\hfill} 11
+    \item \makebox[2.7cm]{Scopus:\hfill} 12
+    \item \makebox[2.7cm]{Google scholar:\hfill} 18
+  \end{itemize} 
+\end{block}
+
+\end{columns}
 
 \end{frame}
 
@@ -683,8 +1036,6 @@
 
 \begin{frame}
 \frametitle{Discussion and results}
-
-
 
 \end{frame}
 

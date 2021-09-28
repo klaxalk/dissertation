@@ -1,0 +1,46 @@
+% Copyright 2008 by Thibauld Nion
+%
+% Adapted from color themes by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+%
+% $Id: beamercolorthemeblackbird.sty 647 2008-02-21 19:21:36Z nion $
+
+\ProvidesPackage{beamercolorthemeblackbird}
+
+\xdefinecolor{contrastedorange}{RGB}{250,108,0}
+%\xdefinecolor{contrastedblue}{RGB}{63,139,253}
+%\xdefinecolor{contrastedblue}{RGB}{50,252,172}
+\xdefinecolor{contrastedgreen}{RGB}{17,250,0}
+\xdefinecolor{charcoal}{RGB}{28,28,28}
+
+\mode<presentation>
+
+\setbeamercolor{normal text}{fg=white,bg=charcoal}
+\setbeamercolor{structure}{fg=white,bg=charcoal}
+
+\setbeamercolor{titlelike}{fg=contrastedorange}
+\setbeamercolor{frametitle}{fg=white}
+
+\setbeamercolor{example text}{fg=contrastedgreen}
+\setbeamercolor{alerted text}{fg=contrastedorange}
+
+
+% \setbeamercolor*{palette primary}{use=structure,fg=contrastedorange}
+% \setbeamercolor*{palette secondary}{use=structure,fg=contrastedorange!10!black}
+% \setbeamercolor*{palette tertiary}{use=structure,fg=contrastedorange!20!black}
+% \setbeamercolor*{palette quaternary}{use=structure,fg=contrastedorange!30!black}
+
+\setbeamercolor*{palette sidebar primary}{fg=white}
+\setbeamercolor*{palette sidebar secondary}{fg=black}
+\setbeamercolor*{palette sidebar tertiary}{fg=white}
+\setbeamercolor*{palette sidebar quaternary}{fg=black}
+
+
+\mode
+<all>

@@ -1,0 +1,241 @@
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzset{radiation/.style={{decorate,decoration={expanding waves,angle=90,segment length=0.1em}}}}
+
+\begin{tikzpicture}[->,>=stealth', node distance=6.0em]
+
+  %%{ nodes
+
+  \node[state_blue, shift = {(0.0em, 0.0em)}] (control_manager) {
+    \begin{tabular}{c}
+      \scriptsize Control manager
+    \end{tabular}
+  };
+
+  \node[state_red, right of = control_manager, shift = {(2.0em, 0.0em)}] (mpc_tracker) {
+    \begin{tabular}{c}
+      \scriptsize MPC tracker
+    \end{tabular}
+  };
+
+  \node[state_red, below of = mpc_tracker, shift = {(0.0em, 4.5em)}] (landoff_tracker) {
+    \begin{tabular}{c}
+      \scriptsize Landoff tracker
+    \end{tabular}
+  };
+
+  \node[state_blue, above of = mpc_tracker, shift = {(0.0em, -4.0em)}] (constraint_manager) {
+    \begin{tabular}{c}
+      \scriptsize Constraint manager
+    \end{tabular}
+  };
+
+  \node[state_blue, above of = constraint_manager,  shift = {(-1.0em, -4.5em)}] (uav_manager) {
+    \begin{tabular}{c}
+      \scriptsize UAV manager
+    \end{tabular}
+  };
+
+  \node[state_red, below of = landoff_tracker, shift = {(0.0em, 4.5em)}] (speed_tracker) {
+    \begin{tabular}{c}
+      \scriptsize Speed tracker
+    \end{tabular}
+  };
+
+  \node[below of = speed_tracker, shift = {(0.0em, 4.5em)}] (dots_tracker) {
+    \begin{tabular}{c}
+      $\vdots$
+    \end{tabular}
+  };
+
+  \node[state_green, left of = control_manager, shift = {(-2.0em, 0.0em)}] (se3_controller) {
+    \begin{tabular}{c}
+      \scriptsize SE(3) controller
+    \end{tabular}
+  };
+
+  \node[state_green, below of = se3_controller, shift = {(0.0em, 4.5em)}] (mpc_controller) {
+    \begin{tabular}{c}
+      \scriptsize MPC controller
+    \end{tabular}
+  };
+
+  \node[state_blue, above of = se3_controller, shift = {(0.0em, -4.0em)}] (gain_manager) {
+    \begin{tabular}{c}
+      \scriptsize Gain manager
+    \end{tabular}
+  };
+
+  \node[state_green, below of = mpc_controller, shift = {(0.0em, 4.5em)}] (failsafe_controller) {
+    \begin{tabular}{c}
+      \scriptsize Failsafe controller
+    \end{tabular}
+  };
+
+  \node[below of = failsafe_controller, shift = {(0.0em, 4.5em)}] (dots_controller) {
+    \begin{tabular}{c}
+      $\vdots$
+    \end{tabular}
+  };
+
+  \node[state_white, below of = control_manager, shift = {(0.0em, 4.2em)}] (mavros2) {
+    \begin{tabular}{c}
+      \scriptsize Mavros
+    \end{tabular}
+  };
+
+  % \node[state_white, above of = control_manager, shift = {(-2.2em, -3.0em)}] (nimbro) {
+  %     \begin{tabular}{c}
+  %       \scriptsize Nimbro
+  %     \end{tabular}
+  %   };
+
+  \node[state_gray, below of = mavros2, shift = {(0.0em, 4.2em)}] (pixhawk2) {
+    \begin{tabular}{c}
+      \scriptsize Pixhawk
+    \end{tabular}
+  };
+
+  \node[state_white, above of = control_manager, shift = {(0.0em, -1.0em)}] (estimator) {
+    \begin{tabular}{c}
+      \scriptsize State estimator
+    \end{tabular}
+  };
+
+  \node[state_white, above of = estimator, shift = {(0.0em, -4.0em)}] (mavros) {
+    \begin{tabular}{c}
+      \scriptsize Mavros
+    \end{tabular}
+  };
+
+  \node[state_gray, above of = mavros, shift = {(0.0em, -4.0em)}] (pixhawk) {
+    \begin{tabular}{c}
+      \scriptsize Pixhawk
+    \end{tabular}
+  };
+
+  \node[state_white, right of = mavros, shift = {(-1.4em, 0.0em)}] (optic_flow) {
+    \begin{tabular}{c}
+      \scriptsize Optic flow
+    \end{tabular}
+  };
+
+  \node[state_gray, above of = optic_flow, shift = {(0.0em, -4.0em)}] (camera) {
+    \begin{tabular}{c}
+      \scriptsize Camera
+    \end{tabular}
+  };
+
+  \node[state_gray, left of = mavros, shift = {(0.8em, 0.0em)}] (height) {
+    \begin{tabular}{c}
+      \scriptsize Height sensor
+    \end{tabular}
+  };
+
+  \node[state_gray, left of = height, shift = {(0.3em, 0.0em)}] (rtk) {
+    \begin{tabular}{c}
+      \scriptsize RTK GPS
+    \end{tabular}
+  };
+
+  \node[state_white, right of = optic_flow, shift = {(-1.5em, 0.0em)}] (slam) {
+    \begin{tabular}{c}
+      \scriptsize SLAM
+    \end{tabular}
+  };
+
+  \node[state_gray, above of = slam, shift = {(0.0em, -4.0em)}] (lidar) {
+    \begin{tabular}{c}
+      \scriptsize LIDAR
+    \end{tabular}
+  };
+
+  %%}
+
+  %%{ paths
+
+  %% | ------------ connected sensor data to estimator ----------- |
+  \path[-] ($(rtk.south)$) edge [->] ($(estimator.north) + (-2em, 0)$);
+  \path[-] ($(height.south)$) edge [->] ($(estimator.north) + (-1.0em, 0)$);
+  \path[-] ($(optic_flow.south)$) edge [->] ($(estimator.north) + (1.0em, 0)$);
+  \path[-] ($(slam.south)$) edge [->] ($(estimator.north) + (2em, 0)$);
+  \path[-] ($(mavros.south)$) edge [->] ($(estimator.north) + (0em, 0)$);
+
+  \path[] ($(camera.south)$) edge [->] ($(optic_flow.north)$);
+
+  %% | ---------------------- lidar to slam --------------------- |
+  \path[-] ($(slam.north |- lidar.south)$) edge [->] ($(slam.north)$);
+
+  %% | ----- connections from controllers to control manager ---- |
+  \path ($(se3_controller.east)$) edge [<->] ($(control_manager.west) + (0, 0.4em)$);
+  \path ($(mpc_controller.east)$) edge [<->] ($(control_manager.west) + (0, 0.20em)$);
+  \path ($(failsafe_controller.east)$) edge [<->] ($(control_manager.west) + (0, 0.0em)$);
+  % \path ($(failsafe_controller.east |- dots_controller.east)$) edge [<->] ($(control_manager.west) + (0, -0.2em)$);
+
+  %% | ------ connections from trackers to control manager ------ |
+  \path ($(speed_tracker.west)$) edge [<->] ($(control_manager.east) + (0, 0.00em)$);
+  \path ($(landoff_tracker.west)$) edge [<->] ($(control_manager.east) + (0, 0.20em)$);
+  \path ($(mpc_tracker.west)$) edge [<->] ($(control_manager.east) + (0, 0.40em)$);
+  % \path ($(speed_tracker.west |- dots_tracker.west)$) edge [<->] ($(control_manager.east) + (0, -0.20em)$);
+
+  %% | ------------------- gain manager to se3 ------------------ |
+  \path[-] ($(gain_manager.south)$) edge [->] ($(se3_controller.north)$);
+
+  %% | ---------- constraint manager to control manager --------- |
+  \draw[-] ($(constraint_manager.west)$) -- ($(control_manager.north |- constraint_manager.west) + (2em, 0)$) edge [->] ($(control_manager.north) + (2em, 0)$);
+
+  %% | ------------- control manager to uav manager ------------- |
+  \draw[-] ($(uav_manager.west)$) -- ($(control_manager.north |- uav_manager.west) + (1em, 0)$) edge [->] ($(control_manager.north) + (1em, 0)$);
+
+  %% | --------------- estimator to control manager -------------- |
+  \path ($(estimator.south) + (0.0em, 0)$) edge [->] ($(control_manager.north) + (0.0em, 0)$);
+
+  %% | --------------- estimator to uav manager -------------- |
+  \draw[-] ($(estimator.east)$) -- ($(uav_manager.north |- estimator.east) + (0em, 0)$) edge [->] ($(uav_manager.north) + (0em, 0)$);
+
+  %% | ---------------- estimator to gain manager --------------- |
+  \draw[-] ($(estimator.west)$) -- ($(gain_manager.north |- estimator.west) + (0em, 0)$) edge [->] ($(gain_manager.north) + (0em, 0)$);
+
+  %% | ------------- estimator to constraint manager ------------ |
+  \draw[-] ($(estimator.east)$) -- ($(constraint_manager.north |- estimator.east) + (2.5em, 0)$) edge [->] ($(constraint_manager.north) + (2.5em, 0)$);
+
+  %% | ------------------------- pixhawk ------------------------ |
+  \path ($(pixhawk.south)$) edge [->] ($(mavros.north)$);
+
+  %% | ------------------------ pixhawk 2 ----------------------- |
+  \path ($(mavros2.north |- control_manager.south)$) edge [->] ($(mavros2.north)$);
+  \path ($(pixhawk2.north)$) edge [<-] ($(mavros2.south)$);
+
+  % %% | ------------------------- nimbro ------------------------- |
+  % \path ($(nimbro.south)$) edge [->] ($(nimbro.south |- control_manager.north)$);
+
+  %%}
+
+  %%{ backgrounds
+
+  % \begin{pgfonlayer}{background}
+  %   \path (se3_controller.east |- se3_controller.north)+(+0.3, 0.3) node (a) {};
+  %   \path (attitude_controller.south -| se3_controller.west)+(-0.3,-0.3) node (b) {};
+  %   \path[fill=black!70, draw=black!50, dashed]
+  %   (a) rectangle (b);
+  %   \path (a) -- node [midway, shift = {(-5.5, -1.0)}] {\begin{tabular}{c}
+  %       \scriptsize Controllers\\
+  %       \scriptsize (ROS Plugins)
+  %   \end{tabular}} (a);
+  % \end{pgfonlayer}
+
+  % \begin{pgfonlayer}{background}
+  %   \path (landoff_tracker.east |- landoff_tracker.north)+(+0.3, 0.3) node (a) {};
+  %   \path (csv_tracker.south -| landoff_tracker.west)+(-0.3,-0.3) node (b) {};
+  %   \path[fill=black!70, draw=black!50, dashed]
+  %   (a) rectangle (b);
+  %   \path (a) -- node [midway, shift = {(1.5, -1.0)}] {\begin{tabular}{c}
+  %       \scriptsize Trackers\\
+  %       \scriptsize (ROS Plugins)
+  %   \end{tabular}} (a);
+  % \end{pgfonlayer}
+
+  %%}
+
+\end{tikzpicture}
