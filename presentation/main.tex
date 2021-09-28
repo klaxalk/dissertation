@@ -56,6 +56,8 @@
 \usepackage{float}
 \usepackage{multirow,tabularx,makecell}
 
+\usepackage{pdfpcnotes}
+
 \usepackage{amsmath,amsfonts,amssymb,bm}
 
 \usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=none,sortcites=false]{biblatex}
@@ -575,7 +577,7 @@
 \begin{block}{Problem}
   \begin{itemize}
     \item real-time reference generation
-    \item \SI{100}{Hz} full state reference for controllers: $\dot{\textbf{x}}, \ddot{\textbf{x}}, \dot{\ddot{\textbf{x}}}$, $\ddot{\ddot{\textbf{x}}}$, where $\textbf{x} = \begin{pmatrix}
+    \item \SI{100}{\hertz} full state reference for controllers: $\dot{\textbf{x}}, \ddot{\textbf{x}}, \dot{\ddot{\textbf{x}}}$, $\ddot{\ddot{\textbf{x}}}$, where $\textbf{x} = \begin{pmatrix}
     r_x, r_y, r_z, \theta
     \end{pmatrix}^\intercal$ (pose and heading)
     \item UAV dynamics constraints satisfaction
@@ -590,7 +592,7 @@
     \item onboard real-time simulation of the linear translational UAV dynamics
     \item linear MPC (LCQP) solved at 100 Hz
     \item states of the simulated model sampled and taken as control reference
-    \item \SI{8}{s} prediction horizon used for inter-UAV collision avoidance
+    \item \SI{8}{\second} prediction horizon used for inter-UAV collision avoidance
   \end{itemize} 
 \end{block}
 
@@ -649,13 +651,13 @@
 %%{ MBZIRC 2017 objects
 
 \begin{frame}
-\frametitle{Cooperative autonomous grasping and delivery of objects}
+\frametitle{Autonomous grasping \& delivery of objects (MBZIRC 2017)}
 
 \begin{columns}[c]
 
 \column{0.60\textwidth} % Left column and width
 
-\begin{block}{Autonomous gathering of objects}
+\begin{block}{Autonomous grasping and delivery of objects}
   \begin{center}
     \mymovie[autostart,loop]{
       \includegraphics[width=0.95\textwidth]{./videos/mbzirc_grasping_short_thumbnail.jpg}
@@ -666,9 +668,9 @@
 \column{0.35\textwidth} % Right column and width
 
 \begin{itemize}
-  \item pes
-  \item kocka
-  \item slon
+  \item Random initial conditions, moving objects, limited preparation time, extreme weather conditions
+  \item Contribution: UAV state estimation, trajectory generation and tracking, UAV reactive collision avoidance \cite{baca2018model}, object state estimation and prediction, grasping manoeuvre
+  \item Placed $1^{\mathrm{st}}$ (won \$320 000)
 \end{itemize}
 
 \end{columns}
@@ -682,13 +684,13 @@
 %%{ MBZIRC 2017 landing
 
 \begin{frame}
-\frametitle{Autonomous landing on a moving car}
+\frametitle{Autonomous landing on a moving car (MBZIRC 2017)}
 
 \begin{columns}[c]
 
 \column{0.65\textwidth} % Left column and width
 
-\begin{block}{Autonomous landing}
+\begin{block}{Autonomous landing on a moving car}
   \begin{center}
     \mymovie[autostart,loop]{
       \includegraphics[width=0.95\textwidth]{./videos/mbzirc_landing_short_thumbnail.jpg}
@@ -699,9 +701,10 @@
 \column{0.32\textwidth} % Right column and width
 
 \begin{itemize}
-  \item pes
-  \item kocka
-  \item slon
+  \item \SI{15}{\kilo\meter\per\hour} speed, random initial conditions
+  \item Contribution: UAV state estimation, UAV trajectory generation and tracking, car state estimation and prediction, landing manoeuvre
+  \item Fastest landing among all the teams (\SI{25}{\second})
+  \item Placed $2^{\mathrm{nd}}$
 \end{itemize}
 
 \end{columns}
@@ -715,13 +718,13 @@
 %%{ MBZIRC 2020 bricks
 
 \begin{frame}
-\frametitle{Autonomous wall-building by a group of UAVs}
+\frametitle{Autonomous wall-building by a UAVs (MBZIRC 2020)}
 
 \begin{columns}[c]
 
 \column{0.60\textwidth} % Left column and width
 
-\begin{block}{Autonomous wall-building}
+\begin{block}{Autonomous wall-building by group of 3 UAVs}
   \begin{center}
     \mymovie[autostart,loop]{
       \includegraphics[width=0.95\textwidth]{./videos/mbzirc_2020_bricks_short_thumbnail.jpg}
@@ -732,9 +735,9 @@
 \column{0.35\textwidth} % Right column and width
 
 \begin{itemize}
-  \item pes
-  \item kocka
-  \item slon
+  \item Onboard detection and computation only, no RTK GPS, randomized initial conditions
+  \item Contribution: UAV system, UAV control, trajectory generation, brick grasping, brick estimation, wall estimation, outlier filtering
+  \item Placed $1^{\mathrm{st}}$ (won \$250 000) 
 \end{itemize}
 
 \end{columns}
@@ -807,7 +810,36 @@
 \begin{frame}
 \frametitle{Aerial swarming}
 
-\cite{petracek2020bioinspired, saska2020formation, ahmad2021autonomous, dmytruk2021safe}
+\begin{block}{UAV swarming and flocking}
+  \begin{itemize}
+    \item Distributed swarming, indoors and outdoors \cite{petracek2020bioinspired, saska2020formation, ahmad2021autonomous, dmytruk2021safe}.
+    \item Contribution: UAV system, UAV control, UAV deployment
+  \end{itemize}
+\end{block}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+  \begin{block}{\small Aerial swarming (GPS)}
+    \begin{center}
+      \mymovie[autostart,loop]{
+        \includegraphics[width=0.9\textwidth]{./videos/swarm_14uavs_field_thumbnail.jpg}
+      }{./videos/swarm_14uavs_field.mp4}\\
+    \end{center}
+  \end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+  \begin{block}{\small Aerial swarming (GPS)}
+  \begin{center}
+    \mymovie[autostart,loop,start=93,stop=126]{
+      \includegraphics[width=0.9\textwidth]{./videos/forest_swarm_4_uavs_rviz_thumbnail.jpg}
+    }{./videos/forest_swarm_4_uavs_rviz.mp4}\\
+  \end{center}
+\end{block}
+
+\end{columns}
 
 \end{frame}
 
@@ -818,7 +850,37 @@
 \begin{frame}
 \frametitle{Aerial Search and Rescue}
 
-\cite{petracek2021large, kratky2021autonomous2, roucek2021system, roucek2019darpa, petrlik2020robust}
+\begin{block}{DARPA Subterranean (2019--2021)}
+  \begin{itemize}
+    \item Search for survivors in underground (mines, urban, caves) \cite{petracek2021large, kratky2021autonomous2, roucek2021system, roucek2019darpa, petrlik2020robust}.
+    \item Contribution: UAV system, UAV control, trajectory tracking, trajectory generation \cite{baca2021mrs}
+    \item Placed $2^{\mathrm{nd}}$ (won \$500 000 USD) in the \emph{Virtual Finals}
+  \end{itemize}
+\end{block}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+  \begin{block}{Mine exploration}
+    \begin{center}
+      \mymovie[autostart,loop]{
+        \includegraphics[width=0.9\textwidth]{./videos/darpa_finals_green_short_thumbnail.jpg}
+      }{./videos/darpa_finals_green_short.mp4}\\
+    \end{center}
+  \end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+  \begin{block}{Virtual cave exploration}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.9\textwidth]{./videos/darpa_virtual_cave_thumbnail.jpg}
+    }{./videos/darpa_virtual_cave.mp4}\\
+  \end{center}
+\end{block}
+
+\end{columns}
 
 \end{frame}
 
