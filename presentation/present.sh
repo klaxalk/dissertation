@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SINGLE_SCREEN="false"
+SINGLE_SCREEN="true"
 
 SWAP_SCREENS="false"
 
@@ -8,11 +8,13 @@ PERSIST_CACHE="false"
 
 DISABLE_CACHE="false"
 
+# MONITORS="--presenter-screen=eDP-1 --presentation-screen=DP-1"
+
 NOTES=""
 
 TIMER="20"
 
-PAGE="1"
+PAGE="27"
 
 #############################################################
 
@@ -58,6 +60,6 @@ if [ -n "$PAGE" ]; then
   ARG_PAGE="-P $PAGE"
 fi
 
-cmd="~/git/pdfpc/build/bin/pdfpc --presenter-screen=eDP-1 --presentation-screen=DP-1 --note-format=markdown $ARG_PAGE $ARG_NOTES $ARG_SINGLE_SCREEN $ARG_SWAP_SCREENS $ARG_TIMER $ARG_PERSIST_CACHE $ARG_DISABLE_CACHE ./build/main.pdf"
+cmd="~/git/pdfpc/build/bin/pdfpc $MONITORS --note-format=markdown $ARG_PAGE $ARG_NOTES $ARG_SINGLE_SCREEN $ARG_SWAP_SCREENS $ARG_TIMER $ARG_PERSIST_CACHE $ARG_DISABLE_CACHE ./build/main.pdf"
 echo $cmd
 eval `echo $cmd`

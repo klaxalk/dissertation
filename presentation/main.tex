@@ -716,7 +716,7 @@
   \begin{itemize}
     \item real-time reference generation
     \item \SI{100}{\hertz} full state reference for controllers: $\dot{\mathbf{x}}, \ddot{\mathbf{x}}, \dot{\ddot{\mathbf{x}}}$, $\ddot{\ddot{\mathbf{x}}}$, where $\mathbf{x} = \begin{pmatrix}
-    r_x, r_y, r_z, \theta
+    r_x, r_y, r_z, \eta
     \end{pmatrix}^\intercal$ (pose and heading)
     \item UAV dynamics constraints satisfaction
     \item user input: trajectory consisting of poses sampled at regular intervals
@@ -1036,7 +1036,7 @@
 
 \column{0.48\textwidth} % Left column and width
 
-  \begin{block}{Mine exploration}
+  \begin{block}{Mine exploration (Finals, 2021)}
     \begin{center}
       \mymovie[autostart,loop]{
         \includegraphics[width=0.9\textwidth]{./videos/darpa_finals_green_short_thumbnail.jpg}
@@ -1046,7 +1046,7 @@
 
 \column{0.48\textwidth} % Right column and width
 
-  \begin{block}{Virtual cave exploration}
+  \begin{block}{Virtual cave exploration (Finals, 2021)}
   \begin{center}
     \mymovie[autostart,loop]{
       \includegraphics[width=0.9\textwidth]{./videos/darpa_virtual_cave_thumbnail.jpg}
@@ -1145,6 +1145,10 @@
 \begin{frame}
 \frametitle{VZLUSAT-1}
 
+\pnote{
+Czech Aerospace Research Centre
+}
+
 \begin{columns}[c]
 
 \column{0.65\textwidth} % Left column and width
@@ -1209,6 +1213,10 @@
 \begin{frame}
 \frametitle{REX --- Rocket Experiment}
 
+\pnote{
+Acta Astronautica
+}
+
 \begin{columns}[c]
 
 \column{0.65\textwidth} % Left column and width
@@ -1263,6 +1271,11 @@
 
 \begin{columns}[c]
 
+\pnote{
+National Institute for Nuclear,
+Chemical and Biological Protection
+}
+
 \column{0.65\textwidth} % Left column and width
 \begin{block}{UAV Experiment in SUJCHBO}
   \begin{center}
@@ -1278,9 +1291,12 @@
   \item \isotope[241]{Am}, $\approx$ \SI{500}{\mega\Bq}
   \item Timepix, Si \SI{300}{\micro\meter}
   \item FITPix readout
+  \item Pre-planned flight path
 \end{itemize}
 
 \end{columns}
+
+\fullciteinbox{baca2019timepix}{}
 
 \end{frame}
 
@@ -1457,6 +1473,39 @@
 \end{frame}
 
 %%}
+
+\begin{frame}
+\frametitle{Real-world experiment in SUJCHBO}
+
+\pnote{
+National Institute for Nuclear,
+Chemical and Biological Protection
+}
+
+\begin{columns}[c]
+
+\column{0.7\textwidth} % Left column and width
+\begin{block}{Video}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.95\textwidth]{./videos/radron_sujchbo_trash_thumbnail.jpg}
+    }{./videos/radron_sujchbo_trash.mp4}\\
+  \end{center}
+\end{block}
+
+\column{0.30\textwidth} % Right column and width
+
+\begin{itemize}
+  \item \isotope[137]{Cs} (various activities)
+  \item completely autonomous search and tracking
+  \item 3D mapping and planning
+  \item GNSS and GNSS-denied localization
+  \item real-time reporting and visualization
+\end{itemize}
+
+\end{columns}
+
+\end{frame}
 
 %%}
 
