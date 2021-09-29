@@ -3,6 +3,116 @@
 
 \tikzset{radiation/.style={{decorate,decoration={expanding waves,angle=90,segment length=0.1em}}}}
 
+\tikzset{
+  state/.style={
+    rectangle,
+    draw=black, very thick,
+    minimum height=1.0em,
+    text centered,
+  },
+  smallstate/.style={
+    rectangle,
+    draw=black, very thick,
+    minimum height=0.2em,
+    text centered,
+  },
+  final_state/.style={
+    rectangle,
+    rounded corners,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  initial_state/.style={
+    rectangle,
+    double=white,
+    double distance=1pt,
+    inner sep=2pt,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  point/.style={
+    circle,
+    inner sep=0pt,
+    minimum size=3pt,
+    fill=red
+  },
+  adder/.style={
+    circle,
+    inner sep=2pt,
+    minimum size=0.3in,
+    draw=black, very thick,
+    text centered
+  },
+  state_gray/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=gray!40,
+    minimum height=1.0em,
+    text centered,
+    inner sep=0,
+  },
+  state_white/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=white,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+    inner sep=0,
+  },
+  state_green/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=green!50,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+    inner sep=0,
+  },
+  state_red/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=red!70,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+    inner sep=0,
+  },
+  state_blue/.style={
+    rectangle,
+    draw=black, very thick,
+    fill=blue!40,
+    minimum height=1.0em,
+    text centered,
+    text=black,
+    inner sep=0,
+  },
+  final_state/.style={
+    rectangle,
+    rounded corners,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  initial_state/.style={
+    rectangle,
+    double=white,
+    double distance=1pt,
+    inner sep=2pt,
+    draw=black, very thick,
+    minimum height=2em,
+    text centered,
+  },
+  point/.style={
+    circle,
+    inner sep=0pt,
+    minimum size=3pt,
+    fill=red
+  },
+}
+
 \begin{tikzpicture}[->,>=stealth', node distance=6.0em]
 
   %%{ nodes

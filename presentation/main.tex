@@ -58,6 +58,7 @@
 
 \usepackage{pdfpcnotes}
 
+\usefonttheme{professionalfonts}
 \usepackage{amsmath,amsfonts,amssymb,bm}
 
 \usepackage[backend=bibtex,defernumbers=true,style=ieee,sorting=none,sortcites=false]{biblatex}
@@ -483,12 +484,148 @@
 
 %%}
 
-%%{ Controller
+%%{ Reference controllers
+
+%%{ Heading-oriented control design
 
 \begin{frame}
-\frametitle{Reference controller}
+\frametitle{Reference controllers --- Attitude rate}
 
+\begin{block}{\small Heading-oriented control design}
+  \small Heading $\eta = \mathrm{atan2}\left(\mathbf{\hat{b}}_1^\intercal\mathbf{\hat{e}}_2, \mathbf{\hat{b}}_1^\intercal\mathbf{\hat{e}}_1\right) = \mathrm{atan2}\left(\mathbf{h}_{(2)}, \mathbf{h}_{(1)}\right)$ as the $4^{\mathrm{th}}$ DOF (instead of \emph{yaw)}.
+\end{block}
 
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\begin{block}{\small \emph{SO(3)} attitude controller \cite{lee2010geometric}}
+  \begin{itemize}
+    \item \scriptsize Custom heading-complient desired orientation:
+  \end{itemize}
+
+  \begin{equation}
+    \scriptsize
+    \mathbf{R}_d = \left[\mathbf{\hat{b}}_{1d}, \mathbf{\hat{b}}_{2d}, \mathbf{\hat{b}}_{3d}\right],
+  \end{equation}
+
+  \begin{equation}
+    \scriptsize
+    \mathbf{b}_{1d} = \mathbf{O}(\mathbf{P}^\intercal\mathbf{O})^{-1}\mathbf{P}^\intercal\,\mathbf{\hat{h}}_d,\ \mathbf{\hat{b}}_{1d} = \frac{\mathbf{b}_{1d}}{\|\mathbf{b}_{1d}\|},
+  \end{equation}
+
+  \begin{equation}
+    \scriptsize
+    \hat{\mathbf{b}}_{2d} = \mathbf{\hat{b}}_{3d}\times \mathbf{\hat{b}}_{1d}.
+  \end{equation}
+
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+  \vspace{-1em}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.90\textwidth]{fig/sketch/coordinate_frames_platform.pdf}
+    % \caption{
+    %   The image depicts the world frame $\mathcal{W}$ = $\{\mathbf{\hat{e}}_1$, $\mathbf{\hat{e}}_2$, $\mathbf{\hat{e}}_3\}$ in which the 3D position and the orientation of the \ac{UAV} body is expressed.
+    %   The body frame $\mathcal{B}$ = $\{\mathbf{\hat{b}}_1$, $\mathbf{\hat{b}}_2$, $\mathbf{\hat{b}}_3\}$ relates to $\mathcal{W}$ by the translation $\mathbf{r} = \left[x, y, z\right]^{\intercal}$ and by rotation $\mathbf{R}^{\intercal}$.
+    %   The \ac{UAV} heading vector $\mathbf{h}$, which is a projection of $\hat{\mathbf{b}}_1$ to the plane $span\left(\mathbf{\hat{e}}_1, \mathbf{\hat{e}}_2\right)$, forms the heading angle $\eta = \mathrm{atan2}\left(\mathbf{\hat{b}}_1^\intercal\mathbf{\hat{e}}_2, \mathbf{\hat{b}}_1^\intercal\mathbf{\hat{e}}_1\right) = \mathrm{atan2}\left(\mathbf{h}_{(2)}, \mathbf{h}_{(1)}\right)$.
+    %   }
+  \end{figure}
+
+\end{columns}
+
+\fullciteinbox{baca2021mrs}{}
+
+\end{frame}
+
+%%}
+
+\begin{frame}
+\frametitle{Reference controllers --- Desired force and heading rate}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\begin{block}{\small Geometric tracking on \emph{SE(3)} \cite{lee2010geometric}}
+  \begin{equation}
+    \scriptsize
+    \begin{split}
+      \mathbf{f}_d = &\overbrace{-m_e\mathbf{k}_p\circ \mathbf{e}_p}^{\begin{tabular}{c}
+        \tiny position\\
+        \tiny feedback
+      \end{tabular}} + \overbrace{-m_e\mathbf{k}_v\circ \mathbf{e}_v}^{\begin{tabular}{c}
+        \tiny velocity\\
+        \tiny feedback
+      \end{tabular}} + \overbrace{m_e\ddot{\mathbf{r}}_d}^{\begin{tabular}{c}
+        \tiny reference\\
+        \tiny feedforward
+      \end{tabular}} + \\
+      & \underbrace{m_eg\mathbf{\hat{e}}_3}_{\begin{tabular}{c}
+        \tiny gravity\\
+        \tiny compensation
+      \end{tabular}} + \underbrace{-\mathbf{d}_w\circ \left[\begin{smallmatrix}
+        1\\
+        1\\
+        0
+      \end{smallmatrix}\right]}_{\begin{tabular}{c}
+        \tiny world disturbance\\
+        \tiny compensation
+      \end{tabular}} + \underbrace{-\mathbf{d}_b\circ \left[\begin{smallmatrix}
+        1\\
+        1\\
+        0
+      \end{smallmatrix}\right]}_{\begin{tabular}{c}
+        \tiny body disturbance\\
+        \tiny compensation
+      \end{tabular}},
+    \end{split}
+  \end{equation}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{\small Linear MPC}
+  \begin{equation}
+    \scriptsize
+    \begin{split}
+      \mathbf{f}_d = &\overbrace{m_e\ddot{\mathbf{r}}_d}^{\begin{tabular}{c}
+        \tiny reference \\
+        \tiny feedforward
+      \end{tabular}} + \overbrace{m_e\mathbf{c}_d}^{\begin{tabular}{c}
+        \tiny MPC \\
+        \tiny feedforward
+      \end{tabular}} + \overbrace{m_eg\mathbf{\hat{e}}_3}^{\begin{tabular}{c}
+        \tiny gravity \\
+        \tiny compensation
+      \end{tabular}} + \\
+      &\underbrace{-\mathbf{d}_w\circ \left[\begin{smallmatrix}
+        1\\
+        1\\
+        0
+      \end{smallmatrix}\right]}_{\begin{tabular}{c}
+        \tiny world disturbance\\
+        \tiny compensation
+      \end{tabular}} + \underbrace{-\mathbf{d}_b\circ \left[\begin{smallmatrix}
+        1\\
+        1\\
+        0
+      \end{smallmatrix}\right]}_{\begin{tabular}{c}
+        \tiny body disturbance\\
+        \tiny compensation
+      \end{tabular}}.
+    \end{split}
+  \end{equation}
+
+  \scriptsize \textbf{MPC feedforward:} desired acceleration from a constrained linear MPC.
+\end{block}
+
+\end{columns}
+
+\fullciteinbox{baca2021mrs}{}
 
 \end{frame}
 
@@ -578,7 +715,7 @@
 \begin{block}{Problem}
   \begin{itemize}
     \item real-time reference generation
-    \item \SI{100}{\hertz} full state reference for controllers: $\dot{\textbf{x}}, \ddot{\textbf{x}}, \dot{\ddot{\textbf{x}}}$, $\ddot{\ddot{\textbf{x}}}$, where $\textbf{x} = \begin{pmatrix}
+    \item \SI{100}{\hertz} full state reference for controllers: $\dot{\mathbf{x}}, \ddot{\mathbf{x}}, \dot{\ddot{\mathbf{x}}}$, $\ddot{\ddot{\mathbf{x}}}$, where $\mathbf{x} = \begin{pmatrix}
     r_x, r_y, r_z, \theta
     \end{pmatrix}^\intercal$ (pose and heading)
     \item UAV dynamics constraints satisfaction
@@ -633,6 +770,42 @@
 
 % \fullciteinbox{baca2018model}{http://github.com/ctu-mrs/mrs_uav_trackers}
 \fullciteinbox{baca2018model}{}
+
+\end{frame}
+
+%%}
+
+%%{ System diagram
+
+\begin{frame}
+\frametitle{MRS UAV System --- implementation}
+
+\begin{block}{System provided as open source project with more than 50 packages}
+  \centering
+  \url{https://github.com/ctu-mrs/mrs_uav_system}
+\end{block}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\begin{block}{Implementation diagram}
+  \begin{adjustbox}{max totalsize={1.0\textwidth}{.65\textheight}, center}
+    \input{./fig/tikz/implementation_diagram.tex}
+  \end{adjustbox}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{itemize}
+  \item used hundreds of students
+  \item powered 2 IEEE RAS summer schools on MRS
+  \item researchers from all over the world
+  \item The core of the system for UAV deployment
+  \item Additional packages for computer vision, mapping, planning, sensors, etc.
+\end{itemize}
+
+\end{columns}
 
 \end{frame}
 
@@ -967,7 +1140,7 @@
 
 %%}
 
-%%{ VZLUSAT
+%%{ VZLUSAT-1
 
 \begin{frame}
 \frametitle{VZLUSAT-1}
@@ -988,6 +1161,7 @@
 
 \column{0.3\textwidth} % Right column and width
 
+\centering
 \includegraphics[height=0.9\textheight]{./fig/photos/vzlusat_whole2.jpg}
 
 \end{columns}
@@ -1047,10 +1221,12 @@
   \end{itemize}
 \end{block}
 
+\centering
 \includegraphics[width=0.9\textwidth]{./fig/photos/rocket_tomas.jpg}
 
 \column{0.3\textwidth} % Right column and width
 
+\centering
 \includegraphics[height=0.85\textheight]{./fig/photos/rocket.jpg}
 
 \end{columns}
@@ -1082,8 +1258,6 @@
 
 \end{frame}
 
-%%}
-
 \begin{frame}
 \frametitle{Ionizing radiation dosimetry and imaging}
 
@@ -1110,9 +1284,16 @@
 
 \end{frame}
 
+%%}
+
+%%{ PETR RAL
+
 \begin{frame}
 \frametitle{Ionizing radiation dosimetry and imaging}
 
+\begin{columns}[c]
+
+\column{0.35\textwidth} % Left column and width
 \begin{block}{Multi-UAV source estimation}
   \begin{itemize}
     \item exploiting measurement directionality
@@ -1123,9 +1304,161 @@
   \end{itemize}
 \end{block}
 
+\column{0.60\textwidth} % Right column and width
+
+\begin{block}{Simulation experiment}
+  \begin{center}
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.9\textwidth]{./videos/radiation_petr_simulation_thumbnail.jpg}
+    }{./videos/radiation_petr_simulation.mp4}\\
+  \end{center}
+\end{block}
+
+\end{columns}
+
 \fullciteinbox{stibinger2020localization}{}
 
 \end{frame}
+
+%%}
+
+%%{ Compton Radron
+
+%%{ Compton coincidences
+
+\begin{frame}
+  \frametitle{Compton camera onboard UAVs}
+
+  \begin{columns}[c]
+
+  \column{0.48\textwidth} % Left column and width
+
+  %%{ Coincidences image
+
+  \begin{figure}
+    \centering
+    \begin{adjustbox}{max totalsize={1.0\textwidth}{1.0\textheight},center}
+      \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (a) at (0,0) {
+            \begin{tabular}{cc}
+                \fbox{\includegraphics[width=0.50\textwidth]{./fig/rviz/timepix_10s.png}}
+              &
+                \fbox{\includegraphics[width=0.50\textwidth]{./fig/rviz/timepix_10s_compton_zoom.png}}
+            \end{tabular}
+          };
+
+        %%{ labels
+
+        \begin{scope}[x={(a.south east)},y={(a.north west)}]
+
+          \draw (0.37, 0.11) rectangle (0.43, 0.20);
+          \draw[black] (0.43, 0.11) -- (0.525, 0.005);
+          \draw[black] (0.43, 0.20) -- (0.525, 0.995);
+
+          \draw (0.66,0.80) node [text=black] {\small photon track};
+          \draw (0.83,0.95) node [text=black] {\small electron track};
+
+          \draw (0.75,0.33) node [text=black] {
+            \begin{tabular}{rl}
+              \small $\lambda'_e$ = &\SI{394.22}{\kilo\electronvolt}\\
+              \small $e^{\minus}_e$ = &\SI{315.70}{\kilo\electronvolt}\\
+              \small $\Delta t$ = &\SI{20.31}{\nano\second}\\
+              \small $\Delta z$ = &\SI{0.47}{\milli\meter}\\
+              \hline
+              \small $\Theta$ = &\SI{1.13}{\radian}\\
+            \end{tabular}
+          };
+
+          %%{ grid
+
+          % useful grid to help you find coordinates for plotting the overlay
+          % \draw[black, xstep=.1, ystep=.1] (0,0) grid (1,1);
+          % \foreach \i in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1} {
+          %   \node[align=center] at (\i, -0.05) {\i};
+          %   \node[align=center] at (\i, 1.05) {\i};
+          %   \node[align=center] at (-0.05, \i) {\i};
+          %   \node[align=center] at (1.05, \i) {\i};
+          % }
+
+          %%}
+
+        \end{scope}
+
+        %%}
+      \end{tikzpicture}
+    \end{adjustbox}
+    \caption{
+      An example of a pair of Compton scattering products captured by the Timepix3 detector.
+      The events' times are used together with the particles' energies to reconstruct the scattering angle, $\Theta$.
+    }
+    \label{fig:timepix_image}
+  \end{figure}
+
+  %%}
+
+  \column{0.48\textwidth} % Right column and width
+
+  %%{ Coincidences 3D sketch
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_3d.pdf}
+    \caption{
+      % An illustration of the Compton scattering effect within the CdTe sensor on top of the Timepix3 detector.
+      The ionized electron clouds are produced by absorption $\lambda'$ and $e^-$ and are gathered towards the detector pixels by $\SI{450}{\volt}$ bias potential with a speed of $\approx$\,\SI{23}{\micro\meter\per\nano\second}.
+    }
+  \end{figure}
+
+  %%}
+
+  \end{columns}
+
+\end{frame}
+
+%%}
+
+%%{ Scattering angle reconstruction
+
+\begin{frame}
+\frametitle{Scattering angle reconstruction}
+
+  \begin{columns}[c]
+
+  \column{0.48\textwidth} % Left column and width
+
+  1. converting the measured particle energies from (\si{\kilo\electronvolt}) to (\si{\joul}) as
+  \begin{align*}
+    E_{e^{\minus}} &= e_{e^{\minus}}/6.242\times10^{18},\\
+    E_{\lambda} &= e_{\lambda}/6.242\times10^{18}.
+  \end{align*}
+  2. calculating the scattering angle using (\ref{eq:compton_formulae}):
+  \begin{align*}
+    \Theta = \cos^{-1} \underbrace{\left(1 + m_e c^2 \left(\frac{1}{E_{e^{-}} + E_\lambda} - \frac{1}{E_\lambda}\right)\right)}_{B},\\\text{for}\ \minus 1 < B < 1
+  \end{align*}
+  3. the cone origin $\mathbf{o}_{\mathcal{C}} = \mathbf{e}^{\minus}$, the direction $\mathbf{\hat{d}}_\mathcal{C} = \mathbf{e}^{\minus} - \lambda'$, and the inner angle $\Theta$.
+
+  \column{0.48\textwidth} % Right column and width
+
+  %%{ Coincidences 3D sketch
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_3d.pdf}
+    \caption{
+      % An illustration of the Compton scattering effect within the CdTe sensor on top of the Timepix3 detector.
+      The ionized electron clouds are produced by absorption $\lambda'$ and $e^-$ and are gathered towards the detector pixels by $\SI{450}{\volt}$ bias potential with a speed of $\approx$\,\SI{23}{\micro\meter\per\nano\second}.
+    }
+  \end{figure}
+
+  %%}
+
+  \end{columns}
+
+\end{frame}
+
+%%}
+
+%%}
 
 %%}
 
@@ -1190,8 +1523,8 @@
 \begin{block}{TACR RADRON (2020-2022), FW0101317, $8^{\mathrm{th}}$ of 396 submitted}
   \begin{itemize}
     \item \textbf{Source}: Technology Agency of the Czech Republic , $\approx$ \$1M USD
+    \item \textbf{PI}: \emph{Advacam, s.r.o.}, \textbf{Co-I}: \emph{Czech metrology institute}
     \item \textbf{Title}: \emph{Localization of sources of ionizing radiation using a group of small unmanned aircrafts with Compton camera detectors}
-    \item \textbf{PI}: \emph{Advacam, s.r.o.}, \textbf{Co-I}: Czech metrology institute
     \item \textbf{Contribution}: Devised the estimation methodology, co-wrote the project with the PI
   \end{itemize}
 \end{block}
@@ -1199,8 +1532,8 @@
 \begin{block}{TACR Glamr (2021-2023), FW03010020, $13^{\mathrm{th}}$ of 433 submitted}
   \begin{itemize}
     \item \textbf{Source}: Technology Agency of the Czech Republic , $\approx$ \$2.2M USD
-    \item \textbf{Title}: \emph{Guidance and Localization upgrade creating Autonomous Mobile Robots}
     \item \textbf{PI}: \emph{DataVision, s.r.o.}
+    \item \textbf{Title}: \emph{Guidance and Localization upgrade creating Autonomous Mobile Robots}
     \item \textbf{Contribution}: Devised the UAV methodology, co-wrote the project with the PI
   \end{itemize}
 \end{block}
@@ -1234,22 +1567,26 @@
 
 %%}
 
+%%{ MRS TEAM
+
 \begin{frame}
 \frametitle{The MRS Team}
 
   \begin{columns}[c]
-  
+
   \column{0.48\textwidth} % Left column and width
 
   \includegraphics[width=1.0\textwidth]{./fig/photos/mbzirc_team_2017.jpg}
-  
+
   \column{0.48\textwidth} % Right column and width
-  
+
   \includegraphics[width=1.0\textwidth]{./fig/photos/mbzirc_team_2020.jpg}
-  
+
   \end{columns}
 
 \end{frame}
+
+%%}
 
 \section{Discussion and results}
 
@@ -1303,6 +1640,13 @@
   }
 \end{frame}
 
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \tiny{
+    \printbibliography[notkeyword={mine},notkeyword={core},heading=none,title={}]
+  }
+\end{frame}
+
 %%}
 
 %% | ---------------------- BACKUP SLIDES --------------------- |
@@ -1325,6 +1669,233 @@
     \item 2021 United Arab Emirates, 1 month, \emph{TII collaboration}
     \item 2021 Kentucky, USA, 3 weeks, \emph{DARPA SubT Finals}
   \end{itemize}
+
+\end{frame}
+
+%%}
+
+%%{ Compton Scattering
+
+\begin{frame}[noframenumbering]
+  \frametitle{Compton Scattering}
+
+  \begin{columns}[c]
+
+  \column{0.48\textwidth} % Left column and width
+
+  \begin{figure}[!t]
+    \centering
+    \resizebox{0.75\textwidth}{!}{%
+      \input{./fig/tikz/compton_scattering.tex}
+    }
+    \caption{
+      Compton scattering: an incoming gamma photon $\lambda$ changes its momentum as it scatters off a scattering center by a scattering angle $\Theta$.
+      The decrease in momentum creates an electron.
+    }
+    \label{fig:compton_scattering}
+  \end{figure}
+
+  \column{0.48\textwidth} % Right column and width
+
+  \begin{block}{Compton scattering graphically}
+  Compton scattering energy effects are described by the Compton Formula
+  \begin{equation}
+    E_{\lambda'} = \frac{E_{\lambda}}{1 + \left(E_{\lambda} / \left(m_e c^2\right)\right)\left(1 - \cos\Theta\right)},
+    \label{eq:compton_formulae}
+  \end{equation}
+  where $E_{\lambda}, E_{\lambda'}$ are the energies of the incoming and scattered photon (\si{\joul}), $E_{e^{\minus}}$ is the energy of the electron (\si{\joul}), $m_e = 9.10938356\times10^{-31}\,$\si{\kilogram} is the electron rest mass, and $c = 299792458$\,\si{\meter\per\second} is the speed of light in vacuum.
+  \end{block}
+
+  \end{columns}
+
+\end{frame}
+
+%%}
+
+%%{ Compton cone in the UAV frame
+
+\begin{frame}[noframenumbering]
+\frametitle{Compton cone in the UAV frame}
+
+\begin{figure}
+  \includegraphics[width=0.7\textwidth]{./fig/sketch/coordinate_frames.pdf}
+  \caption{Compton cone in respect to the UAV body frame.}
+\end{figure}
+
+\end{frame}
+
+%%}
+
+%%{ Estimating single source hypothesis
+
+\begin{frame}[noframenumbering]
+\frametitle{Compton camera: estimating single source hypothesis}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+\begin{block}{LKF for stationary target}
+LKF: hypothesis $\mathbf{x}_{[t]}$, hypothesis covariance $\mathbf{\Omega}_{[t]}$: $$\mathbf{x}_{[t]} = \m{A}\mathbf{x}_{[t-1]},~\mathbf{A} = \left[\begin{smallmatrix}
+  1 & 0 & 0\\
+  0 & 1 & 0\\
+  0 & 0 & 1
+\end{smallmatrix}\right],
+\label{eq:lti_model}$$
+where $\mathbf{A}$ is designed for a stationary 3D target.
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{Measurement covariance}
+
+  \begin{columns}[c]
+
+  \column{0.48\textwidth} % Left column and width
+
+  $$\mathbf{R_e} = \left[\begin{smallmatrix}
+    r & 0 & 0 \\
+    0 & 10^9 & 0 \\
+    0 & 0 & 10^9
+  \end{smallmatrix}\right],$$
+
+  \vfill
+
+  \column{0.48\textwidth} % Right column and width
+
+  $\mathbf{R} = \mathbf{P}\mathbf{R_e}\mathbf{P}^{\intercal}$, where $\mathbf{P}$ is a rotation matrix corresponding to rotation around the axis $\mathbf{\hat{e}}_3 \times \left(\mathbf{x}' - \mathbf{x}\right)$ by angle $\angle \left(\mathbf{x}' - \mathbf{x}, \mathbf{\hat{e}}_1\right)$.
+
+  \end{columns}
+
+\end{block}
+
+\end{columns}
+
+\end{frame}
+
+%%}
+
+%%{ Cone orthogonal projection
+
+\begin{frame}[noframenumbering]
+\frametitle{Compton camera: cone orthogonal projection}
+
+\begin{columns}[c]
+
+  \column{0.48\textwidth} % Left column and width
+  \begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./fig/sketch/orthogonal_projection.pdf}
+    \caption{Orthogonal projection of $\mathbf{x}$ to the cone surface.}
+    \label{fig:orthogonal_projection}
+  \end{figure}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{itemize}
+ \item $\mathbf{\hat{u}} = (\mathbf{x} - \mathbf{o})/\|\mathbf{x} - \mathbf{o}\|$.
+
+ \item $\alpha = \angle(\mathbf{\hat{u}}, \mathbf{\hat{d}})$.
+
+ \item $\beta = \alpha - \Theta$.
+
+ \item Finding $\mathbf{x}_r$ by rotating $\mathbf{x}$ around $\mathbf{\hat{d}} \times \mathbf{\hat{u}}$ by the angle $\beta$.
+
+ \item $\mathbf{\hat{v}} = (\mathbf{x}_r - \mathbf{o})/\|\mathbf{x}_r - \mathbf{o}\|$.
+
+ \item Finally, the orthogonal projection of $\mathbf{x}$ on the cone surface is:
+   $$
+   \mathbf{x}' = \begin{cases}
+     \mathbf{o} + \mathbf{\hat{v}}\cos\beta, & \text{if}\ \alpha < \pi/2,\\
+     \mathbf{o}, & \text{if}\ \pi/2 \leq \alpha.
+   \end{cases}
+   $$
+\end{itemize}
+
+\end{columns}
+
+\end{frame}
+
+%%}
+
+%%{ Estimator initialization
+
+\begin{frame}[noframenumbering]
+\frametitle{Compton camera: estimator initialization}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+\begin{block}{Finding a point that minimizes distance to \emph{N} cone surfaces}
+\begin{align*}
+  & \min_{\mathbf{p} \in \mathbb{R}^3} \label{eq:optimization_cost}
+  & \sum_{i=1}^{N}d(\mathbf{p}, \mathbf{o}_i, \mathbf{\hat{d}}_i, \Theta_i)^2
+\end{align*}\begin{align*}
+  \text{s.t.}~ \mathbf{\hat{d}}^{\intercal}_{i}\mathbf{p} &\geq \mathbf{\hat{d}}_i^{\intercal}\mathbf{o}_i, &\forall i &\in \{1, \hdots, n\},\\
+  \mathbf{p}^\intercal\mathbf{\hat{e}}_3 &= 0, &\forall i &\in \{1, \hdots, n\}.
+\end{align*}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{Distance to a cone surface}
+Given a point $\mathbf{p}$ such that $\text{if}\ \mathbf{\hat{d}}^{\intercal}_{i}\mathbf{p} < \mathbf{\hat{d}}_i^{\intercal}\mathbf{o}_i$ ($\mathbf{p}$ is situated \emph{behind} the cone origin), the distance to the cone surface is trivial:
+$$
+d(\mathbf{p}, \mathbf{o}, \mathbf{\hat{d}}, \Theta) = \|\mathbf{o} - \mathbf{p}\|.
+$$
+Otherwise, the distance is expressed as
+$$
+\|\mathbf{p} - \mathbf{o}\| \sin \left( \cos^{-1}\frac{\left(\mathbf{p} - \mathbf{o}\right) \circ \mathbf{\hat{d}}}{\|\mathbf{p} - \mathbf{o}\|} - \Theta\right).
+$$
+\end{block}
+
+\end{columns}
+
+\end{frame}
+
+%%}
+
+%%{ Simulations, moving target
+
+\begin{frame}[noframenumbering]
+\frametitle{Compton camera: simulations, moving target}
+
+  \begin{figure}
+    \centering
+    \subfloat {
+      \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.28\textwidth]{./fig/plots/simulation_30gbq.eps}};
+        \begin{scope}[x={(a.south east)},y={(a.north west)}]
+          % \node[imgletter] (letter) at (0.0, 0.0) {(a)};
+          % \draw (0.0, 0.0) rectangle (1.0, 1.0);
+        \end{scope}
+      \end{tikzpicture}
+    }
+    \subfloat {
+      \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.28\textwidth]{./fig/plots/simulation_10gbq.eps}};
+        \begin{scope}[x={(a.south east)},y={(a.north west)}]
+          % \node[imgletter] (letter) at (0.0, 0.0) {(b)};
+          % \draw (0.0, 0.0) rectangle (1.0, 1.0);
+        \end{scope}
+      \end{tikzpicture}
+    }
+    \subfloat {
+      \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (a) at (0,0) { \includegraphics[width=0.28\textwidth]{./fig/plots/simulation_3gbq.eps}};
+        \begin{scope}[x={(a.south east)},y={(a.north west)}]
+          % \node[imgletter] (letter) at (0.0, 0.0) {(c)};
+          % \draw (0.0, 0.0) rectangle (1.0, 1.0);
+        \end{scope}
+      \end{tikzpicture}
+    }
+    \caption{
+      Top-down view of samples of simulations with a single radiation source, moving at the speed of \SI{1}{\meter\per\second}.
+      First, the UAV searched for the source by encircling the center of the designated $100\times100$\,\si{\meter} area.
+      When the source for localized, the UAV then proceeded with encircling the 2D LKF hypothesis by circles with \SI{10}{\meter} radius.
+      The method showed good tracking performance for all tested source energies: \SI{30}{\giga\becquerel}, \SI{10}{\giga\becquerel}, \SI{3}{\giga\becquerel}, however, the initial search phase took increasingly longer with a weaker source.
+    }
+    \label{fig:simulations}
+  \end{figure}
 
 \end{frame}
 
