@@ -140,6 +140,7 @@
 \DeclareSIUnit \arcmin {arcmin}
 \DeclareSIUnit \erg {erg}
 \DeclareSIUnit \joul {J}
+\DeclareSIUnit \Bq {Bq}
 
 \usepackage{enumitem} % To enable enumerate with letters (a, b, c...)
 \newlist{alphalist}{enumerate}{1}
@@ -1038,11 +1039,11 @@
 
 \column{0.65\textwidth} % Left column and width
 
-\begin{block}{NASA's Sounding Rocket launch}
+\begin{block}{NASA's Sounding Rocket launch (2018) \cite{urban2021rex}}
   \begin{itemize}
-    \item \small 
-    \item \small 
-    \item \small 
+    \item Collaboration with PennState university (PA, USA)
+    \item 2 X-Ray telescopes, 2 Timepix detectors
+    \item ROS-powered onboard computers with Rospix \cite{baca2018rospix}
   \end{itemize}
 \end{block}
 
@@ -1058,10 +1059,70 @@
 
 %%}
 
+%%{ Timepix onboard UAVs
+
+\begin{frame}
+\frametitle{Timepix detector onboard UAVs}
+
+\begin{block}{Proof of concept for UAVs}
+  \begin{itemize}
+    \item real-time ray-tracing Timepix simulation model
+    \item real-time particle track classifier
+    \item verification of the simulation model vs. reality
+  \end{itemize}
+\end{block}
+
+\begin{figure}
+  \begin{adjustbox}{max totalsize={1.0\textwidth}, center}
+    \input{fig/rospix_pipeline.tex}
+  \end{adjustbox}
+\end{figure}
+
+\fullciteinbox{baca2019timepix}{}
+
+\end{frame}
+
+%%}
+
 \begin{frame}
 \frametitle{Ionizing radiation dosimetry and imaging}
 
-\fullciteinbox{baca2019timepix}{}
+\begin{columns}[c]
+
+\column{0.65\textwidth} % Left column and width
+\begin{block}{UAV Experiment in SUJCHBO}
+  \begin{center}
+    \mymovie[autostart,loop,start=100]{
+      \includegraphics[width=0.90\textwidth]{./videos/rospix_uav_flight_thumbnail.jpg}
+    }{./videos/rospix_uav_flight.mp4}\\
+  \end{center}
+\end{block}
+
+\column{0.30\textwidth} % Right column and width
+
+\begin{itemize}
+  \item \isotope[241]{Am}, $\approx$ \SI{500}{\mega\Bq}
+  \item Timepix, Si \SI{300}{\micro\meter}
+  \item FITPix readout
+\end{itemize}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ionizing radiation dosimetry and imaging}
+
+\begin{block}{Multi-UAV source estimation}
+  \begin{itemize}
+    \item exploiting measurement directionality
+    \item environment with obstacles
+    \item UAVs change heading to estimate bearing
+    \item scalable Multi-UAV source estimation
+    \item verified in Gazebo simulations
+  \end{itemize}
+\end{block}
+
 \fullciteinbox{stibinger2020localization}{}
 
 \end{frame}
@@ -1121,6 +1182,33 @@
 
 %%}
 
+%%{ Projects
+
+\begin{frame}
+\frametitle{Projects}
+
+\begin{block}{TACR RADRON (2020-2022), FW0101317, $8^{\mathrm{th}}$ of 396 submitted}
+  \begin{itemize}
+    \item \textbf{Source}: Technology Agency of the Czech Republic , $\approx$ \$1M USD
+    \item \textbf{Title}: \emph{Localization of sources of ionizing radiation using a group of small unmanned aircrafts with Compton camera detectors}
+    \item \textbf{PI}: \emph{Advacam, s.r.o.}, \textbf{Co-I}: Czech metrology institute
+    \item \textbf{Contribution}: Devised the estimation methodology, co-wrote the project with the PI
+  \end{itemize}
+\end{block}
+
+\begin{block}{TACR Glamr (2021-2023), FW03010020, $13^{\mathrm{th}}$ of 433 submitted}
+  \begin{itemize}
+    \item \textbf{Source}: Technology Agency of the Czech Republic , $\approx$ \$2.2M USD
+    \item \textbf{Title}: \emph{Guidance and Localization upgrade creating Autonomous Mobile Robots}
+    \item \textbf{PI}: \emph{DataVision, s.r.o.}
+    \item \textbf{Contribution}: Devised the UAV methodology, co-wrote the project with the PI
+  \end{itemize}
+\end{block}
+
+\end{frame}
+
+%%}
+
 %%{ Publication graph
 
 \begin{frame}
@@ -1145,6 +1233,23 @@
 \end{frame}
 
 %%}
+
+\begin{frame}
+\frametitle{The MRS Team}
+
+  \begin{columns}[c]
+  
+  \column{0.48\textwidth} % Left column and width
+
+  \includegraphics[width=1.0\textwidth]{./fig/photos/mbzirc_team_2017.jpg}
+  
+  \column{0.48\textwidth} % Right column and width
+  
+  \includegraphics[width=1.0\textwidth]{./fig/photos/mbzirc_team_2020.jpg}
+  
+  \end{columns}
+
+\end{frame}
 
 \section{Discussion and results}
 

@@ -12,7 +12,7 @@ NOTES=""
 
 TIMER="20"
 
-PAGE="18"
+PAGE="1"
 
 #############################################################
 
@@ -58,6 +58,6 @@ if [ -n "$PAGE" ]; then
   ARG_PAGE="-P $PAGE"
 fi
 
-cmd="~/git/pdfpc/build/bin/pdfpc --note-format=markdown $ARG_PAGE $ARG_NOTES $ARG_SINGLE_SCREEN $ARG_SWAP_SCREENS $ARG_TIMER $ARG_PERSIST_CACHE $ARG_DISABLE_CACHE ./build/main.pdf"
+cmd="~/git/pdfpc/build/bin/pdfpc --presenter-screen=eDP-1 --presentation-screen=DP-1 --note-format=markdown $ARG_PAGE $ARG_NOTES $ARG_SINGLE_SCREEN $ARG_SWAP_SCREENS $ARG_TIMER $ARG_PERSIST_CACHE $ARG_DISABLE_CACHE ./build/main.pdf"
 echo $cmd
 eval `echo $cmd`

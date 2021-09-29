@@ -1,0 +1,97 @@
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzset{radiation/.style={{decorate,decoration={expanding waves,angle=90,segment length=4pt}}}}
+
+\begin{tikzpicture}[->,>=stealth', node distance=3.1cm]
+
+  \node[state, shift = {(0.0, 0.0)}] (timepix) {
+      \begin{tabular}{c}
+        \small Timepix\\
+        \includegraphics[width=1.7cm]{./fig/photos/timepix_structure.png}
+      \end{tabular}
+    };
+
+  \node[state, right of = timepix, shift = {(-0.25, 0.0)}] (readout) {
+      \begin{tabular}{c}
+        \small USB interface\\
+        \includegraphics[width=1.7cm]{./fig/photos/fitpix_small.png}
+      \end{tabular}
+    };
+
+  \node[state, right of = readout, shift = {(-0.20, -0)}] (rospix) {
+      \begin{tabular}{c}
+        \small Rospix\\
+        \frame{\includegraphics[width=1.7cm]{./fig/photos/image_4.png}}
+      \end{tabular}
+    };
+
+  \node[state, right of = rospix, shift = {(0.2, -0)}] (track_classification) {
+      \begin{tabular}{c}
+        \small Track classification\\
+        \frame{\includegraphics[width=1.7cm]{./fig/photos/classified_image_4.png}}
+      \end{tabular}
+    };
+
+  \node[state, right of = track_classification, shift = {(0.6, -0)}] (estimation) {
+      \begin{tabular}{c}
+        \small Target estimation\\
+        \frame{\includegraphics[width=1.7cm]{./fig/photos/Photons.png}}
+      \end{tabular}
+    };
+
+  \node[state, right of = estimation, shift = {(-0.2, -0)}] (feedback) {
+      \begin{tabular}{c}
+        UAV\\feedback\\control
+      \end{tabular}
+    };
+
+  \path[->] ($(timepix.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+      \begin{tabular}{c}
+    \end{tabular}} ($(readout.west) + (0.0, 0.00)$);
+
+  \path[->] ($(readout.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+      \begin{tabular}{c}
+    \end{tabular}} ($(rospix.west) + (0.0, 0.00)$);
+
+    \path[->] ($(rospix.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+      \begin{tabular}{c}
+    \end{tabular}} ($(track_classification.west) + (0.0, 0.00)$);
+
+    \path[->] ($(track_classification.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+      \begin{tabular}{c}
+    \end{tabular}} ($(estimation.west) + (0.0, 0.00)$);
+
+    \path[->] ($(estimation.east) + (0.0, 0)$) edge [] node[above, midway, shift = {(0.0, 0.05)}] {
+      \begin{tabular}{c}
+    \end{tabular}} ($(feedback.west) + (0.0, 0.00)$);
+
+    \pgfmathsetmacro{\offsetA}{0.2}
+    \coordinate (above_rospix) at ($(rospix.north) + (0.0, \offsetA)$);
+    \coordinate (above_classification) at ($(track_classification.north) + (0.0, \offsetA)$);
+    \path[-] ($(track_classification.north) + (0.0, 0)$) edge [] (above_classification) -- (above_classification) edge [] (above_rospix) edge [] node[midway, shift = {(0.0, 0.20)}] {  
+      \begin{tabular}{c}
+        \small acquisition control
+    \end{tabular}} (above_rospix) -- (above_rospix) edge [->] ($(rospix.north) + (0.0, 0.0)$);
+
+    % \path[->] ($(timepix.east) + (0.15, 1.0)$) edge [dotted] node[above, near start, shift = {(0.0, 0.15)}] {
+    %   \begin{tabular}{c}
+    %     LVDS
+    % \end{tabular}} ($(timepix.east) + (0.15, 0.0)$);
+
+    % \path[->] ($(readout.east) + (0.15, 1.4)$) edge [dotted] node[above, near start, shift = {(0.0, 0.30)}] {
+    %   \begin{tabular}{c}
+    %     USB
+    % \end{tabular}} ($(readout.east) + (0.15, 0.0)$);
+
+    % \begin{pgfonlayer}{background}
+    %   \path (rospix.west |- rospix.north)+(-0.20, 0.60) node (a) {};
+    %   \path (track_classification.south -| track_classification.east)+(0.20,-0.5) node (b) {};
+    %   \path[fill=gray!0, draw=black!50, dashed]
+    %   (a) rectangle (b);
+    %   \path (rospix.west |- rospix.south)+(-0.20, 0.0) -- node [midway, shift = {(0.0, -0.3)}] {\begin{tabular}{c}
+    %       \small Proposed ROS pipeline
+    %   \end{tabular}} (track_classification.south -| track_classification.east);
+    % \end{pgfonlayer}
+
+  \end{tikzpicture}
