@@ -195,8 +195,8 @@
 %%}
 
 \usepackage{pdfpc-movie}
-\newcommand{\mymovie}[3][]{\pdfpcmovie[#1]{#2}{#3}}
-% \newcommand{\mymovie}[3][]{\movie[#1]{#2}{#3}}
+% \newcommand{\mymovie}[3][]{\pdfpcmovie[#1]{#2}{#3}}
+\newcommand{\mymovie}[3][]{\movie[#1]{#2}{#3}}
 
 %%{ ARROWS IN TIKZ
 
@@ -1007,9 +1007,9 @@
 
   \begin{block}{\small Aerial swarming (GPS)}
   \begin{center}
-    \mymovie[autostart,loop,start=93,stop=126]{
-      \includegraphics[width=0.9\textwidth]{./videos/forest_swarm_4_uavs_rviz_thumbnail.jpg}
-    }{./videos/forest_swarm_4_uavs_rviz.mp4}\\
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.9\textwidth]{./videos/forest_swarm_short_thumbnail.jpg}
+    }{./videos/forest_swarm_short.mp4}\\
   \end{center}
 \end{block}
 
@@ -1279,9 +1279,9 @@ Chemical and Biological Protection
 \column{0.65\textwidth} % Left column and width
 \begin{block}{UAV Experiment in SUJCHBO}
   \begin{center}
-    \mymovie[autostart,loop,start=100]{
-      \includegraphics[width=0.90\textwidth]{./videos/rospix_uav_flight_thumbnail.jpg}
-    }{./videos/rospix_uav_flight.mp4}\\
+    \mymovie[autostart,loop]{
+      \includegraphics[width=0.90\textwidth]{./videos/rospix_uav_fast_thumbnail.jpg}
+    }{./videos/rospix_uav_fast.mp4}\\
   \end{center}
 \end{block}
 
