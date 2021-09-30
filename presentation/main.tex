@@ -96,6 +96,7 @@
 \DeclareCiteCommand{\fullcite}
 {\usebibmacro{prenote}}
 {\clearfield{addendum}%
+ \clearfield{issn}%
   \usedriver
   {\defcounter{minnames}{6}%
   \defcounter{maxnames}{6}}
@@ -195,8 +196,8 @@
 %%}
 
 \usepackage{pdfpc-movie}
-% \newcommand{\mymovie}[3][]{\pdfpcmovie[#1]{#2}{#3}}
-\newcommand{\mymovie}[3][]{\movie[#1]{#2}{#3}}
+\newcommand{\mymovie}[3][]{\pdfpcmovie[#1]{#2}{#3}}
+% \newcommand{\mymovie}[3][]{\movie[#1]{#2}{#3}}
 
 %%{ ARROWS IN TIKZ
 
@@ -360,6 +361,13 @@
 \begin{frame}
   \frametitle{Outline}
   \tableofcontents
+
+  \pnote{
+    The structure of this presentation..
+
+    ... divided into...
+  }
+
 \end{frame}
 
 % \begin{frame}
@@ -396,7 +404,7 @@
     \item Object estimation
     \item Object manipulation
     \item Precise landing
-    \item UAV Swarming
+    \item Swarming and SAR
   \end{itemize}
 \end{block}
 
@@ -427,12 +435,65 @@
   \tableofcontents[currentsection]
 \end{frame}
 
+\begin{frame}
+\frametitle{References --- notation}
+
+\begin{columns}[c]
+
+\column{0.48\textwidth} % Left column and width
+
+\begin{block}{Authored publications}
+  \begin{itemize}
+    \item I am an author
+    \item suffix \textbf{a}
+    \item e.g., [36a]
+  \end{itemize}
+\end{block}
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{Authored Core publications}
+  \begin{itemize}
+    \item integral part of the thesis
+    \item suffix \textbf{c}
+    \item e.g., [3c]
+  \end{itemize}
+\end{block}
+
+\end{columns}
+
+\begin{columns}[c]
+
+\column{0.25\textwidth} % Left column and width
+
+\column{0.48\textwidth} % Right column and width
+
+\begin{block}{Other references}
+  \begin{itemize}
+    \item no suffix
+    \item e.g., [50]
+  \end{itemize}
+\end{block}
+
+\column{0.25\textwidth} % Right column and width
+
+\end{columns}
+
+\end{frame}
+
 %%{ Multirotor UAV system for research
 
 %%{ Motivation
 
 \begin{frame}
 \frametitle{Multirotor UAV system for research}
+
+\pnote{
+  ... validating basic research on
+  multi-UAV swarms and formations...
+
+  ... difficult do conduct without proper UAV system ...
+}
 
   \begin{block}{Motivation (2013 -- 2016)}
     \begin{itemize}
@@ -486,12 +547,12 @@
 
 %%{ Reference controllers
 
-%%{ Heading-oriented control design
+%%{ Heading-compliant control design
 
 \begin{frame}
 \frametitle{Reference controllers --- Attitude rate}
 
-\begin{block}{\small Heading-oriented control design}
+\begin{block}{\small Heading-compliant control design}
   \small Heading $\eta = \mathrm{atan2}\left(\mathbf{\hat{b}}_1^\intercal\mathbf{\hat{e}}_2, \mathbf{\hat{b}}_1^\intercal\mathbf{\hat{e}}_1\right) = \mathrm{atan2}\left(\mathbf{h}_{(2)}, \mathbf{h}_{(1)}\right)$ as the $4^{\mathrm{th}}$ DOF (instead of \emph{yaw)}.
 \end{block}
 
@@ -501,7 +562,7 @@
 
 \begin{block}{\small \emph{SO(3)} attitude controller \cite{lee2010geometric}}
   \begin{itemize}
-    \item \scriptsize Custom heading-complient desired orientation:
+    \item \scriptsize Custom heading-compliant desired orientation:
   \end{itemize}
 
   \begin{equation}
@@ -789,7 +850,7 @@
 
 \column{0.48\textwidth} % Left column and width
 
-\begin{block}{Implementation diagram}
+\begin{block}{Modular system architecture}
   \begin{adjustbox}{max totalsize={1.0\textwidth}{.65\textheight}, center}
     \input{./fig/tikz/implementation_diagram.tex}
   \end{adjustbox}
@@ -798,9 +859,9 @@
 \column{0.48\textwidth} % Right column and width
 
 \begin{itemize}
-  \item used hundreds of students
+  \item used by hundreds of students
   \item powered 2 IEEE RAS summer schools on MRS
-  \item researchers from all over the world
+  \item used researchers from all over the world
   \item the core of the system for UAV deployment is provided
   \item additional packages for computer vision, mapping, planning, sensors, tools, etc.
 \end{itemize}
@@ -877,7 +938,7 @@
 \begin{itemize}
   \item \SI{15}{\kilo\meter\per\hour} speed, random initial conditions
   \item Contribution: UAV state estimation, UAV trajectory generation and tracking, car state estimation and prediction, landing manoeuvre
-  \item Fastest landing among all the teams (\SI{25}{\second})
+  \item The fastest landing among all the teams (\SI{25}{\second})
   \item Placed $2^{\mathrm{nd}}$
 \end{itemize}
 
@@ -1005,7 +1066,7 @@
 
 \column{0.48\textwidth} % Right column and width
 
-  \begin{block}{\small Aerial swarming (GPS)}
+  \begin{block}{\small Aerial swarming (GPS-denied)}
   \begin{center}
     \mymovie[autostart,loop]{
       \includegraphics[width=0.9\textwidth]{./videos/forest_swarm_short_thumbnail.jpg}
@@ -1127,7 +1188,7 @@
   \item photons (gamma)
   \item electrons (beta)
   \item Helium nuclei (alpha)
-  \item protons (heavy ions)
+  \item protons
 \end{enumerate}
 \end{block}
 
@@ -1404,6 +1465,7 @@ Chemical and Biological Protection
       \end{tikzpicture}
     \end{adjustbox}
     \caption{
+      \scriptsize
       An example of a pair of Compton scattering products captured by the Timepix3 detector.
       The events' times are used together with the particles' energies to reconstruct the scattering angle, $\Theta$.
     }
@@ -1418,9 +1480,10 @@ Chemical and Biological Protection
 
   \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_3d.pdf}
+    \includegraphics[width=0.65\textwidth]{./fig/sketch/compton_3d.pdf}
     \caption{
       % An illustration of the Compton scattering effect within the CdTe sensor on top of the Timepix3 detector.
+      \scriptsize
       The ionized electron clouds are produced by absorption $\lambda'$ and $e^-$ and are gathered towards the detector pixels by $\SI{450}{\volt}$ bias potential with a speed of $\approx$\,\SI{23}{\micro\meter\per\nano\second}.
     }
   \end{figure}
@@ -1429,46 +1492,7 @@ Chemical and Biological Protection
 
   \end{columns}
 
-\end{frame}
-
-%%}
-
-%%{ Scattering angle reconstruction
-
-\begin{frame}
-\frametitle{Scattering angle reconstruction}
-
-  \begin{columns}[c]
-
-  \column{0.48\textwidth} % Left column and width
-
-  1. converting the measured particle energies from (\si{\kilo\electronvolt}) to (\si{\joul}) as
-  \begin{align*}
-    E_{e^{\minus}} &= e_{e^{\minus}}/6.242\times10^{18},\\
-    E_{\lambda} &= e_{\lambda}/6.242\times10^{18}.
-  \end{align*}
-  2. calculating the scattering angle using (\ref{eq:compton_formulae}):
-  \begin{align*}
-    \Theta = \cos^{-1} \underbrace{\left(1 + m_e c^2 \left(\frac{1}{E_{e^{-}} + E_\lambda} - \frac{1}{E_\lambda}\right)\right)}_{B},\\\text{for}\ \minus 1 < B < 1
-  \end{align*}
-  3. the cone origin $\mathbf{o}_{\mathcal{C}} = \mathbf{e}^{\minus}$, the direction $\mathbf{\hat{d}}_\mathcal{C} = \mathbf{e}^{\minus} - \lambda'$, and the inner angle $\Theta$.
-
-  \column{0.48\textwidth} % Right column and width
-
-  %%{ Coincidences 3D sketch
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{./fig/sketch/compton_3d.pdf}
-    \caption{
-      % An illustration of the Compton scattering effect within the CdTe sensor on top of the Timepix3 detector.
-      The ionized electron clouds are produced by absorption $\lambda'$ and $e^-$ and are gathered towards the detector pixels by $\SI{450}{\volt}$ bias potential with a speed of $\approx$\,\SI{23}{\micro\meter\per\nano\second}.
-    }
-  \end{figure}
-
-  %%}
-
-  \end{columns}
+  \fullciteinbox{baca2021gamma}{}
 
 \end{frame}
 
@@ -1644,7 +1668,7 @@ Chemical and Biological Protection
   \begin{center}
     \huge Thanks for your attention\\
     \begin{center}
-      \mymovie[autostart,loop]{
+      \mymovie[autostart]{
         \includegraphics[width=0.7\textwidth]{./videos/flip_thumbnail.jpg}
       }{./videos/flip.mp4}\\
     \end{center}
@@ -1674,7 +1698,7 @@ Chemical and Biological Protection
     \item only incremental improvements in localization techniques (SLAMs)
     \item diverse family of exteroceptive sensors (monocular/stereo visible, IR, LiDAR, RADAR)
     \item ? major step in SLAM technology: multimodal approaches
-    \item ? multimodal sensors: LiDAR + RADAR + IR camera
+    \item ? multimodal sensors: e.g., LiDAR + RADAR + IR camera
     \item $\implies$ real-world deployment in unstructured environment, SAR
   \end{itemize}
 \end{block}
@@ -1743,6 +1767,26 @@ Chemical and Biological Protection
 
 %%}
 
+\begin{frame}
+\frametitle{Supervised theses}
+
+\begin{block}{M.Sc.}
+\small \textbf{Petr Štibinger} - Autonomous Localization of a Radiation Source With a Group of UAV in a 3D Environment\\
+\small \textbf{Martin Jílek} - Processing of Radiation Data from the Timepix Sensor on the VZLUSAT-1 Satellite\\
+\small \textbf{Daniel Heřt} - Autonomous Predictive Interception of a Flying Target by an Unmanned Aerial Vehicle\\
+\small \textbf{Jiří Horyna} - Automatic control for collaborative payload carrying by a pair of unmanned helicopters\\
+\small \textbf{Daniel Srčka} - Physical human-machine interaction with a small multirotor helicopter
+\end{block}
+
+\begin{block}{Bc.}
+\small \textbf{Daniel Smrčka} - Controlled Interaction of an Unmanned Aerial Vehicle with a Wall\\
+\small \textbf{Jan Machálek} - Automatic Control of an Unmanned Aerial Vehicle in Robot Operating System\\
+\small \textbf{Jiří Horyna} - Robotic Manipulation Onboard an Unmanned Aerial Vehicle\\
+\small \textbf{Michal Werner} - Control System for a Tracked Mobile Robot
+\end{block}
+
+\end{frame}
+
 %%{ Compton Scattering
 
 \begin{frame}[noframenumbering]
@@ -1776,6 +1820,51 @@ Chemical and Biological Protection
   \end{block}
 
   \end{columns}
+
+\end{frame}
+
+%%}
+
+%%{ Scattering angle reconstruction
+
+\begin{frame}
+\frametitle{Scattering angle reconstruction}
+
+  \begin{columns}[c]
+
+  \column{0.48\textwidth} % Left column and width
+
+  \scriptsize 1. converting the measured particle energies from (\si{\kilo\electronvolt}) to (\si{\joul}) as
+  \begin{align*}
+    \scriptsize E_{e^{\minus}} &= e_{e^{\minus}}/6.242\times10^{18},\\
+    \scriptsize E_{\lambda} &= e_{\lambda}/6.242\times10^{18}.
+  \end{align*}
+  \scriptsize 2. calculating the scattering angle using (\ref{eq:compton_formulae}):
+  \begin{align*}
+    \scriptsize
+    \scriptsize \Theta = \cos^{-1} \underbrace{\left(1 + m_e c^2 \left(\frac{1}{E_{e^{-}} + E_\lambda} - \frac{1}{E_\lambda}\right)\right)}_{B},\\\text{for}\ \minus 1 < B < 1
+  \end{align*}
+  \scriptsize 3. the cone origin $\mathbf{o}_{\mathcal{C}} = \mathbf{e}^{\minus}$, the direction $\mathbf{\hat{d}}_\mathcal{C} = \mathbf{e}^{\minus} - \lambda'$, and the inner angle $\Theta$.
+
+  \column{0.48\textwidth} % Right column and width
+
+  %%{ Coincidences 3D sketch
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth]{./fig/sketch/compton_3d.pdf}
+    \caption{
+      % An illustration of the Compton scattering effect within the CdTe sensor on top of the Timepix3 detector.
+      \scriptsize
+      The ionized electron clouds are produced by absorption $\lambda'$ and $e^-$ and are gathered towards the detector pixels by $\SI{450}{\volt}$ bias potential with a speed of $\approx$\,\SI{23}{\micro\meter\per\nano\second}.
+    }
+  \end{figure}
+
+  %%}
+
+  \end{columns}
+
+  \fullciteinbox{baca2021gamma}{}
 
 \end{frame}
 
