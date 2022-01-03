@@ -1,7 +1,5 @@
 # dissertation
 
-Fuck if I know.
-
 ## dependencies
 
 ```bash
