@@ -4,15 +4,8 @@ SINGLE_SCREEN="true"
 
 SWAP_SCREENS="false"
 
-PERSIST_CACHE="false"
-
-DISABLE_CACHE="false"
-
 # set the name for the monitors (use arandr to get them)
 # MONITORS="--presenter-screen=eDP-1 --presentation-screen=DP-1"
-
-# load special pdfpc notes
-NOTES=""
 
 # timer in minutes
 TIMER="20"
@@ -21,6 +14,13 @@ TIMER="20"
 PAGE=""
 
 #############################################################
+
+# load special pdfpc notes
+NOTES=""
+
+PERSIST_CACHE="false"
+
+DISABLE_CACHE="false"
 
 ARG_SINGLE_SCREEN=""
 
